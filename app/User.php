@@ -29,15 +29,6 @@ class User extends Authenticatable
     ];
 
     /**
-     * An array of developers list.
-     *
-     * @var array
-     */
-    protected static $developers = [
-      'iftekhersunny@hotmail.com'
-    ];
-
-    /**
      * Determine given email is developer or not.
      *
      * @param string $email
@@ -45,7 +36,7 @@ class User extends Authenticatable
      */
     public static function developer($email)
     {
-        return in_array($email, static::$developers);
+        return in_array($email, config('developers'));
     }
 
     /**
@@ -55,6 +46,6 @@ class User extends Authenticatable
      */
     public static function developers()
     {
-        return static::$developers;
+        return config('developers');
     }
 }
