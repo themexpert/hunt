@@ -2,6 +2,7 @@
 
 // authentication routes...
 Auth::routes();
+Route::get('/token/{token}', 'TokensController@token');
 
 // Welcome route...
 Route::get('/', function () {

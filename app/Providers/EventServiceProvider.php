@@ -16,6 +16,10 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\FeatureReleased' => [
             'App\Listeners\SendFeatureReleasedEmail',
         ],
+
+        'Illuminate\Auth\Events\Registered' => [
+            'App\Listeners\SendConfirmationEmail'
+        ]
     ];
 
     /**
