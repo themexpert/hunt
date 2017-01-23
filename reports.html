@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>App</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="assets/css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="assets/css/style.css"/>
+
+</head>
+<body>
+
+    <header class="blue darken-2">
+        <nav class="blue darken-2" role="navigation">
+            <div class="container">
+                <div class="nav-wrapper">
+                    <div class="row">
+                        <div class="col s2">
+                            <div class="logo mt15">
+                                <a id="logo-container" href="#" class="brand-logo">Logo</a>
+                            </div>
+                        </div><!--/.col-->
+                        <div class="col s5">
+                            <div class="search-box mt15">
+                                <form>
+                                    <div class="input-field">
+                                        <input id="search" type="search" placeholder="Search Feature" required>
+                                        <label for="search"><i class="material-icons">search</i></label>
+                                        <i class="material-icons">close</i>
+                                    </div>
+                                </form>
+                            </div>
+                        </div><!--/.col-->
+                        <div class="col s5">
+                            <div class="menu mt15">
+                                <div class="right author">
+                                    <a href="#"><img src="//1.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?s=25&r=pg&d=mm" alt="" class="circle"></a>
+                                    <a href="#">David Brown</a>
+                                </div>
+
+                                <ul class="right hide-on-med-and-down">
+                                    <li><a href="#">Dashboard</a></li>
+                                    <li><a href="#">Release</a></li>
+                                    <li><a href="#">Report</a></li>
+                                </ul>
+                            </div>
+                        </div><!--/.col-->
+
+                    </div><!--/.row-->
+
+                    <ul id="nav-mobile" class="side-nav" style="transform: translateX(-100%);">
+                        <li><a href="#">Navbar Link</a></li>
+                    </ul>
+                    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+                </div><!--/.nav-wrapper-->
+            </div><!--/.container-->
+        </nav><!--/.nav-->
+
+
+    </header>
+
+    <section class="main-content">
+        <div class="container">
+            <h1 class="title">Feature List</h1>
+            <div class="row">
+                <div class="col s4">
+                    <div class="widget">
+
+                    </div>
+                </div>
+                <div class="col s8">
+                    <div class="card">
+                        <div class="card-content">
+                            <table class="responsive-table">
+                                <thead>
+                                    <tr>
+                                        <th data-field="value">Value</th>
+                                        <th data-field="feature">Feature</th>
+                                        <th data-field="status">Status</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="determinate" style="width: 70%"></div>
+                                            </div>
+                                        </td>
+                                        <td>Eclair</td>
+                                        <td>$0.87</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alan</td>
+                                        <td>Jellybean</td>
+                                        <td>$3.76</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jonathan</td>
+                                        <td>Lollipop</td>
+                                        <td>$7.00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div><!--/.feature-req-->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="center-align">
+        <div class="footer-copyright">
+            <div class="container">
+                &copy; 2010-2016 ThemeXpert Inc. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="assets/js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="assets/js/materialize.min.js"></script>
+    <script type="text/javascript" src="assets/js/custom.js"></script>
+</body>
+</html>
