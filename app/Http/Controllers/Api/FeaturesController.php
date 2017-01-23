@@ -111,7 +111,7 @@ class FeaturesController extends Controller
             $request->input('status')
         );
 
-        return $this->responseCreated([
+        return $this->responseOk([
             'feature_updated' => true,
             'message' => 'Feature suggestion has been updated'
         ]);

@@ -104,7 +104,7 @@ class ProductsController extends Controller
             $request->file('logo')
         );
 
-        return $this->responseCreated([
+        return $this->responseOk([
             'product_updated' => true,
             'message' => 'Product has been updated'
         ]);
