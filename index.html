@@ -12,8 +12,8 @@
 </head>
 <body>
 
-    <header class="blue darken-4">
-        <nav class="blue darken-4" role="navigation">
+    <header class="blue darken-2">
+        <nav class="blue darken-2" role="navigation">
             <div class="container">
                 <div class="nav-wrapper">
                     <div class="row">
@@ -22,7 +22,7 @@
                                 <a id="logo-container" href="#" class="brand-logo">Logo</a>
                             </div>
                         </div><!--/.col-->
-                        <div class="col s8">
+                        <div class="col s5">
                             <div class="search-box mt15">
                                 <form>
                                     <div class="input-field">
@@ -33,14 +33,21 @@
                                 </form>
                             </div>
                         </div><!--/.col-->
-                        <div class="col s2">
+                        <div class="col s5">
                             <div class="menu mt15">
+                                <div class="right author">
+                                    <a href="#"><img src="//1.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?s=25&r=pg&d=mm" alt="" class="circle"></a>
+                                    <a href="#">David Brown</a>
+                                </div>
+
                                 <ul class="right hide-on-med-and-down">
-                                    <li><a href="#">Link</a></li>
-                                    <li><a href="#">Link</a></li>
+                                    <li><a href="#">Dashboard</a></li>
+                                    <li><a href="#">Release</a></li>
+                                    <li><a href="#">Report</a></li>
                                 </ul>
                             </div>
                         </div><!--/.col-->
+
                     </div><!--/.row-->
 
                     <ul id="nav-mobile" class="side-nav" style="transform: translateX(-100%);">
@@ -53,7 +60,7 @@
 
         <div class="container">
             <div class="feature-req">
-                <div class="center-align">
+                <div class="center-align feature-form-area">
                     <h2 class="feature-req-title">Feature requests for ThemeXpert</h2>
                     <!-- Modal Trigger -->
                     <a class="waves-effect waves-light btn red" href="#modal1"><i class="material-icons left">add</i> Suggest a feature</a>
@@ -61,11 +68,31 @@
                     <!-- Modal Structure -->
                     <div id="modal1" class="modal">
                         <div class="modal-content">
-                            <h4>Modal Header</h4>
-                            <p>A bunch of text</p>
-                        </div>
-                        <div class="modal-footer">
-                            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+                            <h4 class="modal-title">Suggest a feature for ThemeXpert</h4>
+                            <form class="" action="">
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <input id="suggest_feature" type="text" placeholder="What do you have in mind ?">
+                                        <label for="suggest_feature">Suggest a feature</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <select>
+                                            <option value="" disabled selected>Select a product</option>
+                                            <option value="1">Option 1</option>
+                                            <option value="2">Option 2</option>
+                                            <option value="3">Option 3</option>
+                                        </select>
+                                    </div>
+                                </div><!--/.row-->
+                                <div class="input-field">
+                                    <textarea id="textarea1" class="materialize-textarea" placeholder="Please keep this as details as possible ..."></textarea>
+                                    <label for="textarea1">Add details (if you need to)</label>
+                                </div>
+
+                                <div class="input-field left-align">
+                                    <button type="submit" class="btn">Tell ThemeXpert I want this <i class="material-icons left">done</i> </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -113,8 +140,8 @@
                             </div>
 
                             <div class="secondary-content">
-                                <a class="waves-effect waves-light btn blue darken-4"><i class="material-icons left">done</i> I want this</a>
-                                <a class="waves-effect waves-light btn blue darken-3"><i class="material-icons left">snooze</i> Not interested</a>
+                                <a class="waves-effect waves-light btn teal"><i class="material-icons left">done</i> I want this</a>
+                                <a class="waves-effect waves-light btn teal lighten-2"><i class="material-icons left">snooze</i> Not interested</a>
                             </div>
 
                         </li>
@@ -128,8 +155,8 @@
                             </div>
 
                             <div class="secondary-content">
-                                <a class="waves-effect waves-light btn blue darken-4"><i class="material-icons left">done</i> I want this</a>
-                                <a class="waves-effect waves-light btn blue darken-3"><i class="material-icons left">snooze</i> Not interested</a>
+                                <a class="waves-effect waves-light btn teal"><i class="material-icons left">done</i> I want this</a>
+                                <a class="waves-effect waves-light btn teal lighten-2"><i class="material-icons left">snooze</i> Not interested</a>
                             </div>
 
                         </li>
@@ -143,8 +170,8 @@
                             </div>
 
                             <div class="secondary-content">
-                                <a class="waves-effect waves-light btn blue darken-4"><i class="material-icons left">done</i> I want this</a>
-                                <a class="waves-effect waves-light btn blue darken-3"><i class="material-icons left">snooze</i> Not interested</a>
+                                <a class="waves-effect waves-light btn teal"><i class="material-icons left">done</i> I want this</a>
+                                <a class="waves-effect waves-light btn teal lighten-2"><i class="material-icons left">snooze</i> Not interested</a>
                             </div>
 
                         </li>
@@ -159,7 +186,6 @@
         <div class="footer-copyright">
             <div class="container">
                 &copy; 2010-2016 ThemeXpert Inc. All Rights Reserved.
-                <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
             </div>
         </div>
     </footer>

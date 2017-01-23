@@ -14,12 +14,25 @@ a {
   transition: all .3s ease;
 }
 .btn {
-  text-transform: capitalize;
+  text-transform: inherit;
   padding: 0 10px;
   i {
     font-size: 1.2rem;
     margin-right: 5px;
   }
+}
+.chip {
+  text-transform: uppercase;
+  font-size: 12px;
+  border-radius: 2px;
+  height: 20px;
+  line-height: 20px;
+  color: #fff;
+  background: #777;
+}
+.modal-title {
+  font-size: 22px;
+  margin-bottom: 40px;
 }
 
 //Margin
@@ -30,6 +43,9 @@ a {
   margin-top: 30px;
 }
 
+header {
+  //padding-bottom: 20px;
+}
 //Nav
 nav,
 nav .nav-wrapper i,
@@ -40,12 +56,30 @@ nav a.button-collapse i {
 nav {
   height: auto;
   box-shadow: none;
+  .nav-wrapper .row {
+    margin-bottom: 0;
+  }
   .input-field {
     input {
       height: auto;
-      background: rgb(83, 114, 162);
+      background: #4a8cce;
+      color: #255cb1;
       &:focus {
         background: #fff;
+      }
+    }
+  }
+  .menu {
+    ul {
+      a {
+        padding: 0 10px;
+      }
+    }
+    .author {
+      img {
+        float: left;
+        margin-top: 7px;
+        margin-right: 5px;
       }
     }
   }
@@ -57,13 +91,16 @@ nav {
 
 .feature-req {
   padding-bottom: 5px;
+  .feature-form-area {
+    padding-bottom: 20px;
+  }
   .feature-req-title {
     color: #fff;
     font-size: 30px;
     margin-bottom: 30px;
   }
   .feature-filter {
-    margin-top: 65px;
+    margin-top: 45px;
     .progress-link {
       margin-top: 28px;
       ul {
@@ -123,17 +160,6 @@ nav {
         font-weight: 500;
         line-height: 1.3;
       }
-      .tags {
-        .chip {
-          text-transform: uppercase;
-          font-size: 12px;
-          border-radius: 2px;
-          height: 20px;
-          line-height: 20px;
-          color: #fff;
-          background: #777;
-        }
-      }
       &.avatar {
         i.circle {
           background: transparent;
@@ -163,6 +189,54 @@ nav {
     }
     .secondary-content {
       font-size: 12px;
+    }
+  }
+}
+
+.single-item {
+  .title {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+  .card {
+    .card-action {
+      &.user-info {
+        img {
+          float: left;
+          margin: -2px 5px 0 0;
+        }
+        a:not(.btn):not(.btn-large):not(.btn-floating) {
+          margin: 0;
+          color: @brand-primary;
+          text-transform: capitalize;
+          &:hover {
+            color: lighten(@brand-primary, 15%);
+          }
+        }
+      }
+    }
+  }
+}
+.comments {
+  .collection {
+    border: 0;
+    .collection-item {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+  }
+}
+.widget {
+  .widget-title {
+    font-size: 20px;
+    font-weight: 500;
+  }
+  &.widget-feedback {
+    .card-content {
+      > div:not(:last-child) {
+        margin-bottom: 12px;
+      }
     }
   }
 }

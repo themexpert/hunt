@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>App</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="assets/css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="assets/css/style.css"/>
+
+</head>
+<body>
+
+<header class="blue darken-2">
+    <nav class="blue darken-2" role="navigation">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="row">
+                    <div class="col s2">
+                        <div class="logo mt15">
+                            <a id="logo-container" href="#" class="brand-logo">Logo</a>
+                        </div>
+                    </div><!--/.col-->
+                    <div class="col s8">
+                        <div class="search-box mt15">
+                            <form>
+                                <div class="input-field">
+                                    <input id="search" type="search" placeholder="Search Feature" required>
+                                    <label for="search"><i class="material-icons">search</i></label>
+                                    <i class="material-icons">close</i>
+                                </div>
+                            </form>
+                        </div>
+                    </div><!--/.col-->
+                    <div class="col s2">
+                        <div class="menu mt15">
+                            <ul class="right hide-on-med-and-down">
+                                <li><a href="#">Link</a></li>
+                                <li><a href="#">Link</a></li>
+                            </ul>
+                        </div>
+                    </div><!--/.col-->
+                </div><!--/.row-->
+
+                <ul id="nav-mobile" class="side-nav" style="transform: translateX(-100%);">
+                    <li><a href="#">Navbar Link</a></li>
+                </ul>
+                <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+            </div><!--/.nav-wrapper-->
+        </div><!--/.container-->
+    </nav><!--/.nav-->
+
+    <div class="container">
+        <div class="feature-req">
+            <div class="center-align feature-form-area">
+                <h2 class="feature-req-title">Feature requests for ThemeXpert</h2>
+                <!-- Modal Trigger -->
+                <a class="waves-effect waves-light btn red" href="#modal1"><i class="material-icons left">add</i> Suggest a feature</a>
+
+                <!-- Modal Structure -->
+                <div id="modal1" class="modal">
+                    <div class="modal-content">
+                        <h4>Modal Header</h4>
+                        <p>A bunch of text</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div><!--/.feature-req-->
+    </div>
+</header>
+
+<section class="main-content single-item">
+    <div class="container">
+        <div class="row">
+            <div class="col s8">
+                <h1 class="title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h1>
+
+                <div class="card">
+                    <div class="card-content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A at excepturi, illo necessitatibus numquam possimus quam vero voluptatem. Animi atque corporis dolorem harum hic ipsam iure nemo quis rem velit.</p>
+                    </div>
+                    <div class="card-action user-info">
+                        <img src="//1.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?s=25&r=pg&d=mm" alt="" class="circle"><a href="#">David</a> create this feature request 3 month ago
+                    </div>
+                </div><!--/.card-->
+
+                <h2 class="title">Status <span class="chip green">Building</span></h2>
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title quote">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
+                    </div>
+                    <div class="card-action user-info">
+                        <img src="//1.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?s=25&r=pg&d=mm" alt="" class="circle"><a href="#">David</a> create this feature request 3 month ago
+                    </div>
+                </div><!--/.card-->
+
+                <h2 class="title">Discussion</h2>
+                <div class="card comments">
+                    <div class="card-content">
+                        <ul class="collection">
+                            <li class="collection-item avatar">
+                                <img src="//1.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?s=42&r=pg&d=mm" alt="" class="circle">
+                                <a href="#"><span class="title">David Brown</span></a>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid animi asperiores atque, autem, blanditiis corporis fuga, inventore ipsum mollitia nemo nihil numquam officia omnis quas repellat sapiente tempore ullam voluptas?</p>
+                                <a href="#!" class="secondary-content">5 days ago</i></a>
+                            </li>
+
+                            <li class="collection-item avatar">
+                                <img src="//1.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?s=42&r=pg&d=mm" alt="" class="circle">
+                                <span class="title">David Brown</span>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid animi asperiores atque, autem, blanditiis corporis fuga, inventore ipsum mollitia nemo nihil numquam officia omnis quas repellat sapiente tempore ullam voluptas?</p>
+                                <a href="#!" class="secondary-content">5 days ago</i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-action center-align">
+                        <a class="waves-effect waves-light btn" href="#modal_comment_form"><i class="material-icons left">add</i> Add a comment</a>
+
+                        <!-- Modal Structure -->
+                        <div id="modal_comment_form" class="modal bottom-sheet comment-form">
+                            <div class="container">
+                                <div class="modal-content">
+
+                                    <form class="" action="">
+                                        <div class="input-field">
+                                            <textarea id="textarea1" class="materialize-textarea" placeholder="You need to add some text to your comment."></textarea>
+                                            <label for="textarea1">Add Comment</label>
+                                        </div>
+
+                                        <div class="input-field left-align">
+                                            <button type="submit" class="btn">Save comment <i class="material-icons left">done</i></button>
+                                            <a href="#!" class="modal-action modal-close waves-effect waves-green btn grey">Close</a>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--/.card-->
+            </div><!--/.col-->
+
+            <div class="col s4">
+                <div class="widget widget-action">
+                    <h3 class="widget-title">Action</h3>
+                    <div class="vote-btn">
+                        <a class="waves-effect waves-light btn blue darken-2"><i class="material-icons left">done</i> I want this</a>
+                        <a class="waves-effect waves-light btn blue darken-4"><i class="material-icons left">snooze</i> Not interested</a>
+                    </div>
+                </div><!--/.widget-->
+
+                <div class="widget widget-feedback">
+                    <h3 class="widget-title">Feature Feedback</h3>
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="clearfix"><i class="material-icons left">done</i> 157 people want this</div>
+                            <div class="clearfix"><i class="material-icons left">snooze</i> 15 not interested</div>
+                        </div>
+                    </div>
+                </div><!--/.widget-->
+            </div><!--/.col-->
+        </div>
+    </div>
+</section>
+
+<footer class="center-align">
+    <div class="footer-copyright">
+        <div class="container">
+            &copy; 2010-2016 ThemeXpert Inc. All Rights Reserved.
+        </div>
+    </div>
+</footer>
+
+<script type="text/javascript" src="assets/js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="assets/js/materialize.min.js"></script>
+<script type="text/javascript" src="assets/js/custom.js"></script>
+</body>
+</html>
