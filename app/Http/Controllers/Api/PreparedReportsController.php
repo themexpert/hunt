@@ -36,7 +36,7 @@ class PreparedReportsController extends Controller
     public function byType($type)
     {
         return $this->responseOk([
-            'suggested_features' => $this->preparedReportsRepository->byType($type)
+            'features' => $this->preparedReportsRepository->byType($type)
         ]);
     }
 }

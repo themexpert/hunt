@@ -132,7 +132,7 @@ class ProductsController extends Controller
     public function suggests($id)
     {
         return $this->responseOk([
-            'suggested_features' => $this->productsRepository->suggests($id)
+            'features' => $this->productsRepository->suggests($id)
         ]);
     }
 }

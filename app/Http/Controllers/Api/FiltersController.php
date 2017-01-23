@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\FiltersRepository;
 
@@ -36,7 +35,7 @@ class FiltersController extends Controller
     public function byAccess($filterBy)
     {
         return $this->responseOk([
-            'suggested_features' => $this->filtersRepository->byAccess($filterBy)
+            'features' => $this->filtersRepository->byAccess($filterBy)
         ]);
     }
 
@@ -49,7 +48,7 @@ class FiltersController extends Controller
     public function byTag($tagId)
     {
         return $this->responseOk([
-            'suggested_features' => $this->filtersRepository->byTag($tagId)
+            'features' => $this->filtersRepository->byTag($tagId)
         ]);
     }
 }

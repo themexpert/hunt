@@ -4,27 +4,27 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Repositories\SuggestsRepository;
+use App\Repositories\FeaturesRepository;
 
-class SuggestsController extends Controller
+class FeaturesController extends Controller
 {
     /**
      * Instance of suggests repository.
      *
-     * @var SuggestsRepository
+     * @var FeaturesRepository
      */
-    protected $suggestsRepository;
+    protected $featuresRepository;
 
     /**
      * Create a new instance of suggests controller.
      *
-     * @param SuggestsRepository $suggestsRepository
+     * @param FeaturesRepository $featuresRepository
      */
-    public function __construct(SuggestsRepository $suggestsRepository)
+    public function __construct(FeaturesRepository $featuresRepository)
     {
         $this->middleware(['auth:api', 'emailActivation']);
 
-        $this->suggestsRepository = $suggestsRepository;
+        $this->featuresRepository = $featuresRepository;
     }
 
     /**
@@ -43,7 +43,7 @@ class SuggestsController extends Controller
             'tags' => 'required|array'
         ]);
 
-        $this->suggestsRepository->add(
+        $this->featuresRepository->add(
             $request->input('product_id'),
             $request->input('name'),
             $request->input('description'),
@@ -52,7 +52,7 @@ class SuggestsController extends Controller
         );
 
         return $this->responseCreated([
-            'suggestion_created' => true,
+            'feature_created' => true,
             'message' => 'New feature suggestion has been added'
         ]);
     }
@@ -65,7 +65,7 @@ class SuggestsController extends Controller
      */
     public function index(Request $request)
     {
-        return $this->responseJson($this->suggestsRepository->get(
+        return $this->responseJson($this->featuresRepository->get(
             $request->input('limit'),
             $request->input('searchTerms')
         ));
@@ -78,7 +78,7 @@ class SuggestsController extends Controller
      */
     public function remove($id)
     {
-        $this->suggestsRepository->remove($id);
+        $this->featuresRepository->remove($id);
 
         return $this->responseOk([
            'message' => 'Feature suggestion has been deleted'
@@ -102,7 +102,7 @@ class SuggestsController extends Controller
             'status' => 'required|array'
         ]);
 
-        $this->suggestsRepository->update(
+        $this->featuresRepository->update(
             $id,
             $request->input('name'),
             $request->input('description'),
@@ -112,7 +112,7 @@ class SuggestsController extends Controller
         );
 
         return $this->responseCreated([
-            'suggestion_updated' => true,
+            'feature_updated' => true,
             'message' => 'Feature suggestion has been updated'
         ]);
     }
@@ -126,7 +126,7 @@ class SuggestsController extends Controller
     public function show($id)
     {
         return $this->responseOk([
-            'suggested_feature' => $this->suggestsRepository->getFeatureSuggestionById($id)
+            'features' => $this->featuresRepository->getFeatureSuggestionById($id)
         ]);
     }
 }

@@ -3,11 +3,6 @@
 namespace App\Repositories;
 
 use App\Product;
-use App\Tag;
-use App\Vote;
-use App\Status;
-use App\Feature;
-use App\Priority;
 use App\Concerns\DataWithPagination;
 
 class ProductsRepository

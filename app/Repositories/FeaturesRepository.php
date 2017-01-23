@@ -10,7 +10,7 @@ use App\Feature;
 use App\Priority;
 use App\Concerns\DataWithPagination;
 
-class SuggestsRepository
+class FeaturesRepository
 {
     use DataWithPagination;
 

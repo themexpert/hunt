@@ -10,12 +10,12 @@ Route::group(['namespace' => 'Api'], function() {
     Route::post('/products/{id}', 'ProductsController@update');
     Route::get('/products/{id}/suggests', 'ProductsController@suggests');
 
-    // suggest routes...
-    Route::get('/suggests', 'SuggestsController@index');
-    Route::post('/suggests', 'SuggestsController@add');
-    Route::get('/suggests/{id}', 'SuggestsController@show');
-    Route::delete('/suggests/{id}', 'SuggestsController@remove');
-    Route::post('/suggests/{id}', 'SuggestsController@update');
+    // features routes...
+    Route::get('/features', 'FeaturesController@index');
+    Route::post('/features', 'FeaturesController@add');
+    Route::get('/features/{id}', 'FeaturesController@show');
+    Route::delete('/features/{id}', 'FeaturesController@remove');
+    Route::post('/features/{id}', 'FeaturesController@update');
 
     // status routes...
     Route::get('/statuses', 'StatusesController@all');
