@@ -22,7 +22,7 @@ class SuggestsController extends Controller
      */
     public function __construct(SuggestsRepository $suggestsRepository)
     {
-        $this->middleware('auth:api');
+        $this->middleware(['auth:api', 'emailActivation']);
 
         $this->suggestsRepository = $suggestsRepository;
     }

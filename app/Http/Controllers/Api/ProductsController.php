@@ -22,7 +22,7 @@ class ProductsController extends Controller
      */
     public function __construct(ProductsRepository $productsRepository)
     {
-        $this->middleware(['auth:api', 'dev']);
+        $this->middleware(['auth:api', 'emailActivation', 'dev']);
 
         $this->productsRepository = $productsRepository;
     }

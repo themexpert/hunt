@@ -53,6 +53,7 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'dev' => \App\Http\Middleware\Dev::class,
+        'emailActivation' => \App\Http\Middleware\VerifyEmailActivation::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
     ];
 }

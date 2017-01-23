@@ -22,7 +22,7 @@ class DeclinesController extends Controller
      */
     public function __construct(DeclinesRepository $declinesRepository)
     {
-        $this->middleware(['auth:api', 'dev']);
+        $this->middleware(['auth:api', 'emailActivation', 'dev']);
 
         $this->declinesRepository = $declinesRepository;
     }

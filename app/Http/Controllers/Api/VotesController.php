@@ -21,7 +21,7 @@ class VotesController extends Controller
      */
     public function __construct(VotesRepository $votesRepository)
     {
-        $this->middleware('auth:api');
+        $this->middleware(['auth:api', 'emailActivation']);
 
         $this->votesRepository = $votesRepository;
     }

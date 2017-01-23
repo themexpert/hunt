@@ -7,6 +7,9 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Register</div>
                 <div class="panel-body">
+
+                    <h4>{{ Session::has('message')? Session::pull('message') : '' }}</h4>
+
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {{ csrf_field() }}
 

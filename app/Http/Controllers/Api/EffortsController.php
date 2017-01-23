@@ -22,7 +22,7 @@ class EffortsController extends Controller
      */
     public function __construct(EffortsRepository $effortsRepository)
     {
-        $this->middleware(['auth:api', 'dev']);
+        $this->middleware(['auth:api', 'emailActivation', 'dev']);
 
         $this->effortsRepository = $effortsRepository;
     }

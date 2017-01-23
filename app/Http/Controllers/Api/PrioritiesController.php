@@ -22,7 +22,7 @@ class PrioritiesController extends Controller
      */
     public function __construct(PrioritiesRepository $prioritiesRepository)
     {
-        $this->middleware('auth:api');
+        $this->middleware(['auth:api', 'emailActivation', 'dev']);
 
         $this->prioritiesRepository = $prioritiesRepository;
     }

@@ -13,4 +13,3 @@ Route::get('/dashboard', 'HomeController@index');
 
 // settings routes...
 Route::get('/settings/token', 'SettingsController@token');
-

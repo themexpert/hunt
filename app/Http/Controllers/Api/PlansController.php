@@ -22,7 +22,7 @@ class PlansController extends Controller
      */
     public function __construct(PlansRepository $plansRepository)
     {
-        $this->middleware(['auth:api', 'dev']);
+        $this->middleware(['auth:api', 'emailActivation', 'dev']);
 
         $this->plansRepository = $plansRepository;
     }

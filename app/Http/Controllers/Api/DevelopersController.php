@@ -12,7 +12,7 @@ class DevelopersController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth:api', 'dev']);
+        $this->middleware(['auth:api', 'emailActivation', 'dev']);
     }
 
     /**

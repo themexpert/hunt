@@ -51,6 +51,6 @@ class FeatureReleased extends Mailable
 
         return $this->from(env('FROM_EMAIL'))
                     ->subject("[{$appName}] New Feature Released")
-                    ->view('mail.new-released');
+                    ->view('mail.new-feature-released');
     }
 }

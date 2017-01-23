@@ -22,7 +22,7 @@ class UsersController extends Controller
      */
     public function __construct(UsersRepository $usersRepository)
     {
-        $this->middleware('auth:api');
+        $this->middleware(['auth:api', 'emailActivation']);
 
         $this->usersRepository = $usersRepository;
     }
