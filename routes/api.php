@@ -17,6 +17,13 @@ Route::group(['namespace' => 'Api'], function() {
     Route::delete('/features/{id}', 'FeaturesController@remove');
     Route::post('/features/{id}', 'FeaturesController@update');
 
+    // comments routes...
+    Route::get('/features/{featureId}/comments', 'CommentsController@index');
+    Route::post('/features/{featureId}/comments', 'CommentsController@add');
+    Route::get('/features/{featureId}/comments/{commentId}', 'CommentsController@show');
+    Route::delete('/features/{featureId}/comments/{commentId}', 'CommentsController@remove');
+    Route::post('/features/{featureId}/comments/{commentId}', 'CommentsController@update');
+
     // status routes...
     Route::get('/statuses', 'StatusesController@all');
 
