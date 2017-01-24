@@ -57,6 +57,10 @@
                                     Login
                                 </button>
 
+                                <a class="btn btn-danger" href="{{ url('/auth/google') }}">
+                                    Login with Google
+                                </a>
+
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">
                                     Forgot Your Password?
                                 </a>

@@ -3,6 +3,8 @@
 // authentication routes...
 Auth::routes();
 Route::get('/token/{token}', 'TokensController@token');
+Route::get('/auth/google', 'Auth\LoginController@redirectToProvider');
+Route::get('/auth/google/callback', 'Auth\LoginController@handleProviderCallback');
 
 // Welcome route...
 Route::get('/', function () {

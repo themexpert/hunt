@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Auth;
 use App\User;
+use Socialite;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -83,5 +86,41 @@ class LoginController extends Controller
         $this->incrementLoginAttempts($request);
 
         return $this->sendFailedLoginResponse($request);
+    }
+
+    /**
+     * Redirect the user to the Google authentication page.
+     *
+     * @return Response
+     */
+    public function redirectToProvider()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    /**
+     * Obtain the user information from Google.
+     *
+     * @return Response
+     */
+    public function handleProviderCallback()
+    {
+        $providerUser = Socialite::driver('google')->user();
+
+        $user = User::whereEmail($providerUser->getEmail())->first();
+
+        if(is_null($user)) {
+            $user = User::create([
+                'name' => $providerUser->getName(),
+                'email' => $providerUser->getEmail(),
+                'password' => bcrypt(Str::random(16)),
+                'is_active' => 1,
+                'token' => ''
+            ]);
+        }
+
+        Auth::login($user);
+
+        return redirect()->intended($this->redirectPath());
     }
 }
