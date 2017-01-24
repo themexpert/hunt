@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Repositories;
+namespace Hunt\Repositories;
 
-use App\Vote;
-use App\Feature;
+use Hunt\Vote;
+use Hunt\Feature;
 
 class VotesRepository
 {

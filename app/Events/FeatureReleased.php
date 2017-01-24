@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Events;
+namespace Hunt\Events;
 
-use App\Feature;
+use Hunt\Feature;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;

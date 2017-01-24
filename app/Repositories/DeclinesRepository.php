@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Repositories;
+namespace Hunt\Repositories;
 
-use App\Status;
-use App\Feature;
+use Hunt\Status;
+use Hunt\Feature;
 
 class DeclinesRepository
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace Hunt\Http\Controllers\Api;
 
-use App\User;
-use App\Http\Controllers\Controller;
+use Hunt\User;
+use Hunt\Http\Controllers\Controller;
 
 class DevelopersController extends Controller
 {
@@ -18,7 +18,7 @@ class DevelopersController extends Controller
     /**
      * Get all developers.
      *
-     * @return array
+     * @return \Illuminate\Http\JsonResponse
      */
     public function all()
     {

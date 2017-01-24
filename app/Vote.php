@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Hunt;
 
 use Illuminate\Database\Eloquent\Model;
 

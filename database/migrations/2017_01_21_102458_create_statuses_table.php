@@ -16,12 +16,14 @@ class CreateStatusesTable extends Migration
         Schema::create('statuses', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('feature_id');
+            $table->integer('feature_id')->unsigned();
             $table->string('type');
             $table->string('subject');
             $table->text('message');
 
             $table->timestamps();
+
+            $table->foreign('feature_id')->references('id')->on('features')->onDelete('cascade');
         });
     }
 

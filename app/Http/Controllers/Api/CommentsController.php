@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace Hunt\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Repositories\CommentsRepository;
+use Hunt\Http\Controllers\Controller;
+use Hunt\Repositories\CommentsRepository;
 
 class CommentsController extends Controller
 {

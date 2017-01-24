@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories;
+namespace Hunt\Repositories;
 
-use App\Feature;
+use Hunt\Feature;
 
 class UsersRepository
 {
@@ -10,7 +10,7 @@ class UsersRepository
      * Get suggested features related to the given user id.
      *
      * @param int $userId
-     * @return \App\Feature
+     * @return \Hunt\Feature
      */
     public function suggests($userId)
     {

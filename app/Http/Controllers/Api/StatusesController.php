@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace Hunt\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use Hunt\Http\Controllers\Controller;
 
 class StatusesController extends Controller
 {
@@ -17,7 +17,7 @@ class StatusesController extends Controller
     /**
      * Get all feature statuses.
      *
-     * @return Status
+     * @return \Illuminate\Http\JsonResponse
      */
     public function all()
     {

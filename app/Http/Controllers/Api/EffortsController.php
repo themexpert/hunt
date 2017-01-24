@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace Hunt\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Repositories\EffortsRepository;
+use Hunt\Http\Controllers\Controller;
+use Hunt\Repositories\EffortsRepository;
 
 class EffortsController extends Controller
 {
@@ -32,7 +32,7 @@ class EffortsController extends Controller
      *
      * @param int     $id
      * @param Request $request
-     * @return Status
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update($id, Request $request)
     {

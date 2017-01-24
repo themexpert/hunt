@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Repositories;
+namespace Hunt\Repositories;
 
-use App\Status;
-use App\Feature;
-use App\Events\FeatureReleased;
+use Hunt\Status;
+use Hunt\Feature;
+use Hunt\Events\FeatureReleased;
 
 class ReleasesRepository
 {

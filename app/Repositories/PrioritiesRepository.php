@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories;
+namespace Hunt\Repositories;
 
-use App\Priority;
+use Hunt\Priority;
 
 class PrioritiesRepository
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace Hunt\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Repositories\VotesRepository;
+use Hunt\Http\Controllers\Controller;
+use Hunt\Repositories\VotesRepository;
 
 class VotesController extends Controller
 {
@@ -15,7 +15,7 @@ class VotesController extends Controller
     protected $votesRepository;
 
     /**
-     * Create a new instance of statuses controller.
+     * Create a new instance of votes controller.
      *
      * @param VotesRepository $votesRepository
      */

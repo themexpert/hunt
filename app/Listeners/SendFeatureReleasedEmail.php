@@ -1,26 +1,15 @@
 <?php
 
-namespace App\Listeners;
+namespace Hunt\Listeners;
 
 use Mail;
-use App\User;
-use App\Events\FeatureReleased;
-use Illuminate\Queue\InteractsWithQueue;
+use Hunt\User;
+use Hunt\Events\FeatureReleased;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use App\Mail\FeatureReleased as FeatureReleasedMailable;
+use Hunt\Mail\FeatureReleased as FeatureReleasedMailable;
 
 class SendFeatureReleasedEmail implements ShouldQueue
 {
-    /**
-     * Create the event listener.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
-
     /**
      * Handle the event.
      *

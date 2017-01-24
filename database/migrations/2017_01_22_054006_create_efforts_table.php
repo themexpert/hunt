@@ -16,13 +16,16 @@ class CreateEffortsTable extends Migration
         Schema::create('efforts', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('user_id');
-            $table->integer('feature_id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('feature_id')->unsigned();
             $table->integer('value');
 
             $table->timestamps();
 
             $table->unique(['user_id', 'feature_id']);
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('feature_id')->references('id')->on('features')->onDelete('cascade');
         });
     }
 

@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Repositories;
+namespace Hunt\Repositories;
 
-use App\Tag;
-use App\Feature;
+use Hunt\Tag;
+use Hunt\Feature;
 
 class FiltersRepository
 {
     /**
-     * Filter suggested features by access
+     * Filter suggested features by access.
      *
      * @param string $filterBy
-     * @return \App\Feature
+     * @return \Hunt\Feature
      */
     public function byAccess($filterBy)
     {
@@ -39,10 +39,10 @@ class FiltersRepository
     }
 
     /**
-     * Filter suggested features by tag
+     * Filter suggested features by tag.
      *
      * @param int $tagId
-     * @return \App\Feature
+     * @return \Hunt\Feature
      */
     public function byTag($tagId)
     {

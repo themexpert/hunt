@@ -1,22 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace Hunt\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Repositories\PreparedReportsRepository;
+use Hunt\Http\Controllers\Controller;
+use Hunt\Repositories\PreparedReportsRepository;
 
 class PreparedReportsController extends Controller
 {
     /**
-     * Instance of efforts repository.
+     * Instance of prepared reports repository.
      *
      * @var PreparedReportsRepository
      */
     protected $preparedReportsRepository;
 
     /**
-     * Create a new instance of statuses controller.
+     * Create a new instance of prepared reports controller.
      *
      * @param PreparedReportsRepository $preparedReportsRepository
      */

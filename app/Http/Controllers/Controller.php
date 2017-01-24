@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Hunt\Http\Controllers;
 
-use App\Concerns\HttpResponse;
+use Hunt\Concerns\HttpResponse;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;

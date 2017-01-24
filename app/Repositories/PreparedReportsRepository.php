@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Repositories;
+namespace Hunt\Repositories;
 
 use DB;
-use App\Vote;
+use Hunt\Vote;
 use Exception;
-use App\Priority;
+use Hunt\Priority;
 
 class PreparedReportsRepository
 {
     /**
-     * Prepared reports by type
+     * Prepared reports by type.
      *
      * @param string $type
-     * @return \App\Feature
+     * @return \Hunt\Feature
      */
     public function byType($type)
     {
@@ -25,7 +25,7 @@ class PreparedReportsRepository
     /**
      * Get popular feature suggestion based on user vote.
      *
-     * @return \App\Vote
+     * @return \Hunt\Vote
      */
     protected function popularVote()
     {
@@ -35,7 +35,7 @@ class PreparedReportsRepository
     /**
      * Get low popular feature suggestion based on user vote.
      *
-     * @return \App\Vote
+     * @return \Hunt\Vote
      */
     protected function lowPopularVote()
     {
@@ -45,7 +45,7 @@ class PreparedReportsRepository
     /**
      * Get high value feature suggestion based on user priority.
      *
-     * @return \App\Vote
+     * @return \Hunt\Vote
      */
     protected function highValue()
     {
@@ -59,7 +59,7 @@ class PreparedReportsRepository
     /**
      * Get low value feature suggestion based on user priority.
      *
-     * @return \App\Vote
+     * @return \Hunt\Vote
      */
     protected function lowValue()
     {
@@ -73,7 +73,7 @@ class PreparedReportsRepository
     /**
      * Get mid value feature suggestion based on user priority.
      *
-     * @return \App\Vote
+     * @return \Hunt\Vote
      */
     protected function midValue()
     {

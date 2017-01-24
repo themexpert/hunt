@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Providers;
+namespace Hunt\Providers;
 
-use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -13,12 +12,12 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\FeatureReleased' => [
-            'App\Listeners\SendFeatureReleasedEmail',
+        'Hunt\Events\FeatureReleased' => [
+            'Hunt\Listeners\SendFeatureReleasedEmail',
         ],
 
         'Illuminate\Auth\Events\Registered' => [
-            'App\Listeners\SendConfirmationEmail'
+            'Hunt\Listeners\SendConfirmationEmail'
         ]
     ];
 

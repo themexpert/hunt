@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace Hunt\Http\Middleware;
 
-use App\User;
 use Closure;
-use Illuminate\Support\Facades\Auth;
 
 class VerifyEmailActivation
 {

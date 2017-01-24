@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace Hunt\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Repositories\FiltersRepository;
+use Hunt\Http\Controllers\Controller;
+use Hunt\Repositories\FiltersRepository;
 
 class FiltersController extends Controller
 {

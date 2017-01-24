@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Repositories;
+namespace Hunt\Repositories;
 
-use App\Comment;
-use App\Feature;
-use App\Concerns\DataWithPagination;
+use Hunt\Comment;
+use Hunt\Feature;
+use Hunt\Concerns\DataWithPagination;
 
 class CommentsRepository
 {
@@ -53,7 +53,6 @@ class CommentsRepository
      *
      * @param int $featureId
      * @param int $commentId
-     * @internal param int $id
      */
     public function remove($featureId, $commentId)
     {

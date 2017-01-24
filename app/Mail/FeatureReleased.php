@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Mail;
+namespace Hunt\Mail;
 
-use App\User;
-use App\Feature;
+use Hunt\User;
+use Hunt\Feature;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class FeatureReleased extends Mailable
 {

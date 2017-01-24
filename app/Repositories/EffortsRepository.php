@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories;
+namespace Hunt\Repositories;
 
-use App\Effort;
+use Hunt\Effort;
 
 class EffortsRepository
 {

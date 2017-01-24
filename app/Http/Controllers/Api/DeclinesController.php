@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace Hunt\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Repositories\DeclinesRepository;
+use Hunt\Http\Controllers\Controller;
+use Hunt\Repositories\DeclinesRepository;
 
 class DeclinesController extends Controller
 {
@@ -32,7 +32,7 @@ class DeclinesController extends Controller
      *
      * @param int     $id
      * @param Request $request
-     * @return Status
+     * @return \Illuminate\Http\JsonResponse
      */
     public function declineFeature($id, Request $request)
     {

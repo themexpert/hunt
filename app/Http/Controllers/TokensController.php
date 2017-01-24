@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Hunt\Http\Controllers;
 
-use App\User;
+use Hunt\User;
 
 class TokensController extends Controller
 {
     /**
-     * Validate token.
+     * Validate email verification token.
      *
      * @param string $token
      * @return \Illuminate\Http\Response

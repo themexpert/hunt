@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace Hunt\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Repositories\ReleasesRepository;
+use Hunt\Http\Controllers\Controller;
+use Hunt\Repositories\ReleasesRepository;
 
 class ReleasesController extends Controller
 {
@@ -16,7 +16,7 @@ class ReleasesController extends Controller
     protected $releasesRepository;
 
     /**
-     * Create a new instance of statuses controller.
+     * Create a new instance of releases controller.
      *
      * @param ReleasesRepository $releasesRepository
      */
@@ -32,7 +32,7 @@ class ReleasesController extends Controller
      *
      * @param int     $id
      * @param Request $request
-     * @return Status
+     * @return \Illuminate\Http\JsonResponse
      */
     public function releaseNewFeature($id, Request $request)
     {

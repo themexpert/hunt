@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace Hunt\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Repositories\PrioritiesRepository;
+use Hunt\Http\Controllers\Controller;
+use Hunt\Repositories\PrioritiesRepository;
 
 class PrioritiesController extends Controller
 {
@@ -16,7 +16,7 @@ class PrioritiesController extends Controller
     protected $prioritiesRepository;
 
     /**
-     * Create a new instance of statuses controller.
+     * Create a new instance of priorities controller.
      *
      * @param PrioritiesRepository $prioritiesRepository
      */
@@ -32,7 +32,7 @@ class PrioritiesController extends Controller
      *
      * @param int     $id
      * @param Request $request
-     * @return Status
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update($id, Request $request)
     {

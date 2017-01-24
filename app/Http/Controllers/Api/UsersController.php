@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace Hunt\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Repositories\UsersRepository;
+use Hunt\Http\Controllers\Controller;
+use Hunt\Repositories\UsersRepository;
 
 class UsersController extends Controller
 {
@@ -16,7 +15,7 @@ class UsersController extends Controller
     protected $usersRepository;
 
     /**
-     * Create a new instance of statuses controller.
+     * Create a new instance of users controller.
      *
      * @param UsersRepository $usersRepository
      */
@@ -31,7 +30,7 @@ class UsersController extends Controller
      * Get suggested features related then given user id.
      *
      * @param int     $id
-     * @return Status
+     * @return \Illuminate\Http\JsonResponse
      */
     public function suggests($id)
     {

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace Hunt\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Repositories\PlansRepository;
+use Hunt\Http\Controllers\Controller;
+use Hunt\Repositories\PlansRepository;
 
 class PlansController extends Controller
 {
@@ -16,7 +16,7 @@ class PlansController extends Controller
     protected $plansRepository;
 
     /**
-     * Create a new instance of statuses controller.
+     * Create a new instance of plans controller.
      *
      * @param PlansRepository $plansRepository
      */
@@ -32,7 +32,7 @@ class PlansController extends Controller
      *
      * @param int     $id
      * @param Request $request
-     * @return Status
+     * @return \Illuminate\Http\JsonResponse
      */
     public function planFeature($id, Request $request)
     {

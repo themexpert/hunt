@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Mail;
+namespace Hunt\Mail;
 
-use App\User;
+use Hunt\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class SendConfirmationEmail extends Mailable
 {
@@ -15,7 +14,7 @@ class SendConfirmationEmail extends Mailable
     /**
      * Instance of user model.
      *
-     * @var \App\User
+     * @var \Hunt\User
      */
     public $user;
 

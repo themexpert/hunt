@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Repositories;
+namespace Hunt\Repositories;
 
-use App\Product;
-use App\Concerns\DataWithPagination;
+use Hunt\Product;
+use Hunt\Concerns\DataWithPagination;
 
 class ProductsRepository
 {
@@ -15,7 +15,7 @@ class ProductsRepository
      * @param string $name
      * @param string $description
      * @param array  $logo
-     * @return \App\Product
+     * @return \Hunt\Product
      */
     public function add($name, $description, $logo)
     {
@@ -92,7 +92,7 @@ class ProductsRepository
      * Get a product by the given product id.
      *
      * @param int $id
-     * @return \App\Product
+     * @return \Hunt\Product
      */
     public function getProductById($id)
     {
@@ -103,7 +103,7 @@ class ProductsRepository
      * Get a product suggests by the given product id.
      *
      * @param int $id
-     * @return \App\Product
+     * @return \Hunt\Product
      */
     public function suggests($id)
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Hunt\Http\Controllers;
 
 class SettingsController extends Controller
 {

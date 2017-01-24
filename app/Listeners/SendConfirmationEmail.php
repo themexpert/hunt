@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Listeners;
+namespace Hunt\Listeners;
 
 use Mail;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use App\Mail\SendConfirmationEmail as SendConfirmationEmailMailable;
+use Hunt\Mail\SendConfirmationEmail as SendConfirmationEmailMailable;
 
 class SendConfirmationEmail implements ShouldQueue
 {

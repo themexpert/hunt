@@ -1,22 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace Hunt\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Repositories\FeaturesRepository;
+use Hunt\Http\Controllers\Controller;
+use Hunt\Repositories\FeaturesRepository;
 
 class FeaturesController extends Controller
 {
     /**
-     * Instance of suggests repository.
+     * Instance of features repository.
      *
      * @var FeaturesRepository
      */
     protected $featuresRepository;
 
     /**
-     * Create a new instance of suggests controller.
+     * Create a new instance of features controller.
      *
      * @param FeaturesRepository $featuresRepository
      */
@@ -72,7 +72,7 @@ class FeaturesController extends Controller
     }
 
     /**
-     * Remove feature suggestion.
+     * Remove an existing feature suggestion.
      *
      * @return \Illuminate\Http\JsonResponse
      */

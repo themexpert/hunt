@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace Hunt\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Repositories\ProductsRepository;
+use Hunt\Http\Controllers\Controller;
+use Hunt\Repositories\ProductsRepository;
 
 class ProductsController extends Controller
 {
@@ -16,7 +16,7 @@ class ProductsController extends Controller
     protected $productsRepository;
 
     /**
-     * Create a new instance of suggests controller.
+     * Create a new instance of products controller.
      *
      * @param ProductsRepository $productsRepository
      */

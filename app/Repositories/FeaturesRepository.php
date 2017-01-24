@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Repositories;
+namespace Hunt\Repositories;
 
-use App\Tag;
-use App\Vote;
-use App\Status;
-use App\Effort;
-use App\Feature;
-use App\Priority;
-use App\Concerns\DataWithPagination;
+use Hunt\Tag;
+use Hunt\Vote;
+use Hunt\Status;
+use Hunt\Effort;
+use Hunt\Feature;
+use Hunt\Priority;
+use Hunt\Concerns\DataWithPagination;
 
 class FeaturesRepository
 {
