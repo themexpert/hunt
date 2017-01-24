@@ -10,7 +10,7 @@ Route::get('/', function () {
 });
 
 // dashboard route...
-Route::get('/dashboard', 'HomeController@index');
+Route::get('/dashboard', 'DashboardController@index');
 
 // settings routes...
 Route::get('/settings/token', 'SettingsController@token');
