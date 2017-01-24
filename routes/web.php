@@ -14,3 +14,7 @@ Route::get('/dashboard', 'DashboardController@index');
 
 // settings routes...
 Route::get('/settings/token', 'SettingsController@token');
+
+Route::get('/csrf', function() {
+   return csrf_token();
+});
