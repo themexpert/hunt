@@ -3,12 +3,7 @@
 namespace App\Repositories;
 
 use App\Comment;
-use App\Tag;
-use App\Vote;
-use App\Status;
-use App\Effort;
 use App\Feature;
-use App\Priority;
 use App\Concerns\DataWithPagination;
 
 class CommentsRepository
@@ -43,7 +38,8 @@ class CommentsRepository
         $comments = null;
 
         if(! empty($searchTerms)) {
-            $comments = Comment::whereFeatureId($featureId)
+            $comments = Comment::with('user')
+                                ->whereFeatureId($featureId)
                                 ->where("message", "like", "%$searchTerms%");
         } else {
             $comments = Comment::whereFeatureId($featureId);
@@ -90,6 +86,7 @@ class CommentsRepository
      */
     public function getCommentById($featureId, $commentId)
     {
-        return Comment::whereFeatureId($featureId)->whereId($commentId)->first();
+        return Comment::with('user')
+            ->whereFeatureId($featureId)->whereId($commentId)->first();
     }
 }

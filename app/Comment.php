@@ -35,4 +35,14 @@ class Comment extends Model
     {
         return Carbon::parse($this->attributes['updated_at'])->diffForHumans();
     }
+
+    /**
+     * Get user related to the comment.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
