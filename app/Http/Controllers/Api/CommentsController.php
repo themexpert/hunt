@@ -2,7 +2,9 @@
 
 namespace Hunt\Http\Controllers\Api;
 
+use Hunt\Feature;
 use Illuminate\Http\Request;
+use Hunt\Events\NewCommentAdded;
 use Hunt\Http\Controllers\Controller;
 use Hunt\Repositories\CommentsRepository;
 
@@ -40,10 +42,12 @@ class CommentsController extends Controller
             'message' => 'required'
         ]);
 
-        $this->commentsRepository->add(
+        $comment = $this->commentsRepository->add(
             $featureId,
             $request->input('message')
         );
+
+        event(new NewCommentAdded(Feature::find($featureId), $comment));
 
         return $this->responseCreated([
             'comment' => true,

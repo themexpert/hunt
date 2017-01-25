@@ -15,10 +15,11 @@ class CommentsRepository
      *
      * @param int     $featureId
      * @param string  $message
+     * @return \Hunt\Comment
      */
     public function add($featureId, $message)
     {
-        Comment::create([
+        return Comment::create([
             'user_id' => auth()->user()->id,
             'feature_id' => $featureId,
             'message' => $message

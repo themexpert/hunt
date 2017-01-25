@@ -3,6 +3,7 @@
 namespace Hunt\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use Hunt\Events\NewFeatureRequested;
 use Hunt\Http\Controllers\Controller;
 use Hunt\Repositories\FeaturesRepository;
 
@@ -43,13 +44,15 @@ class FeaturesController extends Controller
             'tags' => 'required|array'
         ]);
 
-        $this->featuresRepository->add(
+        $feature = $this->featuresRepository->add(
             $request->input('product_id'),
             $request->input('name'),
             $request->input('description'),
             $request->input('is_private'),
             $request->input('tags')
         );
+
+        event(new NewFeatureRequested($feature));
 
         return $this->responseCreated([
             'feature_created' => true,

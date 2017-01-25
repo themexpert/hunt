@@ -23,6 +23,14 @@ class EventServiceProvider extends ServiceProvider
         'Hunt\Events\FeatureStatusUpdated' => [
             'Hunt\Listeners\SendFeatureStatusUpdateNotificationEmail',
         ],
+
+        'Hunt\Events\NewFeatureRequested' => [
+            'Hunt\Listeners\SendNewFeatureRequestEmail',
+        ],
+
+        'Hunt\Events\NewCommentAdded' => [
+            'Hunt\Listeners\SendNewCommentAddedEmail',
+        ],
     ];
 
     /**

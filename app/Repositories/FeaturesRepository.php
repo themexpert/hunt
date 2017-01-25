@@ -23,6 +23,7 @@ class FeaturesRepository
      * @param string  $description
      * @param boolean $isPrivate
      * @param array   $tags
+     * @return \Hunt\Feature
      */
     public function add($productId, $name, $description, $isPrivate, $tags)
     {
@@ -43,6 +44,8 @@ class FeaturesRepository
         $this->setPriorityDefaultValue($feature);
 
         $this->setEffortDefaultValue($feature);
+
+        return $feature;
     }
 
     /**
