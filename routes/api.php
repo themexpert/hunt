@@ -11,7 +11,7 @@ Route::group(['namespace' => 'Api'], function() {
     Route::get('/products/{id}/suggests', 'ProductsController@suggests');
 
     // features routes...
-    Route::get('/features', 'FeaturesController@index');
+    Route::get('/products/{productId}/features', 'FeaturesController@index');
     Route::post('/features', 'FeaturesController@add');
     Route::get('/features/{id}', 'FeaturesController@show');
     Route::delete('/features/{id}', 'FeaturesController@remove');

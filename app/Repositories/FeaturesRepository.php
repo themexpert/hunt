@@ -66,19 +66,21 @@ class FeaturesRepository
      *
      * @param int    $limit
      * @param string $searchTerms
-     *
+     * @param int    $productId
      * @return array
      */
-    public function get($limit = 10, $searchTerms = '')
+    public function get($limit = 10, $searchTerms = '', $productId)
     {
         $features = null;
 
         if(! empty($searchTerms)) {
             $features = Feature::with(['tags', 'status', 'vote'])
-                                ->where("name", "like", "%$searchTerms%")
+                                ->where("product_id", "=", $productId)
+                                ->orWhere("name", "like", "%$searchTerms%")
                                 ->orWhere("description", "like", "%$searchTerms%");
         } else {
-            $features = Feature::with(['tags', 'status', 'vote']);
+            $features = Feature::with(['tags', 'status', 'vote'])
+                                ->where("product_id", "=", $productId);
         }
 
         return $this->dataWithPagination($features, $limit);

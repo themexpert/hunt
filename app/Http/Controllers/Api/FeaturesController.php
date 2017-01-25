@@ -63,14 +63,16 @@ class FeaturesController extends Controller
     /**
      * Get feature suggestions.
      *
+     * @param int     $productId
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index(Request $request)
+    public function index($productId, Request $request)
     {
         return $this->responseJson($this->featuresRepository->get(
             $request->input('limit'),
-            $request->input('searchTerms')
+            $request->input('searchTerms'),
+            $productId
         ));
     }
 
