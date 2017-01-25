@@ -89,9 +89,10 @@ class FeaturesRepository
     /**
      * Remove feature suggestion.
      *
+     * @param int $productId
      * @param int $id
      */
-    public function remove($id)
+    public function remove($productId, $id)
     {
         Feature::findOrFail($id)->delete();
     }
@@ -145,10 +146,11 @@ class FeaturesRepository
     /**
      * Get a feature suggestion by the given id.
      *
+     * @param int $productId
      * @param int $id
      * @return Feature
      */
-    public function getFeatureSuggestionById($id)
+    public function getFeatureSuggestionById($productId, $id)
     {
         return Feature::with(['tags', 'status', 'vote'])->findOrFail($id);
     }

@@ -31,13 +31,13 @@ class FeaturesController extends Controller
     /**
      * Add a new feature suggestion.
      *
+     * @param int     $productId
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function add(Request $request)
+    public function add($productId, Request $request)
     {
         $this->validate($request, [
-            'product_id' => 'required|integer',
             'name' => 'required',
             'description' => 'required',
             'is_private' => 'boolean',
@@ -45,7 +45,7 @@ class FeaturesController extends Controller
         ]);
 
         $feature = $this->featuresRepository->add(
-            $request->input('product_id'),
+            $productId,
             $request->input('name'),
             $request->input('description'),
             $request->input('is_private'),
@@ -79,11 +79,13 @@ class FeaturesController extends Controller
     /**
      * Remove an existing feature suggestion.
      *
+     * @param int $productId
+     * @param int $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function remove($id)
+    public function remove($productId, $id)
     {
-        $this->featuresRepository->remove($id);
+        $this->featuresRepository->remove($productId, $id);
 
         return $this->responseOk([
            'message' => 'Feature suggestion has been deleted'
@@ -93,11 +95,12 @@ class FeaturesController extends Controller
     /**
      * Update an existing feature suggestion.
      *
+     * @param int     $productId
      * @param int     $id
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update($id, Request $request)
+    public function update($productId, $id, Request $request)
     {
         $this->validate($request, [
             'name' => 'required',
@@ -125,13 +128,14 @@ class FeaturesController extends Controller
     /**
      * Get a feature suggest by the given id.
      *
+     * @param int $productId
      * @param int $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show($id)
+    public function show($productId, $id)
     {
         return $this->responseOk([
-            'features' => $this->featuresRepository->getFeatureSuggestionById($id)
+            'features' => $this->featuresRepository->getFeatureSuggestionById($productId, $id)
         ]);
     }
 }

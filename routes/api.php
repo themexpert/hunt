@@ -12,10 +12,10 @@ Route::group(['namespace' => 'Api'], function() {
 
     // features routes...
     Route::get('/products/{productId}/features', 'FeaturesController@index');
-    Route::post('/features', 'FeaturesController@add');
-    Route::get('/features/{id}', 'FeaturesController@show');
-    Route::delete('/features/{id}', 'FeaturesController@remove');
-    Route::post('/features/{id}', 'FeaturesController@update');
+    Route::post('/products/{productId}/features', 'FeaturesController@add');
+    Route::get('/products/{productId}/features/{id}', 'FeaturesController@show');
+    Route::delete('/products/{productId}/features/{id}', 'FeaturesController@remove');
+    Route::post('/products/{productId}/features/{id}', 'FeaturesController@update');
 
     // comments routes...
     Route::get('/features/{featureId}/comments', 'CommentsController@index');
