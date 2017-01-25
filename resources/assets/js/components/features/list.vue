@@ -44,22 +44,12 @@
                         <div class="row">
                             <div class="col s9">
                                 <div class="progress-link">
-                                    <ul>
-                                        <li class="active"><a href="#" >All</a></li>
-                                        <li><a href="#">Awaiting Feedback</a></li>
-                                        <li><a href="#">In Progress</a></li>
-                                        <li><a href="#">Complete / Resolved</a></li>
-                                    </ul>
+                                    <filters></filters>
                                 </div>
                             </div>
                             <div class="col s3">
                                 <div class="input-field">
-                                    <select multiple>
-                                        <option value="" disabled selected>Select Products</option>
-                                        <option value="1">Option 1</option>
-                                        <option value="2">Option 2</option>
-                                        <option value="3">Option 3</option>
-                                    </select multiple>
+                                    <products></products>
                                 </div>
                             </div>
                         </div><!--/.row-->
@@ -115,10 +105,16 @@
 </style>
 <script>
     import Hunt from '../../config/Hunt'
+    import filters from './components/filters.vue'
+    import products from './components/products.vue'
     export default{
+        components: {
+            'filters': filters,
+            'products': products
+        },
         data(){
-            return{
-                msg:'hello vue'
+            return {
+
             }
         },
         mounted() {

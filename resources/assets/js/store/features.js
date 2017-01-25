@@ -1,21 +1,32 @@
 export default {
     state: {
-        count: 0
+        filter: 'all',
+        product: null,
+        products: ['Product 1', 'Product 2', 'Product 3'],
+        features: []
     },
     mutations: {
-        increment(state, i) {
-            if (i != undefined)
-                state.count += i;
-            else
-                state.count++;
+        filter_changed(state, filter) {
+            state.filter = filter;
+        },
+        product_changed(state, product) {
+            state.product = product;
+        },
+        update_products(state, products) {
+            state.products = products;
+        },
+        update_features(state, features) {
+            state.features = features;
         }
     },
     actions: {
-        increment(ctx, i) {
-            ctx.commit('increment', i);
+        product_changed(ctx, product) {
+            //load features and commit
+            ctx.commit('product_changed', product);
+        },
+        apply_filter(ctx, filter) {
+            //load features applying filter and commit
+            ctx.commit('filter_changed', filter);
         }
-    },
-    getters: {
-
     }
 }

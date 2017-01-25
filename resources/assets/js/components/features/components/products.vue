@@ -1,19 +1,37 @@
 <template>
-    <select multiple>
-        <option value="" disabled selected>Select Products</option>
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
-        <option value="3">Option 3</option>
+    <select id="product_select">
+        <option :value="null" disabled>Select Products</option>
+        <option v-for="(name, key) in products" :value="key">{{ name }}</option>
     </select>
 </template>
 <style>
     
 </style>
-<script>
-    export default{
+<script type="text/babel">
+    export default {
         data(){
-            return{
-                msg:'hello vue'
+            return {
+                product: null
+            }
+        },
+        mounted() {
+            this.product = this.products.length>0?0:null;
+            let that = this;
+            $("#product_select").change(e => {
+                that.product = $("#product_select").val();
+            });
+        },
+        methods: {
+
+        },
+        computed: {
+            products() {
+                return this.$store.state.features.products;
+            }
+        },
+        watch: {
+            product() {
+                this.$store.dispatch('product_changed', this.product);
             }
         }
     }
