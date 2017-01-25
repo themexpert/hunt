@@ -74,5 +74,15 @@ Route::group(['namespace' => 'Api'], function() {
             'loggedIn' => auth()->check(),
             '_token' => csrf_token()
         ]);
-    })->name('refresh');
+    });
+
+
+    Route::get('/profile', function(){
+        return response()->json([
+            'user' => [
+                'name' => auth()->user()->name,
+                'email' => auth()->user()->email
+            ]
+        ]);
+    })->middleware('auth');
 });

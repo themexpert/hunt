@@ -23,15 +23,6 @@ Route::get('/test', function () {
     return "test";
 })->middleware('auth');
 
-Route::get('/profile', function(){
-    return response()->json([
-        'user' => [
-            'name' => auth()->user()->name,
-            'email' => auth()->user()->email
-        ]
-    ]);
-})->middleware('auth');
-
 Route::group(['prefix' => 'auth', 'namespace' => 'api'], function() {
     Auth::routes();
 });
