@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "name": "themexpert/hunt",
+    "description": "...",
+    "keywords": ["themexpert", "hunt"],
     "license": "MIT",
     "type": "project",
     "require": {
