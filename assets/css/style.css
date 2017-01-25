@@ -227,6 +227,17 @@ nav .menu .author img {
   left: auto;
   right: 0;
 }
+.preloader-box {
+  position: fixed;
+  background: #0D47A1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99999999999;
+  padding-top: 25%;
+  text-align: center;
+}
 footer {
   padding-bottom: 20px;
 }
