@@ -8,7 +8,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class FeatureReleased extends Mailable
+class FeatureStatusUpdated extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -27,16 +27,26 @@ class FeatureReleased extends Mailable
     public $feature;
 
     /**
+     * Feature status.
+     *
+     * @var array
+     */
+    public $status;
+
+    /**
      * Create a new message instance.
      *
      * @param User    $user
      * @param Feature $feature
+     * @param array   $status
      */
-    public function __construct(User $user, Feature $feature)
+    public function __construct(User $user, Feature $feature, array $status)
     {
         $this->user = $user;
 
         $this->feature = $feature;
+
+        $this->status = $status;
     }
 
     /**
@@ -49,7 +59,7 @@ class FeatureReleased extends Mailable
         $appName = config('app.name');
 
         return $this->from(env('FROM_EMAIL'), $appName)
-                    ->subject("[{$appName}] New Feature Released")
-                    ->view('mail.new-feature-released');
+                    ->subject("[{$appName}] {$this->feature->name} status updated")
+                    ->view('mail.feature-status-updated');
     }
 }

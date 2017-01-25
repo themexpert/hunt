@@ -12,13 +12,17 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
+        'Illuminate\Auth\Events\Registered' => [
+            'Hunt\Listeners\SendConfirmationEmail'
+        ],
+
         'Hunt\Events\FeatureReleased' => [
             'Hunt\Listeners\SendFeatureReleasedEmail',
         ],
 
-        'Illuminate\Auth\Events\Registered' => [
-            'Hunt\Listeners\SendConfirmationEmail'
-        ]
+        'Hunt\Events\FeatureStatusUpdated' => [
+            'Hunt\Listeners\SendFeatureStatusUpdateNotificationEmail',
+        ],
     ];
 
     /**

@@ -9,6 +9,7 @@ use Hunt\Effort;
 use Hunt\Feature;
 use Hunt\Priority;
 use Hunt\Concerns\DataWithPagination;
+use Hunt\Events\FeatureStatusUpdated;
 
 class FeaturesRepository
 {
@@ -172,13 +173,17 @@ class FeaturesRepository
      */
     protected function updateStatus($feature, $status)
     {
-        Status::whereFeatureId($feature->id)
-            ->first()
-            ->update([
+        $oldStatus = Status::whereFeatureId($feature->id)->first();
+
+        if($oldStatus != $status) {
+            $oldStatus->update([
                 'type' => $status['type'],
                 'subject' => $status['subject'],
                 'message' => $status['message']
             ]);
+
+            event(new FeatureStatusUpdated($feature, $status));
+        }
     }
 
     /**
