@@ -1,5 +1,15 @@
 <?php
 
+/******************************************************************************************
+ *
+ * Headers for cors.
+ *
+ *****************************************************************************************/
+if(app()->environment() !== 'testing') {
+    header('Access-Control-Allow-Methods:  POST, GET, OPTIONS, PUT, DELETE');
+    header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Authorization');
+}
+
 Route::group(['namespace' => 'Api'], function() {
 
     // products routes...
@@ -58,5 +68,14 @@ Route::group(['namespace' => 'Api'], function() {
 
     // developer routes...
     Route::get('/developers', 'DevelopersController@all');
+
+    Route::get('/refresh', function(){
+        return response()->json([
+            'loggedIn' => auth()->check(),
+            '_token' => csrf_token()
+        ]);
+    })->name('refresh');
+
+
 
 });

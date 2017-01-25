@@ -104,7 +104,7 @@
                 if(!this.validateInputs()) return;
                 this.busy = true;
                 let that = this;
-                this.$http.post(Hunt.BASE_URL+'/login',
+                this.$http.post('/auth/login',
                     {
                         email: this.email,
                         password: this.password,

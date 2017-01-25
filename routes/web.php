@@ -1,7 +1,7 @@
 <?php
 
+
 // authentication routes...
-Auth::routes();
 Route::get('/token/{token}', 'TokensController@token');
 Route::get('/auth/google', 'Auth\LoginController@redirectToProvider');
 Route::get('/auth/google/callback', 'Auth\LoginController@handleProviderCallback');
@@ -15,16 +15,13 @@ Route::get('/settings/token', 'SettingsController@token');
 
 
 // SPA Starts...
-Route::get('/', function () {
-    return view('main-app');
-});
+//Route::get('/', function () {
+//    return view('main-app');
+//});
 
-Route::get('/refresh', function(){
-    return response()->json([
-        'loggedIn' => auth()->check(),
-        '_token' => csrf_token()
-    ]);
-})->name('refresh');
+Route::get('/test', function () {
+    return "test";
+})->middleware('auth');
 
 Route::get('/profile', function(){
     return response()->json([
@@ -35,8 +32,16 @@ Route::get('/profile', function(){
     ]);
 });
 
+Route::group(['prefix' => 'auth', 'namespace' => 'api'], function() {
+    Auth::routes();
+});
+
 Route::any('{slug}', function($slug)
 {
     return view('main-app');
 })->where('slug', '([A-z\d-\/_.]+)?');
+
+
+
+
 

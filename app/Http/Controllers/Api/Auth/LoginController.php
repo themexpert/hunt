@@ -1,6 +1,6 @@
 <?php
 
-namespace Hunt\Http\Controllers\Auth;
+namespace Hunt\Http\Controllers\Api\Auth;
 
 use Auth;
 use Hunt\User;
@@ -77,7 +77,11 @@ class LoginController extends Controller
         }
 
         if ($this->attemptLogin($request)) {
-            return $this->sendLoginResponse($request);
+            $request->session()->regenerate();
+
+            $this->clearLoginAttempts($request);
+
+            return redirect()->intended($this->redirectPath());
         }
 
         // If the login attempt was unsuccessful we will increment the number of attempts
@@ -85,7 +89,15 @@ class LoginController extends Controller
         // user surpasses their maximum number of attempts they will get locked out.
         $this->incrementLoginAttempts($request);
 
-        return $this->sendFailedLoginResponse($request);
+        $request->session()->regenerate();
+
+        $this->clearLoginAttempts($request);
+
+        if($request->wantsJson()) {
+            return response()->json([
+                'message' => 'Email or password does not match'
+            ], 403);
+        }
     }
 
     /**
@@ -121,6 +133,6 @@ class LoginController extends Controller
 
         Auth::login($user);
 
-        return redirect()->intended($this->redirectPath());
+        //return redirect()->intended($this->redirectPath());
     }
 }
