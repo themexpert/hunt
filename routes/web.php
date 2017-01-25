@@ -30,7 +30,7 @@ Route::get('/profile', function(){
             'email' => auth()->user()->email
         ]
     ]);
-});
+})->middleware('auth');
 
 Route::group(['prefix' => 'auth', 'namespace' => 'api'], function() {
     Auth::routes();
