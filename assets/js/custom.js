@@ -2,7 +2,9 @@
     $(function(){
 
         $('.button-collapse').sideNav();
-        $('.modal').modal();
+        $('.modal').modal({
+            dismissible: false
+        });
         $('select').material_select();
         $('.collapsible').collapsible();
         // $('.tooltipped').tooltip({delay: 50});

@@ -164,6 +164,41 @@
                         </div>
                     </div>
                 </div><!--/.widget-->
+
+                <div class="widget widget-status-change">
+                    <h3 class="widget-title">Status Update</h3>
+                    <div class="status-btn">
+                        <a class="btn red" href="#status_change">Update Status <i class="material-icons left">loop</i></a>
+                        <div id="status_change" class="modal">
+                            <div class="modal-content">
+                                <form action="">
+                                    <div class="input-field">
+                                        <select>
+                                            <option value="" disabled selected>Choose a status</option>
+                                            <option value="1">Released</option>
+                                            <option value="2">Pending</option>
+                                            <option value="3">Work in Progress</option>
+                                            <option value="4">Waiting for feedback</option>
+                                        </select>
+                                        <label>Change Status</label>
+                                    </div>
+
+                                    <div class="input-field">
+                                        <textarea id="textarea1" class="materialize-textarea" placeholder="Add some note"></textarea>
+                                        <label for="textarea1">Status Note</label>
+                                    </div>
+
+                                    <div class="input-field left-align">
+                                        <button type="submit" class="btn">Update</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--/.widget-->
             </div><!--/.col-->
         </div>
     </div>
