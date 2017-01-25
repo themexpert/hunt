@@ -37,7 +37,7 @@ class SendConfirmationEmail extends Mailable
     {
         $appName = config('app.name');
 
-        return $this->$this->from(env('FROM_EMAIL'), $appName)
+        return $this->from(env('FROM_EMAIL'), $appName)
                 ->subject("[{$appName}] Confirm your email address")
                 ->view('mail.send-confirmation-email');
     }
