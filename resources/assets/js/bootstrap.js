@@ -1,6 +1,8 @@
 
 window._ = require('lodash');
 
+require('./config/mixin');
+
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This
@@ -8,8 +10,7 @@ window._ = require('lodash');
  */
 
 window.$ = window.jQuery = require('jquery');
-require('bootstrap-sass');
-
+require("materialize-css");
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
  * using reactive data binding and reusable components. Vue's API is clean
@@ -17,6 +18,7 @@ require('bootstrap-sass');
  */
 
 window.Vue = require('vue');
+window.Bus = new Vue();
 require('vue-resource');
 
 /**
@@ -27,7 +29,6 @@ require('vue-resource');
 
 Vue.http.interceptors.push((request, next) => {
     request.headers.set('X-CSRF-TOKEN', Laravel.csrfToken);
-
     next();
 });
 

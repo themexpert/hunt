@@ -1,22 +1,62 @@
+let Pace = require('pace-progress');
+Pace.start();
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * include Vue and Vue Resource. This gives a great starting point for
- * building robust, powerful web applications using Vue and Laravel.
- */
+import Hunt from './config/Hunt'
+import md5 from 'md5'
+Object.assign(Hunt, {pace: Pace, md5: md5, API_URL: Hunt.BASE_URL+'/api'});
 
 require('./bootstrap');
-
 require('./passport-bootstrap');
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the body of the page. From here, you may begin adding components to
- * the application, or feel free to tweak this setup for your needs.
- */
-
-Vue.component('example', require('./components/Example.vue'));
+import store from './store'
+import router from './router'
 
 const app = new Vue({
-    el: '#app'
-});
+    store,
+    router,
+    data() {
+        return {
+
+        }
+    },
+    mounted() {
+        Bus.$on('loggedIn', user => {
+            this.$store.dispatch('loggedIn', user);
+        });
+        Bus.$on('loggedOut', ()=>{
+            this.$store.dispatch('loggedOut');
+        });
+        this.checkAuth();
+    },
+    methods: {
+        checkAuth() {
+            Vue.http.get(Hunt.BASE_URL + '/refresh')
+                .then(
+                    success => {
+                        if(success.body.loggedIn) {
+                            window.Laravel.csrfToken = success.body._token;
+                            store.dispatch('loggedIn');
+                        }
+                    },
+                    fail => {
+                        console.log(fail);
+                        Hunt.toast('Something went wrong. (checkAuth)', 'warning', 3000);
+                    }
+                );
+        }
+    },
+    computed: {
+        isLoggedIn() {
+            return this.$store.getters.isLoggedIn;
+        },
+        userAvatar() {
+            return "http://gravatar.com/avatar/"+Hunt.md5(this.$store.getters.userEmail);
+        },
+        userName() {
+            return this.$store.getters.userName;
+        }
+    }
+}).$mount('#app');
+if(window.message!='') Hunt.toast(window.message, 'info');
+
+console.log(Hunt);
