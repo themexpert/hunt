@@ -75,7 +75,4 @@ Route::group(['namespace' => 'Api'], function() {
             '_token' => csrf_token()
         ]);
     })->name('refresh');
-
-
-
 });

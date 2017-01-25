@@ -81,7 +81,9 @@ class LoginController extends Controller
 
             $this->clearLoginAttempts($request);
 
-            return redirect()->intended($this->redirectPath());
+            return response()->json([
+                'message' => 'Success'
+            ]);
         }
 
         // If the login attempt was unsuccessful we will increment the number of attempts
