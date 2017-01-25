@@ -1,7 +1,7 @@
 {
-    "name": "themexpert/hunt",
+    "name": "hunt/hunt",
     "description": "...",
-    "keywords": ["themexpert", "hunt"],
+    "keywords": ["hunt"],
     "license": "MIT",
     "type": "project",
     "require": {
