@@ -6,3 +6,4 @@ Homestead.json
 Homestead.yaml
 .env
 config/developers.php
+/resources/assets/js/config/config.js

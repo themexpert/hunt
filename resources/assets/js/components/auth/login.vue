@@ -123,7 +123,7 @@
                         },
                         error => {
                             that.busy = false;
-                            window.Laravel.csrfToken = error.body._token;
+                            if(error.body._token!=undefined) window.Laravel.csrfToken = error.body._token;
                             Hunt.toast(error.body.message, 'error');
                         }
                     );

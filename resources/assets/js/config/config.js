@@ -1,3 +1,3 @@
 export default {
-    BASE_URL: '/api'
+    BASE_URL: 'http://hunt.io'
 }

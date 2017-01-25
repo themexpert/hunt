@@ -52,7 +52,7 @@
             </div>
         </section>
 </template>
-<script>
+<script type="text/babel">
     import Hunt from '../../config/Hunt'
     export default{
         data(){

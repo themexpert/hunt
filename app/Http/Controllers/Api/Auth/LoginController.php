@@ -23,14 +23,16 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+    use AuthenticatesUsers {
+        logout as performLogout;
+    }
 
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectTo = '/dashboard';
+    protected $redirectTo = '/refresh';
 
     /**
      * Create a new controller instance.
@@ -82,6 +84,7 @@ class LoginController extends Controller
             $this->clearLoginAttempts($request);
 
             return response()->json([
+                '_token' => csrf_token(),
                 'message' => 'Success'
             ]);
         }
@@ -136,5 +139,11 @@ class LoginController extends Controller
         Auth::login($user);
 
         //return redirect()->intended($this->redirectPath());
+    }
+
+    public function logout(Request $request)
+    {
+        $this->performLogout($request);
+        return redirect()->route('refresh');
     }
 }
