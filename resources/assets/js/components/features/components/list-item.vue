@@ -1,25 +1,28 @@
 <template>
-    <li class="collection-item avatar status-wip">
-        <i class="material-icons circle">loop</i>
-        <h4 class="title"><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus eligendi laudantium possimus ratione voluptas.</a></h4>
-        <div class="tags"><span class="chip">Tag1</span> <span class="chip green">Tag2</span></div>
+    <li class="collection-item avatar" :class="statusClass">
+        <status-icon :status="item.status"></status-icon>
+        <h4 class="title"><a href="#">{{ item.name }}</a></h4>
+        <tag :tags="item.tags"></tag>
         <div class="description">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae cupiditate dolorem dolores eum facere facilis harum impedit maiores minima...
+            {{ item.description }}
         </div>
-
-        <div class="secondary-content">
-            <a class="waves-effect waves-light btn teal"><i class="material-icons left">done</i> I want this</a>
-            <a class="waves-effect waves-light btn teal lighten-2"><i class="material-icons left">snooze</i> Not interested</a>
-        </div>
-
+        <vote :item-id="item.id"></vote>
     </li>
 </template>
 <style>
     
 </style>
 <script>
+    import status_icon from './components/status-icon.vue'
+    import Vote from './components/vote.vue'
+    import Tag from './components/tags.vue'
     export default{
-        name: 'Feature List Item',
+        name: 'FeatureListItem',
+        components: {
+            'status-icon': status_icon,
+            'vote': Vote,
+            'tag': Tag
+        },
         props: ['item'],
         data(){
             return{
@@ -27,7 +30,13 @@
             }
         },
         computed: {
-
+            statusClass() {
+                return {
+                    'status-released': this.item.status=='released',
+                    'status-wip': this.item.status=='wip',
+                    'status-pending': this.item.status==null
+                }
+            }
         }
     }
 </script>

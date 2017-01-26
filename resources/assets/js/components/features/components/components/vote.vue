@@ -9,7 +9,7 @@
 </style>
 <script>
     export default{
-        props: ['votes', 'item-id'],
+        props: ['item-id'],
         data(){
             return{
                 msg:'hello vue'

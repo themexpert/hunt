@@ -10,8 +10,6 @@ Hunt.renderPage = (pageTitle) => {
     if (btnCollapse.length > 0) btnCollapse.sideNav();
     let mdl = $('.modal');
     if (mdl.length > 0) mdl.modal();
-    let slct = $('select');
-    if(slct.length>0) slct.material_select();
     setTimeout(()=>{Materialize.updateTextFields();},200);
     let collaps = $('.collapsible');
     if(collaps.length>0) collaps.collapsible();

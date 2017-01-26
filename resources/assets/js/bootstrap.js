@@ -21,28 +21,6 @@ window.Vue = require('vue');
 window.Bus = new Vue();
 require('vue-resource');
 
-Vue.directive("select", {
-    "twoWay": true,
-
-    "bind": function () {
-        $(this.el).material_select();
-
-        var self = this;
-
-        $(this.el).on('change', function() {
-            self.set($(self.el).val());
-        });
-    },
-
-    update: function (newValue, oldValue) {
-        $(this.el).val(newValue);
-    },
-
-    "unbind": function () {
-        $(this.el).material_select('destroy');
-    }
-});
-
 /**
  * We'll register a HTTP interceptor to attach the "CSRF" header to each of
  * the outgoing requests issued by this application. The CSRF middleware
@@ -68,3 +46,7 @@ Vue.http.interceptors.push((request, next) => {
 //     broadcaster: 'pusher',
 //     key: 'your-pusher-key'
 // });
+
+
+import vueMultiSelect from 'vue-multiselect'
+Vue.component('multiselect', vueMultiSelect);

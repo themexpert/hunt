@@ -1,28 +1,33 @@
 <template>
-    <select id="product_select">
-        <option :value="null" disabled>Select Products</option>
-        <option v-for="(name, key) in products" :value="key">{{ name }}</option>
-    </select>
+    <multiselect
+            :options="products"
+            :value="product"
+            v-model="product"
+            @input="updateProduct"
+            track-by="name"
+            label="name"
+            placeholder="Select a product">
+    </multiselect>
 </template>
 <style>
-    
+
 </style>
 <script type="text/babel">
+    import Hunt from '../../../config/Hunt'
     export default {
+        props: ['selected', 'update'],
         data(){
             return {
                 product: null
             }
         },
         mounted() {
-            this.product = this.products.length>0?0:null;
-            let that = this;
-            $("#product_select").change(e => {
-                that.product = $("#product_select").val();
-            });
         },
         methods: {
-
+            updateProduct(nP) {
+                if(this.update!=undefined && this.update==true && nP.id!=undefined)
+                    this.$store.dispatch('product_changed', nP.id);
+            }
         },
         computed: {
             products() {
@@ -30,8 +35,11 @@
             }
         },
         watch: {
-            product() {
-                this.$store.dispatch('product_changed', this.product);
+            products() {
+                if (typeof this.selected == "undefined") {
+                    this.product = this.products.length > 0 ? this.products[0] : null;
+                    this.$store.dispatch('product_changed', this.product.id);
+                }
             }
         }
     }

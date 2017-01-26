@@ -42,7 +42,7 @@ Route::get('/profile', function(){
 
 Route::get('/logout', 'Api\Auth\LoginController@logout');
 
-Route::group(['prefix' => 'auth', 'namespace' => 'api'], function() {
+Route::group(['prefix' => 'auth', 'namespace' => 'Api'], function() {
     Auth::routes();
 });
 
