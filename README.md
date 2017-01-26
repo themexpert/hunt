@@ -28,9 +28,9 @@ Build a better products with your users, customers, and internal teams by captur
 3. Setup your DB_CONNECTION, DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, DB_PASSWORD in the .env file
 4. After that, setup your MAIL_HOST, MAIL_PORT, MAIL_USERNAME, MAIL_PASSWORD in the .env file
 5. Copy config/developer.example.php file to config/developer.php and add your developer email address ( The email address you will set in the developer.php file, they will get extra power in the Hunt such as products creating, deleting and many more ).
-6. Open your terminal and run ```composer install``` ( to install Hunt dependencies )
-7. Set bootstrap and storage directory permission to 755
-8. Run ```php artisan migrate``` on your terminal
+6. Set bootstrap and storage directory permission to 755
+7. Open your terminal and run ```composer install``` from hunt root directory ( to install Hunt dependencies )
+8. Run ```php artisan migrate```
 9. Finally, run ```php artisan passport:install```
 
 **There two option setup process, you may want ( not mandatory )**
