@@ -18,13 +18,11 @@ class SendNewCommentAddedEmail implements ShouldQueue
      */
     public function handle(NewCommentAdded $event)
     {
-        $users = User::all();
+        $user = User::whereFeatureId($event->feature->id)->first();
 
-        foreach($users as $user) {
-            Mail::to($user->email)
-                ->queue(
+        Mail::to($user->email)
+            ->queue(
                 new NewCommentAddedMailable($user, $event->feature, $event->comment)
             );
-        }
     }
 }
