@@ -25,7 +25,7 @@
         },
         methods: {
             updateProduct(nP) {
-                if(this.update!=undefined && this.update==true && nP.id!=undefined)
+                if(this.update!=undefined && this.update==true && nP!=null)
                     this.$store.dispatch('product_changed', nP.id);
             }
         },
