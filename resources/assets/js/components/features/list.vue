@@ -9,7 +9,7 @@
                         <div class="row">
                             <div class="col s9">
                                 <div class="progress-link">
-                                    <filters></filters>
+                                    <filters :filter="$route.params.filter || 'all'"></filters>
                                 </div>
                             </div>
                             <div class="col s3">
@@ -52,7 +52,6 @@
         },
         data(){
             return {
-
             }
         },
         mounted() {

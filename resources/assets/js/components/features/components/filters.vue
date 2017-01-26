@@ -1,6 +1,6 @@
 <template>
     <ul>
-        <li v-for="(value, key) in filters" :class="{active:filter==key}"><a @click="setFilter(key)" >{{ value }}</a></li>
+        <li v-for="(value, slug) in filters" :class="{active:filter==slug}"><router-link :to="makeUrl(slug)">{{ value }}</router-link></li>
     </ul>
 </template>
 <style>
@@ -10,6 +10,7 @@
 </style>
 <script>
     export default{
+        props: ['filter'],
         data(){
             return{
                 filters: {
@@ -20,14 +21,17 @@
                 }
             }
         },
+        mounted() {
+            this.$store.dispatch('apply_filter', this.filter);
+        },
         methods: {
-            setFilter(newFilter) {
-                this.$store.dispatch('apply_filter', newFilter);
+            makeUrl(slug) {
+                return '/features/' + slug;
             }
         },
-        computed: {
+        watch: {
             filter() {
-                return this.$store.state.features.filter;
+                this.$store.dispatch('apply_filter', this.filter);
             }
         }
     }

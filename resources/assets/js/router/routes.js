@@ -20,11 +20,28 @@ export default [
         component: Components.feature.list,
         meta: {requiresAuth: false}
     },
+    {
+        path: '/features/:filter',
+        component: Components.feature.list,
+        meta: {requiresAuth: false}
+    },
     //Reports route
     {
         path: '/reports',
         component: Components.reports.list,
         meta: {requiresAuth: true}
     },
-    //Features route
+
+
+
+    //error routes
+    {
+        path: '/404',
+        component: Components.error.e404,
+        meta: {requiresAuth: false}
+    },
+    {
+        path: '*',
+        redirect: '/404'
+    }
 ];

@@ -27,6 +27,7 @@ const app = new Vue({
             this.$store.dispatch('loggedOut');
         });
         this.$store.dispatch('update_products');
+        this.checkAuth();
     },
     methods: {
         checkAuth() {

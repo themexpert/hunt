@@ -8,5 +8,8 @@ export default {
     auth: {
         login: require('./auth/login.vue'),
         register: require('./auth/register.vue')
+    },
+    error: {
+        e404: require('./error-404.vue')
     }
 }
