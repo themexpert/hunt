@@ -28,10 +28,10 @@
         methods: {
             load() {
                 if(this.products.length==0 || this.update==undefined || this.update==false) return; //no product found or just showing the dropdown
-                let product_id = this.$route.params.product_id;
+                let product_id = this.$route.params.product_id || this.$store.state.features.product_id;
                 if(product_id==undefined) {
                     product_id = this.products[0].id;
-                    this.$router.push('/products/'+product_id+'/features');
+                    this.$router.push('/products/'+product_id+'/features'+'/'+this.$store.state.features.filter);
                 }
                 this.$store.dispatch('product_changed', product_id);
                 this.products.forEach(x=>{

@@ -31,6 +31,7 @@ export default {
          * Validates authentication and updates token
          *
          * @param ctx
+         * @param redirectTo
          */
         loggedIn(ctx, redirectTo) {
             Vue.http.get(Hunt.BASE_URL + '/refreshToken')

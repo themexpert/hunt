@@ -16,12 +16,9 @@
             }
         },
         mounted() {
-            Bus.$on('loaded', this.load);
+            this.$store.dispatch('apply_filter', this.filter);
         },
         methods: {
-            load() {
-                this.$store.dispatch('apply_filter', this.filter);
-            },
             /**
              * Creates url for filter
              *

@@ -57,23 +57,14 @@
         },
         mounted() {
             Hunt.renderPage('Feature Requests');
-            Bus.$on('loaded', this.load); //first load
-            if(this.loaded) this.load(); //and then on each refresh
-        },
-        methods: {
-            /**
-             * Populates the page
-             */
-            load() {
-                if(this.$route.params.query)
-                    this.$store.dispatch('search_features', this.$route.params.query);
-                if(this.$route.params.filter)
-                    this.$store.dispatch('apply_filter',
-                        {
-                            product_id: this.$route.params.product_id,
-                            filter:this.$route.params.filter
-                        });
-            }
+            if(this.$route.params.query)
+                this.$store.dispatch('search_features', this.$route.params.query);
+            if(this.$route.params.filter)
+                this.$store.dispatch('apply_filter',
+                    {
+                        product_id: this.$route.params.product_id,
+                        filter:this.$route.params.filter
+                    });
         },
         computed: {
             /**
@@ -83,13 +74,6 @@
              */
             features() {
                 return this.$store.state.features.features;
-            },
-            /**
-             * Checks if the app loaded
-             * @returns {computed.loaded|boolean|*}
-             */
-            loaded() {
-                return this.$store.state.loaded;
             }
         }
     }
