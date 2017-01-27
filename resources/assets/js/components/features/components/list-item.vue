@@ -1,6 +1,6 @@
 <template>
     <li class="collection-item avatar" :class="statusClass">
-        <status-icon :status="item.status"></status-icon>
+        <status-icon :status="status"></status-icon>
         <h4 class="title"><a href="#">{{ item.name }}</a></h4>
         <tag :tags="item.tags"></tag>
         <div class="description">
@@ -30,11 +30,16 @@
             }
         },
         computed: {
+            status() {
+                return this.item.status!=null?this.item.status.type:'PENDING';
+            },
             statusClass() {
+                if(this.status==null) return 'status-pending';
                 return {
-                    'status-released': this.item.status=='released',
-                    'status-wip': this.item.status=='wip',
-                    'status-pending': this.item.status==null
+                    'status-released': this.status=='RELEASED',
+                    'status-wip': this.status=='WIP',
+                    'status-pending': this.status=="PENDING",
+                    'status-declined': this.status=='DECLINED'
                 }
             }
         }

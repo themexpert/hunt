@@ -21,6 +21,11 @@ export default [
         meta: {requiresAuth: false}
     },
     {
+        path: '/features',
+        component: Components.feature.list,
+        meta: {requiresAuth: false}
+    },
+    {
         path: '/features/:filter',
         component: Components.feature.list,
         meta: {requiresAuth: false}

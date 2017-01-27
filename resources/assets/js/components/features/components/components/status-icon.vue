@@ -14,10 +14,10 @@
         },
         computed: {
             icon() {
-                let icon = 'schedule';
-                if(this.status=='released') icon = 'done';
-                if(this.status=='in progress') icon = 'loop';
-                return icon;
+                if (this.status == null || this.status == "PENDING") return 'schedule';
+                if (this.status == 'RELEASED') return 'done';
+                if (this.status == 'WIP') return 'loop';
+                if (this.status == 'DECLINED') return 'block';
             }
         }
     }

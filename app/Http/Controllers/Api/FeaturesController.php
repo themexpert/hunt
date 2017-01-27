@@ -72,6 +72,7 @@ class FeaturesController extends Controller
         return $this->responseJson($this->featuresRepository->get(
             $request->input('limit'),
             $request->input('searchTerms'),
+            $request->input('status'),
             $productId
         ));
     }

@@ -26,7 +26,8 @@ const app = new Vue({
         Bus.$on('loggedOut', ()=>{
             this.$store.dispatch('loggedOut');
         });
-        this.$store.dispatch('update_products');
+        this.$store.commit('update_statuses');
+        this.$store.commit('update_products');
         this.checkAuth();
     },
     methods: {

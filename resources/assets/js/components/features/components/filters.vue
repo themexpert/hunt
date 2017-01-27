@@ -1,6 +1,6 @@
 <template>
     <ul>
-        <li v-for="(value, slug) in filters" :class="{active:filter==slug}"><router-link :to="makeUrl(slug)">{{ value }}</router-link></li>
+        <li v-for="filterItem in filters" :class="{active:filter==filterItem.slug}"><router-link :to="makeUrl(filterItem.slug)">{{ filterItem.label }}</router-link></li>
     </ul>
 </template>
 <style>
@@ -13,12 +13,6 @@
         props: ['filter'],
         data(){
             return{
-                filters: {
-                    all: 'All',
-                    awaiting_feedback: 'Awaiting Feedback',
-                    in_progress: 'In Progress',
-                    completed: 'Complete / Resolved'
-                }
             }
         },
         mounted() {
@@ -27,6 +21,11 @@
         methods: {
             makeUrl(slug) {
                 return '/features/' + slug;
+            }
+        },
+        computed: {
+            filters() {
+                return this.$store.state.features.statuses;
             }
         },
         watch: {

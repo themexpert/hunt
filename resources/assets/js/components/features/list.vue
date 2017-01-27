@@ -9,7 +9,7 @@
                         <div class="row">
                             <div class="col s9">
                                 <div class="progress-link">
-                                    <filters :filter="$route.params.filter || 'all'"></filters>
+                                    <filters :filter="$route.params.filter || ''"></filters>
                                 </div>
                             </div>
                             <div class="col s3">

@@ -2,7 +2,14 @@ import Vue from 'vue'
 import Hunt from '../config/Hunt'
 export default {
     state: {
-        filter: 'all',
+        statuses: [
+            {
+                label: 'All',
+                slug: ''
+            }
+        ],
+        filter: '',
+        query: null,
         product_id: null,
         products: [],
         features: [],
@@ -10,6 +17,26 @@ export default {
         page: 1
     },
     mutations: {
+        update_statuses(state) {
+            Vue.http.get(Hunt.API_URL+'/statuses').then(
+                success => {
+                    try {
+                        Object.keys(success.body.statuses).forEach(x=>{
+                            state.statuses.push({
+                                label: x,
+                                slug: x
+                            });
+                        });
+                    } catch(e) {
+                        Hunt.toast('Error parsing statuses', 'error');
+                    }
+                },
+                fail => {
+                    Hunt.toast('Error loading statuses (update_statuses)', 'error');
+                    console.log(fail);
+                }
+            );
+        },
         filter_changed(state, filter) {
             state.filter = filter;
         },
@@ -35,7 +62,10 @@ export default {
                 );
         },
         update_features(state) {
-            Vue.http.get(Hunt.API_URL + '/products/'+state.product_id+'/features?page='+state.page)
+            if(state.product_id==null) return;
+            Vue.http.get(Hunt.API_URL + '/products/'+state.product_id+'/features?page='+state.page
+                + (state.filter!=''?'&status='+state.filter:'')
+                + (state.query!=null?'&searchTerms='+state.query:''))
                 .then(
                     success => {
                         state.features = success.body.data;
@@ -48,9 +78,6 @@ export default {
         }
     },
     actions: {
-        update_products(ctx) {
-            ctx.commit('update_products');
-        },
         product_changed({commit, state}, product_id) {
             if(product_id==state.product) return;
             commit('product_changed', product_id);
@@ -59,7 +86,7 @@ export default {
         apply_filter({commit, state}, filter) {
             if(state.filter==filter) return;
             commit('filter_changed', filter);
-            //update features
+            commit('update_features');
         },
         infinite_load_features({commit, state}) {
             //load next pages until total page reached
