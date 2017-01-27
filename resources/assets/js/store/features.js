@@ -2,12 +2,7 @@ import Vue from 'vue'
 import Hunt from '../config/Hunt'
 export default {
     state: {
-        statuses: [
-            {
-                label: 'All',
-                slug: ''
-            }
-        ],
+        statuses: [],
         filter: '',
         query: null,
         product_id: null,
@@ -26,7 +21,11 @@ export default {
             Vue.http.get(Hunt.API_URL+'/statuses').then(
                 success => {
                     try {
-                        Object.keys(success.body.statuses).forEach(x=>{
+                        state.statuses = [{
+                            label: 'All',
+                            slug: ''
+                        }];
+                        Object.keys(success.body.statuses).forEach(x => {
                             state.statuses.push({
                                 label: x,
                                 slug: x.toLowerCase()
