@@ -33,9 +33,17 @@ router.beforeEach((to, from, next)=>{
                     }
                 },
                 fail => {
-                    console.log(fail);
-                    Hunt.toast('Something went wrong. (checkAuth)', 'warning', 3000);
-                    gotoNext(to, from, next);
+                    if(fail.status==401) {
+                        store.state.loaded = true;
+                        Bus.$emit('loaded');
+                        Hunt.toast('You need to be registered and logged in to use this service.', 'warning', 3000);
+                        router.push('/login');
+                    }
+                    else
+                    {
+                        Hunt.toast('Something messed up.', 'error', 3000);
+                        console.log(fail);
+                    }
                 }
             );
     }
