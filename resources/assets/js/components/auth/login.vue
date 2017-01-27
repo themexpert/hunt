@@ -64,7 +64,7 @@
 <style>
     
 </style>
-<script type="text/babel">
+<script>
     import Hunt from '../../config/Hunt'
     export default{
         data(){
@@ -82,7 +82,7 @@
         methods: {
             validateInputs() {
                 let ok = true;
-                if(this.email=='') {
+                if (this.email == '') {
                     Hunt.toast('The email field is required.', 'warning');
                     ok = false;
                 }
@@ -90,18 +90,18 @@
                     Hunt.toast('The email you entered is not valid.', 'warning');
                     ok = false;
                 }
-                if(this.password=='') {
+                if (this.password == '') {
                     Hunt.toast('The password field is required.', 'warning');
                     ok = false;
                 }
-                else if(this.password.length < 8) {
+                else if (this.password.length < 8) {
                     Hunt.toast('The password has to be at least 8 characters.', 'warning');
                     ok = false;
                 }
                 return ok;
             },
             login(e) {
-                if(!this.validateInputs()) return;
+                if (!this.validateInputs()) return;
                 this.busy = true;
                 let that = this;
                 this.$http.post('/auth/login',
@@ -116,14 +116,13 @@
                             window.Laravel.csrfToken = success.body._token;
                             Hunt.toast('You have successfully logged in.', 'success');
                             Hunt.storage.set('email', that.email);
-                            that.$store.dispatch('loggedIn');
                             let redirectTo = that.$store.state.auth.redirectTo || '/';
-                            if(redirectTo!=null) that.$store.state.auth.redirectTo = null;
-                            that.$router.push(redirectTo);
+                            if (redirectTo != null) that.$store.state.auth.redirectTo = null;
+                            that.$store.dispatch('loggedIn', redirectTo);
                         },
                         error => {
                             that.busy = false;
-                            if(error.body._token!=undefined) window.Laravel.csrfToken = error.body._token;
+                            if (error.body._token != undefined) window.Laravel.csrfToken = error.body._token;
                             Hunt.toast(error.body.message, 'error');
                         }
                     );

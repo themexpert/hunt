@@ -1,4 +1,5 @@
 import Hunt from '../config/Hunt'
+import router from '../router'
 export default {
     state: {
         user: null,
@@ -31,12 +32,13 @@ export default {
          *
          * @param ctx
          */
-        loggedIn(ctx) {
+        loggedIn(ctx, redirectTo) {
             Vue.http.get(Hunt.BASE_URL + '/refreshToken')
                 .then(
                     success => {
                         window.Laravel.token=success.body.token;
                         ctx.commit('loggedIn', success.body.user);
+                        if(redirectTo!=undefined) router.push(redirectTo);
                     },
                     fail => {
                         Hunt.toast('Error refreshing token.', 'error');

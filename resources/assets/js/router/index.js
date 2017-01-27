@@ -12,7 +12,6 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next)=>{
-
     /**
      * Runs only once at first on each page load
      *
