@@ -1,9 +1,19 @@
 import Hunt from './config/Hunt'
 
+/**
+ * Sets the page title
+ *
+ * @param title
+ */
 Hunt.pageTitle = title => {
     document.title = 'Hunt - ' + title + ' ';
 };
 
+/**
+ * Re-renders/re-initiates components
+ *
+ * @param pageTitle
+ */
 Hunt.renderPage = (pageTitle) => {
     if(pageTitle!=undefined) Hunt.pageTitle(pageTitle);
     let btnCollapse = $('.button-collapse');
@@ -19,6 +29,12 @@ Hunt.renderPage = (pageTitle) => {
     window.scrollTo(0,0);
 };
 
+/**
+ * Shows toaster message
+ * @param msg
+ * @param type
+ * @param time
+ */
 Hunt.toast = (msg, type, time) => {
     time = time==undefined?4000:time;
     let bgColor = '';

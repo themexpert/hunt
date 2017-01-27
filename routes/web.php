@@ -22,8 +22,13 @@ Route::get('/settings/token', 'SettingsController@token');
 Route::get('/refreshToken', function () {
     return response()->json(
         [
-            'message' => 'Token had been refreshed.',
-            'token'   => auth()->user()->createToken('laravel_token')->accessToken
+            'loggedIn' => true,
+            'token'    => auth()->user()->createToken('laravel_token')->accessToken,
+            '_token'   => csrf_token(),
+            'user'     => [
+                'name'  => auth()->user()->name,
+                'email' => auth()->user()->email
+            ]
         ]
     );
 })->middleware('auth');
@@ -35,15 +40,6 @@ Route::get('/refresh', function(){
                                 '_token' => csrf_token()
                             ]);
 })->name('refresh');
-
-Route::get('/profile', function(){
-    return response()->json([
-                                'user' => [
-                                    'name' => auth()->user()->name,
-                                    'email' => auth()->user()->email
-                                ]
-                            ]);
-})->middleware('auth');
 
 Route::get('/logout', 'Api\Auth\LoginController@logout');
 

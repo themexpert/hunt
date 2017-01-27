@@ -77,8 +77,10 @@ class FeaturesRepository
         if(! empty($searchTerms)) {
             $features = Feature::with(['tags', 'status', 'vote'])
                                 ->where("product_id", "=", $productId)
-                                ->orWhere("name", "like", "%$searchTerms%")
-                                ->orWhere("description", "like", "%$searchTerms%");
+                                ->where(function($query) use ($searchTerms) {
+                                    $query->orWhere("name", "like", "%$searchTerms%")
+                                        ->orWhere("description", "like", "%$searchTerms%");
+                                });
         } else {
             $features = Feature::with(['tags', 'status', 'vote'])
                                 ->where("product_id", "=", $productId);

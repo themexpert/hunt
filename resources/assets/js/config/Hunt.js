@@ -4,24 +4,56 @@ let storage = null;
 if(typeof Storage != 'undefined') {
     storage = {
         storage: {
+            /**
+             * Sets key value pair in storage
+             *
+             * @param key
+             * @param value
+             */
             set(key, value) {
                 return window.localStorage.setItem(key, value);
             },
+            /**
+             * Retrieves value by key
+             *
+             * @param key
+             */
             get(key) {
                 return window.localStorage.getItem(key);
             },
+            /**
+             * Deletes value by key
+             *
+             * @param key
+             */
             delete(key) {
                 return window.localStorage.removeItem(key);
             }
         },
+        /**
+         * Update token
+         *
+         * @param token
+         * @returns {*}
+         */
         updateToken(token) {
             this._token = token;
             return this.storage.set('_token', token);
         },
+        /**
+         * Delete token
+         *
+         * @returns {*}
+         */
         deleteToken() {
             this._token = null;
             return this.storage.delete('_token');
         },
+        /**
+         * Retrieve token
+         *
+         * @returns {*}
+         */
         getToken() {
             return this.storage.get('_token');
         }

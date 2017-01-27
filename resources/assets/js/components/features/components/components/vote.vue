@@ -16,6 +16,11 @@
             }
         },
         methods: {
+            /**
+             * Send the vote to server
+             *
+             * @param endPoint
+             */
             vote(endPoint) {
                 this.post('/votes/' + this.itemId + '/' + endPoint)
                     .then(

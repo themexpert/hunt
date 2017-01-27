@@ -4,7 +4,7 @@ import Hunt from './Hunt'
 Vue.mixin({
     methods: {
         /**
-         * Overrides get method
+         * Returns promise of get method
          *
          * this.get('url');
          *
@@ -14,7 +14,7 @@ Vue.mixin({
             return this.$http.get(Hunt.API_URL + url);
         },
         /**
-         * Overrides post method
+         * Returns promise of post method
          *
          * this.post('url', {foo: bar});
          *
@@ -25,7 +25,7 @@ Vue.mixin({
             return this.$http.post(Hunt.API_URL + url, data);
         },
         /**
-         * Overrides delete method
+         * Returns promise of delete method
          *
          * this.delete('url', [success=>{}, error=>{}]);
          *

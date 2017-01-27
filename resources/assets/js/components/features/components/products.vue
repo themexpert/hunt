@@ -22,24 +22,41 @@
             }
         },
         mounted() {
+            Bus.$on('products_loaded', this.load); //don't run into error when the products are not loaded
+            if(this.products.length>0) this.load(); //if we have products then set one
         },
         methods: {
+            load() {
+                if(this.products.length==0 || this.update==undefined || this.update==false) return; //no product found or just showing the dropdown
+                let product_id = this.$route.params.product_id;
+                if(product_id==undefined) {
+                    product_id = this.products[0].id;
+                    this.$router.push('/products/'+product_id+'/features');
+                }
+                this.$store.dispatch('product_changed', product_id);
+                this.products.forEach(x=>{
+                    if(x.id==product_id) this.product = x;
+                });
+            },
+            /**
+             * Updates the product in store and invokes product_changed
+             * @param nP
+             */
             updateProduct(nP) {
-                if(this.update!=undefined && this.update==true && nP!=null)
+                if(this.update!=undefined && this.update==true && nP!=null) {
+                    this.$router.push('/products/'+nP.id+'/features');
                     this.$store.dispatch('product_changed', nP.id);
+                }
             }
         },
         computed: {
+            /**
+             * Products list from store
+             *
+             * @returns {computed.products|Array|*}
+             */
             products() {
                 return this.$store.state.features.products;
-            }
-        },
-        watch: {
-            products() {
-                if (typeof this.selected == "undefined") {
-                    this.product = this.products.length > 0 ? this.products[0] : null;
-                    this.$store.dispatch('product_changed', this.product.id);
-                }
             }
         }
     }

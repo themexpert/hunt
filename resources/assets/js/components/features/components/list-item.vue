@@ -1,7 +1,7 @@
 <template>
     <li class="collection-item avatar" :class="statusClass">
         <status-icon :status="status"></status-icon>
-        <h4 class="title"><a href="#">{{ item.name }}</a></h4>
+        <h4 class="title"><router-link :to="itemUrl">{{ item.name }}</router-link></h4>
         <tag :tags="item.tags"></tag>
         <div class="description">
             {{ item.description }}
@@ -30,9 +30,17 @@
             }
         },
         computed: {
+
+            /**
+             * Computes status
+             */
             status() {
                 return this.item.status!=null?this.item.status.type:'PENDING';
             },
+
+            /**
+             * Computes status class
+             */
             statusClass() {
                 if(this.status==null) return 'status-pending';
                 return {
@@ -41,6 +49,15 @@
                     'status-pending': this.status=="PENDING",
                     'status-declined': this.status=='DECLINED'
                 }
+            },
+
+            /**
+             * Computes item url
+             *
+             * @returns {string}
+             */
+            itemUrl() {
+                return '/features/' + this.item.id;
             }
         }
     }
