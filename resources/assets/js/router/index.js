@@ -19,7 +19,7 @@ router.beforeEach((to, from, next)=>{
                     window.Laravel.csrfToken = success.body._token;
                     Hunt.toast('You have been logged out.', 'info');
                     store.dispatch('loggedOut');
-                    router.push('/');
+                    router.push('/login');
                 },
                 fail => {
                     console.log(fail);
@@ -33,7 +33,6 @@ router.beforeEach((to, from, next)=>{
                 success => {
                     if(success.body.loggedIn) {
                         window.Laravel.csrfToken = success.body._token;
-                        store.dispatch('loggedIn');
                         router.push('/');
                     }
                     else {

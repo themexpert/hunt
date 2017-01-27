@@ -23,7 +23,7 @@ class Dev
                 return response()->json(['message' => 'Access denied'], 403);
             }
 
-            return redirect('/dashboard');
+            return redirect('/refresh');
         }
 
         return $next($request);

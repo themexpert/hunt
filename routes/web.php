@@ -19,8 +19,13 @@ Route::get('/settings/token', 'SettingsController@token');
 //    return view('main-app');
 //});
 
-Route::get('/test', function () {
-    return "test";
+Route::get('/refreshToken', function () {
+    return response()->json(
+        [
+            'message' => 'Token had been refreshed.',
+            'token'   => auth()->user()->createToken('laravel_token')->accessToken
+        ]
+    );
 })->middleware('auth');
 
 

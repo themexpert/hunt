@@ -18,17 +18,17 @@ export default [
     {
         path: '/',
         component: Components.feature.list,
-        meta: {requiresAuth: false}
+        meta: {requiresAuth: true}
     },
     {
         path: '/features',
         component: Components.feature.list,
-        meta: {requiresAuth: false}
+        meta: {requiresAuth: true}
     },
     {
         path: '/features/:filter',
         component: Components.feature.list,
-        meta: {requiresAuth: false}
+        meta: {requiresAuth: true}
     },
     //Reports route
     {

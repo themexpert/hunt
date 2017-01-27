@@ -68,21 +68,4 @@ Route::group(['namespace' => 'Api'], function() {
 
     // developer routes...
     Route::get('/developers', 'DevelopersController@all');
-// Normal auth doesn't work on api.php
-//    Route::get('/refresh', function(){
-//        return response()->json([
-//            'loggedIn' => auth()->check(),
-//            '_token' => csrf_token()
-//        ]);
-//    });
-//
-//
-//    Route::get('/profile', function(){
-//        return response()->json([
-//            'user' => [
-//                'name' => auth()->user()->name,
-//                'email' => auth()->user()->email
-//            ]
-//        ]);
-//    })->middleware('auth');
 });

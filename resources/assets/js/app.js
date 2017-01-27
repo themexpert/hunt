@@ -20,14 +20,10 @@ const app = new Vue({
         }
     },
     mounted() {
-        Bus.$on('loggedIn', user => {
-            this.$store.dispatch('loggedIn', user);
+        Bus.$on('loggedIn', () => {
+            this.$store.commit('update_statuses');
+            this.$store.commit('update_products');
         });
-        Bus.$on('loggedOut', ()=>{
-            this.$store.dispatch('loggedOut');
-        });
-        this.$store.commit('update_statuses');
-        this.$store.commit('update_products');
         this.checkAuth();
     },
     methods: {

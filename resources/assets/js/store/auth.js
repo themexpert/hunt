@@ -7,8 +7,19 @@ export default {
     mutations: {
         loggedIn(state, user) {
             state.user = user;
+            Vue.http.get(Hunt.BASE_URL + '/refreshToken')
+                .then(
+                    success => {
+                        window.Laravel.token=success.body.token;
+                        Bus.$emit('loggedIn');
+                    },
+                    fail => {
+                        Hunt.toast('Error refreshing token.', 'error');
+                    }
+                );
         },
         loggedOut(state) {
+            window.Laravel.token = null;
             state.user = null;
         }
     },
