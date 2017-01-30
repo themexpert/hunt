@@ -40,13 +40,13 @@ export default [
     },
     //filtered features list of a product
     {
-        path: '/products/:product_id/features/:filter',
+        path: '/products/:product_id/features/filter/:filter',
         component: Components.feature.list,
         meta: {requiresAuth: true}
     },
     //single feature item
     {
-        path: '/features/:feature_id',
+        path: '/products/:product_id/features/:feature_id',
         component: Components.feature.single_item,
         meta: {requiresAuth:true}
     },

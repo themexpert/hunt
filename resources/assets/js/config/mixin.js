@@ -3,6 +3,18 @@ import Hunt from './Hunt'
 
 Vue.mixin({
     methods: {
+        getDateDiff(d1, d2) {
+            return Math.round((d1-d2) / (1000 * 60 * 60 * 24));
+        },
+        /**
+         * Gravatar URL from email
+         *
+         * @param email
+         * @returns {string}
+         */
+        gravatar(email) {
+            return 'http://gravatar.com/avatar/'+Hunt.md5(email)+'?s=25&r=pg&d=mm';
+        },
         /**
          * Returns promise of get method
          *

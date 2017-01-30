@@ -14,7 +14,11 @@ require('./passport-bootstrap');
 import store from './store'
 import router from './router'
 
+import Preloader from './components/preloader.vue'
 const app = new Vue({
+    components: {
+        'preloader': Preloader
+    },
     store,
     router,
     data() {
@@ -61,7 +65,7 @@ const app = new Vue({
          * @returns {string}
          */
         userAvatar() {
-            return "http://gravatar.com/avatar/"+Hunt.md5(this.$store.getters.userEmail);
+            return this.gravatar(this.$store.getters.userEmail);
         },
         /**
          * Returns users nick name
