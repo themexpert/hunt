@@ -1,6 +1,5 @@
 <?php
 
-
 // authentication routes...
 Route::get('/token/{token}', 'TokensController@token');
 Route::get('/auth/google', 'Api\Auth\LoginController@redirectToProvider');
