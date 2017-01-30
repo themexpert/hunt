@@ -10,7 +10,7 @@
                 <p>{{ feature.description }}</p>
             </div>
             <div class="card-action user-info">
-                <img :src="gravatar(feature.user.email)" alt="" class="circle"><a>{{ feature.user.name }}</a> created this feature request {{ getDateDiffFromToday(feature.created_at) }} ago
+                <img :src="gravatar(feature.user.email)" alt="" class="circle"><a>{{ feature.user.name }}</a> created this feature request {{ getDateDiffFromToday(feature.created_at) }}
             </div>
         </div><!--/.card-->
 
@@ -20,7 +20,7 @@
                 <span class="card-title quote">{{ feature.status.subject }}</span>
             </div>
             <div class="card-action user-info">
-                <img :src="gravatar(feature.user.email)" alt="" class="circle"><a>{{ feature.user.name }}</a> created this feature request {{ getDateDiffFromToday(feature.created_at) }} ago
+                <img :src="gravatar(feature.user.email)" alt="" class="circle"><a>{{ feature.user.name }}</a> created this feature request {{ getDateDiffFromToday(feature.created_at) }}
             </div>
         </div><!--/.card-->
 
@@ -52,15 +52,6 @@
         data(){
             return{
 
-            }
-        },
-        methods: {
-            getDateDiffFromToday(date) {
-                let diff = this.getDateDiff(new Date(), new Date(date));
-                if(diff<30) {
-                    return diff + ' day(s)';
-                }
-                return Math.floor((diff/30)) + ' month(s)';
             }
         }
     }

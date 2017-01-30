@@ -52,7 +52,7 @@
                     .then(
                         success=>{
                             Hunt.toast('Your comment has been saved.', 'success');
-                            Bus.$emit('new-comment', {comment: this.comment});
+                            Bus.$emit('new-comment', success.body.comment);
                             this.comment = '';
                             $("#modal_comment_form").modal('close');
                             this.busy = false;

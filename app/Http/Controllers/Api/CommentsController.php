@@ -2,6 +2,7 @@
 
 namespace Hunt\Http\Controllers\Api;
 
+use Hunt\Comment;
 use Hunt\Feature;
 use Illuminate\Http\Request;
 use Hunt\Events\NewCommentAdded;
@@ -50,7 +51,7 @@ class CommentsController extends Controller
         event(new NewCommentAdded(Feature::find($featureId), $comment));
 
         return $this->responseCreated([
-            'comment' => true,
+            'comment' => $this->commentsRepository->getCommentById($featureId, $comment->id),
             'message' => 'New comment has been added'
         ]);
     }
