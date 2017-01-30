@@ -53,6 +53,9 @@ Route::group(['namespace' => 'Api'], function() {
     // prepared reports routes...
     Route::get('/prepared-reports/{type}', 'PreparedReportsController@byType');
 
+    // tags routes...
+    Route::get('/tags', 'TagsController@all');
+
     // users routes...
     Route::get('/users/{id}/suggests', 'UsersController@suggests');
 
