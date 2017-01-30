@@ -3,150 +3,15 @@
         <div class="banner blue darken-2">
             <div class="container">
                 <div class="feature-req">
-                    <div class="center-align feature-form-area">
-                        <h2 class="feature-req-title">Feature requests for ThemeXpert</h2>
-                        <!-- Modal Trigger -->
-                        <a class="waves-effect waves-light btn red" href="#modal1"><i class="material-icons left">add</i> Suggest a feature</a>
-
-                        <!-- Modal Structure -->
-                        <div id="modal1" class="modal">
-                            <div class="modal-content">
-                                <h4>Modal Header</h4>
-                                <p>A bunch of text</p>
-                            </div>
-                            <div class="modal-footer">
-                                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-                            </div>
-                        </div>
-                    </div>
+                    <feature-request-modal></feature-request-modal>
                 </div><!--/.feature-req-->
             </div>
         </div><!--/.banner-->
 
         <div class="container mt30">
             <div class="row">
-                <div class="col s8">
-                    <h1 class="title mt0">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h1>
-
-                    <div class="card">
-                        <div class="card-content">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A at excepturi, illo necessitatibus numquam possimus quam vero voluptatem. Animi atque corporis dolorem harum hic ipsam iure nemo quis rem velit.</p>
-                        </div>
-                        <div class="card-action user-info">
-                            <img src="//1.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?s=25&r=pg&d=mm" alt="" class="circle"><a href="#">David</a> create this feature request 3 month ago
-                        </div>
-                    </div><!--/.card-->
-
-                    <h2 class="title">Status <span class="chip green">Building</span></h2>
-                    <div class="card">
-                        <div class="card-content">
-                            <span class="card-title quote">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
-                        </div>
-                        <div class="card-action user-info">
-                            <img src="//1.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?s=25&r=pg&d=mm" alt="" class="circle"><a href="#">David</a> create this feature request 3 month ago
-                        </div>
-                    </div><!--/.card-->
-
-                    <h2 class="title">Discussion</h2>
-                    <div class="card comments">
-                        <div class="card-content">
-                            <ul class="collection">
-                                <li class="collection-item avatar">
-                                    <img src="//1.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?s=42&r=pg&d=mm" alt="" class="circle">
-                                    <a href="#"><span class="title">David Brown</span></a>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid animi asperiores atque, autem, blanditiis corporis fuga, inventore ipsum mollitia nemo nihil numquam officia omnis quas repellat sapiente tempore ullam voluptas?</p>
-                                    <a href="#!" class="secondary-content">5 days ago</i></a>
-                                </li>
-
-                                <li class="collection-item avatar">
-                                    <img src="//1.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?s=42&r=pg&d=mm" alt="" class="circle">
-                                    <span class="title">David Brown</span>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid animi asperiores atque, autem, blanditiis corporis fuga, inventore ipsum mollitia nemo nihil numquam officia omnis quas repellat sapiente tempore ullam voluptas?</p>
-                                    <a href="#!" class="secondary-content">5 days ago</i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="card-action center-align">
-                            <a class="waves-effect waves-light btn" href="#modal_comment_form"><i class="material-icons left">add</i> Add a comment</a>
-
-                            <!-- Modal Structure -->
-                            <div id="modal_comment_form" class="modal bottom-sheet comment-form">
-                                <div class="container">
-                                    <div class="modal-content">
-
-                                        <form class="" action="">
-                                            <div class="input-field">
-                                                <textarea id="textarea1" class="materialize-textarea" placeholder="You need to add some text to your comment."></textarea>
-                                                <label for="textarea1">Add Comment</label>
-                                            </div>
-
-                                            <div class="input-field left-align">
-                                                <button type="submit" class="btn">Save comment <i class="material-icons left">done</i></button>
-                                                <a href="#!" class="modal-action modal-close waves-effect waves-green btn grey">Close</a>
-                                            </div>
-                                        </form>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!--/.card-->
-                </div><!--/.col-->
-
-                <div class="col s4">
-                    <div class="widget widget-action">
-                        <h3 class="widget-title mt0">Action</h3>
-                        <div class="vote-btn">
-                            <a class="waves-effect waves-light btn blue darken-2"><i class="material-icons left">done</i> I want this</a>
-                            <a class="waves-effect waves-light btn blue darken-4"><i class="material-icons left">snooze</i> Not interested</a>
-                        </div>
-                    </div><!--/.widget-->
-
-                    <div class="widget widget-feedback">
-                        <h3 class="widget-title">Feature Feedback</h3>
-                        <div class="card">
-                            <div class="card-content">
-                                <div class="clearfix"><i class="material-icons left">done</i> 157 people want this</div>
-                                <div class="clearfix"><i class="material-icons left">snooze</i> 15 not interested</div>
-                            </div>
-                        </div>
-                    </div><!--/.widget-->
-
-                    <div class="widget widget-status-change">
-                        <h3 class="widget-title">Status Update</h3>
-                        <div class="status-btn">
-                            <a class="btn red" href="#status_change">Update Status <i class="material-icons left">loop</i></a>
-                            <div id="status_change" class="modal">
-                                <div class="modal-content">
-                                    <form action="">
-                                        <div class="input-field">
-                                            <select>
-                                                <option value="" disabled selected>Choose a status</option>
-                                                <option value="1">Released</option>
-                                                <option value="2">Pending</option>
-                                                <option value="3">Work in Progress</option>
-                                                <option value="4">Waiting for feedback</option>
-                                            </select>
-                                            <label>Change Status</label>
-                                        </div>
-
-                                        <div class="input-field">
-                                            <textarea id="textarea1" class="materialize-textarea" placeholder="Add some note"></textarea>
-                                            <label for="textarea1">Status Note</label>
-                                        </div>
-
-                                        <div class="input-field left-align">
-                                            <button type="submit" class="btn">Update</button>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!--/.widget-->
-                </div><!--/.col-->
+                <feature :feature="feature"></feature>
+                <sidebar :feature="feature"></sidebar>
             </div>
         </div>
     </section>
@@ -155,10 +20,47 @@
     
 </style>
 <script>
+    import Hunt from '../../config/Hunt'
+    import FeatureRequestModal from './components/feature-request-modal.vue'
+    import feature from './components/feature.vue'
+    import sidebar from './components/sidebar.vue'
     export default{
         name: 'SingleFeatureItem',
+        components: {
+            'feature-request-modal': FeatureRequestModal,
+            'feature': feature,
+            'sidebar': sidebar
+        },
         data(){
-            return{
+            return {
+                feature: null
+            }
+        },
+        mounted () {
+            Hunt.renderPage('Feature');
+            this.loadFeatureData();
+        },
+        methods: {
+            loadFeatureData() {
+                this.get('/products/'+this.product_id+'/features/'+this.feature_id)
+                    .then(
+                        success => {
+                            this.feature = success.body.features;
+                            Hunt.renderPage(this.feature.name);
+                        },
+                        fail => {
+                            Hunt.toast('Error loading feature information.', 'error');
+                            console.log(fail);
+                        }
+                    );
+            }
+        },
+        computed: {
+            product_id() {
+                return this.$route.params.product_id;
+            },
+            feature_id() {
+                return this.$route.params.feature_id;
             }
         }
     }

@@ -1,5 +1,5 @@
 <template>
-    <div class="secondary-content">
+    <div :class="{'vote-btn':single!=undefined, 'secondary-content':single==undefined}">
         <a class="waves-effect waves-light btn teal" @click="vote('up')"><i class="material-icons left">done</i> I want this</a>
         <a class="waves-effect waves-light btn teal lighten-2" @click="vote('down')"><i class="material-icons left">snooze</i> Not interested</a>
     </div>
@@ -10,7 +10,7 @@
 <script>
     import Hunt from '../../../../config/Hunt'
     export default{
-        props: ['item-id'],
+        props: ['item-id', 'single'],
         data(){
             return{
             }

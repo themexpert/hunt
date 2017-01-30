@@ -15,6 +15,9 @@ class Feature extends Model
         'user_id', 'product_id', 'name', 'description', 'is_public'
     ];
 
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
     /**
      * Get all tags related to the feature request.
      *

@@ -26,7 +26,8 @@
              * @returns {string}
              */
             makeUrl(slug) {
-                return '/products/' + this.product_id + '/features/' + slug;
+                if(slug=='') return '/products/'+this.product_id+'/features';
+                return '/products/' + this.product_id + '/features/filter/' + slug;
             }
         },
         computed: {

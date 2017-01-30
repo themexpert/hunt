@@ -57,7 +57,7 @@
              * @returns {string}
              */
             itemUrl() {
-                return '/features/' + this.item.id;
+                return '/products/'+this.item.product_id+'/features/' + this.item.id;
             }
         }
     }

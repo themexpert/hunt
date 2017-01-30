@@ -160,7 +160,7 @@ class FeaturesRepository
      */
     public function getFeatureSuggestionById($productId, $id)
     {
-        return Feature::with(['tags', 'status', 'vote'])->findOrFail($id);
+        return Feature::with(['tags', 'status', 'vote', 'user'])->findOrFail($id);
     }
 
     /**
