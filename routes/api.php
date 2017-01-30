@@ -68,7 +68,4 @@ Route::group(['namespace' => 'Api'], function() {
 
     // users routes...
     Route::get('/users/{id}/suggests', 'UsersController@suggests');
-
-    // developer routes...
-    Route::get('/developers', 'DevelopersController@all');
 });
