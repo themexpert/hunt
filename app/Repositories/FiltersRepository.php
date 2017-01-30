@@ -20,7 +20,7 @@ class FiltersRepository
                 ->get();
         }
 
-        return Feature::with(['tags', 'status', 'vote'])
+        return Feature::with(['product', 'tags', 'status', 'vote'])
             ->whereIsPublic($this->getAccessValue($filterBy))
             ->get();
     }
