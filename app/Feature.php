@@ -15,9 +15,6 @@ class Feature extends Model
         'user_id', 'product_id', 'name', 'description', 'is_public'
     ];
 
-    public function user() {
-        return $this->belongsTo(User::class);
-    }
     /**
      * Get all tags related to the feature request.
      *
@@ -56,5 +53,15 @@ class Feature extends Model
     public function product()
     {
         return $this->belongsTo(Product::class);
+    }
+
+    /**
+     * Get user related to the feature.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

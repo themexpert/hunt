@@ -29,7 +29,7 @@ class PreparedReportsRepository
      */
     protected function popularVote()
     {
-        return Vote::with('feature')->orderBy('up')->get();
+        return Vote::with(['feature', 'feature.product'])->orderBy('up')->get();
     }
 
     /**
@@ -39,7 +39,7 @@ class PreparedReportsRepository
      */
     protected function lowPopularVote()
     {
-        return Vote::with('feature')->orderBy('down')->get();
+        return Vote::with(['feature', 'feature.product'])->orderBy('down')->get();
     }
 
     /**
@@ -49,9 +49,9 @@ class PreparedReportsRepository
      */
     protected function highValue()
     {
-        return Priority::with('feature')
+        return Priority::with(['feature', 'feature.product'])
             ->select('id', 'user_id', 'feature_id', DB::raw('sum(value) as value'))
-            ->groupBy('feature_id')
+            ->groupBy('id', 'feature_id')
             ->orderBy('value', 'desc')
             ->get();
     }
@@ -63,9 +63,9 @@ class PreparedReportsRepository
      */
     protected function lowValue()
     {
-        return Priority::with('feature')
+        return Priority::with(['feature', 'feature.product'])
             ->select('id', 'user_id', 'feature_id', DB::raw('sum(value) as value'))
-            ->groupBy('feature_id')
+            ->groupBy('id', 'feature_id')
             ->orderBy('value')
             ->get();
     }
@@ -77,9 +77,9 @@ class PreparedReportsRepository
      */
     protected function midValue()
     {
-        return Priority::with('feature')
+        return Priority::with(['feature', 'feature.product'])
             ->select('id', 'user_id', 'feature_id', DB::raw('sum(value) as value'))
-            ->groupBy('feature_id')
+            ->groupBy('id', 'feature_id')
             ->orderBy('value')
             ->where('value', '>=', 30)
             ->where('value', '<=', 70)
