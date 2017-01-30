@@ -26,6 +26,7 @@
                     .then(
                         success => {
                             Hunt.toast(success.body.message, 'success');
+                            Bus.$emit('new-vote', endPoint=='up'?{up:1}:{down:1});
                         },
                         error => {
                             console.log(error);

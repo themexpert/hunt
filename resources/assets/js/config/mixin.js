@@ -6,6 +6,15 @@ Vue.mixin({
         getDateDiff(d1, d2) {
             return Math.round((d1-d2) / (1000 * 60 * 60 * 24));
         },
+
+        getDateDiffFromToday(date) {
+            let diff = this.getDateDiff(new Date(), new Date(date));
+            if(!diff) return " today";
+            if(diff<30) {
+                return diff + ' day(s) ago';
+            }
+            return Math.floor((diff/30)) + ' month(s) ago';
+        },
         /**
          * Gravatar URL from email
          *

@@ -43,7 +43,7 @@ class CommentsRepository
                                 ->whereFeatureId($featureId)
                                 ->where("message", "like", "%$searchTerms%");
         } else {
-            $comments = Comment::whereFeatureId($featureId);
+            $comments = Comment::with('user')->whereFeatureId($featureId);
         }
 
         return $this->dataWithPagination($comments, $limit);
