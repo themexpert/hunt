@@ -9,7 +9,8 @@ export default {
         products: [],
         features: [],
         pagination: [],
-        page: 1
+        page: 1,
+        tags: []
     },
     mutations: {
         /**
@@ -83,6 +84,25 @@ export default {
                     },
                     fail => {
                         Hunt.toast('Error loading features list (product_changed)', 'error');
+                    }
+                );
+        },
+
+        update_tags(state) {
+            Vue.http.get(Hunt.API_URL + '/tags')
+                .then(
+                    success => {
+                        state.tags = [];
+                        success.body.forEach(x=>{
+                            state.tags.push({
+                                label: x.name,
+                                value: x.id
+                            });
+                        });
+                    },
+                    fail => {
+                        console.log(fail);
+                        Hunt.toast('Error loading tags list (update_tags)', 'error');
                     }
                 );
         }

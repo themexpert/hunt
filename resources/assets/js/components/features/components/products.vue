@@ -15,14 +15,15 @@
 <script type="text/babel">
     import Hunt from '../../../config/Hunt'
     export default {
-        props: ['selected', 'update'],
+        props: ['selected', 'update', 'input'],
         data(){
             return {
                 product: null
             }
         },
         mounted() {
-            Bus.$on('products_loaded', this.load); //don't run into error when the products are not loaded
+            Bus.$on('products_loaded', this.load); //invoke first time load when products are loaded
+            //don't run into error when the products are not loaded
             if(this.products.length>0) this.load(); //if we have products then set one
         },
         methods: {
@@ -43,6 +44,7 @@
              * @param nP
              */
             updateProduct(nP) {
+                if(this.input!=undefined) this.input(nP);
                 if(this.update!=undefined && this.update==true && nP!=null) {
                     this.$router.push('/products/'+nP.id+'/features');
                     this.$store.dispatch('product_changed', nP.id);

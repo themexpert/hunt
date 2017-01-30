@@ -56,6 +56,7 @@ class FeaturesController extends Controller
 
         return $this->responseCreated([
             'feature_created' => true,
+            'id' => $feature->id,
             'message' => 'New feature suggestion has been added'
         ]);
     }
