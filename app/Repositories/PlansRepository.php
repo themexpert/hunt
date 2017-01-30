@@ -18,7 +18,7 @@ class PlansRepository
         $feature = Feature::with('status')->findOrFail($featureId);
 
         $feature->status->update([
-            'type' => Status::$RELEASED,
+            'type' => Status::$IN_PROGRESS,
             'subject' => $status['subject'],
             'message' => $status['message']
         ]);

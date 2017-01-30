@@ -28,7 +28,7 @@ Route::get('/refreshToken', function () {
                 'name'  => auth()->user()->name,
                 'email' => auth()->user()->email
             ],
-            'is_admin' => \Hunt\User::developer(auth()->user()->email)
+            'is_developer' => \Hunt\User::developer(auth()->user()->email)
         ]
     );
 })->middleware('auth');
