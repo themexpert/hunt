@@ -64,4 +64,14 @@ class Feature extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Get priority related to the feature.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function priority()
+    {
+        return $this->hasOne(Priority::class);
+    }
 }

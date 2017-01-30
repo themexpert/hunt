@@ -16,11 +16,11 @@ class FiltersRepository
     public function byAccess($filterBy)
     {
         if(strtolower($filterBy) == 'any') {
-            return Feature::with(['product', 'tags', 'status', 'vote'])
+            return Feature::with(['product', 'priority', 'tags', 'status', 'vote'])
                 ->get();
         }
 
-        return Feature::with(['product', 'tags', 'status', 'vote'])
+        return Feature::with(['product', 'priority', 'tags', 'status', 'vote'])
             ->whereIsPublic($this->getAccessValue($filterBy))
             ->get();
     }
@@ -47,11 +47,11 @@ class FiltersRepository
     public function byTag($tagId)
     {
         if($tagId == 0) {
-            return Tag::with(['product', 'tags', 'status', 'vote'])->get();
+            return Tag::with(['product', 'priority', 'tags', 'status', 'vote'])->get();
         }
 
         return Tag::findOrFail($tagId)->features()
-            ->with(['product', 'tags', 'status', 'vote'])
+            ->with(['product', 'priority', 'tags', 'status', 'vote'])
             ->get();
     }
 }
