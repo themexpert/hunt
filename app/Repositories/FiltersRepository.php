@@ -51,7 +51,7 @@ class FiltersRepository
         }
 
         return Tag::findOrFail($tagId)->features()
-            ->with(['tags', 'status', 'vote'])
+            ->with(['product', 'tags', 'status', 'vote'])
             ->get();
     }
 }
