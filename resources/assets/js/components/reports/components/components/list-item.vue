@@ -1,6 +1,6 @@
 <template>
     <tr>
-        <value :value="feature.value"></value>
+        <priority :priority="feature.priority"></priority>
         <feature :feature="feature"></feature>
         <status :status="feature.status"></status>
     </tr>
@@ -11,14 +11,14 @@
 <script>
     import Feature from './components/feature.vue'
     import Status from './components/status.vue'
-    import Value from './components/value.vue'
+    import Priority from './components/priority.vue'
     export default{
         name: 'FeatureItem',
         props: ['feature'],
         components: {
             'feature': Feature,
             'status': Status,
-            'value': Value
+            'priority': Priority
         },
         data(){
             return{
