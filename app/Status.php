@@ -41,5 +41,5 @@ class Status extends Model
      *
      * @var string
      */
-    public static $DECLINE = "DECLINED";
+    public static $DECLINED = "DECLINED";
 }

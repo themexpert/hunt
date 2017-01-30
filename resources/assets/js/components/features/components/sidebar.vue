@@ -17,7 +17,7 @@
                 </div>
             </div>
         </div><!--/.widget-->
-        <status-update-modal :feature-id="feature.id"></status-update-modal>
+        <status-update-modal v-if="isAdmin" :feature-id="feature.id"></status-update-modal>
     </div><!--/.col-->
 </template>
 <style>

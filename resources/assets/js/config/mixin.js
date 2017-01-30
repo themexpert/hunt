@@ -3,10 +3,22 @@ import Hunt from './Hunt'
 
 Vue.mixin({
     methods: {
+        /**
+         * Finds difference between dates in days
+         * @param d1
+         * @param d2
+         * @returns {number}
+         */
         getDateDiff(d1, d2) {
             return Math.round((d1-d2) / (1000 * 60 * 60 * 24));
         },
 
+        /**
+         * Finds date difference from today
+         *
+         * @param date
+         * @returns {*}
+         */
         getDateDiffFromToday(date) {
             let diff = this.getDateDiff(new Date(), new Date(date));
             if(!diff) return " today";
@@ -54,6 +66,16 @@ Vue.mixin({
          */
         delete(url) {
             return this.$http.delete(Hunt.API_URL + url);
+        }
+    },
+    computed: {
+        /**
+         * Determines if the current user admin
+         *
+         * @returns {*}
+         */
+        isAdmin() {
+            return this.$store.state.auth.user.is_admin;
         }
     }
 });

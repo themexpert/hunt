@@ -26,9 +26,9 @@ Route::get('/refreshToken', function () {
             '_token'   => csrf_token(),
             'user'     => [
                 'name'  => auth()->user()->name,
-                'email' => auth()->user()->email
-            ],
-            'is_admin' => \Hunt\User::developer(auth()->user()->email)
+                'email' => auth()->user()->email,
+                'is_admin' => \Hunt\User::developer(auth()->user()->email)
+            ]
         ]
     );
 })->middleware('auth');

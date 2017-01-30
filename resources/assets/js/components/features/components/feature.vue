@@ -53,6 +53,12 @@
             return{
 
             }
+        },
+        mounted() {
+            Bus.$on('status-updated', status=>{
+                this.feature.status.type=status.type;
+                this.feature.status.subject=status.subject;
+            });
         }
     }
 </script>

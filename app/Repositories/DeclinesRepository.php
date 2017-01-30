@@ -18,7 +18,7 @@ class DeclinesRepository
         $feature = Feature::with('status')->findOrFail($featureId);
 
         $feature->status->update([
-            'type' => Status::$RELEASED,
+            'type' => Status::$DECLINED,
             'subject' => $status['subject'],
             'message' => $status['message']
         ]);

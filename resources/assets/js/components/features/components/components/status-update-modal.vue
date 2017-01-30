@@ -15,9 +15,12 @@
                                     label="label"
                                     placeholder="Select Status"></multiselect>
                         </div>
-
                         <div class="input-field">
-                            <textarea v-model="note" id="textarea1" class="materialize-textarea" placeholder="Add some note"></textarea>
+                            <input id="subject" type="text" v-model="subject">
+                            <label for="subject">Subject</label>
+                        </div>
+                        <div class="input-field">
+                            <textarea v-model="message" id="textarea1" class="materialize-textarea" placeholder="Add some note"></textarea>
                             <label for="textarea1">Status Note</label>
                         </div>
 
@@ -40,39 +43,66 @@
     import Hunt from '../../../../config/Hunt'
     export default{
         name: 'StatusUpdateModal',
-        props: [],
+        props: ['feature-id'],
         data(){
             return{
                 status: null,
-                note: ''
+                subject: '',
+                message: ''
             }
+        },
+        mounted() {
+            $(".modal").modal();
         },
         methods: {
             validateInputs(data) {
                 let valid= true;
-                if(data.status==null) {
+                if(this.status==null) {
                     Hunt.toast('Please select a status.', 'warning');
                     valid = false;
                 }
-                if(data.note=='') {
-                    Hunt.toast('Status note can not be null.', 'warning');
+                if(data.subject=='') {
+                    Hunt.toast('Subject can not be empty.', 'warning');
+                    valid = false;
+                }
+                if(data.message=='') {
+                    Hunt.toast('Message can not be empty.', 'warning');
                     valid = false;
                 }
                 return valid;
             },
             prepareData() {
                 return {
-                    status: this.status!=null?this.status.value:null,
-                    note: this.note
+                    subject: this.subject,
+                    message: this.message
                 }
             },
             updateStatus() {
                 let data = this.prepareData();
                 if(!this.validateInputs(data)) return false;
-                this.post('', data)
+                let endPoint = '';
+                switch (this.status.label) {
+                    case "RELEASED":
+                        endPoint='/releases/';
+                        break;
+                    case "WIP":
+                        endPoint='/plans/';
+                        break;
+                    case "DECLINED":
+                        endPoint='/declines/';
+                        break;
+                }
+                this.post(endPoint+this.featureId, {status: data})
                     .then(
                         success => {
                             console.log(success);
+                            Hunt.toast('Status updated.', 'success');
+                            Bus.$emit('status-updated', {
+                                type: this.status.label,
+                                subject: this.subject
+                            });
+                            this.subject = '';
+                            this.message = '';
                             $("#status_change").modal('close');
                         },
                         fail => {
@@ -85,7 +115,7 @@
         computed: {
             statuses() {
                 let nArray = this.$store.state.features.statuses.slice(0);
-                nArray.splice(0,1);
+                nArray.splice(0,2);
                 return nArray;
             }
         }
