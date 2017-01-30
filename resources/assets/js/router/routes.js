@@ -50,11 +50,17 @@ export default [
         component: Components.feature.single_item,
         meta: {requiresAuth:true}
     },
+
+
     //Reports route
     {
         path: '/reports',
-        component: Components.reports.list,
+        component: Components.reports.index,
         meta: {requiresAuth: true}
+    },
+    {
+        path: '/reports/filter/:type/:value',
+        component: Components.reports.index
     },
 
 

@@ -4,7 +4,7 @@ export default {
         single_item: require('./features/single-item.vue')
     },
     reports: {
-        list: require('./reports/list.vue')
+        index: require('./reports/reports.vue')
     },
     auth: {
         login: require('./auth/login.vue'),

@@ -12,8 +12,8 @@
             <h3 class="widget-title">Feature Feedback</h3>
             <div class="card">
                 <div class="card-content">
-                    <div class="clearfix"><i class="material-icons left">done</i> {{ feature.vote.up }} people want this</div>
-                    <div class="clearfix"><i class="material-icons left">snooze</i> {{ feature.vote.down }} not interested</div>
+                    <div class="clearfix"><i class="material-icons left">done</i> {{ upVote }} people want this</div>
+                    <div class="clearfix"><i class="material-icons left">snooze</i> {{ downVote }} not interested</div>
                 </div>
             </div>
         </div><!--/.widget-->
@@ -41,11 +41,20 @@
         },
         mounted() {
             Bus.$on('new-vote', vote=>{
+                if(this.feature.vote==null) this.feature.vote = {up: 0, down: 0};
                 if(vote.up)
                     this.feature.vote.up++;
                 else
                     this.feature.vote.down++;
             });
+        },
+        computed: {
+            upVote() {
+                return this.feature!=undefined && this.feature.vote!=null? this.feature.vote.up:0;
+            },
+            downVote() {
+                return this.feature!=undefined && this.feature.vote!=null? this.feature.vote.down:0;
+            }
         }
     }
 </script>

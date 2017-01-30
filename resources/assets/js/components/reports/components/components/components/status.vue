@@ -1,16 +1,12 @@
 <template>
-    <div>
-        
-    </div>
+    <td><span class="chip green">{{ status.type }}</span></td>
 </template>
-<style>
-    
-</style>
 <script>
     export default{
+        name: 'ReportsFeatureStatus',
+        props: ['status'],
         data(){
             return{
-                msg:'hello vue'
             }
         }
     }
