@@ -16,7 +16,7 @@ class FiltersRepository
     public function byAccess($filterBy)
     {
         if(strtolower($filterBy) == 'any') {
-            return Feature::with(['tags', 'status', 'vote'])
+            return Feature::with(['product', 'tags', 'status', 'vote'])
                 ->get();
         }
 
@@ -47,7 +47,7 @@ class FiltersRepository
     public function byTag($tagId)
     {
         if($tagId == 0) {
-            return Tag::with(['tags', 'status', 'vote'])->get();
+            return Tag::with(['product', 'tags', 'status', 'vote'])->get();
         }
 
         return Tag::findOrFail($tagId)->features()

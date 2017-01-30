@@ -47,4 +47,14 @@ class Feature extends Model
     {
         return $this->hasOne(Vote::class);
     }
+
+    /**
+     * Get product related to the feature.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }
