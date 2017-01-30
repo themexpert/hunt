@@ -12,62 +12,105 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next)=>{
-    if(to.path=='/logout') {
-        Vue.http.get(Hunt.BASE_URL + '/logout')
-            .then(
-                success => {
-                    window.Laravel.csrfToken = success.body._token;
-                    Hunt.toast('You have been logged out.', 'info');
-                    store.dispatch('loggedOut');
-                    router.push('/');
-                },
-                fail => {
-                    console.log(fail);
-                    Hunt.toast('Something went wrong. (logout)', 'error', 3000);
-                }
-            );
-    }
-    else if(to.path=='/login') {
-        Vue.http.get(Hunt.BASE_URL + '/refresh')
+    /**
+     * Runs only once at first on each page load
+     *
+     * Prepares the app
+     * Checks for authentication
+     */
+    if(!store.state.loaded) {
+        Vue.http.get(Hunt.BASE_URL + '/refreshToken')
             .then(
                 success => {
                     if(success.body.loggedIn) {
+                        window.Laravel.token=success.body.token;
                         window.Laravel.csrfToken = success.body._token;
-                        store.dispatch('loggedIn');
-                        router.push('/');
-                    }
-                    else {
-                        next();
+                        store.commit('loggedIn', success.body.user);
+                        store.state.loaded = true;
+                        Bus.$emit('loaded');
+                        gotoNext(to, from, next)
                     }
                 },
                 fail => {
-                    console.log(fail);
-                    Hunt.toast('Something went wrong. (login)', 'error', 3000);
-                }
-            );
-    }
-    else if(to.meta.requiresAuth) {
-        Vue.http.get(Hunt.BASE_URL + '/refresh')
-            .then(
-                success => {
-                    if(success.body.loggedIn) {
-                        window.Laravel.csrfToken = success.body._token;
-                        next();
-                    }
-                    else {
-                        store.state.auth.redirectTo = to.path;
+                    if(fail.status==401) {
+                        store.state.loaded = true;
+                        Bus.$emit('loaded');
+                        Hunt.toast('You need to be registered and logged in to use this service.', 'warning', 3000);
                         router.push('/login');
                     }
-                },
-                fail => {
-                    console.log(fail);
-                    Hunt.toast('Something went wrong. (refresh)', 'error', 3000);
+                    else
+                    {
+                        Hunt.toast('Something messed up.', 'error', 3000);
+                        console.log(fail);
+                    }
                 }
             );
     }
-    else {
-        next();
+    else
+    {
+        gotoNext(to, from ,next);
+    }
+
+    /**
+     * Router next() wrapper
+     *
+     * @param to
+     * @param from
+     * @param next
+     */
+    function gotoNext(to, from, next) {
+
+        /**
+         * Check if the user logging out, we have no view
+         */
+        if (to.path == '/logout') {
+            Vue.http.get(Hunt.BASE_URL + '/logout')
+                .then(
+                    success => {
+                        window.Laravel.csrfToken = success.body._token;
+                        Hunt.toast('You have been logged out.', 'info');
+                        store.dispatch('loggedOut');
+                        router.push('/login');
+                    },
+                    fail => {
+                        console.log(fail);
+                        Hunt.toast('Something went wrong. (logout)', 'error', 3000);
+                    }
+                );
+        }
+        /**
+         * Check if the user already logged in
+         */
+        else if (to.path == '/login') {
+            Vue.http.get(Hunt.BASE_URL + '/refresh')
+                .then(
+                    success => {
+                        if (success.body.loggedIn) {
+                            window.Laravel.csrfToken = success.body._token;
+                            router.push('/');
+                        }
+                        else {
+                            next();
+                        }
+                    },
+                    fail => {
+                        console.log(fail);
+                        Hunt.toast('Something went wrong. (login)', 'error', 3000);
+                    }
+                );
+        }
+        /**
+         * Check if the requested route requires authentication
+         */
+        else if (to.meta.requiresAuth) {
+            if (window.Laravel.csrfToken == null || store.state.auth.user == null)
+                router.push('/login');
+            else
+                next();
+        }
+        else {
+            next();
+        }
     }
 });
-
 export default router;

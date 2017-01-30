@@ -9,6 +9,9 @@ import releases from './releases'
 import reports from './reports'
 
 const store = new VueX.Store({
+    state: {
+        loaded: false
+    },
     modules: {
         auth: auth,
         features: features,

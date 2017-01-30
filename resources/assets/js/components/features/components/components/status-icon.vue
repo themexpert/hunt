@@ -1,5 +1,5 @@
 <template>
-    <i class="material-icons circle">loop</i>
+    <i class="material-icons circle"> {{ icon }} </i>
 </template>
 <style>
     
@@ -10,6 +10,14 @@
         data(){
             return{
                 msg:'hello vue'
+            }
+        },
+        computed: {
+            icon() {
+                if (this.status == null || this.status == "PENDING") return 'schedule';
+                if (this.status == 'RELEASED') return 'done';
+                if (this.status == 'WIP') return 'loop';
+                if (this.status == 'DECLINED') return 'block';
             }
         }
     }

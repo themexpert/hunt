@@ -4,69 +4,35 @@ import Hunt from './Hunt'
 Vue.mixin({
     methods: {
         /**
-         * Overrides get method
+         * Returns promise of get method
          *
-         * callback[0] = success
-         * callback[1] = error
-         *
-         * this.get('url', [success=>{}, error=>{}]);
+         * this.get('url');
          *
          * @param url
-         * @param callback
          */
-        get(url, callback) {
-            this.$http.get(Hunt.API_URL + url).then(
-                success => {
-                    callback[0](success)
-                },
-                error => {
-                    callback[1](error)
-                }
-            );
+        get(url) {
+            return this.$http.get(Hunt.API_URL + url);
         },
         /**
-         * Overrides post method
+         * Returns promise of post method
          *
-         * callback[0] = success
-         * callback[1] = error
-         *
-         * this.post('url', {foo: bar}, [success=>{}, error=>{}]);
+         * this.post('url', {foo: bar});
          *
          * @param url
          * @param data
-         * @param callback
          */
-        post(url, data, callback) {
-            console.log(Hunt.API_URL);
-            this.$http.post(Hunt.API_URL + url, data).then(
-                success => {
-                    callback[0](success)
-                },
-                error => {
-                    callback[1](error)
-                }
-            );
+        post(url, data) {
+            return this.$http.post(Hunt.API_URL + url, data);
         },
         /**
-         * Overrides delete method
-         *
-         * callback[0] = success
-         * callback[1] = error
+         * Returns promise of delete method
          *
          * this.delete('url', [success=>{}, error=>{}]);
          *
          * @param url
-         * @param callback
          */
-        delete(url, callback) {
-            this.$http.delete(Hunt.API_URL + url).then(
-                success => {
-                    callback[0](success)
-                },
-                error => {
-                    callback[1](error)
-                }
-            );
+        delete(url) {
+            return this.$http.delete(Hunt.API_URL + url);
         }
     }
 });

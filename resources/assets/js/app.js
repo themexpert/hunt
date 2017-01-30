@@ -3,6 +3,9 @@ Pace.start();
 
 import Hunt from './config/Hunt'
 import md5 from 'md5'
+/**
+ * Assign pace, md5 and API URL in Hunt object
+ */
 Object.assign(Hunt, {pace: Pace, md5: md5, API_URL: Hunt.BASE_URL+'/api'});
 
 require('./bootstrap');
@@ -20,43 +23,57 @@ const app = new Vue({
         }
     },
     mounted() {
-        Bus.$on('loggedIn', user => {
-            this.$store.dispatch('loggedIn', user);
+        /**
+         * Listens for login event
+         * Loads status and products list from server
+         */
+        Bus.$on('loggedIn', () => {
+            this.$store.commit('update_statuses');
+            this.$store.commit('update_products');
         });
-        Bus.$on('loggedOut', ()=>{
-            this.$store.dispatch('loggedOut');
-        });
-        this.checkAuth();
     },
     methods: {
-        checkAuth() {
-            Vue.http.get(Hunt.BASE_URL + '/refresh')
-                .then(
-                    success => {
-                        if(success.body.loggedIn) {
-                            window.Laravel.csrfToken = success.body._token;
-                            store.dispatch('loggedIn');
-                        }
-                    },
-                    fail => {
-                        console.log(fail);
-                        Hunt.toast('Something went wrong. (checkAuth)', 'warning', 3000);
-                    }
-                );
+        /**
+         * Search for query
+         *
+         * @param e
+         */
+        search(e) {
+            let query = e.target.querySelector('#search').value;
+            if(query.length>0)
+                this.$router.push('/features/search/'+query)
+
         }
     },
     computed: {
+        /**
+         * Checks if the user logged in
+         *
+         * @returns {computed.isLoggedIn|getters.isLoggedIn} bool
+         */
         isLoggedIn() {
             return this.$store.getters.isLoggedIn;
         },
+        /**
+         * Returns gravatar URL for user
+         *
+         * @returns {string}
+         */
         userAvatar() {
             return "http://gravatar.com/avatar/"+Hunt.md5(this.$store.getters.userEmail);
         },
+        /**
+         * Returns users nick name
+         * @returns {computed.userName|getters.userName} string
+         */
         userName() {
             return this.$store.getters.userName;
         }
     }
 }).$mount('#app');
+/**
+ * Shows pn page load messages if have any
+ *
+ * Example: Email address approved
+ */
 if(window.message!='') Hunt.toast(window.message, 'info');
-
-console.log(Hunt);

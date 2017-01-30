@@ -25,6 +25,6 @@ class TokensController extends Controller
 
         $user->save();
 
-        return redirect()->to('/login')->with(['message' => 'Enter your email and password']);
+        return redirect()->to('/login')->with(['message' => 'Your email has been verified.']);
     }
 }

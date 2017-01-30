@@ -1,12 +1,12 @@
 <?php
 
 return [
-    'Awaiting For Feedback' => [
+    'PENDING' => [
         'subject' => 'Wait your feature suggestion feedback',
         'message' => 'blah blah blah blah blah.....'
     ],
 
-    'In Progress' => [
+    'WIP' => [
         'subject' => 'Feedback now in progress',
         'message' => 'blah blah blah blah blah.....'
     ],
@@ -16,7 +16,7 @@ return [
         'message' => 'blah blah blah blah blah.....'
     ],
 
-    'Decline Feature' => [
+    'DECLINED' => [
         'subject' => 'Feedback decline',
         'message' => 'blah blah blah blah blah.....'
     ]

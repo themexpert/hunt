@@ -29,6 +29,9 @@ require('vue-resource');
 
 Vue.http.interceptors.push((request, next) => {
     request.headers.set('X-CSRF-TOKEN', Laravel.csrfToken);
+    request.headers.set('Accept', 'application/json');
+    request.headers.set('Authorization', 'Bearer ' + Laravel.token); //required for passport authentication
+
     next();
 });
 
@@ -44,3 +47,7 @@ Vue.http.interceptors.push((request, next) => {
 //     broadcaster: 'pusher',
 //     key: 'your-pusher-key'
 // });
+
+
+import vueMultiSelect from 'vue-multiselect'
+Vue.component('multiselect', vueMultiSelect);

@@ -52,7 +52,7 @@
             </div>
         </section>
 </template>
-<script>
+<script type="text/babel">
     import Hunt from '../../config/Hunt'
     export default{
         data(){
@@ -103,7 +103,7 @@
                 if(!this.validateInputs()) return;
                 this.busy = true;
                 let that = this;
-                this.$http.post(Hunt.BASE_URL+'/register',
+                this.$http.post('/auth/register',
                     {
                         name: this.name,
                         email: this.email,
@@ -118,7 +118,15 @@
                         },
                         error => {
                             console.log(error);
-                            Hunt.toast('Something went wrong (register)', 'error');
+
+                            if(error.status == 422) {
+                                _.each(error.body, (field) => {
+                                    Hunt.toast(field[0], 'error');
+                                })
+                            } else {
+                                Hunt.toast('Something went wrong (register)', 'error');
+                            }
+
                             that.busy=false;
                         }
                     );

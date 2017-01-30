@@ -64,12 +64,13 @@ class FeaturesRepository
     /**
      * Get feature suggestions.
      *
-     * @param int    $limit
+     * @param int $limit
      * @param string $searchTerms
-     * @param int    $productId
+     * @param string $status
+     * @param int $productId
      * @return array
      */
-    public function get($limit = 10, $searchTerms = '', $productId)
+    public function get($limit = 10, $searchTerms = '', $status = '', $productId)
     {
         $features = null;
 
@@ -78,14 +79,19 @@ class FeaturesRepository
                                     $query->where('type', 'like', "%$searchTerms%");
                                 }, 'vote'])
                                 ->where("product_id", "=", $productId)
-                                ->orWhere("name", "like", "%$searchTerms%")
-                                ->orWhere("description", "like", "%$searchTerms%");
+                                ->where(function($query) use ($searchTerms) {
+                                    $query->orWhere("name", "like", "%$searchTerms%")
+                                        ->orWhere("description", "like", "%$searchTerms%");
+                                });
         } else {
             $features = Feature::with(['tags', 'status', 'vote'])
                                 ->where("product_id", "=", $productId);
         }
-
-        return $this->dataWithPagination($features, $limit);
+        if(!empty($status)) {
+            $features->select(['features.*'])->join('statuses', 'statuses.feature_id', '=', 'features.id')
+                ->where('statuses.type', $status);
+        }
+        return $this->dataWithPagination($features, $limit, null, 'features.id');
     }
 
     /**

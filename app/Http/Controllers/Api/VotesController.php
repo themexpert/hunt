@@ -4,6 +4,7 @@ namespace Hunt\Http\Controllers\Api;
 
 use Hunt\Http\Controllers\Controller;
 use Hunt\Repositories\VotesRepository;
+use Illuminate\Http\Request;
 
 class VotesController extends Controller
 {
@@ -29,13 +30,21 @@ class VotesController extends Controller
     /**
      * Accept feature suggestion up vote.
      *
-     * @param int $id
+     * @param int     $id
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function up($id)
+    public function up($id, Request $request)
     {
         $this->votesRepository->up($id);
 
+        if($request->wantsJson()) {
+            return $this->responseJson(
+                [
+                    'message' => 'Vote has been accepted'
+                ]
+            );
+        }
         return $this->responseOk([
             'message' => 'Vote has been accepted'
         ]);
@@ -44,13 +53,21 @@ class VotesController extends Controller
     /**
      * Accept feature suggestion down vote.
      *
-     * @param int $id
+     * @param int     $id
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function down($id)
+    public function down($id, Request $request)
     {
         $this->votesRepository->down($id);
 
+        if($request->wantsJson()) {
+            return $this->responseJson(
+                [
+                    'message' => 'Vote has been accepted'
+                ]
+            );
+        }
         return $this->responseOk([
             'message' => 'Vote has been accepted'
         ]);

@@ -1,25 +1,28 @@
 <template>
-    <li class="collection-item avatar status-wip">
-        <i class="material-icons circle">loop</i>
-        <h4 class="title"><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus eligendi laudantium possimus ratione voluptas.</a></h4>
-        <div class="tags"><span class="chip">Tag1</span> <span class="chip green">Tag2</span></div>
+    <li class="collection-item avatar" :class="statusClass">
+        <status-icon :status="status"></status-icon>
+        <h4 class="title"><router-link :to="itemUrl">{{ item.name }}</router-link></h4>
+        <tag :tags="item.tags"></tag>
         <div class="description">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae cupiditate dolorem dolores eum facere facilis harum impedit maiores minima...
+            {{ item.description }}
         </div>
-
-        <div class="secondary-content">
-            <a class="waves-effect waves-light btn teal"><i class="material-icons left">done</i> I want this</a>
-            <a class="waves-effect waves-light btn teal lighten-2"><i class="material-icons left">snooze</i> Not interested</a>
-        </div>
-
+        <vote :item-id="item.id"></vote>
     </li>
 </template>
 <style>
     
 </style>
 <script>
+    import status_icon from './components/status-icon.vue'
+    import Vote from './components/vote.vue'
+    import Tag from './components/tags.vue'
     export default{
-        name: 'Feature List Item',
+        name: 'FeatureListItem',
+        components: {
+            'status-icon': status_icon,
+            'vote': Vote,
+            'tag': Tag
+        },
         props: ['item'],
         data(){
             return{
@@ -28,6 +31,34 @@
         },
         computed: {
 
+            /**
+             * Computes status
+             */
+            status() {
+                return this.item.status!=null?this.item.status.type:'PENDING';
+            },
+
+            /**
+             * Computes status class
+             */
+            statusClass() {
+                if(this.status==null) return 'status-pending';
+                return {
+                    'status-released': this.status=='RELEASED',
+                    'status-wip': this.status=='WIP',
+                    'status-pending': this.status=="PENDING",
+                    'status-declined': this.status=='DECLINED'
+                }
+            },
+
+            /**
+             * Computes item url
+             *
+             * @returns {string}
+             */
+            itemUrl() {
+                return '/features/' + this.item.id;
+            }
         }
     }
 </script>

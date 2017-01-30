@@ -14,7 +14,7 @@
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
-            'csrfToken' => csrf_token(),
+            'csrfToken' => csrf_token()
         ]); ?>
 
             window.message = "<?php echo str_replace('"', '\\"', \Illuminate\Support\Facades\Session::get('message')); ?>";
@@ -35,12 +35,12 @@
                     <div class="row">
                         <div class="col s2">
                             <div class="logo mt15">
-                                <a id="logo-container" href="#" class="brand-logo">Logo</a>
+                                <router-link id="logo-container" to="/" class="brand-logo">Logo</router-link>
                             </div>
                         </div><!--/.col-->
-                        <div class="col s5">
+                        <div class="col s5" v-if="isLoggedIn">
                             <div class="search-box mt15">
-                                <form>
+                                <form @submit.prevent="search">
                                     <div class="input-field">
                                         <input id="search" type="search" placeholder="Search Feature" required>
                                         <label for="search"><i class="material-icons">search</i></label>
@@ -49,7 +49,7 @@
                                 </form>
                             </div>
                         </div><!--/.col-->
-                        <div class="col s5">
+                        <div class="col" :class="{s10:!isLoggedIn,s5:isLoggedIn}">
                             <div class="menu mt15">
                                 <div v-if="isLoggedIn" class="right author" v-cloak>
                                     <a href="#"><img :src="userAvatar" alt="" class="circle" height="25" width="25"></a>
@@ -57,8 +57,8 @@
                                 </div>
 
                                 <ul class="right hide-on-med-and-down">
-                                    <li><router-link to="/">Dashboard</router-link></li>
                                     <template v-if="isLoggedIn">
+                                        <li><router-link to="/">Dashboard</router-link></li>
                                         <li><router-link to="/releases">Release</router-link></li>
                                         <li><router-link to="/reports">Report</router-link></li>
                                         <li><router-link to="/logout">Logout</router-link></li>

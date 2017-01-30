@@ -1,17 +1,25 @@
 import Hunt from './config/Hunt'
 
+/**
+ * Sets the page title
+ *
+ * @param title
+ */
 Hunt.pageTitle = title => {
     document.title = 'Hunt - ' + title + ' ';
 };
 
+/**
+ * Re-renders/re-initiates components
+ *
+ * @param pageTitle
+ */
 Hunt.renderPage = (pageTitle) => {
     if(pageTitle!=undefined) Hunt.pageTitle(pageTitle);
     let btnCollapse = $('.button-collapse');
     if (btnCollapse.length > 0) btnCollapse.sideNav();
     let mdl = $('.modal');
     if (mdl.length > 0) mdl.modal();
-    let slct = $('select');
-    if(slct.length>0) slct.material_select();
     setTimeout(()=>{Materialize.updateTextFields();},200);
     let collaps = $('.collapsible');
     if(collaps.length>0) collaps.collapsible();
@@ -21,6 +29,12 @@ Hunt.renderPage = (pageTitle) => {
     window.scrollTo(0,0);
 };
 
+/**
+ * Shows toaster message
+ * @param msg
+ * @param type
+ * @param time
+ */
 Hunt.toast = (msg, type, time) => {
     time = time==undefined?4000:time;
     let bgColor = '';
