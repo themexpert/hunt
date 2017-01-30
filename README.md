@@ -33,7 +33,7 @@ Build a better products with your users, customers, and internal teams by captur
 8. Run ```php artisan migrate```
 9. Finally, run ```php artisan passport:install```
 
-**There two option setup process, you may want ( not mandatory )**
+**There are two optional setup process, you may want ( not mandatory )**
 
 - If you want Gmail login support
     1. Goto [Google Console](https://console.developers.google.com/)
