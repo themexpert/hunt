@@ -244,4 +244,27 @@ class FeaturesRepository
             'value' => 80
         ]);
     }
+
+    /**
+     * Get released features.
+     *
+     * @param int $limit
+     * @param string $searchTerms
+     * @param string $status
+     * @return array
+     */
+    public function getReleasedFeature($limit = 10, $searchTerms = '', $status = '')
+    {
+        $statuses = Status::with(['feature', 'feature.product'])->whereType(Status::$RELEASED);
+
+        $statuses = $this->dataWithPagination($statuses, $limit, null, 'id');
+
+        $features = collect($statuses['data'])->map(function($status) {
+           return $status['feature'];
+        });
+
+        $statuses['data'] = $features;
+
+        return $statuses;
+    }
 }

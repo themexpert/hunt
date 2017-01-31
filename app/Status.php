@@ -42,4 +42,14 @@ class Status extends Model
      * @var string
      */
     public static $DECLINED = "DECLINED";
+
+    /**
+     * Get feature related to the status.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function feature()
+    {
+        return $this->belongsTo(Feature::class);
+    }
 }

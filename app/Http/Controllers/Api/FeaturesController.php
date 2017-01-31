@@ -23,7 +23,7 @@ class FeaturesController extends Controller
      */
     public function __construct(FeaturesRepository $featuresRepository)
     {
-        $this->middleware(['auth:api', 'emailActivation']);
+        //$this->middleware(['auth:api', 'emailActivation']);
 
         $this->featuresRepository = $featuresRepository;
     }
@@ -139,5 +139,20 @@ class FeaturesController extends Controller
         return $this->responseOk([
             'features' => $this->featuresRepository->getFeatureSuggestionById($productId, $id)
         ]);
+    }
+
+    /**
+     * Get released features.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function released(Request $request)
+    {
+        return $this->responseJson($this->featuresRepository->getReleasedFeature(
+                $request->input('limit'),
+                $request->input('searchTerms'),
+                $request->input('status')
+        ));
     }
 }

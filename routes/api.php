@@ -27,6 +27,9 @@ Route::group(['namespace' => 'Api'], function() {
     Route::delete('/products/{productId}/features/{id}', 'FeaturesController@remove');
     Route::post('/products/{productId}/features/{id}', 'FeaturesController@update');
 
+    // released features...
+    Route::get('/features/released', 'FeaturesController@released');
+
     // comments routes...
     Route::get('/features/{featureId}/comments', 'CommentsController@index');
     Route::post('/features/{featureId}/comments', 'CommentsController@add');
