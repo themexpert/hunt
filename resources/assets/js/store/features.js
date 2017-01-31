@@ -80,7 +80,7 @@ export default {
             state.busy = true;
             let type = null;
             Vue.http.get(Hunt.API_URL + '/products/'+state.product_id+'/features?page='+state.page
-                + (state.filter!='' && type!='search'?'&status='+state.filter:'')
+                + (state.filter!='' && type!='search'?'&status='+state.filter:''))
                 .then(
                     success => {
                         if(append)
