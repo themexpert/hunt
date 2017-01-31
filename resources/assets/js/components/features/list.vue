@@ -26,33 +26,34 @@
         <div class="container">
             <div class="feature-list card">
                 <div class="details">
-                    <ul class="collection">
-                        <feature v-for="feature in features" :item="feature"></feature>
+                    <ul class="collection feature-list">
+                        <feature-list-item v-for="feature in features" :item="feature"></feature-list-item>
                         <li v-if="features.length==0" class="text-center">No feature request found.</li>
+                        <li v-if="loading"><preloader-2></preloader-2></li>
                     </ul><!--/.card-->
                 </div><!--/.details-->
             </div><!--/.feature-req-->
         </div>
     </section>
 </template>
-<style>
-    
-</style>
 <script>
     import Hunt from '../../config/Hunt'
     import filters from './components/filters.vue'
     import products from './components/products.vue'
     import featureRequestModal from './components/feature-request-modal.vue'
-    import feature from './components/list-item.vue'
+    import featureListItem from './components/list-item.vue'
+    import preloader_2 from '../preloader-2.vue'
     export default{
         components: {
             'filters': filters,
             'products': products,
             'feature-request-modal': featureRequestModal,
-            'feature': feature
+            'feature-list-item': featureListItem,
+            'preloader-2': preloader_2
         },
         data(){
             return {
+                loading: true
             }
         },
         mounted() {
@@ -65,6 +66,11 @@
                         product_id: this.$route.params.product_id,
                         filter:this.$route.params.filter
                     });
+            Hunt.infiniteScroll('.feature-list', ()=>{
+                this.loading = true;
+                this.$store.commit('update_features', true);
+            });
+            Bus.$on('feature-list-loaded', ()=>{this.loading=false;});
         },
         computed: {
             /**

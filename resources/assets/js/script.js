@@ -54,3 +54,23 @@ Hunt.toast = (msg, type, time) => {
     }
     Materialize.toast(msg, time, bgColor);
 };
+const scrollEvents = {
+    events: [],
+    index: []
+};
+Hunt.infiniteScroll = (el, fn) => {
+    if(scrollEvents.index.indexOf(el)>-1) return;
+    scrollEvents.events.push({
+        el: el,
+        fn: fn
+    });
+    scrollEvents.index.push(el);
+};
+let jQ = require('jquery');
+let win=jQ(window);
+jQ(window).scroll(function () {
+    scrollEvents.events.forEach(x=>{
+        if(jQ(document).height()-win.height()==win.scrollTop())
+            if(jQ(x.el)) x.fn.call(this);
+    });
+});

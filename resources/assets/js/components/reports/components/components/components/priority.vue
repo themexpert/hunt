@@ -18,6 +18,7 @@
         },
         computed: {
             progress() {
+                if(this.priority==null) return '0%';
                 return this.priority.value + '%';
             }
         }

@@ -3,6 +3,12 @@ export default {
         list: require('./features/list.vue'),
         single_item: require('./features/single-item.vue')
     },
+    releases: {
+        index: require('./releases/releases.vue')
+    },
+    products: {
+        index: require('./products/products.vue')
+    },
     reports: {
         index: require('./reports/reports.vue')
     },

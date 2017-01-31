@@ -26,6 +26,11 @@ export default [
         component: Components.feature.list,
         meta: {requiresAuth: true}
     },
+    {
+        path: '/products',
+        component: Components.products.index,
+        meta: {requiresAuth: true}
+    },
     //Search results for query
     {
         path: '/products/search/features/:query',
@@ -51,6 +56,12 @@ export default [
         meta: {requiresAuth:true}
     },
 
+    //Releases routes
+    {
+        path: '/features/releases',
+        component: Components.releases.index,
+        meta: {requiresAuth:true}
+    },
 
     //Reports route
     {

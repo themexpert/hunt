@@ -1,21 +1,43 @@
+import Hunt from '../config/Hunt'
 export default {
     state: {
-        count: 0
+        features: [],
+        page: 1,
+        pagination: null,
+        busy: false
     },
     mutations: {
-        increment(state, i) {
-            if (i != undefined)
-                state.count += i;
-            else
-                state.count++;
+        loadReleasedFeatures(state, append=false) {
+            if(state.busy) return;
+            if(append) {
+                if(state.pagination!=null && state.pagination.total_page>state.page) {
+                    state.page++;
+                }
+                else {
+                    Bus.$emit('releases-list-loaded');
+                    Hunt.toast(`You've reached the end.`);
+                    return;
+                }
+            }
+            state.busy = true;
+            Vue.http.get(Hunt.API_URL + '/features?searchTerms=RELEASED')
+                .then(
+                    success => {
+                        if (append)
+                            state.features = state.features.concat(success.body.data);
+                        else
+                            state.features = success.body.data;
+                        state.pagination = success.body.pagination;
+                        Bus.$emit('releases-list-loaded');
+                        state.busy = false;
+                    },
+                    fail => {
+                        Hunt.toast('Could not load released features (load released features)', 'error');
+                        state.busy = false;
+                    }
+                );
         }
     },
     actions: {
-        increment(ctx, i) {
-            ctx.commit('increment', i);
-        }
-    },
-    getters: {
-
     }
 }

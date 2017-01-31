@@ -14,16 +14,13 @@ require('./passport-bootstrap');
 import store from './store'
 import router from './router'
 
-import Preloader from './components/preloader.vue'
 const app = new Vue({
-    components: {
-        'preloader': Preloader
-    },
     store,
     router,
     data() {
         return {
-
+            query: '',
+            queryResults: []
         }
     },
     mounted() {
@@ -46,7 +43,10 @@ const app = new Vue({
         search(e) {
             let query = e.target.querySelector('#search').value;
             if(query.length>0)
-                this.$router.push('/features/search/'+query)
+            {
+                //perform search
+                console.log(query);
+            }
 
         }
     },

@@ -10,7 +10,7 @@
                 <p>{{ feature.description }}</p>
             </div>
             <div class="card-action user-info">
-                <img :src="gravatar(feature.user.email)" alt="" class="circle"><a>{{ feature.user.name }}</a> created this feature request {{ getDateDiffFromToday(feature.created_at) }}
+                <img :src="gravatar(feature.user.email)" width="25" height="25" alt="" class="circle"><a>{{ feature.user.name }}</a> created this feature request {{ getDateDiffFromToday(feature.created_at) }}
             </div>
         </div><!--/.card-->
 
@@ -20,7 +20,7 @@
                 <span class="card-title quote">{{ feature.status.subject }}</span>
             </div>
             <div class="card-action user-info">
-                <img :src="gravatar(feature.user.email)" alt="" class="circle"><a>{{ feature.user.name }}</a> created this feature request {{ getDateDiffFromToday(feature.created_at) }}
+                <img :src="gravatar(feature.user.email)" width="25" height="25" alt="" class="circle"><a>{{ feature.user.name }}</a> created this feature request {{ getDateDiffFromToday(feature.created_at) }}
             </div>
         </div><!--/.card-->
 

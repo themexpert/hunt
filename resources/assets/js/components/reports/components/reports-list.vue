@@ -2,7 +2,7 @@
     <div class="col s9">
         <div class="card mt0">
             <div class="card-content report-table">
-                <table class="responsive-table">
+                <table class="responsive-table reports-list">
                     <thead>
                     <tr>
                         <th data-field="value">Value</th>
@@ -16,6 +16,9 @@
                             <td colspan="3">No Feature found</td>
                         </tr>
                         <list-item v-else v-for="feature in features" :feature="feature"></list-item>
+                        <tr v-if="loading">
+                            <td colspan="3"><preloader-2></preloader-2></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -25,17 +28,19 @@
 <style>
     
 </style>
-<script>
+<script type="text/babel">
     import Hunt from '../../../config/Hunt'
     import ListItem from './components/list-item.vue'
+    import preloader_2 from '../../preloader-2.vue'
     export default{
         name: 'ReportsList',
         components: {
-            'list-item': ListItem
+            'list-item': ListItem,
+            'preloader-2': preloader_2
         },
         data(){
             return{
-
+                loading: true
             }
         },
         mounted() {
@@ -48,6 +53,11 @@
                     value: this.filter_value
                 });
             }
+            Hunt.infiniteScroll('.reports-list', ()=>{
+                this.loading = true;
+                this.$store.commit('loadFeatures', true);
+            });
+            Bus.$on('reports-list-loaded', ()=>{this.loading = false;});
         },
         computed: {
             features() {

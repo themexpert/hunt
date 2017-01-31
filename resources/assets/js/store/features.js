@@ -4,12 +4,12 @@ export default {
     state: {
         statuses: [],
         filter: '',
-        query: null,
         product_id: null,
         products: [],
         features: [],
         pagination: [],
         page: 1,
+        busy: false,
         tags: []
     },
     mutations: {
@@ -51,14 +51,7 @@ export default {
             Vue.http.get(Hunt.API_URL + '/products')
                 .then(
                     success => {
-                        let products = [];
-                        success.body.data.forEach(x=>{
-                            products.push({
-                                id: x.id,
-                                name: x.name
-                            });
-                        });
-                        state.products = products;
+                        state.products = success.body.data;
                         Bus.$emit('products_loaded');
                     },
                     fail => {
@@ -70,20 +63,37 @@ export default {
          * Loads features list
          *
          * @param state
-         * @param type
+         * @param append
          */
-        update_features(state, type) {
-            if(state.product_id==null) return;
+        update_features(state, append=false) {
+            if(state.product_id==null || state.busy) return;
+            if(append) {
+                if(state.pagination!=null && state.pagination.total_page>state.page) {
+                    state.page++;
+                }
+                else {
+                    Bus.$emit('feature-list-loaded');
+                    Hunt.toast(`You've reached the end.`);
+                    return;
+                }
+            }
+            state.busy = true;
+            let type = null;
             Vue.http.get(Hunt.API_URL + '/products/'+state.product_id+'/features?page='+state.page
                 + (state.filter!='' && type!='search'?'&status='+state.filter:'')
-                + (type=='search'?'&searchTerms='+state.query:''))
                 .then(
                     success => {
-                        state.features = success.body.data;
+                        if(append)
+                            state.features = state.features.concat(success.body.data);
+                        else
+                            state.features = success.body.data;
                         state.pagination = success.body.pagination;
+                        state.busy = false;
+                        Bus.$emit('feature-list-loaded');
                     },
                     fail => {
                         Hunt.toast('Error loading features list (product_changed)', 'error');
+                        state.busy = false;
                     }
                 );
         },
@@ -137,27 +147,6 @@ export default {
             if(state.filter==filter) return;
             state.filter = filter;
             commit('update_features');
-        },
-        /**
-         * Sets the search query and invokes update_features
-         *
-         * @param commit
-         * @param state
-         * @param query
-         */
-        search_features({commit, state}, query) {
-            if(state.query==query) return;
-            state.query = query;
-            commit('update_features', 'search');
-        },
-        /**
-         * Sets the page number and invokes update_features
-         *
-         * @param commit
-         * @param state
-         */
-        infinite_load_features({commit, state}) {
-            //load next pages until total page reached
         }
     }
 }

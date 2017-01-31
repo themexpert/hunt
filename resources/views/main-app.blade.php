@@ -59,7 +59,8 @@
                                 <ul class="right hide-on-med-and-down">
                                     <template v-if="isLoggedIn">
                                         <li><router-link to="/">Dashboard</router-link></li>
-                                        <li><router-link to="/releases">Release</router-link></li>
+                                        <li><router-link to="/features/releases">Release</router-link></li>
+                                        <li v-if="isAdmin"><router-link to="/products">Products</router-link></li>
                                         <li><router-link to="/reports">Report</router-link></li>
                                         <li><router-link to="/logout">Logout</router-link></li>
                                     </template>
@@ -82,7 +83,54 @@
         </nav><!--/.nav-->
     </header>
     <router-view>
-        <preloader></preloader>
+        <div class="preloader-box">
+            <div class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-blue">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+                <div class="spinner-layer spinner-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+                <div class="spinner-layer spinner-yellow">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+                <div class="spinner-layer spinner-green">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div><!--/.preloader-wrapper-->
+        </div>
     </router-view>
     <footer class="center-align">
         <div class="footer-copyright">

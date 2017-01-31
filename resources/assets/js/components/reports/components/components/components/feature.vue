@@ -1,6 +1,6 @@
 <template>
     <td>
-        <h4 class="title"><router-link :to="featureUrl">{{ feature.product.name }}: {{ feature.name }}</router-link></h4>
+        <h4 class="title"><router-link :to="productUrl">{{ feature.product.name }}</router-link>: <router-link to="featureUrl">{{ feature.name }}</router-link></h4>
         <p>{{ feature.description }}</p>
     </td>
 </template>
@@ -17,6 +17,9 @@
             }
         },
         computed: {
+            productUrl() {
+                return '/products/'+this.feature.product_id+'/features';
+            },
             featureUrl() {
                 return '/products/'+this.feature.product_id+'/features/'+this.feature.id;
             }

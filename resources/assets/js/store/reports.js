@@ -3,10 +3,24 @@ export default {
     state: {
         filter_type: null,
         filter_value: null,
-        features: []
+        features: [],
+        pagination: null,
+        page: 1,
+        busy: false
     },
     mutations: {
-        loadFeatures(state, append) {
+        loadFeatures(state, append=false) {
+            if(state.busy) return;
+            if(append) {
+                if(state.pagination!=null && state.pagination.total_page>state.page) {
+                    state.page++;
+                }
+                else {
+                    Bus.$emit('reports-list-loaded');
+                    Hunt.toast(`You've reached the end.`);
+                    return;
+                }
+            }
             let endPoint = '/';
             if(state.filter_type==null) {
                 endPoint = '/filters/access/any';
@@ -17,23 +31,27 @@ export default {
             else if(state.filter_type=='tags') {
                 endPoint = '/filters/tags/'+state.filter_value
             }
+            state.busy = true;
             Vue.http.get(Hunt.API_URL+endPoint)
                 .then(
                     success => {
-                        if(append==undefined)
-                            state.features = success.body.features;
+                        if(append)
+                            state.features = state.features.concat(success.body.data);
+                        else
+                            state.features = success.body.data;
+                        state.pagination = success.body.pagination;
+                        state.busy = false;
+                        Bus.$emit('reports-list-loaded');
                     },
                     fail => {
                         Hunt.toast('Could not load features list (reports store)', 'error');
                         console.log(fail);
+                        state.busy = false;
                     }
                 );
         }
     },
     actions: {
-        loadFeatures(commit, page) {
-
-        },
         reloadFeatures({commit, state}, filter) {
             if(filter==null) {
                 state.filter_type = null;

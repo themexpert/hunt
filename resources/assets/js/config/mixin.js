@@ -34,7 +34,7 @@ Vue.mixin({
          * @returns {string}
          */
         gravatar(email) {
-            return 'http://gravatar.com/avatar/'+Hunt.md5(email)+'?s=25&r=pg&d=mm';
+            return 'http://gravatar.com/avatar/'+Hunt.md5(email)+'?r=pg&d=mm';
         },
         /**
          * Returns promise of get method
@@ -75,7 +75,7 @@ Vue.mixin({
          * @returns {*}
          */
         isAdmin() {
-            return this.$store.state.auth.user.is_admin;
+            return this.$store.state.auth.user && this.$store.state.auth.user.is_admin;
         }
     }
 });
