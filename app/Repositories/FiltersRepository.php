@@ -4,25 +4,33 @@ namespace Hunt\Repositories;
 
 use Hunt\Tag;
 use Hunt\Feature;
+use Hunt\Concerns\DataWithPagination;
 
 class FiltersRepository
 {
+    use DataWithPagination;
+
     /**
      * Filter suggested features by access.
      *
+     * @param int    $limit
+     * @param string $searchTerms
+     * @param string $status
      * @param string $filterBy
-     * @return \Hunt\Feature
+     * @return array
      */
-    public function byAccess($filterBy)
+    public function byAccess($limit = 10, $searchTerms = '', $status = '', $filterBy)
     {
+        $features = null;
+
         if(strtolower($filterBy) == 'any') {
-            return Feature::with(['product', 'priority', 'tags', 'status', 'vote'])
-                ->get();
+            $features = Feature::with(['product', 'priority', 'tags', 'status', 'vote']);
+        } else {
+            $features = Feature::with(['product', 'priority', 'tags', 'status', 'vote'])
+                ->whereIsPublic($this->getAccessValue($filterBy));
         }
 
-        return Feature::with(['product', 'priority', 'tags', 'status', 'vote'])
-            ->whereIsPublic($this->getAccessValue($filterBy))
-            ->get();
+        return $this->dataWithPagination($features, $limit, 'desc', 'features.id');
     }
 
     /**
@@ -41,17 +49,23 @@ class FiltersRepository
     /**
      * Filter suggested features by tag.
      *
-     * @param int $tagId
-     * @return \Hunt\Feature
+     * @param int    $limit
+     * @param string $searchTerms
+     * @param string $status
+     * @param int    $tagId
+     * @return array
      */
-    public function byTag($tagId)
+    public function byTag($limit = 10, $searchTerms = '', $status = '', $tagId)
     {
+        $tags = null;
+
         if($tagId == 0) {
-            return Tag::with(['product', 'priority', 'tags', 'status', 'vote'])->get();
+            $tags = Tag::with(['product', 'priority', 'tags', 'status', 'vote']);
+        } else {
+            $tags = Tag::findOrFail($tagId)->features()
+                ->with(['product', 'priority', 'tags', 'status', 'vote']);
         }
 
-        return Tag::findOrFail($tagId)->features()
-            ->with(['product', 'priority', 'tags', 'status', 'vote'])
-            ->get();
+        return $this->dataWithPagination($tags, $limit, 'desc', 'id');
     }
 }

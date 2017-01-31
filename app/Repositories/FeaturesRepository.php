@@ -87,10 +87,12 @@ class FeaturesRepository
             $features = Feature::with(['tags', 'status', 'vote'])
                                 ->where("product_id", "=", $productId);
         }
+
         if(!empty($status)) {
             $features->select(['features.*'])->join('statuses', 'statuses.feature_id', '=', 'features.id')
                 ->where('statuses.type', $status);
         }
+
         return $this->dataWithPagination($features, $limit, null, 'features.id');
     }
 
