@@ -24,7 +24,7 @@ export default {
                     Hunt.toast(`You've reached the end.`);
                     return;
                 }
-            }
+            } else { state.page = 1; }
             state.busy = true;
             Vue.http.get(Hunt.API_URL + '/features/released?page='+state.page)
                 .then(

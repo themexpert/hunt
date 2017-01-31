@@ -26,7 +26,7 @@ export default {
                     Hunt.toast(`You've reached the end.`);
                     return;
                 }
-            }
+            } else { state.page = 1; }
             let endPoint = '/';
             if(state.filter_type==null) {
                 endPoint = '/filters/access/any';
