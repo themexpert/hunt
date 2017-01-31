@@ -79,10 +79,8 @@ class FeaturesRepository
                                     $query->where('type', 'like', "%$searchTerms%");
                                 }, 'vote'])
                                 ->where("product_id", "=", $productId)
-                                ->where(function($query) use ($searchTerms) {
-                                    $query->orWhere("name", "like", "%$searchTerms%")
-                                        ->orWhere("description", "like", "%$searchTerms%");
-                                });
+                                ->orWhere("name", "like", "%$searchTerms%")
+                                ->orWhere("description", "like", "%$searchTerms%");
         } else {
             $features = Feature::with(['tags', 'status', 'vote'])
                                 ->where("product_id", "=", $productId);
@@ -266,5 +264,33 @@ class FeaturesRepository
         $statuses['data'] = $features;
 
         return $statuses;
+    }
+
+    /**
+     * Search features.
+     *
+     * @param int $limit
+     * @param string $searchTerms
+     * @param string $status
+     * @return array
+     */
+    public function search($limit = 10, $searchTerms = '', $status = '')
+    {
+        $features = null;
+
+        if(! empty($searchTerms)) {
+            $features = Feature::with(['product'])
+                ->Where("name", "like", "%$searchTerms%")
+                ->orWhere("description", "like", "%$searchTerms%");
+        } else {
+            $features = Feature::with(['product']);
+        }
+
+        if(!empty($status)) {
+            $features->select(['features.*'])->join('statuses', 'statuses.feature_id', '=', 'features.id')
+                ->where('statuses.type', $status);
+        }
+
+        return $this->dataWithPagination($features, $limit, null, 'features.id');
     }
 }

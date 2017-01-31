@@ -155,4 +155,19 @@ class FeaturesController extends Controller
                 $request->input('status')
         ));
     }
+
+    /**
+     * Search features.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function search(Request $request)
+    {
+        return $this->responseJson($this->featuresRepository->search(
+            $request->input('limit'),
+            $request->input('searchTerms'),
+            $request->input('status')
+        ));
+    }
 }
