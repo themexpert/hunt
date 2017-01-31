@@ -6,84 +6,112 @@ use DB;
 use Hunt\Vote;
 use Exception;
 use Hunt\Priority;
+use Hunt\Concerns\DataWithPagination;
 
 class PreparedReportsRepository
 {
+    use DataWithPagination;
+
     /**
      * Prepared reports by type.
      *
+     * @param int    $limit
+     * @param string $searchTerms
+     * @param string $status
      * @param string $type
-     * @return \Hunt\Feature
+     * @return array
      */
-    public function byType($type)
+    public function byType($limit = 10, $searchTerms = '', $status = '', $type)
     {
-        $type = str_replace('-', '', $type);
+        $type = camel_case($type);
 
-        return $this->{$type}();
+        return $this->{$type}($limit, $searchTerms, $status);
     }
 
     /**
      * Get popular feature suggestion based on user vote.
      *
-     * @return \Hunt\Vote
+     * @param int    $limit
+     * @param string $searchTerms
+     * @param string $status
+     * @return array
      */
-    protected function popularVote()
+    public function popularVote($limit = 10, $searchTerms = '', $status = '')
     {
-        return Vote::with(['feature', 'feature.product', 'feature.priority'])->orderBy('up')->get();
+        $features = Vote::with(['feature', 'feature.product', 'feature.priority'])->orderBy('up');
+
+        return $this->dataWithPagination($features, $limit, 'desc', 'id');
     }
 
     /**
-     * Get low popular feature suggestion based on user vote.
+     * Get popular feature suggestion based on user vote.
      *
-     * @return \Hunt\Vote
+     * @param int    $limit
+     * @param string $searchTerms
+     * @param string $status
+     * @return array
      */
-    protected function lowPopularVote()
+    public function lowPopularVote($limit = 10, $searchTerms = '', $status = '')
     {
-        return Vote::with(['feature', 'feature.product', 'feature.priority'])->orderBy('down')->get();
+        $features = Vote::with(['feature', 'feature.product', 'feature.priority'])->orderBy('down');
+
+        return $this->dataWithPagination($features, $limit, 'desc', 'id');
     }
 
     /**
      * Get high value feature suggestion based on user priority.
      *
-     * @return \Hunt\Vote
+     * @param int    $limit
+     * @param string $searchTerms
+     * @param string $status
+     * @return array
      */
-    protected function highValue()
+    public function highValue($limit = 10, $searchTerms = '', $status = '')
     {
-        return Priority::with(['feature', 'feature.product', 'feature.priority'])
+        $features = Priority::with(['feature', 'feature.product', 'feature.priority'])
             ->select('id', 'user_id', 'feature_id', DB::raw('sum(value) as value'))
             ->groupBy('id', 'feature_id')
-            ->orderBy('value', 'desc')
-            ->get();
+            ->orderBy('value', 'desc');
+
+        return $this->dataWithPagination($features, $limit, 'desc', 'id');
     }
 
     /**
      * Get low value feature suggestion based on user priority.
      *
-     * @return \Hunt\Vote
+     * @param int    $limit
+     * @param string $searchTerms
+     * @param string $status
+     * @return array
      */
-    protected function lowValue()
+    public function lowValue($limit = 10, $searchTerms = '', $status = '')
     {
-        return Priority::with(['feature', 'feature.product', 'feature.priority'])
+        $features = Priority::with(['feature', 'feature.product', 'feature.priority'])
             ->select('id', 'user_id', 'feature_id', DB::raw('sum(value) as value'))
             ->groupBy('id', 'feature_id')
-            ->orderBy('value')
-            ->get();
+            ->orderBy('value');
+
+        return $this->dataWithPagination($features, $limit, 'desc', 'id');
     }
 
     /**
      * Get mid value feature suggestion based on user priority.
      *
-     * @return \Hunt\Vote
+     * @param int    $limit
+     * @param string $searchTerms
+     * @param string $status
+     * @return array
      */
-    protected function midValue()
+    public function midValue($limit = 10, $searchTerms = '', $status = '')
     {
-        return Priority::with(['feature', 'feature.product', 'feature.priority'])
+        $features = Priority::with(['feature', 'feature.product', 'feature.priority'])
             ->select('id', 'user_id', 'feature_id', DB::raw('sum(value) as value'))
             ->groupBy('id', 'feature_id')
             ->orderBy('value')
             ->where('value', '>=', 30)
-            ->where('value', '<=', 70)
-            ->get();
+            ->where('value', '<=', 70);
+
+        return $this->dataWithPagination($features, $limit, 'desc', 'id');
     }
 
     /**
