@@ -33,7 +33,7 @@
 <style>
 
 </style>
-<script>
+<script type="text/babel">
     import Hunt from '../../../config/Hunt'
     export default{
         data(){
@@ -50,10 +50,15 @@
             $(".modal").modal();
         },
         methods: {
-            fileSelected(e) {
-                console.log(e);
+            /**
+             * Listens to file change event
+             */
+            fileSelected (e) {
                 this.product.file = e.target.value;
             },
+            /**
+             * Validates input
+             */
             validateInputs() {
                 let valid = true;
 
@@ -74,6 +79,12 @@
 
                 return valid;
             },
+            /**
+             * Save a new product
+             *
+             * @param e
+             * @returns {boolean}
+             */
             saveNewProduct(e) {
                 let data = new FormData(e.target);
                 if(!this.validateInputs()) return false;

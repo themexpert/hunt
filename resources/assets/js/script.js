@@ -54,23 +54,35 @@ Hunt.toast = (msg, type, time) => {
     }
     Materialize.toast(msg, time, bgColor);
 };
+/**
+ * Holds the scroll events and unique identifier
+ *
+ * @type {{events: Array, index: Array}}
+ */
 const scrollEvents = {
     events: [],
     index: []
 };
-Hunt.infiniteScroll = (el, fn) => {
-    if(scrollEvents.index.indexOf(el)>-1) return;
+
+/**
+ * Attaches scroll events
+ *
+ * @param loc
+ * @param fn
+ */
+Hunt.infiniteScroll = (loc, fn) => {
+    if(scrollEvents.index.indexOf(loc)>-1) return;
     scrollEvents.events.push({
-        el: el,
+        loc: loc,
         fn: fn
     });
-    scrollEvents.index.push(el);
+    scrollEvents.index.push(loc);
 };
 let jQ = require('jquery');
 let win=jQ(window);
 jQ(window).scroll(function () {
     scrollEvents.events.forEach(x=>{
-        if(jQ(document).height()-win.height()==win.scrollTop())
-            if(jQ(x.el)) x.fn.call(this);
+        if($(document).height()-win.height()==win.scrollTop())
+            if(location.href.indexOf(x.loc)>-1) x.fn.call(this);
     });
 });

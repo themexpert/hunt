@@ -5,7 +5,7 @@
     </li>
 </template>
 <style>
-    
+
 </style>
 <script type="text/babel">
     export default{
@@ -15,6 +15,9 @@
             return {}
         },
         computed: {
+            /**
+             * Gives product route
+             */
             productUrl(){
                 return '/products/' + this.product.id + '/features/';
             }

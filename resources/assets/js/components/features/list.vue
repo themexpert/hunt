@@ -29,7 +29,7 @@
                     <ul class="collection feature-list">
                         <feature-list-item v-for="feature in features" :item="feature"></feature-list-item>
                         <li v-if="features.length==0" class="text-center">No feature request found.</li>
-                        <li v-if="loading"><preloader-2></preloader-2></li>
+                        <li style="text-align: center" v-if="loading"><preloader-2></preloader-2></li>
                     </ul><!--/.card-->
                 </div><!--/.details-->
             </div><!--/.feature-req-->
@@ -58,6 +58,9 @@
         },
         mounted() {
             Hunt.renderPage('Feature Requests');
+            /**
+             * Initiate first load
+             */
             if(this.$route.params.query)
                 this.$store.dispatch('search_features', this.$route.params.query);
             if(this.$route.params.filter)
@@ -66,10 +69,18 @@
                         product_id: this.$route.params.product_id,
                         filter:this.$route.params.filter
                     });
-            Hunt.infiniteScroll('.feature-list', ()=>{
+            /**
+             * Register infinite scroll
+             */
+            Hunt.infiniteScroll('/products', ()=>{
                 this.loading = true;
                 this.$store.commit('update_features', true);
             });
+            /**
+             * Register feature list loaded listener
+             *
+             * @type {boolean}
+             */
             Bus.$on('feature-list-loaded', ()=>{this.loading=false;});
         },
         computed: {

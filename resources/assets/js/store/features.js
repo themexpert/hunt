@@ -76,7 +76,7 @@ export default {
                     Hunt.toast(`You've reached the end.`);
                     return;
                 }
-            }
+            } else { state.page = 1; }
             state.busy = true;
             let type = null;
             Vue.http.get(Hunt.API_URL + '/products/'+state.product_id+'/features?page='+state.page

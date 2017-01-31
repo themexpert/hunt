@@ -14,9 +14,17 @@
             }
         },
         mounted() {
+            /**
+             * Initiate tooltip for sub-component
+             */
             $("[data-tooltip]").tooltip();
         },
         computed: {
+            /**
+             * Gives the priority value in percentage
+             *
+             * @returns {*}
+             */
             progress() {
                 if(this.priority==null) return '0%';
                 return this.priority.value + '%';

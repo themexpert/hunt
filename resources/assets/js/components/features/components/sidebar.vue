@@ -23,7 +23,7 @@
 <style>
     
 </style>
-<script>
+<script type="text/babel">
     import preloader from '../../preloader.vue'
     import vote from './components/vote.vue'
     import StatusUpdateModal from './components/status-update-modal.vue'
@@ -40,6 +40,9 @@
             }
         },
         mounted() {
+            /**
+             * Register new vote listener
+             */
             Bus.$on('new-vote', vote=>{
                 if(this.feature.vote==null) this.feature.vote = {up: 0, down: 0};
                 if(vote.up)
@@ -49,9 +52,19 @@
             });
         },
         computed: {
+            /**
+             * Gives up vote for feature request
+             *
+             * @returns {number}
+             */
             upVote() {
                 return this.feature!=undefined && this.feature.vote!=null? this.feature.vote.up:0;
             },
+            /**
+             * Gives down vote for feature request
+             *
+             * @returns {number}
+             */
             downVote() {
                 return this.feature!=undefined && this.feature.vote!=null? this.feature.vote.down:0;
             }

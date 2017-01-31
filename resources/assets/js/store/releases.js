@@ -7,6 +7,12 @@ export default {
         busy: false
     },
     mutations: {
+        /**
+         * Load released features
+         *
+         * @param state
+         * @param append
+         */
         loadReleasedFeatures(state, append=false) {
             if(state.busy) return;
             if(append) {
@@ -18,9 +24,9 @@ export default {
                     Hunt.toast(`You've reached the end.`);
                     return;
                 }
-            }
+            } else { state.page = 1; }
             state.busy = true;
-            Vue.http.get(Hunt.API_URL + '/features?searchTerms=RELEASED')
+            Vue.http.get(Hunt.API_URL + '/features/released?page='+state.page)
                 .then(
                     success => {
                         if (append)

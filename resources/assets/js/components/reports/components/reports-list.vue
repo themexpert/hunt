@@ -12,13 +12,13 @@
                     </thead>
 
                     <tbody>
-                        <tr v-if="features.length==0">
-                            <td colspan="3">No Feature found</td>
-                        </tr>
-                        <list-item v-else v-for="feature in features" :feature="feature"></list-item>
-                        <tr v-if="loading">
-                            <td colspan="3"><preloader-2></preloader-2></td>
-                        </tr>
+                    <tr v-if="features.length==0">
+                        <td colspan="3">No Feature found</td>
+                    </tr>
+                    <list-item v-else v-for="feature in features" :feature="feature"></list-item>
+                    <tr v-if="loading">
+                        <td style="text-align: center" colspan="3"><preloader-2></preloader-2></td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
@@ -26,7 +26,7 @@
     </div>
 </template>
 <style>
-    
+
 </style>
 <script type="text/babel">
     import Hunt from '../../../config/Hunt'
@@ -44,6 +44,9 @@
             }
         },
         mounted() {
+            /**
+             * Perform initial load
+             */
             if(this.$route.params.value==undefined) {
                 this.$store.dispatch('reloadFeatures', null);
             }
@@ -53,24 +56,42 @@
                     value: this.filter_value
                 });
             }
-            Hunt.infiniteScroll('.reports-list', ()=>{
+            /**
+             * Register infinite scroll
+             */
+            Hunt.infiniteScroll('reports', ()=>{
                 this.loading = true;
                 this.$store.commit('loadFeatures', true);
             });
+            /**
+             * Register reports list loaded listener
+             */
             Bus.$on('reports-list-loaded', ()=>{this.loading = false;});
         },
         computed: {
+            /**
+             * gets features list from store
+             */
             features() {
                 return this.$store.state.reports.features;
             },
+            /**
+             * Gets filter type from route
+             */
             filter_type() {
                 return this.$route.params.type;
             },
+            /**
+             * Gets filter value from route
+             */
             filter_value() {
                 return this.$route.params.value;
             }
         },
         watch: {
+            /**
+             * Watch for filter value change and invoke the store for update
+             */
             filter_value() {
                 this.$store.dispatch('reloadFeatures', {
                     type: this.filter_type,

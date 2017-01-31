@@ -19,7 +19,7 @@
 <style>
     
 </style>
-<script>
+<script type="text/babel">
     import Hunt from '../../config/Hunt'
     import FeatureRequestModal from './components/feature-request-modal.vue'
     import feature from './components/feature.vue'
@@ -41,6 +41,9 @@
             this.loadFeatureData();
         },
         methods: {
+            /**
+             * Loads feature information
+             */
             loadFeatureData() {
                 this.get('/products/'+this.product_id+'/features/'+this.feature_id)
                     .then(
@@ -56,9 +59,17 @@
             }
         },
         computed: {
+            /**
+             * Gives product ID from route
+             */
             product_id() {
                 return this.$route.params.product_id;
             },
+            /**
+             * Gives feature ID from route
+             *
+             * @returns {*}
+             */
             feature_id() {
                 return this.$route.params.feature_id;
             }

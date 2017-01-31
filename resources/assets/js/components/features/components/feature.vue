@@ -36,7 +36,7 @@
 <style>
     
 </style>
-<script>
+<script type="text/babel">
     import Hunt from '../../../config/Hunt'
     import Comments from './components/comments.vue'
     import AddCommentModal from './components/add-comment-modal.vue'
@@ -55,6 +55,11 @@
             }
         },
         mounted() {
+            /**
+             * Register status updated listener
+             *
+             * @type {string}
+             */
             Bus.$on('status-updated', status=>{
                 this.feature.status.type=status.type;
                 this.feature.status.subject=status.subject;
