@@ -27,6 +27,9 @@
             if(this.products.length>0) this.load(); //if we have products then set one
         },
         methods: {
+            /**
+             * Populates the features page components information
+             */
             load() {
                 if(this.products.length==0 || this.update==undefined || this.update==false) return; //no product found or just showing the dropdown
                 let product_id = this.$route.params.product_id || this.$store.state.features.product_id;

@@ -39,9 +39,15 @@
             }
         },
         mounted() {
+            /**
+             * Initiates the modal for sub-component
+             */
             $(".modal").modal();
         },
         methods: {
+            /**
+             * Submits new comment
+             */
             submitComment() {
                 if(this.comment=='') {
                     Hunt.toast('Comment can not be empty.', 'warning');

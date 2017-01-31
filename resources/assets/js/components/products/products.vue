@@ -39,12 +39,18 @@
             }
         },
         mounted() {
+            /**
+             * Check for admin access
+             */
             if(!this.isAdmin) {
                 Hunt.toast('You can not access this route.', 'info');
                 this.$router.push('/');
                 return;
             }
             Hunt.renderPage('Products');
+            /**
+             * Register new product saved listener
+             */
             Bus.$on('new-product-saved', product=>{
                 this.$store.state.features.products.unshift(product);
             });
@@ -53,6 +59,11 @@
 
         },
         computed: {
+            /**
+             * Gived products list from store
+             *
+             * @returns {computed.products|products|{index}|Array|*}
+             */
             products() {
                 return this.$store.state.features.products;
             }

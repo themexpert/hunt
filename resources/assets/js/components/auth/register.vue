@@ -68,6 +68,9 @@
             Hunt.renderPage('Sign Up');
         },
         methods: {
+            /**
+             * Validates inputs
+             */
             validateInputs() {
                 let ok = true;
                 if(this.name=='') {
@@ -99,6 +102,11 @@
                 }
                 return ok;
             },
+            /**
+             * Performs registration action
+             *
+             * @param e
+             */
             signUp(e) {
                 if(!this.validateInputs()) return;
                 this.busy = true;

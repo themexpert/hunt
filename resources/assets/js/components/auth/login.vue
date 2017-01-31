@@ -80,6 +80,9 @@
             this.email = Hunt.storage.get('email');
         },
         methods: {
+            /**
+             * Validates inputs
+             */
             validateInputs() {
                 let ok = true;
                 if (this.email == '') {
@@ -100,6 +103,11 @@
                 }
                 return ok;
             },
+            /**
+             * Performs login action
+             *
+             * @param e
+             */
             login(e) {
                 if (!this.validateInputs()) return;
                 this.busy = true;

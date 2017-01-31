@@ -16,6 +16,9 @@
             }
         },
         mounted() {
+            /**
+             * Apply filter on initiation
+             */
             this.$store.dispatch('apply_filter', this.filter);
         },
         methods: {

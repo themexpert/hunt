@@ -9,6 +9,12 @@ export default {
         busy: false
     },
     mutations: {
+        /**
+         * Load features for report
+         *
+         * @param state
+         * @param append
+         */
         loadFeatures(state, append=false) {
             if(state.busy) return;
             if(append) {
@@ -32,7 +38,7 @@ export default {
                 endPoint = '/filters/tags/'+state.filter_value
             }
             state.busy = true;
-            Vue.http.get(Hunt.API_URL+endPoint)
+            Vue.http.get(Hunt.API_URL+endPoint+'?page='+state.page)
                 .then(
                     success => {
                         if(append)
@@ -52,6 +58,13 @@ export default {
         }
     },
     actions: {
+        /**
+         * Reset the criteria and reload
+         *
+         * @param commit
+         * @param state
+         * @param filter
+         */
         reloadFeatures({commit, state}, filter) {
             if(filter==null) {
                 state.filter_type = null;

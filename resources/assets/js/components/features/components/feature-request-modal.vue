@@ -52,9 +52,9 @@
     </div>
 </template>
 <style>
-    
+
 </style>
-<script>
+<script type="text/babel">
     import Hunt from '../../../config/Hunt'
     import products from './products.vue'
     export default{
@@ -85,6 +85,9 @@
             }
         },
         methods: {
+            /**
+             * Listens to product select and updates product
+             */
             updateProduct(nP) {
                 if(nP==null) {
                     this.feature.product_id=null;
@@ -92,6 +95,9 @@
                 }
                 this.feature.product_id=nP.id;
             },
+            /**
+             * Prepares data to be sent
+             */
             prepareData() {
                 let data = {
                     name: this.feature.name,
@@ -107,6 +113,11 @@
                     });
                 return data;
             },
+            /**
+             * Validates inputs
+             *
+             * @param data
+             */
             validateInputs(data) {
                 let valid = true;
 
@@ -136,43 +147,51 @@
                 }
                 return valid;
             },
+            /**
+             * Send the feature request
+             */
             submitFeatureRequest() {
                 let data = this.prepareData();
                 if(!this.validateInputs(data)) return false;
                 this.busy=true;
                 this.post('/products/'+this.feature.product_id+'/features', data).then(
-                     success => {
-                         Hunt.toast('Your feature request has been received.', 'success');
-                         this.busy = false;
-                         if(this.$store.state.features.product_id==this.feature.product_id) {
-                             this.$store.state.features.features.unshift({
-                                 is_public: !data.is_private,
-                                 id: success.body.id,
-                                 description: data.description,
-                                 name: data.name,
-                                 product_id: this.feature.product_id,
-                                 status: {type: 'PENDING'},
-                                 tags: data.tags.map(x=>{
-                                     return {name: x}
-                                 })
-                             });
-                         }
-                         this.feature.name = '';
-                         this.feature.description='';
-                         $("#modal1").modal('close');
-                     },
+                    success => {
+                        Hunt.toast('Your feature request has been received.', 'success');
+                        this.busy = false;
+                        if(this.$store.state.features.product_id==this.feature.product_id) {
+                            this.$store.state.features.features.unshift({
+                                is_public: !data.is_private,
+                                id: success.body.id,
+                                description: data.description,
+                                name: data.name,
+                                product_id: this.feature.product_id,
+                                status: {type: 'PENDING'},
+                                tags: data.tags.map(x=>{
+                                    return {name: x}
+                                })
+                            });
+                        }
+                        this.feature.name = '';
+                        this.feature.description='';
+                        $("#modal1").modal('close');
+                    },
                     fail => {
-                         if(fail.status==422) {
-                             Hunt.toast('Please fill out all fields correctly.', 'error');
-                         }
+                        if(fail.status==422) {
+                            Hunt.toast('Please fill out all fields correctly.', 'error');
+                        }
 
-                         this.busy=false;
-                         console.log(fail);
+                        this.busy=false;
+                        console.log(fail);
                     }
                 );
             }
         },
         computed: {
+            /**
+             * Gives tags list loaded from store\
+             *
+             * @returns {null|Array|*|computed.tags}
+             */
             tags() {
                 return this.$store.state.features.tags;
             }

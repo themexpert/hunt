@@ -39,7 +39,7 @@
 <style>
     
 </style>
-<script>
+<script type="text/babel">
     import Hunt from '../../../../config/Hunt'
     export default{
         name: 'StatusUpdateModal',
@@ -52,9 +52,15 @@
             }
         },
         mounted() {
+            /**
+             * Initiates modal for sub-component
+             */
             $(".modal").modal();
         },
         methods: {
+            /**
+             * Validates inputs
+             */
             validateInputs(data) {
                 let valid= true;
                 if(this.status==null) {
@@ -71,12 +77,18 @@
                 }
                 return valid;
             },
+            /**
+             * Prepares data to be sent
+             */
             prepareData() {
                 return {
                     subject: this.subject,
                     message: this.message
                 }
             },
+            /**
+             * Updates status
+             */
             updateStatus() {
                 let data = this.prepareData();
                 if(!this.validateInputs(data)) return false;
@@ -113,6 +125,11 @@
             }
         },
         computed: {
+            /**
+             * Gives the list of available statuses
+             *
+             * @returns {Array.<T>}
+             */
             statuses() {
                 let nArray = this.$store.state.features.statuses.slice(0);
                 nArray.splice(0,2);

@@ -41,6 +41,9 @@
             }
         },
         mounted() {
+            /**
+             * Render the page for updated components
+             */
             Hunt.renderPage('Reports');
         }
     }

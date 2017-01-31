@@ -21,12 +21,18 @@
             }
         },
         mounted() {
+            /**
+             * Register new comment listener
+             */
             Bus.$on('new-comment', comment=>{
                 this.comments.unshift(comment);
             });
             this.loadComments();
         },
         methods: {
+            /**
+             * Loads comments for selected feature
+             */
             loadComments() {
                 this.get('/features/'+this.featureId+'/comments')
                     .then(
