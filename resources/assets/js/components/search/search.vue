@@ -1,8 +1,8 @@
 <template>
     <div class="search-box mt15">
-        <form @submit.prevent="search">
+        <form @submit.prevent="search" class="search">
             <div class="input-field">
-                <input v-model="query" id="search" type="search" placeholder="Search Feature" @keypress="loaded=false" required>
+                <input v-model="query" id="search" type="search" placeholder="Search Feature" @focus="searching=true" @keypress="loaded=false" required>
                 <label for="search"><i class="material-icons">search</i></label>
                 <i class="material-icons">close</i>
             </div>
@@ -45,6 +45,7 @@
         mounted() {
             $(document).on('click', 'body', ()=>{this.searching=false;});
             $(document).on('click', '.search-box', (e)=>{e.stopPropagation();this.searching=true;});
+            Bus.$on('route-clicked', to=>{this.searching=false;});
             Bus.$on('search-results-loaded', ()=>{
                 this.loading=false;
                 Hunt.renderPage(this.query);

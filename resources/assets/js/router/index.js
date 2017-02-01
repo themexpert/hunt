@@ -12,6 +12,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next)=>{
+    Bus.$emit('route-clicked', to);
     /**
      * Runs only once at first on each page load
      *
