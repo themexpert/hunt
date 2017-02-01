@@ -28,7 +28,7 @@ class FeaturesRepository
     public function add($productId, $name, $description, $isPrivate, $tags)
     {
         $feature = Feature::create([
-            'user_id' => auth()->user()->id,
+            'user_id' => auth('api')->user()->id,
             'product_id' => $productId,
             'name' => $name,
             'description' => $description,
@@ -223,7 +223,7 @@ class FeaturesRepository
     protected function setPriorityDefaultValue($feature)
     {
         Priority::create([
-            'user_id' => auth()->user()->id,
+            'user_id' => auth('api')->user()->id,
             'feature_id' => $feature->id,
             'value' => 50
         ]);
@@ -237,7 +237,7 @@ class FeaturesRepository
     protected function setEffortDefaultValue($feature)
     {
         Effort::create([
-            'user_id' => auth()->user()->id,
+            'user_id' => auth('api')->user()->id,
             'feature_id' => $feature->id,
             'value' => 80
         ]);

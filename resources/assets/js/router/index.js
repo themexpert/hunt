@@ -85,8 +85,8 @@ router.beforeEach((to, from, next)=>{
             Vue.http.get(Hunt.BASE_URL + '/refresh')
                 .then(
                     success => {
+                        window.Laravel.csrfToken = success.body._token;
                         if (success.body.loggedIn) {
-                            window.Laravel.csrfToken = success.body._token;
                             router.push('/');
                         }
                         else {

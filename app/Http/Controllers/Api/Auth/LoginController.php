@@ -138,7 +138,7 @@ class LoginController extends Controller
 
         Auth::login($user);
 
-        //return redirect()->intended($this->redirectPath());
+        return redirect()->intended('/');
     }
 
     public function logout(Request $request)

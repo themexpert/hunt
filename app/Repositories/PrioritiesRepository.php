@@ -14,7 +14,7 @@ class PrioritiesRepository
      */
     public function update($featureId, $value)
     {
-        $priority = Priority::whereUserId(auth()->user()->id)
+        $priority = Priority::whereUserId(auth('api')->user()->id)
                             ->whereFeatureId($featureId)
                             ->first();
 
