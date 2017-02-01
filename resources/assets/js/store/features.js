@@ -13,6 +13,18 @@ export default {
         tags: []
     },
     mutations: {
+        new_vote(state, vote) {
+            for(let i=0;i<state.features.length;i++) {
+                if(state.features[i].id!=vote.id) continue;
+                state.features[i].vote.voted = vote.type=='up'?1:-1;
+                if(vote.type=='up') {
+                    state.features[i].vote.up++;
+                } else {
+                    state.features[i].vote.down++;
+                }
+                break;
+            }
+        },
         /**
          * Loads status list from server
          *

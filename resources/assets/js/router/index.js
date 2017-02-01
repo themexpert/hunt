@@ -82,7 +82,7 @@ router.beforeEach((to, from, next)=>{
         /**
          * Check if the user already logged in
          */
-        else if (to.path == '/login') {
+        else if (to.path == '/login' || to.path == 'register') {
             Vue.http.get(Hunt.BASE_URL + '/refresh')
                 .then(
                     success => {
@@ -96,7 +96,7 @@ router.beforeEach((to, from, next)=>{
                     },
                     fail => {
                         console.log(fail);
-                        Hunt.toast('Something went wrong. (login)', 'error', 3000);
+                        Hunt.toast('Something went wrong. (login/register)', 'error', 3000);
                     }
                 );
         }
