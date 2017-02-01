@@ -23,7 +23,7 @@
                         <input name="logo" type="file" @change="fileSelected" placeholder="Product Logo">
                     </div>
                     <div class="input-field left-align">
-                        <button type="submit" class="btn" :disabled="busy">Save Product <i class="material-icons left">done</i> </button>
+                        <button type="submit" class="btn" :disabled="busy">Save Product <i class="material-icons left">done</i> <spinner v-if="busy"></spinner></button>
                     </div>
                 </form>
             </div>

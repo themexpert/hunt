@@ -37,7 +37,7 @@ router.beforeEach((to, from, next)=>{
                         store.state.loaded = true;
                         Bus.$emit('loaded');
                         Hunt.toast('You need to be registered and logged in to use this service.', 'warning', 3000);
-                        router.push('/login');
+                        if(to.path!='/register') router.push('/login'); else gotoNext(to, from, next);
                     }
                     else
                     {

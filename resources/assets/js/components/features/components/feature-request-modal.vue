@@ -8,7 +8,7 @@
         <div id="modal1" class="modal">
             <div class="modal-content">
                 <h4 class="modal-title">Suggest a feature for ThemeXpert</h4>
-                <form class="" action="" @submit.prevent="submitFeatureRequest">
+                <div class="">
                     <div class="row">
                         <div class="input-field col s6">
                             <input v-model="feature.name" id="suggest_feature" type="text" placeholder="What do you have in mind ?">
@@ -40,13 +40,16 @@
                                     track-by="label"
                                     label="label"
                                     :multiple="true"
+                                    tag-placeholder="Add new tag"
+                                    :taggable="true"
+                                    @tag="addTag"
                                     placeholder="Select Tags"></multiselect>
                         </div>
                     </div>
                     <div class="input-field left-align">
-                        <button type="submit" class="btn" :disabled="busy">Tell ThemeXpert I want this <i class="material-icons left">done</i> </button>
+                        <button @click="submitFeatureRequest" class="btn" :disabled="busy">Tell ThemeXpert I want this <i class="material-icons left">done</i> <spinner v-if="busy"></spinner></button>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
@@ -75,16 +78,26 @@
                         }
                     ],
                     access: null,
-                    tags: null,
+                    tags: [],
                     name: '',
                     product_id: null,
                     description: ''
                 },
                 selected_product: null,
-                busy: false
+                busy: false,
+                reloadTags: false
             }
         },
         methods: {
+            addTag(tag) {
+                let newTag = {
+                    label: tag,
+                    value: Math.random()*100
+                };
+                this.feature.tags.push(newTag);
+                this.$store.state.features.tags.push(newTag);
+                this.reloadTags = true;
+            },
             /**
              * Listens to product select and updates product
              */
@@ -171,9 +184,25 @@
                                 })
                             });
                         }
-                        this.feature.name = '';
-                        this.feature.description='';
+                        this.feature = {
+                            accesses: [
+                                {
+                                    label: 'Private',
+                                    value: true
+                                },
+                                {
+                                    label: 'Public',
+                                    value: false
+                                }
+                            ],
+                            access: null,
+                            tags: [],
+                            name: '',
+                            product_id: null,
+                            description: ''
+                        };
                         $("#modal1").modal('close');
+                        if(this.reloadTags) this.$store.commit('update_tags');
                     },
                     fail => {
                         if(fail.status==422) {
