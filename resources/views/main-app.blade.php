@@ -39,15 +39,7 @@
                             </div>
                         </div><!--/.col-->
                         <div class="col s5" v-if="isLoggedIn">
-                            <div class="search-box mt15">
-                                <form @submit.prevent="search">
-                                    <div class="input-field">
-                                        <input id="search" type="search" placeholder="Search Feature" required>
-                                        <label for="search"><i class="material-icons">search</i></label>
-                                        <i class="material-icons">close</i>
-                                    </div>
-                                </form>
-                            </div>
+                            <search></search>
                         </div><!--/.col-->
                         <div class="col" :class="{s10:!isLoggedIn,s5:isLoggedIn}">
                             <div class="menu mt15">

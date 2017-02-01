@@ -67,22 +67,22 @@ const scrollEvents = {
 /**
  * Attaches scroll events
  *
- * @param loc
+ * @param el
  * @param fn
  */
-Hunt.infiniteScroll = (loc, fn) => {
-    if(scrollEvents.index.indexOf(loc)>-1) return;
+Hunt.infiniteScroll = (el, fn) => {
+    if(scrollEvents.index.indexOf(el)>-1) return;
     scrollEvents.events.push({
-        loc: loc,
+        el: el,
         fn: fn
     });
-    scrollEvents.index.push(loc);
+    scrollEvents.index.push(el);
 };
 let jQ = require('jquery');
 let win=jQ(window);
 jQ(window).scroll(function () {
     scrollEvents.events.forEach(x=>{
         if($(document).height()-win.height()==win.scrollTop())
-            if(location.href.indexOf(x.loc)>-1) x.fn.call(this);
+            if($(x.el).length) x.fn.call(this);
     });
 });

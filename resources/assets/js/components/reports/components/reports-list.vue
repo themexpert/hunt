@@ -59,7 +59,7 @@
             /**
              * Register infinite scroll
              */
-            Hunt.infiniteScroll('reports', ()=>{
+            Hunt.infiniteScroll('.reports-list', ()=>{
                 this.loading = true;
                 this.$store.commit('loadFeatures', true);
             });

@@ -50,7 +50,7 @@
             /**
              * Register infinite scroll
              */
-            Hunt.infiniteScroll('features/releases', ()=>{
+            Hunt.infiniteScroll('.releases-list', ()=>{
                 this.loading = true;
                 this.$store.commit('loadReleasedFeatures', true);
             });

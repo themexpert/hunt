@@ -13,14 +13,16 @@ require('./passport-bootstrap');
 
 import store from './store'
 import router from './router'
+import Search from './components/search/search.vue'
 
 const app = new Vue({
     store,
     router,
+    components: {
+        'search': Search
+    },
     data() {
         return {
-            query: '',
-            queryResults: []
         }
     },
     mounted() {
@@ -33,22 +35,6 @@ const app = new Vue({
             this.$store.commit('update_products');
             this.$store.commit('update_tags');
         });
-    },
-    methods: {
-        /**
-         * Search for query
-         *
-         * @param e
-         */
-        search(e) {
-            let query = e.target.querySelector('#search').value;
-            if(query.length>0)
-            {
-                //perform search
-                console.log(query);
-            }
-
-        }
     },
     computed: {
         /**

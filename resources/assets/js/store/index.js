@@ -7,6 +7,7 @@ import auth from './auth'
 import features from './features'
 import releases from './releases'
 import reports from './reports'
+import search from './search'
 
 const store = new VueX.Store({
     state: {
@@ -16,7 +17,8 @@ const store = new VueX.Store({
         auth: auth,
         features: features,
         releases: releases,
-        reports: reports
+        reports: reports,
+        search: search
     }
 });
 

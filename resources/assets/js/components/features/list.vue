@@ -72,7 +72,7 @@
             /**
              * Register infinite scroll
              */
-            Hunt.infiniteScroll('/products', ()=>{
+            Hunt.infiniteScroll('.feature-list', ()=>{
                 this.loading = true;
                 this.$store.commit('update_features', true);
             });
