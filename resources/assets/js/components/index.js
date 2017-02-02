@@ -18,5 +18,10 @@ export default {
     },
     error: {
         e404: require('./error-404.vue')
+    },
+    passport: {
+        settings: {
+            token: require('./passport/settings/token.vue')
+        }
     }
 }

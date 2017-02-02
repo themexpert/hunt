@@ -71,10 +71,15 @@ export default [
     },
     {
         path: '/reports/filter/:type/:value',
-        component: Components.reports.index
+        component: Components.reports.index,
+        meta: {requiresAuth:true}
     },
 
-
+    {
+        path: '/settings/token',
+        component: Components.passport.settings.token,
+        meta: {requiresAuth:true}
+    },
 
     //error routes
     {
