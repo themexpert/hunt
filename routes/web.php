@@ -14,10 +14,15 @@ Route::get('/dashboard', 'DashboardController@index');
 //});
 
 Route::get('/refreshToken', function () {
+    $tokens = auth()->user()->tokens;
+    if($tokens->count()) $tokens->map(function($token){
+        $token->delete();
+    });
+    $token = auth()->user()->createToken('hunt_api_token')->accessToken;
     return response()->json(
         [
             'loggedIn' => true,
-            'token'    => auth()->user()->createToken('hunt_api_token')->accessToken,
+            'token'    => $token,
             '_token'   => csrf_token(),
             'user'     => [
                 'name'  => auth()->user()->name,
