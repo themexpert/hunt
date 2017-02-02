@@ -34,7 +34,7 @@
                         </div>
                         <div class="input-field col s6">
                             <multiselect
-                                    :options="tags"
+                                    :options="this.$store.state.features.tags"
                                     :value="feature.tags"
                                     v-model="feature.tags"
                                     track-by="label"
