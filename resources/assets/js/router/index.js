@@ -25,6 +25,7 @@ router.beforeEach((to, from, next)=>{
                 success => {
                     if(success.body.loggedIn) {
                         window.Laravel.token=success.body.token;
+                        Hunt.updateToken(success.body.token);
                         window.Laravel.csrfToken = success.body._token;
                         store.commit('loggedIn', success.body.user);
                         store.state.loaded = true;
@@ -69,6 +70,7 @@ router.beforeEach((to, from, next)=>{
                 .then(
                     success => {
                         window.Laravel.csrfToken = success.body._token;
+                        Hunt.deleteToken();
                         Hunt.toast('You have been logged out.', 'info');
                         store.dispatch('loggedOut');
                         router.push('/login');

@@ -64,6 +64,10 @@ export default {
                 .then(
                     success => {
                         state.products = success.body.data;
+                        if(state.products.length==0) {
+                            //Nothing to load anymore, so all loaded
+                            Bus.$emit('feature-list-loaded', null);
+                        }
                         Bus.$emit('products_loaded');
                     },
                     fail => {

@@ -181,7 +181,11 @@
                                 status: {type: 'PENDING'},
                                 tags: data.tags.map(x=>{
                                     return {name: x}
-                                })
+                                }),
+                                vote: {
+                                    up: 0,
+                                    down: 0,
+                                }
                             });
                         }
                         this.feature = {

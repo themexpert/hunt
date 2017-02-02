@@ -1,6 +1,6 @@
 <template>
     <multiselect
-            :options="products"
+            :options="$store.state.features.products"
             :value="product"
             v-model="product"
             @input="updateProduct"
