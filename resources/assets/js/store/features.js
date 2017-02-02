@@ -16,7 +16,7 @@ export default {
         new_vote(state, vote) {
             for(let i=0;i<state.features.length;i++) {
                 if(state.features[i].id!=vote.id) continue;
-                state.features[i].vote.voted = vote.type=='up'?1:-1;
+                state.features[i].userVoted = vote.type=='up'?1:-1;
                 if(vote.type=='up') {
                     state.features[i].vote.up++;
                 } else {

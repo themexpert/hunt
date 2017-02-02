@@ -55,6 +55,7 @@ class FeaturesController extends Controller
         event(new NewFeatureRequested($feature));
 
         return $this->responseCreated([
+            'feature' => $this->featuresRepository->getFeatureSuggestionById($productId, $feature->id),
             'feature_created' => true,
             'id' => $feature->id,
             'message' => 'New feature suggestion has been added'

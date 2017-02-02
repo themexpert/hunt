@@ -64,6 +64,7 @@ const app = new Vue({
         }
     }
 }).$mount('#app');
+
 /**
  * Shows pn page load messages if have any
  *

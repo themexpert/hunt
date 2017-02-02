@@ -44,18 +44,21 @@
                         <div class="col" :class="{s10:!isLoggedIn,s5:isLoggedIn}">
                             <div class="menu mt15">
                                 <div v-if="isLoggedIn" class="right author" v-cloak>
-                                    <a href="#"><img :src="userAvatar" alt="" class="circle" height="25" width="25"></a>
-                                    <a href="#">@{{ userName }}</a>
+                                    <a data-activates="dropdown1" class="dropdown"><img :src="userAvatar" alt="" class="circle" height="25" width="25"></a>
+                                    <a data-activates="dropdown1" class="dropdown">@{{ userName }}</a>
+                                    <ul id='dropdown1' class='dropdown-content'>
+                                        <li v-if="isAdmin"><router-link to="/products">Products</router-link></li>
+                                        <li v-if="isAdmin"><router-link to="/settings/token">Tokens</router-link></li>
+                                        <li class="divider"></li>
+                                        <li><router-link to="/logout">Logout</router-link></li>
+                                    </ul>
                                 </div>
 
                                 <ul class="right hide-on-med-and-down">
                                     <template v-if="isLoggedIn">
                                         <li><router-link to="/">Dashboard</router-link></li>
-                                        <li><router-link to="/features/releases">Release</router-link></li>
-                                        <li v-if="isAdmin"><router-link to="/products">Products</router-link></li>
-                                        <li v-if="isAdmin"><router-link to="/settings/token">Tokens</router-link></li>
-                                        <li><router-link to="/reports">Report</router-link></li>
-                                        <li><router-link to="/logout">Logout</router-link></li>
+                                        <li><router-link to="/features/releases">Releases</router-link></li>
+                                        <li><router-link to="/reports">Reports</router-link></li>
                                     </template>
                                     <template v-else>
                                         <li><router-link to="/login">Login</router-link></li>

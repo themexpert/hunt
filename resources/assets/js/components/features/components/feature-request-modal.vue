@@ -172,21 +172,7 @@
                         Hunt.toast('Your feature request has been received.', 'success');
                         this.busy = false;
                         if(this.$store.state.features.product_id==this.feature.product_id) {
-                            this.$store.state.features.features.unshift({
-                                is_public: !data.is_private,
-                                id: success.body.id,
-                                description: data.description,
-                                name: data.name,
-                                product_id: this.feature.product_id,
-                                status: {type: 'PENDING'},
-                                tags: data.tags.map(x=>{
-                                    return {name: x}
-                                }),
-                                vote: {
-                                    up: 0,
-                                    down: 0,
-                                }
-                            });
+                            this.$store.state.features.features.unshift(success.body.feature);
                         }
                         this.feature = {
                             accesses: [
