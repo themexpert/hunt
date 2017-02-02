@@ -12,7 +12,7 @@
             <div class="feature-list card">
                 <div class="details">
                     <ul class="collection releases-ist">
-                        <releases-list-item v-for="feature in features" :item="feature"></releases-list-item>
+                        <releases-list-item v-for="feature in features" :feature="feature"></releases-list-item>
                         <li v-if="features.length==0" class="text-center">No feature request found.</li>
                         <li style="text-align: center" v-if="loading"><preloader-2></preloader-2></li>
                     </ul><!--/.card-->

@@ -1,12 +1,12 @@
 <template>
     <li class="collection-item avatar" :class="statusClass">
         <i class="material-icons circle">done</i>
-        <h4 class="title"><router-link :to="productUrl">{{ item.product.name }}</router-link>: <router-link :to="featureUrl">{{ item.name }}</router-link></h4>
-        <tag :tags="item.tags"></tag>
+        <h4 class="title"><router-link :to="productUrl">{{ feature.product.name }}</router-link>: <router-link :to="featureUrl">{{ feature.name }}</router-link></h4>
+        <tag :tags="feature.tags"></tag>
         <div class="description">
-            {{ item.description }}
+            {{ feature.description }}
         </div>
-        <vote :item-id="item.id"></vote>
+        <vote :feature="feature"></vote>
     </li>
 </template>
 <style>
@@ -21,7 +21,7 @@
             'vote': Vote,
             'tag': Tag
         },
-        props: ['item'],
+        props: ['feature'],
         data(){
             return{
 
@@ -33,7 +33,7 @@
              * Computes status
              */
             status() {
-                return this.item.status!=null?this.item.status.type:'PENDING';
+                return this.feature.status!=null?this.feature.status.type:'PENDING';
             },
 
             /**
@@ -55,7 +55,7 @@
              * @returns {string}
              */
             featureUrl() {
-                return '/products/'+this.item.product_id+'/features/' + this.item.id;
+                return '/products/'+this.feature.product_id+'/features/' + this.feature.id;
             },
 
             /**
@@ -64,7 +64,7 @@
              * @returns {string}
              */
             productUrl() {
-                return '/products/'+this.item.product_id+'/features';
+                return '/products/'+this.feature.product_id+'/features';
             }
         }
     }
