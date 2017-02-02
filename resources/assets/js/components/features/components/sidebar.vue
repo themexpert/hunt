@@ -5,7 +5,7 @@
     <div v-else class="col s4">
         <div class="widget widget-action">
             <h3 class="widget-title mt0">Action</h3>
-            <vote :item-id="feature.id" :voted="feature.vote.voted" single></vote>
+            <vote :feature="feature" single></vote>
         </div><!--/.widget-->
 
         <div class="widget widget-feedback">
@@ -38,18 +38,6 @@
         data(){
             return{
             }
-        },
-        mounted() {
-            /**
-             * Register new vote listener
-             */
-            Bus.$on('new-vote', vote=>{
-                if(this.feature.vote==null) this.feature.vote = {up: 0, down: 0};
-                if(vote.up)
-                    this.feature.vote.up++;
-                else
-                    this.feature.vote.down++;
-            });
         },
         computed: {
             /**

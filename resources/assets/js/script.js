@@ -25,6 +25,8 @@ Hunt.renderPage = (pageTitle) => {
     if(collaps.length>0) collaps.collapsible();
     let toolTip = $('[data-tooltip]');
     if(toolTip.length>0) toolTip.tooltip();
+    let dropdowns = $(".dropdown");
+    if(dropdowns.length>0) dropdowns.dropdown();
     Hunt.pace.start();
     window.scrollTo(0,0);
 };
