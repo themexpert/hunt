@@ -84,7 +84,7 @@ router.beforeEach((to, from, next)=>{
         /**
          * Check if the user already logged in
          */
-        else if (to.path == '/login' || to.path == 'register') {
+        else if (to.path == '/login' || to.path == '/register') {
             Vue.http.get(Hunt.BASE_URL + '/refresh')
                 .then(
                     success => {
