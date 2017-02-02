@@ -48,4 +48,14 @@ class User extends Authenticatable
     {
         return config('developers');
     }
+
+    /**
+     * Get vote related to the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function vote()
+    {
+        return $this->belongsToMany(Vote::class);
+    }
 }
