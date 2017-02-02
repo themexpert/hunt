@@ -25,7 +25,7 @@
                         </div>
 
                         <div class="input-field left-align">
-                            <button type="submit" class="btn">Update</button>
+                            <button type="submit" class="btn" :disabled="busy">Update <spinner v-if="busy"></spinner></button>
                         </div>
                     </form>
                 </div>
@@ -48,7 +48,8 @@
             return{
                 status: null,
                 subject: '',
-                message: ''
+                message: '',
+                busy: false
             }
         },
         mounted() {
@@ -104,6 +105,7 @@
                         endPoint='/declines/';
                         break;
                 }
+                this.busy = true;
                 this.post(endPoint+this.featureId, {status: data})
                     .then(
                         success => {
@@ -116,10 +118,12 @@
                             this.subject = '';
                             this.message = '';
                             $("#status_change").modal('close');
+                            this.busy = false;
                         },
                         fail => {
                             Hunt.toast('Could not update status.', 'error');
                             console.log(fail);
+                            this.busy = false;
                         }
                     );
             }

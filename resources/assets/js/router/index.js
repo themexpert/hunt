@@ -25,6 +25,7 @@ router.beforeEach((to, from, next)=>{
                 success => {
                     if(success.body.loggedIn) {
                         window.Laravel.token=success.body.token;
+                        Hunt.updateToken(success.body.token);
                         window.Laravel.csrfToken = success.body._token;
                         store.commit('loggedIn', success.body.user);
                         store.state.loaded = true;
@@ -37,7 +38,7 @@ router.beforeEach((to, from, next)=>{
                         store.state.loaded = true;
                         Bus.$emit('loaded');
                         Hunt.toast('You need to be registered and logged in to use this service.', 'warning', 3000);
-                        router.push('/login');
+                        if(to.path!='/register') router.push('/login'); else gotoNext(to, from, next);
                     }
                     else
                     {
@@ -69,6 +70,7 @@ router.beforeEach((to, from, next)=>{
                 .then(
                     success => {
                         window.Laravel.csrfToken = success.body._token;
+                        Hunt.deleteToken();
                         Hunt.toast('You have been logged out.', 'info');
                         store.dispatch('loggedOut');
                         router.push('/login');
@@ -82,7 +84,7 @@ router.beforeEach((to, from, next)=>{
         /**
          * Check if the user already logged in
          */
-        else if (to.path == '/login') {
+        else if (to.path == '/login' || to.path == 'register') {
             Vue.http.get(Hunt.BASE_URL + '/refresh')
                 .then(
                     success => {
@@ -96,7 +98,7 @@ router.beforeEach((to, from, next)=>{
                     },
                     fail => {
                         console.log(fail);
-                        Hunt.toast('Something went wrong. (login)', 'error', 3000);
+                        Hunt.toast('Something went wrong. (login/register)', 'error', 3000);
                     }
                 );
         }

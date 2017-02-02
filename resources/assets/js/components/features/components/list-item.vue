@@ -6,7 +6,7 @@
         <div class="description">
             {{ item.description }}
         </div>
-        <vote :item-id="item.id"></vote>
+        <vote :item-id="item.id" :voted="item.vote.voted"></vote>
     </li>
 </template>
 <style>

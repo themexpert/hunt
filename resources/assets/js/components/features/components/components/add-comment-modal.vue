@@ -14,7 +14,7 @@
                         </div>
 
                         <div class="input-field left-align">
-                            <button type="submit" class="btn" :disabled="busy">Save comment <i class="material-icons left">done</i></button>
+                            <button type="submit" class="btn" :disabled="busy">Save comment <i class="material-icons left">done</i> <spinner v-if="busy"></spinner></button>
                             <a class="modal-action modal-close waves-effect waves-green btn grey">Close</a>
                         </div>
                     </form>

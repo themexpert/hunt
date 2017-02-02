@@ -38,6 +38,7 @@ export default {
                 .then(
                     success => {
                         window.Laravel.token=success.body.token;
+                        Hunt.updateToken(success.body.token);
                         ctx.commit('loggedIn', success.body.user);
                         if(redirectTo!=undefined) router.push(redirectTo);
                     },

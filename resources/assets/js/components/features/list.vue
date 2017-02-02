@@ -73,6 +73,7 @@
              * Register infinite scroll
              */
             Hunt.infiniteScroll('.feature-list', ()=>{
+                if(this.$store.state.features.features.pagination==null) return;
                 this.loading = true;
                 this.$store.commit('update_features', true);
             });

@@ -3,18 +3,24 @@
         <img :src="gravatar(comment.user.email)" alt="" class="circle">
         <span class="title">{{ comment.user.name }}</span>
         <p>{{ comment.message }}</p>
-        <a class="secondary-content">{{ getDateDiffFromToday(comment.created_at) }}</i></a>
+        <a class="secondary-content">{{ getTimeDiff }}</a>
     </li>
 </template>
 <style>
     
 </style>
 <script>
+    import moment from 'moment'
     export default{
         name: 'SingleCommentItem',
         props: ['comment'],
         data(){
             return{
+            }
+        },
+        computed: {
+            getTimeDiff() {
+                return moment(this.comment.created_at).fromNow();
             }
         }
     }

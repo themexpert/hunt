@@ -46,7 +46,7 @@
 
                                     <div class="input-field">
 
-                                        <a class="btn btn-block" @click="login" :disabled="busy">Log In</a>
+                                        <a class="btn btn-block" @click="login" :disabled="busy">Log In <spinner v-if="busy"></spinner></a>
 
                                     </div><!--/.input-field-->
                                 </form>

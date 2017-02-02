@@ -5,7 +5,7 @@
     <div v-else class="col s4">
         <div class="widget widget-action">
             <h3 class="widget-title mt0">Action</h3>
-            <vote :item-id="feature.id" single></vote>
+            <vote :item-id="feature.id" :voted="feature.vote.voted" single></vote>
         </div><!--/.widget-->
 
         <div class="widget widget-feedback">

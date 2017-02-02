@@ -22,7 +22,7 @@ Route::get('/refreshToken', function () {
     return response()->json(
         [
             'loggedIn' => true,
-            'token'    => auth()->user()->createToken('laravel_token')->accessToken,
+            'token'    => auth()->user()->createToken('hunt_api_token')->accessToken,
             '_token'   => csrf_token(),
             'user'     => [
                 'name'  => auth()->user()->name,
