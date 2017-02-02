@@ -84,17 +84,20 @@ class Feature extends Model
 
     /**
      * User voted attribute.
-     * 
+     *
      * @return bool
      */
     public function getUserVotedAttribute()
     {
-        $userGiveVote = auth()->user()->vote()->whereVoteId($this->id)->first();
+        $userGiveVote = auth()->user()->vote()->withPivot('vote_type')
+            ->whereVoteId($this->id)->first();
 
         if(is_null($userGiveVote)) {
-            return false;
+            return 0;
         }
 
-        return true;
+        return ($userGiveVote->pivot->vote_type == 'up')
+                ? 1
+                : -1;
     }
 }

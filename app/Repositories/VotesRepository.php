@@ -27,7 +27,9 @@ class VotesRepository
             $featureVote->save();
 
             // save voter
-            auth()->user()->vote()->save($featureVote);
+            auth()->user()->vote()->save($featureVote, [
+                'vote_type' => 'up'
+            ]);
         }
     }
 
@@ -51,7 +53,9 @@ class VotesRepository
             $featureVote->save();
 
             // save voter
-            auth()->user()->vote()->save($featureVote);
+            auth()->user()->vote()->save($featureVote, [
+                'vote_type' => 'down'
+            ]);
         }
     }
 }
