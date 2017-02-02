@@ -16,6 +16,13 @@ class Feature extends Model
     ];
 
     /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['userVoted'];
+
+    /**
      * Get all tags related to the feature request.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
@@ -73,5 +80,21 @@ class Feature extends Model
     public function priority()
     {
         return $this->hasOne(Priority::class);
+    }
+
+    /**
+     * User voted attribute.
+     * 
+     * @return bool
+     */
+    public function getUserVotedAttribute()
+    {
+        $userGiveVote = auth()->user()->vote()->whereVoteId($this->id)->first();
+
+        if(is_null($userGiveVote)) {
+            return false;
+        }
+
+        return true;
     }
 }

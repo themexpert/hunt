@@ -23,7 +23,7 @@ class FeaturesController extends Controller
      */
     public function __construct(FeaturesRepository $featuresRepository)
     {
-        //$this->middleware(['auth:api', 'emailActivation']);
+        $this->middleware(['auth:api', 'emailActivation']);
 
         $this->featuresRepository = $featuresRepository;
     }
