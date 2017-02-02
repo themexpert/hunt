@@ -134,11 +134,10 @@ class PreparedReportsRepository
                 ->select(
                     'features.id',
                     'features.name',
-                    'statuses.type',
-                    'efforts.value as effort_vlaue',
+                    'efforts.value as effort_value',
                     'priorities.value as priority_value'
                 )
-                ->groupBy('features.name')
+                ->groupBy('features.id', 'features.name', 'statuses.type', 'effort_value', 'priority_value')
                 ->where('efforts.value', '<=', $effortDefaultSearchValue)
                 ->get();
     }
