@@ -8,11 +8,6 @@ Route::get('/auth/google/callback', 'Api\Auth\LoginController@handleProviderCall
 // dashboard route...
 Route::get('/dashboard', 'DashboardController@index');
 
-// settings routes...
-Route::get('/settings/token', 'SettingsController@token');
-
-
-
 // SPA Starts...
 //Route::get('/', function () {
 //    return view('main-app');

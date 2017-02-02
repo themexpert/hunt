@@ -53,6 +53,7 @@
                                         <li><router-link to="/">Dashboard</router-link></li>
                                         <li><router-link to="/features/releases">Release</router-link></li>
                                         <li v-if="isAdmin"><router-link to="/products">Products</router-link></li>
+                                        <li v-if="isAdmin"><router-link to="/settings/token">Tokens</router-link></li>
                                         <li><router-link to="/reports">Report</router-link></li>
                                         <li><router-link to="/logout">Logout</router-link></li>
                                     </template>
