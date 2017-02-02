@@ -18,9 +18,17 @@ class VotesRepository
 
         $featureVote = Vote::whereFeatureId($feature->id)->first();
 
-        $featureVote->up = $featureVote->up + 1;
+        $userGiveVote = auth()->user()->vote()->whereVoteId($featureVote->id)->first();
 
-        $featureVote->save();
+        if(is_null($userGiveVote)) {
+
+            // update feature vote
+            $featureVote->up = $featureVote->up + 1;
+            $featureVote->save();
+
+            // save voter
+            auth()->user()->vote()->save($featureVote);
+        }
     }
 
     /**
@@ -34,12 +42,16 @@ class VotesRepository
 
         $featureVote = Vote::whereFeatureId($feature->id)->first();
 
-        $featureVote->up = $featureVote->up - 1;
+        $userGiveVote = auth()->user()->vote()->whereVoteId($featureVote->id)->first();
 
-        if($featureVote->down < 0) {
-            $featureVote->down = 0;
+        if(is_null($userGiveVote)) {
+
+            // update feature vote
+            $featureVote->down = $featureVote->down + 1;
+            $featureVote->save();
+
+            // save voter
+            auth()->user()->vote()->save($featureVote);
         }
-
-        $featureVote->save();
     }
 }
