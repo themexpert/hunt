@@ -1,13 +1,9 @@
 <template>
-    <multiselect
-            :options="$store.state.features.products"
-            :value="product"
-            v-model="product"
-            @input="updateProduct"
-            track-by="name"
-            label="name"
-            placeholder="Select a product">
-    </multiselect>
+    <select2
+            :selected-value="selectedValue"
+            :options="productsForSelect2"
+            :update="updateProduct"
+            :tags="true"></select2>
 </template>
 <style>
 
@@ -18,7 +14,8 @@
         props: ['selected', 'update', 'input'],
         data(){
             return {
-                product: null
+                product: null,
+                selectedValue: null
             }
         },
         mounted() {
@@ -32,11 +29,12 @@
              */
             load() {
                 if(this.products.length==0 || this.update==undefined || this.update==false) return; //no product found or just showing the dropdown
-                let product_id = this.$route.params.product_id || this.$store.state.features.product_id;
+                let product_id = this.$route.params.product_id;
                 if(product_id==undefined) {
-                    product_id = this.products[0].id;
+                    product_id = this.$store.state.features.product_id || this.products[0].id;
                     this.$router.push('/products/'+product_id+'/features'+'/'+this.$store.state.features.filter);
                 }
+                this.selectedValue = product_id;
                 this.$store.dispatch('product_changed', product_id);
                 this.products.forEach(x=>{
                     if(x.id==product_id) this.product = x;
@@ -46,11 +44,11 @@
              * Updates the product in store and invokes product_changed
              * @param nP
              */
-            updateProduct(nP) {
-                if(this.input!=undefined) this.input(nP);
-                if(this.update!=undefined && this.update==true && nP!=null) {
-                    this.$router.push('/products/'+nP.id+'/features');
-                    this.$store.dispatch('product_changed', nP.id);
+            updateProduct(value) {
+                if(this.input!=undefined) this.input(value);
+                if(this.update!=undefined && this.update==true && value!=null) {
+                    this.$router.push('/products/'+value+'/features');
+                    this.$store.dispatch('product_changed', value);
                 }
             }
         },
@@ -62,6 +60,17 @@
              */
             products() {
                 return this.$store.state.features.products;
+            },
+            productsForSelect2() {
+                let products = [];
+                for(let i=0;i<this.products.length;i++) {
+                    let x = this.products[i];
+                    products.push({
+                        id: x.id,
+                        text: x.name
+                    });
+                }
+                return products;
             }
         }
     }

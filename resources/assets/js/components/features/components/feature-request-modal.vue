@@ -24,26 +24,26 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
-                            <multiselect id="access"
-                                         :options="feature.accesses"
-                                         :value="feature.access"
-                                         v-model="feature.access"
-                                         track-by="label"
-                                         label="label"
-                                         placeholder="Select Access"></multiselect>
+                            <!--<multiselect-->
+                                    <!--:options="feature.accesses"-->
+                                    <!--:value="feature.access"-->
+                                    <!--v-model="feature.access"-->
+                                    <!--track-by="label"-->
+                                    <!--label="label"-->
+                                    <!--placeholder="Select Access"></multiselect>-->
                         </div>
                         <div class="input-field col s6">
-                            <multiselect
-                                    :options="this.$store.state.features.tags"
-                                    :value="feature.tags"
-                                    v-model="feature.tags"
-                                    track-by="label"
-                                    label="label"
-                                    :multiple="true"
-                                    tag-placeholder="Add new tag"
-                                    :taggable="true"
-                                    @tag="addTag"
-                                    placeholder="Select Tags"></multiselect>
+                            <!--<multiselect-->
+                                    <!--:options="tags"-->
+                                    <!--:value="feature.tags"-->
+                                    <!--v-model="feature.tags"-->
+                                    <!--track-by="label"-->
+                                    <!--label="label"-->
+                                    <!--:multiple="true"-->
+                                    <!--tag-placeholder="Add new tag"-->
+                                    <!--:taggable="true"-->
+                                    <!--@tag="addTag"-->
+                                    <!--placeholder="Select Tags"></multiselect>-->
                         </div>
                     </div>
                     <div class="input-field left-align">

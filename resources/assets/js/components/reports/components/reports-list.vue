@@ -31,7 +31,7 @@
 <script type="text/babel">
     import Hunt from '../../../config/Hunt'
     import ListItem from './components/list-item.vue'
-    import preloader_2 from '../../preloader-2.vue'
+    import preloader_2 from '../../helpers/preloader-2.vue'
     export default{
         name: 'ReportsList',
         components: {

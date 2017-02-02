@@ -27,7 +27,7 @@
 <script>
     import Hunt from '../../config/Hunt'
     import SearchResult from './components/search-result.vue'
-    import preloader_2 from '../preloader-2.vue'
+    import preloader_2 from '../helpers/preloader-2.vue'
     export default{
         name: 'Search',
         components: {

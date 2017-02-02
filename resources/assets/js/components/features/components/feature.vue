@@ -40,7 +40,7 @@
     import Hunt from '../../../config/Hunt'
     import Comments from './components/comments.vue'
     import AddCommentModal from './components/add-comment-modal.vue'
-    import preloader from '../../preloader.vue'
+    import preloader from '../../helpers/preloader.vue'
     import moment from 'moment'
     export default{
         name: 'SingleFeatureItem',

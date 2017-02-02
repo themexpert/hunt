@@ -1,6 +1,8 @@
 <template>
     <ul>
-        <li v-for="filterItem in filters" :class="{active:filter==filterItem.slug}"><router-link :to="makeUrl(filterItem.slug)">{{ filterItem.label }}</router-link></li>
+        <li v-for="filterItem in filters" :class="{active:filter==filterItem.slug}">
+            <router-link :to="makeUrl(filterItem.slug)">{{ filterItem.label }}</router-link>
+        </li>
     </ul>
 </template>
 <style>
@@ -10,7 +12,6 @@
 </style>
 <script type="text/babel">
     export default{
-        props: ['filter'],
         data(){
             return{
             }
@@ -29,7 +30,7 @@
              * @returns {string}
              */
             makeUrl(slug) {
-                if(this.product_id==null) return '';
+                if(this.product_id==null) return '#';
                 if(slug=='') return '/products/'+this.product_id+'/features';
                 return '/products/' + this.product_id + '/features/filter/' + slug;
             }
@@ -41,7 +42,7 @@
              * @returns {computed.product_id|*|null}
              */
             product_id() {
-                return this.$store.state.features.product_id;
+                return this.$route.params.product_id;
             },
 
             /**
@@ -51,6 +52,10 @@
              */
             filters() {
                 return this.$store.state.features.statuses;
+            },
+
+            filter() {
+                return this.$route.params.filter || '';
             }
         },
         watch: {
@@ -59,6 +64,9 @@
              */
             filter() {
                 this.$store.dispatch('apply_filter', this.filter);
+            },
+            product_id() {
+                console.log(this.product_id, this.$route.params);
             }
         }
     }

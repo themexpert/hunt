@@ -28,7 +28,7 @@
     import Hunt from '../../config/Hunt'
     import featureRequestModal from '../features/components/feature-request-modal.vue'
     import releasesListItem from './components/releases-list-item.vue'
-    import preloader_2 from '../preloader-2.vue'
+    import preloader_2 from '../helpers/preloader-2.vue'
     export default{
         name: 'Releases',
         components: {

@@ -17,7 +17,7 @@ export default {
         register: require('./auth/register.vue')
     },
     error: {
-        e404: require('./error-404.vue')
+        e404: require('./helpers/error-404.vue')
     },
     passport: {
         settings: {

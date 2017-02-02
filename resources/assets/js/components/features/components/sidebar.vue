@@ -24,7 +24,7 @@
     
 </style>
 <script type="text/babel">
-    import preloader from '../../preloader.vue'
+    import preloader from '../../helpers/preloader.vue'
     import vote from './components/vote.vue'
     import StatusUpdateModal from './components/status-update-modal.vue'
     export default{

@@ -9,7 +9,7 @@
                         <div class="row">
                             <div class="col s9">
                                 <div class="progress-link">
-                                    <filters :filter="$route.params.filter || ''"></filters>
+                                    <filters></filters>
                                 </div>
                             </div>
                             <div class="col s3">
@@ -42,7 +42,7 @@
     import products from './components/products.vue'
     import featureRequestModal from './components/feature-request-modal.vue'
     import featureListItem from './components/list-item.vue'
-    import preloader_2 from '../preloader-2.vue'
+    import preloader_2 from '../helpers/preloader-2.vue'
     export default{
         components: {
             'filters': filters,
