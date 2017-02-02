@@ -22,7 +22,7 @@ class FiltersController extends Controller
      */
     public function __construct(FiltersRepository $filtersRepository)
     {
-       // $this->middleware(['auth:api', 'emailActivation', 'dev']);
+        $this->middleware(['auth:api', 'emailActivation', 'dev']);
 
         $this->filtersRepository = $filtersRepository;
     }
