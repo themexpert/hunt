@@ -4,6 +4,7 @@ namespace Hunt\Repositories;
 
 use Hunt\Status;
 use Hunt\Feature;
+use Hunt\Events\FeatureStatusUpdated;
 
 class PlansRepository
 {
@@ -17,10 +18,14 @@ class PlansRepository
     {
         $feature = Feature::with('status')->findOrFail($featureId);
 
-        $feature->status->update([
+        $updatedStatus = [
             'type' => Status::$IN_PROGRESS,
             'subject' => $status['subject'],
             'message' => $status['message']
-        ]);
+        ];
+
+        $feature->status->update($updatedStatus);
+
+        event(new FeatureStatusUpdated($feature, $updatedStatus));
     }
 }

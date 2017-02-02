@@ -58,8 +58,10 @@ class FeatureStatusUpdated extends Mailable
     {
         $appName = config('app.name');
 
+        $status = $this->status['type'];
+
         return $this->from(env('FROM_EMAIL'), $appName)
-                    ->subject("[{$appName}] {$this->feature->name} status updated")
+                    ->subject("[{$appName}] {$this->feature->name} status updated to [ $status ] ")
                     ->view('mail.feature-status-updated');
     }
 }
