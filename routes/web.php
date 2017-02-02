@@ -33,6 +33,13 @@ Route::get('/refreshToken', function () {
     );
 })->middleware('auth');
 
+/**
+ * Temporary route....
+ */
+Route::get('/key', function() {
+   return auth()->user()->createToken('laravel_token')->accessToken;
+})->middleware('auth');
+
 
 Route::get('/refresh', function(){
     return response()->json([
