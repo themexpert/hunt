@@ -64,9 +64,6 @@
              */
             filter() {
                 this.$store.dispatch('apply_filter', this.filter);
-            },
-            product_id() {
-                console.log(this.product_id, this.$route.params);
             }
         }
     }

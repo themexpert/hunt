@@ -34,7 +34,7 @@ export default {
          * @param redirectTo
          */
         loggedIn(ctx, redirectTo) {
-            Vue.http.get(Hunt.BASE_URL + '/refreshToken')
+            Vue.http.get(Hunt.BASE_URL + '/refresh-token')
                 .then(
                     success => {
                         window.Laravel.token=success.body.token;
