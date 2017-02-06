@@ -7,13 +7,9 @@
                 <div class="modal-content">
                     <form action="" @submit.prevent="updateStatus">
                         <div class="input-field">
-                            <multiselect
-                                    :options="statuses"
-                                    :value="status"
-                                    v-model="status"
-                                    track-by="label"
-                                    label="label"
-                                    placeholder="Select Status"></multiselect>
+                            <select2
+                                    :options="preparedStatuses"
+                                    :update="setStatus"></select2>
                         </div>
                         <div class="input-field">
                             <input id="subject" type="text" v-model="subject">
@@ -37,7 +33,7 @@
     </div><!--/.widget-->
 </template>
 <style>
-    
+
 </style>
 <script type="text/babel">
     import Hunt from '../../../../config/Hunt'
@@ -59,6 +55,9 @@
             $(".modal").modal();
         },
         methods: {
+            setStatus(status) {
+                this.status = status;
+            },
             /**
              * Validates inputs
              */
@@ -94,7 +93,7 @@
                 let data = this.prepareData();
                 if(!this.validateInputs(data)) return false;
                 let endPoint = '';
-                switch (this.status.label) {
+                switch (this.status) {
                     case "RELEASED":
                         endPoint='/releases/';
                         break;
@@ -112,7 +111,7 @@
                             console.log(success);
                             Hunt.toast('Status updated.', 'success');
                             Bus.$emit('status-updated', {
-                                type: this.status.label,
+                                type: this.status,
                                 subject: this.subject
                             });
                             this.subject = '';
@@ -138,6 +137,16 @@
                 let nArray = this.$store.state.features.statuses.slice(0);
                 nArray.splice(0,2);
                 return nArray;
+            },
+            preparedStatuses() {
+                let statuses = [];
+                this.statuses.forEach(x=>{
+                    statuses.push({
+                        id: x.label,
+                        text: x.label
+                    });
+                });
+                return statuses;
             }
         }
     }
