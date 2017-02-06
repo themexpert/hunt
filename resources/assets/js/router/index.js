@@ -20,7 +20,7 @@ router.beforeEach((to, from, next)=>{
      * Checks for authentication
      */
     if(!store.state.loaded) {
-        Vue.http.get(Hunt.BASE_URL + '/refreshToken')
+        Vue.http.get(Hunt.BASE_URL + '/refresh-token')
             .then(
                 success => {
                     if(success.body.loggedIn) {
