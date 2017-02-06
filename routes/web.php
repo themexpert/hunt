@@ -13,7 +13,7 @@ Route::get('/dashboard', 'DashboardController@index');
 //    return view('main-app');
 //});
 
-Route::get('/refreshToken', function () {
+Route::get('/refresh-token', function () {
     $tokens = auth()->user()->tokens;
     if($tokens->count()) $tokens->map(function($token){
         $token->delete();
