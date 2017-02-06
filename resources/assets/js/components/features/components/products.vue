@@ -2,8 +2,7 @@
     <select2
             :selected-value="selectedValue"
             :options="productsForSelect2"
-            :update="updateProduct"
-            :tags="true"></select2>
+            :update="updateProduct"></select2>
 </template>
 <style>
 
@@ -42,7 +41,7 @@
             },
             /**
              * Updates the product in store and invokes product_changed
-             * @param nP
+             * @param value
              */
             updateProduct(value) {
                 if(this.input!=undefined) this.input(value);

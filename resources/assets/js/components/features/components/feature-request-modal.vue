@@ -24,26 +24,17 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
-                            <!--<multiselect-->
-                                    <!--:options="feature.accesses"-->
-                                    <!--:value="feature.access"-->
-                                    <!--v-model="feature.access"-->
-                                    <!--track-by="label"-->
-                                    <!--label="label"-->
-                                    <!--placeholder="Select Access"></multiselect>-->
+                            <select2
+                                :options="feature.accesses"
+                                :selected-value="feature.access"
+                                :update="updateAccess"></select2>
                         </div>
                         <div class="input-field col s6">
-                            <!--<multiselect-->
-                                    <!--:options="tags"-->
-                                    <!--:value="feature.tags"-->
-                                    <!--v-model="feature.tags"-->
-                                    <!--track-by="label"-->
-                                    <!--label="label"-->
-                                    <!--:multiple="true"-->
-                                    <!--tag-placeholder="Add new tag"-->
-                                    <!--:taggable="true"-->
-                                    <!--@tag="addTag"-->
-                                    <!--placeholder="Select Tags"></multiselect>-->
+                            <select2
+                                :options="preparedTags"
+                                :selected-value="feature.tags"
+                                :update="updateTags"
+                                :tags="true"></select2>
                         </div>
                     </div>
                     <div class="input-field left-align">
@@ -69,15 +60,15 @@
                 feature: {
                     accesses: [
                         {
-                            label: 'Private',
-                            value: true
+                            text: 'Private',
+                            id: true
                         },
                         {
-                            label: 'Public',
-                            value: false
+                            text: 'Public',
+                            id: false
                         }
                     ],
-                    access: null,
+                    access: false,
                     tags: [],
                     name: '',
                     product_id: null,
@@ -85,18 +76,15 @@
                 },
                 selected_product: null,
                 busy: false,
-                reloadTags: false
+                reloadTags: true
             }
         },
         methods: {
-            addTag(tag) {
-                let newTag = {
-                    label: tag,
-                    value: Math.random()*100
-                };
-                this.feature.tags.push(newTag);
-                this.$store.state.features.tags.push(newTag);
-                this.reloadTags = true;
+            updateAccess(val) {
+                this.feature.access = val; //is_private=val
+            },
+            updateTags(tags) {
+                this.feature.tags = tags;
             },
             /**
              * Listens to product select and updates product
@@ -106,7 +94,7 @@
                     this.feature.product_id=null;
                     return;
                 }
-                this.feature.product_id=nP.id;
+                this.feature.product_id=nP;
             },
             /**
              * Prepares data to be sent
@@ -115,15 +103,9 @@
                 let data = {
                     name: this.feature.name,
                     description: this.feature.description,
-                    is_private: this.feature.access!=null?this.feature.access.value:null,
-                    tags: []
+                    is_private: this.feature.access,
+                    tags: this.feature.tags
                 };
-                if(this.feature.tags==null)
-                    data.tags = [];
-                else
-                    this.feature.tags.forEach(x=>{
-                        data.tags.push(x.label);
-                    });
                 return data;
             },
             /**
@@ -213,6 +195,16 @@
              */
             tags() {
                 return this.$store.state.features.tags;
+            },
+            preparedTags() {
+                let tags = [];
+                this.tags.forEach(x=>{
+                    tags.push({
+                        id: x.label,
+                        text: x.label.toUpperCase()
+                    });
+                });
+                return tags;
             }
         }
     }
