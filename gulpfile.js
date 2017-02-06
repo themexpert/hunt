@@ -18,6 +18,7 @@ elixir(mix => {
         [
             'app.scss',
             'materialize.min.css',
+            '../../../node_modules/select2/src/scss/core.scss',
             'styles.css',
             '../../../node_modules/pace-progress/themes/white/pace-theme-flash.css'
         ], 'public/css/app.css')

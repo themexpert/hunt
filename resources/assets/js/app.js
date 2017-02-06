@@ -11,7 +11,8 @@ Object.assign(Hunt, {pace: Pace, md5: md5, API_URL: Hunt.BASE_URL+'/api'});
 require('./bootstrap');
 require('./passport-bootstrap');
 
-Vue.component('spinner', require('./components/spinner.vue'));
+Vue.component('spinner', require('./components/helpers/spinner.vue'));
+Vue.component('select2', require('./components/helpers/select2.vue'));
 
 import store from './store'
 import router from './router'

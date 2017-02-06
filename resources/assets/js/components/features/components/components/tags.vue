@@ -1,6 +1,7 @@
 <template>
     <div class="tags">
-        <router-link v-for="(tag, key) in tags" :to="tagUrl(tag.name)"><span class="chip" :class="{green:key%2==0}"> {{ tag.name }} </span></router-link>
+        <router-link v-if="isAdmin" v-for="(tag, key) in tags" :to="tagUrl(tag.name)"><span class="chip" :class="{green:key%2==0}"> {{ tag.name }} </span></router-link>
+        <span v-else v-for="(tag, key) in tags" class="chip" :class="{green:key%2==0}"> {{ tag.name }} </span>
     </div>
 </template>
 <style>

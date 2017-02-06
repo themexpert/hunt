@@ -10,6 +10,7 @@ require('./config/mixin');
  */
 
 window.$ = window.jQuery = require('jquery');
+require('select2');
 require("materialize-css");
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces

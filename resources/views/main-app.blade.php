@@ -49,6 +49,7 @@
                                     <ul id='dropdown1' class='dropdown-content'>
                                         <li v-if="isAdmin"><router-link to="/products">Products</router-link></li>
                                         <li v-if="isAdmin"><router-link to="/settings/token">Tokens</router-link></li>
+                                        <li v-if="isAdmin"><router-link to="/reports">Reports</router-link></li>
                                         <li class="divider"></li>
                                         <li><router-link to="/logout">Logout</router-link></li>
                                     </ul>
@@ -58,7 +59,6 @@
                                     <template v-if="isLoggedIn">
                                         <li><router-link to="/">Dashboard</router-link></li>
                                         <li><router-link to="/features/releases">Releases</router-link></li>
-                                        <li><router-link to="/reports">Reports</router-link></li>
                                     </template>
                                     <template v-else>
                                         <li><router-link to="/login">Login</router-link></li>
@@ -78,7 +78,7 @@
             </div><!--/.container-->
         </nav><!--/.nav-->
     </header>
-    <router-view>
+    <router-view class="view" :key="$route.path">
         <div class="preloader-box">
             <div class="preloader-wrapper big active">
                 <div class="spinner-layer spinner-blue">
