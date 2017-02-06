@@ -7,6 +7,4 @@ Homestead.yaml
 .env
 config/developers.php
 /resources/assets/js/config/config.js
-/public/css/
-/public/fonts/
-/public/js/
+
