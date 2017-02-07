@@ -4,6 +4,9 @@
         <div class="status-btn">
             <a class="btn red waves-effect waves-light"  href="#status_change">Update Status <i class="material-icons left">loop</i></a>
             <div id="status_change" class="modal">
+                <div class="modal-header">
+                    <h4 class="title">Update Status</h4>
+                </div>
                 <div class="modal-content">
                     <form action="" @submit.prevent="updateStatus">
                         <div class="input-field">

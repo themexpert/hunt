@@ -3,6 +3,9 @@
         <div class="status-btn">
             <a class="btn red waves-effect waves-light"  href="#priority_change">Update Priority <i class="material-icons left">loop</i></a>
             <div id="priority_change" class="modal">
+                <div class="modal-header">
+                    <h4 class="title">Update Priority</h4>
+                </div>
                 <div class="modal-content">
                     <form action="" @submit.prevent="updatePriority">
                         <div class="row">
@@ -39,11 +42,15 @@
             }
         },
         mounted() {
+            console.log(this.$route.query);
             this.featureId = this.feature.id;
             /**
              * Initiates modal for sub-component
              */
             $(".modal").modal();
+            if(this.$route.query!=null && this.$route.query.set_priority!=undefined && this.feature.user.email==this.$store.state.auth.user.email) {
+                $("#priority_change").modal('open');
+            }
         },
         methods: {
             /**
@@ -54,9 +61,9 @@
                 this.post('/priorities/'+this.featureId, {value: this.priority})
                     .then(
                         success => {
-                            console.log(success);
                             Hunt.toast('Priority updated.', 'success');
                             Bus.$emit('priority-updated', this.priority);
+                            this.$router.push(this.$route.path);
                             $("#priority_change").modal('close');
                             this.busy = false;
                         },

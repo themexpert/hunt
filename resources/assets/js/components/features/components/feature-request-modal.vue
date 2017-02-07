@@ -154,7 +154,7 @@
                         Hunt.toast('Your feature request has been received.', 'success');
                         $("#modal1").modal('close');
                         if(this.reloadTags) this.$store.commit('update_tags');
-                        this.$router.push('/products/'+this.feature.product_id+'/features/'+success.body.feature.id);
+                        this.$router.push('/products/'+this.feature.product_id+'/features/'+success.body.feature.id+'?set_priority=true');
                     },
                     fail => {
                         if(fail.status==422) {

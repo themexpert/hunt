@@ -3,6 +3,9 @@
         <div class="status-btn">
             <a class="btn red waves-effect waves-light"  href="#effort_change">Update Effort <i class="material-icons left">loop</i></a>
             <div id="effort_change" class="modal">
+                <div class="modal-header">
+                    <h4 class="title">Update Effort</h4>
+                </div>
                 <div class="modal-content">
                     <form action="" @submit.prevent="updateEffort">
                         <div class="row">
