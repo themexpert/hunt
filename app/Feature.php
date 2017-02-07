@@ -83,6 +83,16 @@ class Feature extends Model
     }
 
     /**
+     * Get effort related to the feature.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function effort()
+    {
+        return $this->hasOne(Effort::class);
+    }
+
+    /**
      * User voted attribute.
      *
      * @return bool
