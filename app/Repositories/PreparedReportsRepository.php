@@ -38,7 +38,7 @@ class PreparedReportsRepository
      */
     public function popularVote($limit = 10, $searchTerms = '', $status = '')
     {
-        $features = Vote::with(['feature', 'feature.product', 'feature.priority'])->orderBy('up');
+        $features = Vote::with(['feature', 'feature.product', 'feature.priority', 'feature.status'])->orderBy('up');
 
         return $this->dataWithPagination($features, $limit, 'desc', 'id');
     }
@@ -53,7 +53,7 @@ class PreparedReportsRepository
      */
     public function lowPopularVote($limit = 10, $searchTerms = '', $status = '')
     {
-        $features = Vote::with(['feature', 'feature.product', 'feature.priority'])->orderBy('down');
+        $features = Vote::with(['feature', 'feature.product', 'feature.priority', 'feature.status'])->orderBy('down');
 
         return $this->dataWithPagination($features, $limit, 'desc', 'id');
     }
@@ -68,7 +68,7 @@ class PreparedReportsRepository
      */
     public function highValue($limit = 10, $searchTerms = '', $status = '')
     {
-        $features = Priority::with(['feature', 'feature.product', 'feature.priority'])
+        $features = Priority::with(['feature', 'feature.product', 'feature.priority', 'feature.status'])
             ->select('id', 'user_id', 'feature_id', DB::raw('sum(value) as value'))
             ->groupBy('id', 'feature_id')
             ->orderBy('value', 'desc');
@@ -86,7 +86,7 @@ class PreparedReportsRepository
      */
     public function lowValue($limit = 10, $searchTerms = '', $status = '')
     {
-        $features = Priority::with(['feature', 'feature.product', 'feature.priority'])
+        $features = Priority::with(['feature', 'feature.product', 'feature.priority', 'feature.status'])
             ->select('id', 'user_id', 'feature_id', DB::raw('sum(value) as value'))
             ->groupBy('id', 'feature_id')
             ->orderBy('value');
@@ -104,7 +104,7 @@ class PreparedReportsRepository
      */
     public function midValue($limit = 10, $searchTerms = '', $status = '')
     {
-        $features = Priority::with(['feature', 'feature.product', 'feature.priority'])
+        $features = Priority::with(['feature', 'feature.product', 'feature.priority', 'feature.status'])
             ->select('id', 'user_id', 'feature_id', DB::raw('sum(value) as value'))
             ->groupBy('id', 'feature_id')
             ->orderBy('value')
