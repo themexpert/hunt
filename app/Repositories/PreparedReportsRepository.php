@@ -127,7 +127,7 @@ class PreparedReportsRepository
             $effortDefaultSearchValue = request()->input('value');
         }
 
-        return DB::table('features')
+        $data = DB::table('features')
                 ->join('statuses', 'features.id', '=', 'statuses.feature_id')
                 ->join('priorities', 'features.id', '=', 'priorities.feature_id')
                 ->join('efforts', 'features.id', '=', 'efforts.feature_id')
@@ -140,6 +140,7 @@ class PreparedReportsRepository
                 ->groupBy('features.id', 'features.name', 'statuses.type', 'effort_value', 'priority_value')
                 ->where('efforts.value', '<=', $effortDefaultSearchValue)
                 ->get();
+        return ['data'=>$data];
     }
 
     /**
