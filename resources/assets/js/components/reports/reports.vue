@@ -13,10 +13,12 @@
     <div class="container mt30">
         <div class="row">
             <div class="col s3">
+                <prepared-report-filter></prepared-report-filter>
                 <access-filter></access-filter>
                 <tags-filter></tags-filter>
             </div>
-            <reports-list></reports-list>
+            <graph v-if="$route.params.type=='graph'"></graph>
+            <reports-list v-else></reports-list>
         </div>
     </div>
 </section>
@@ -26,14 +28,18 @@
 </style>
 <script>
     import Hunt from '../../config/Hunt'
+    import PreparedReportFilter from './components/prepared-report-filter.vue'
     import AccessFilter from './components/access-filter.vue'
     import TagsFilter from './components/tags-filter.vue'
+    import Graph from './components/graph.vue'
     import ReportsList from './components/reports-list.vue'
     export default{
         name: 'ReportsPage',
         components: {
+            'prepared-report-filter': PreparedReportFilter,
             'access-filter': AccessFilter,
             'tags-filter': TagsFilter,
+            'graph': Graph,
             'reports-list': ReportsList
         },
         data(){

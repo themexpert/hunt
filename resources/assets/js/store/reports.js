@@ -37,6 +37,9 @@ export default {
             else if(state.filter_type=='tags') {
                 endPoint = '/filters/tags/'+state.filter_value
             }
+            else if(state.filter_type=='prepared' || state.filter_type=='graph') {
+                endPoint = '/prepared-reports/'+state.filter_value
+            }
             state.busy = true;
             Vue.http.get(Hunt.API_URL+endPoint+'?page='+state.page)
                 .then(

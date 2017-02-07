@@ -74,4 +74,12 @@ Route::group(['namespace' => 'Api'], function() {
 
     // users routes...
     Route::get('/users/{id}/suggests', 'UsersController@suggests');
+
+    Route::any('{slug}', function($slug)
+    {
+        return response()->json([
+            'error' => 'Page not found',
+            'message' => 'The page '.$slug.' was not found on this server.'
+        ], 404);
+    });
 });
