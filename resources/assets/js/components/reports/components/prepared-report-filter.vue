@@ -56,7 +56,7 @@
                 return '/reports/filter/graph/effortVsValue';
             },
             graphLabel() {
-                return "Effort VS Value";
+                return "Effort VS Priority";
             }
         }
     }

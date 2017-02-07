@@ -44,10 +44,17 @@ export default {
             Vue.http.get(Hunt.API_URL+endPoint+'?page='+state.page)
                 .then(
                     success => {
+                        let features = [];
+                        if(state.filter_type=='prepared') {
+                            success.body.data.forEach(x=>features.push(x.feature));
+                        }
+                        else {
+                            features = success.body.data;
+                        }
                         if(append)
-                            state.features = state.features.concat(success.body.data);
+                            state.features = state.features.concat(features);
                         else
-                            state.features = success.body.data;
+                            state.features = features;
                         state.pagination = success.body.pagination;
                         state.busy = false;
                         Bus.$emit('reports-list-loaded');

@@ -73,7 +73,9 @@
              * gets features list from store
              */
             features() {
-                return this.$store.state.reports.features;
+                return this.$store.state.reports.features.filter(x=>{
+                    return x.product!=undefined;
+                });
             },
             /**
              * Gets filter type from route

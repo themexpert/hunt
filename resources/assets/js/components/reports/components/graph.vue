@@ -1,19 +1,23 @@
 <template>
-    <div id="effort-vs-value" style="width: 600px; height: 500px;" class="col s9"></div>
+    <div class="col s9">
+        <div class="row range-field">
+            <input type="range" v-model="effort" :min="minEffort" :max="maxEffort" @change="renderChart" class="col s9">
+            <span class="col s3">Minimum Effort: {{ effort }}</span>
+        </div>
+        <div id="effort-vs-value" style="width: 600px; height: 500px;" class="col s12"></div>
+    </div>
 </template>
 <style>
     
 </style>
 <script>
     import Hunt from '../../../config/Hunt'
-    import preloader_2 from '../../helpers/preloader-2.vue'
     export default{
         name: 'EffortVSPriorityGraph',
-        components: {
-            'preloader-2': preloader_2
-        },
         data(){
             return{
+                chart: null,
+                effort: 0
             }
         },
         mounted() {
@@ -40,18 +44,19 @@
             },
             prepareChartData() {
                 //data
-                let effortAndPriorityData = [['Name', 'Effort', 'Priority', 'Ratio']];
+                let effortAndPriorityData = [['Name', 'Effort', 'Priority', 'Product', 'Value']];
                 this.features.forEach(x=>{
-                    effortAndPriorityData.push([x.name, x.effort_value, x.priority_value, x.effort_value/x.priority_value]);
+                    if(this.effort<=x.effort_value) effortAndPriorityData.push([x.feature_name, x.effort_value, x.priority_value, x.product_name, (x.effort_value+x.priority_value)/2]);
                 });
                 let data = google.visualization.arrayToDataTable(effortAndPriorityData);
 
                 //options
                 let options = {
-                    title: 'Effort VS Priority/Value Chart',
+                    title: 'Effort VS Priority Chart',
                     hAxis: {title: 'Effort'},
                     vAxis: {title: 'Priority'},
-                    bubble: {textStyle: {fontSize: 11}}
+                    bubble: {textStyle: {fontSize: 11}},
+                    animation: {duration: 400, easing: 'out'}
                 };
 
                 return {
@@ -60,9 +65,10 @@
                 }
             },
             renderChart() {
+                if(this.effort<this.minEffort) this.effort=this.minEffort;
                 let data = this.prepareChartData();
-                let chart = new google.visualization.BubbleChart(document.getElementById('effort-vs-value'));
-                chart.draw(data.data, data.options);
+                if(this.chart==null) this.chart = new google.visualization.BubbleChart(document.getElementById('effort-vs-value'));
+                this.chart.draw(data.data, data.options);
             }
         },
         computed: {
@@ -81,6 +87,28 @@
              */
             filter_value() {
                 return this.$route.params.value;
+            },
+            minEffort() {
+                let min = null;
+                this.features.forEach(x=>{
+                    if(min==null)
+                        min=x.effort_value;
+                    else
+                        if(min>x.effort_value)
+                            min=x.effort_value;
+                });
+                return min!=null?min:0;
+            },
+            maxEffort() {
+                let min = null;
+                this.features.forEach(x=>{
+                    if(min==null)
+                        min=x.effort_value;
+                    else
+                    if(min<x.effort_value)
+                        min=x.effort_value;
+                });
+                return min!=null?min:0;
             }
         },
         watch: {
