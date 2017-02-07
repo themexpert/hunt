@@ -121,11 +121,7 @@ class PreparedReportsRepository
      */
     protected function effortVsValue()
     {
-        $effortDefaultSearchValue = 100;
-
-        if(!empty(request()->input('value'))) {
-            $effortDefaultSearchValue = request()->input('value');
-        }
+        list($minEffort, $maxEffort) = $this->getEffortValue();
 
         return [
             'data' => DB::table('features')
@@ -142,8 +138,8 @@ class PreparedReportsRepository
                     'priorities.value as priority_value'
                 )
                 ->groupBy('features.id', 'feature_name', 'product_name', 'status_type', 'effort_value', 'priority_value')
-                ->where('efforts.value', '>=', $effortDefaultSearchValue)
-                ->where('efforts.value', '<=', $effortDefaultSearchValue)
+                ->where('efforts.value', '>=', $minEffort)
+                ->where('efforts.value', '<=', $maxEffort)
                 ->get()
                 ->toArray()
         ];
@@ -159,5 +155,27 @@ class PreparedReportsRepository
     public function __call($name, $arguments)
     {
         throw new Exception("Please, implement [$name] method");
+    }
+
+    /**
+     * Get development effort value.
+     *
+     * @return array
+     */
+    protected function getEffortValue(): array
+    {
+        $minEffort = 0;
+
+        $maxEffort = 100;
+
+        if (!empty(request()->input('min'))) {
+            $minEffort = request()->input('min');
+        }
+
+        if (!empty(request()->input('max'))) {
+            $maxEffort = request()->input('max');
+            return array($minEffort, $maxEffort);
+        }
+        return array($minEffort, $maxEffort);
     }
 }
