@@ -9,6 +9,7 @@
                         <div class="input-field">
                             <select2
                                     :options="preparedStatuses"
+                                    :selected-value="feature.status.type"
                                     :update="setStatus"></select2>
                         </div>
                         <div class="input-field">
@@ -39,9 +40,10 @@
     import Hunt from '../../../../config/Hunt'
     export default{
         name: 'StatusUpdateModal',
-        props: ['feature-id'],
+        props: ['feature'],
         data(){
             return{
+                featureId: null,
                 status: null,
                 subject: '',
                 message: '',
@@ -49,6 +51,7 @@
             }
         },
         mounted() {
+            this.featureId = this.feature.id;
             /**
              * Initiates modal for sub-component
              */
