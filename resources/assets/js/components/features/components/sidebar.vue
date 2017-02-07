@@ -17,7 +17,8 @@
                 </div>
             </div>
         </div><!--/.widget-->
-        <status-update-modal v-if="isAdmin" :feature-id="feature.id"></status-update-modal>
+        <status-update-modal v-if="isAdmin" :feature="feature"></status-update-modal>
+        <priority-update-modal v-if="isAdmin" :feature="feature"></priority-update-modal>
     </div><!--/.col-->
 </template>
 <style>
@@ -27,12 +28,14 @@
     import preloader from '../../helpers/preloader.vue'
     import vote from './components/vote.vue'
     import StatusUpdateModal from './components/status-update-modal.vue'
+    import PriorityUpdateModal from './components/effort-update-modal.vue'
     export default{
         name: 'SingleFeatureSidebar',
         props: ['feature'],
         components: {
             'preloader': preloader,
             'status-update-modal': StatusUpdateModal,
+            'priority-update-modal': PriorityUpdateModal,
             'vote': vote
         },
         data(){
