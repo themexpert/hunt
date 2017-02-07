@@ -1,8 +1,7 @@
 <template>
     <div class="col s9">
         <div class="row range-field">
-            <input type="range" v-model="effort" :min="minEffort" :max="maxEffort" @change="renderChart" class="col s9">
-            <span class="col s3">Minimum Effort: {{ effort }}</span>
+            <div id="slider-range"></div>
         </div>
         <div id="effort-vs-value" style="width: 600px; height: 500px;" class="col s12"></div>
     </div>
@@ -10,23 +9,46 @@
 <style>
     
 </style>
-<script>
+<script type="text/babel">
     import Hunt from '../../../config/Hunt'
+    import noUISlider from 'nouislider'
     export default{
         name: 'EffortVSPriorityGraph',
         data(){
             return{
+                sliderElem: null,
                 chart: null,
-                effort: 0
+                min: 70,
+                max: 100
             }
         },
         mounted() {
-            Hunt.renderPage("Graph Report");
-            this.$store.dispatch('reloadFeatures', {
-                type: this.filter_type,
-                value: this.filter_value
+            this.sliderElem = document.getElementById('slider-range');
+            noUISlider.create(this.sliderElem, {
+                start: [70, 100],
+                connect: true,
+                range: {
+                    'min': 0,
+                    'max': 100
+                }
             });
+            this.sliderElem.noUiSlider.on('change', (values, handle)=>{
+                if(values[0]!=this.min || values[1]!=this.max) {
+                    this.min = Math.floor(values[0]);
+                    this.max = Math.ceil(values[1]);
+                    this.$store.dispatch('reloadReportsGraph', {
+                        min: this.min,
+                        max: this.max
+                    });
+                }
+            });
+            this.$store.dispatch('reloadReportsGraph', {
+                min: this.min,
+                max: this.max
+            });
+            Hunt.renderPage("Graph Report");
             Bus.$on('google-chart-loaded', ()=>this.renderChart());
+
         },
         methods: {
             checkForChartLoaded() {
@@ -45,14 +67,17 @@
             prepareChartData() {
                 //data
                 let effortAndPriorityData = [['Name', 'Effort', 'Priority', 'Product', 'Value']];
-                this.features.forEach(x=>{
-                    if(this.effort<=x.effort_value) effortAndPriorityData.push([x.feature_name, x.effort_value, x.priority_value, x.product_name, (x.effort_value+x.priority_value)/2]);
-                });
+                if (this.features.length == 0)
+                    effortAndPriorityData.push(['No Data Available', 0, 0, 'No Data Available', 0]);
+                else
+                    this.features.forEach(x => {
+                        effortAndPriorityData.push([x.feature_name, x.effort_value, x.priority_value, x.product_name, (x.effort_value + x.priority_value) / 2]);
+                    });
                 let data = google.visualization.arrayToDataTable(effortAndPriorityData);
 
                 //options
                 let options = {
-                    title: 'Effort VS Priority Chart',
+                    title: 'Effort VS Priority Chart (Min: '+this.min+", Max: "+this.max+')',
                     hAxis: {title: 'Effort'},
                     vAxis: {title: 'Priority'},
                     bubble: {textStyle: {fontSize: 11}},
@@ -73,7 +98,9 @@
         },
         computed: {
             features() {
-                return this.$store.state.reports.features;
+                return this.$store.state.reports.features.filter(x=>{
+                        return x.product==undefined;
+                    });
             },
 
             /**
@@ -87,28 +114,6 @@
              */
             filter_value() {
                 return this.$route.params.value;
-            },
-            minEffort() {
-                let min = null;
-                this.features.forEach(x=>{
-                    if(min==null)
-                        min=x.effort_value;
-                    else
-                        if(min>x.effort_value)
-                            min=x.effort_value;
-                });
-                return min!=null?min:0;
-            },
-            maxEffort() {
-                let min = null;
-                this.features.forEach(x=>{
-                    if(min==null)
-                        min=x.effort_value;
-                    else
-                    if(min<x.effort_value)
-                        min=x.effort_value;
-                });
-                return min!=null?min:0;
             }
         },
         watch: {

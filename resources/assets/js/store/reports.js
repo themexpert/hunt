@@ -3,6 +3,8 @@ export default {
     state: {
         filter_type: null,
         filter_value: null,
+        min: 70,
+        max: 100,
         features: [],
         pagination: null,
         page: 1,
@@ -41,7 +43,7 @@ export default {
                 endPoint = '/prepared-reports/'+state.filter_value
             }
             state.busy = true;
-            Vue.http.get(Hunt.API_URL+endPoint+'?page='+state.page)
+            Vue.http.get(Hunt.API_URL+endPoint+'?'+(state.filter_type=='graph'?'min='+state.min+'&max='+state.max:'page='+state.page))
                 .then(
                     success => {
                         let features = [];
@@ -85,6 +87,13 @@ export default {
                 state.filter_type = filter.type;
                 state.filter_value = filter.value;
             }
+            commit('loadFeatures');
+        },
+        reloadReportsGraph({commit, state}, values) {
+            state.min = values.min;
+            state.max = values.max;
+            state.filter_type = 'graph';
+            state.filter_value = 'effortVsValue';
             commit('loadFeatures');
         }
     }

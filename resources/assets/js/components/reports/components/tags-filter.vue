@@ -35,7 +35,7 @@
              * @returns {computed.tags|null|Array|*}
              */
             tags() {
-                return Object.assign({label:'Any',value:''}, this.$store.state.features.tags);
+                return [{label:'Any',value:''}].concat(this.$store.state.features.tags);
             },
             /**
              * Gets current filter

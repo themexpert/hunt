@@ -14,13 +14,15 @@ require('laravel-elixir-vue-2');
  */
 
 elixir(mix => {
+    mix.less('../../../node_modules/nouislider/src/nouislider.less', 'resources/assets/sass/nouislider.css');
     mix.sass(
         [
             'app.scss',
             'materialize.min.css',
             '../../../node_modules/select2/src/scss/core.scss',
             'styles.css',
-            '../../../node_modules/pace-progress/themes/white/pace-theme-flash.css'
+            '../../../node_modules/pace-progress/themes/white/pace-theme-flash.css',
+            'nouislider.css'
         ], 'public/css/app.css')
         .webpack(
             [
