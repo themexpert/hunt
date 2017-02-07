@@ -25,16 +25,16 @@
                     <div class="row">
                         <div class="input-field col s6">
                             <select2
-                                :options="feature.accesses"
-                                :selected-value="feature.access"
-                                :update="updateAccess"></select2>
+                                    :options="feature.accesses"
+                                    :selected-value="feature.access"
+                                    :update="updateAccess"></select2>
                         </div>
                         <div class="input-field col s6">
                             <select2
-                                :options="preparedTags"
-                                :selected-value="feature.tags"
-                                :update="updateTags"
-                                :tags="true"></select2>
+                                    :options="preparedTags"
+                                    :selected-value="feature.tags"
+                                    :update="updateTags"
+                                    :tags="true"></select2>
                         </div>
                     </div>
                     <div class="input-field left-align">
@@ -152,29 +152,9 @@
                 this.post('/products/'+this.feature.product_id+'/features', data).then(
                     success => {
                         Hunt.toast('Your feature request has been received.', 'success');
-                        this.busy = false;
-                        if(this.$store.state.features.product_id==this.feature.product_id) {
-                            this.$store.state.features.features.unshift(success.body.feature);
-                        }
-                        this.feature = {
-                            accesses: [
-                                {
-                                    label: 'Private',
-                                    value: true
-                                },
-                                {
-                                    label: 'Public',
-                                    value: false
-                                }
-                            ],
-                            access: null,
-                            tags: [],
-                            name: '',
-                            product_id: null,
-                            description: ''
-                        };
                         $("#modal1").modal('close');
                         if(this.reloadTags) this.$store.commit('update_tags');
+                        this.$router.push('/products/'+this.feature.product_id+'/features/'+success.body.feature.id);
                     },
                     fail => {
                         if(fail.status==422) {
