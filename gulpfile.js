@@ -1,5 +1,14 @@
 const elixir = require('laravel-elixir');
-
+elixir.ready(function () {
+    elixir.webpack.mergeConfig({
+        module: {
+            loaders: [{
+                test: /\.json$/,
+                loader: 'json'
+            }]
+        }
+    });
+});
 require('laravel-elixir-vue-2');
 
 /*
@@ -12,7 +21,6 @@ require('laravel-elixir-vue-2');
  | file for our application, as well as publishing vendor resources.
  |
  */
-
 elixir(mix => {
     mix.less('../../../node_modules/nouislider/src/nouislider.less', 'resources/assets/sass/nouislider.css');
     mix.sass(
