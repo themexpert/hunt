@@ -67,7 +67,7 @@
         },
         computed: {
             getTimeDiff() {
-                return moment.tz(this.comment.created_at, 'UTC').tz(moment.tz.guess()).fromNow();
+                return moment.tz(this.feature.created_at, 'UTC').tz(moment.tz.guess()).fromNow();
             }
         }
     }

@@ -1,6 +1,6 @@
 <template>
     <div class="col s9">
-        <div class="row range-field">
+        <div class="row range-input">
             <div id="slider-range"></div>
         </div>
         <div id="effort-vs-value" style="width: 600px; height: 500px;" class="col s12"><spinner></spinner></div>
