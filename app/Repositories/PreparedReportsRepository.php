@@ -128,16 +128,19 @@ class PreparedReportsRepository
         }
 
         return DB::table('features')
+                ->join('products', 'products.id', '=', 'features.product_id')
                 ->join('statuses', 'features.id', '=', 'statuses.feature_id')
                 ->join('priorities', 'features.id', '=', 'priorities.feature_id')
                 ->join('efforts', 'features.id', '=', 'efforts.feature_id')
                 ->select(
                     'features.id',
-                    'features.name',
+                    'features.name as feature_name',
+                    'products.name as product_name',
+                    'statuses.type as status_type',
                     'efforts.value as effort_value',
                     'priorities.value as priority_value'
                 )
-                ->groupBy('features.id', 'features.name', 'statuses.type', 'effort_value', 'priority_value')
+                ->groupBy('features.id', 'feature_name', 'product_name', 'status_type', 'effort_value', 'priority_value')
                 ->where('efforts.value', '<=', $effortDefaultSearchValue)
                 ->get();
     }

@@ -22,7 +22,7 @@ class PreparedReportsController extends Controller
      */
     public function __construct(PreparedReportsRepository $preparedReportsRepository)
     {
-        $this->middleware(['auth:api', 'emailActivation', 'dev']);
+        //$this->middleware(['auth:api', 'emailActivation', 'dev']);
 
         $this->preparedReportsRepository = $preparedReportsRepository;
     }
