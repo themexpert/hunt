@@ -18,7 +18,8 @@
             </div>
         </div><!--/.widget-->
         <status-update-modal v-if="isAdmin" :feature="feature"></status-update-modal>
-        <priority-update-modal v-if="isAdmin" :feature="feature"></priority-update-modal>
+        <effort-update-modal v-if="isAdmin" :feature="feature"></effort-update-modal>
+        <priority-update-modal v-if="currentUserIsCreator" :feature="feature"></priority-update-modal>
     </div><!--/.col-->
 </template>
 <style>
@@ -28,13 +29,15 @@
     import preloader from '../../helpers/preloader.vue'
     import vote from './components/vote.vue'
     import StatusUpdateModal from './components/status-update-modal.vue'
-    import PriorityUpdateModal from './components/effort-update-modal.vue'
+    import EffortUpdateModal from './components/effort-update-modal.vue'
+    import PriorityUpdateModal from './components/priority-update-modal.vue'
     export default{
         name: 'SingleFeatureSidebar',
         props: ['feature'],
         components: {
             'preloader': preloader,
             'status-update-modal': StatusUpdateModal,
+            'effort-update-modal': EffortUpdateModal,
             'priority-update-modal': PriorityUpdateModal,
             'vote': vote
         },
@@ -58,6 +61,10 @@
              */
             downVote() {
                 return this.feature!=undefined && this.feature.vote!=null? this.feature.vote.down:0;
+            },
+
+            currentUserIsCreator() {
+                return this.$store.state.auth.user.email==this.feature.user.email;
             }
         }
     }

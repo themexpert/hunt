@@ -24,6 +24,7 @@
              * @returns {string}
              */
             getUrl(tagId) {
+                if(tagId=='') return '/reports';
                 return '/reports/filter/tags/'+tagId;
             }
         },
@@ -34,7 +35,7 @@
              * @returns {computed.tags|null|Array|*}
              */
             tags() {
-                return this.$store.state.features.tags;
+                return Object.assign({label:'Any',value:''}, this.$store.state.features.tags);
             },
             /**
              * Gets current filter

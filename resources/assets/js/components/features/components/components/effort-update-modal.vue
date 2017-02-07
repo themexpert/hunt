@@ -67,28 +67,6 @@
                         }
                     );
             }
-        },
-        computed: {
-            /**
-             * Gives the list of available statuses
-             *
-             * @returns {Array.<T>}
-             */
-            statuses() {
-                let nArray = this.$store.state.features.statuses.slice(0);
-                nArray.splice(0,2);
-                return nArray;
-            },
-            preparedStatuses() {
-                let statuses = [];
-                this.statuses.forEach(x=>{
-                    statuses.push({
-                        id: x.label,
-                        text: x.label
-                    });
-                });
-                return statuses;
-            }
         }
     }
 </script>
