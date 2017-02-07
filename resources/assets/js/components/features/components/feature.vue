@@ -41,7 +41,6 @@
     import Comments from './components/comments.vue'
     import AddCommentModal from './components/add-comment-modal.vue'
     import preloader from '../../helpers/preloader.vue'
-    import moment from 'moment'
     export default{
         name: 'SingleFeatureItem',
         props: ['feature'],
@@ -68,7 +67,7 @@
         },
         computed: {
             getTimeDiff() {
-                return moment(this.feature.created_at).fromNow();
+                return moment.tz(this.comment.created_at, 'UTC').tz(moment.tz.guess()).fromNow();
             }
         }
     }

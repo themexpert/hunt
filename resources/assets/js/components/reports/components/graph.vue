@@ -3,7 +3,7 @@
         <div class="row range-field">
             <div id="slider-range"></div>
         </div>
-        <div id="effort-vs-value" style="width: 600px; height: 500px;" class="col s12"></div>
+        <div id="effort-vs-value" style="width: 600px; height: 500px;" class="col s12"><spinner></spinner></div>
     </div>
 </template>
 <style>

@@ -1,5 +1,5 @@
 <template>
-    <div class="widget widget-feature-tags mt30">
+    <div class="widget widget-feature-filter mt30">
         <h3 class="widget-title">Feature Tags</h3>
         <div class="filter-btn">
             <router-link class="waves-effect waves-light btn" v-for="tag in tags" :to="getUrl(tag.value)" :class="{active: filter==tag.value}">{{ tag.label }}</router-link>
@@ -41,8 +41,8 @@
              * Gets current filter
              */
             filter() {
-                if(this.$route.params==null || this.$route.params.type!='tags') return '';
-                return this.$route.params.value;
+                if(this.$route.params==null) return '';
+                return this.$route.params.value || '';
             }
         }
     }

@@ -255,3 +255,7 @@ footer {
   color: #31708f;
   background: #d9edf7;
 }
+
+.widget-feature-filter .filter-btn a.active {
+  background: #306cda;
+}

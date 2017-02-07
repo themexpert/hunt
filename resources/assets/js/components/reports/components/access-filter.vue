@@ -26,7 +26,7 @@
              */
             filter() {
                 if(this.$route.params==null) return '';
-                return this.$route.params.value;
+                return this.$route.params.value || '';
             }
         }
     }

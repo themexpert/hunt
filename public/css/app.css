@@ -8717,6 +8717,10 @@ footer {
   background: #d9edf7;
 }
 
+.widget-feature-filter .filter-btn a.active {
+  background: #306cda;
+}
+
 /* This is a compiled file, you should be editing the file in the templates directory */
 .pace {
   -webkit-pointer-events: none;

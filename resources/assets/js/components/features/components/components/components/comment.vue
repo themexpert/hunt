@@ -10,7 +10,6 @@
     
 </style>
 <script>
-    import moment from 'moment'
     export default{
         name: 'SingleCommentItem',
         props: ['comment'],
@@ -20,7 +19,7 @@
         },
         computed: {
             getTimeDiff() {
-                return moment(this.comment.created_at).fromNow();
+                return moment.tz(this.comment.created_at, 'UTC').tz(moment.tz.guess()).fromNow();
             }
         }
     }
