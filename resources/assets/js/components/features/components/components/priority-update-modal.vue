@@ -42,7 +42,6 @@
             }
         },
         mounted() {
-            console.log(this.$route.query);
             this.featureId = this.feature.id;
             /**
              * Initiates modal for sub-component
@@ -54,7 +53,7 @@
         },
         methods: {
             /**
-             * Updates status
+             * Updates priority
              */
             updatePriority() {
                 this.busy = true;

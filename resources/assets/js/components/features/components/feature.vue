@@ -66,6 +66,11 @@
             });
         },
         computed: {
+            /**
+             * Get time difference from now in human readable format
+             *
+             * @returns {string|*}
+             */
             getTimeDiff() {
                 return moment.tz(this.feature.created_at, 'UTC').tz(moment.tz.guess()).fromNow();
             }

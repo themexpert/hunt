@@ -23,6 +23,10 @@
             }
         },
         mounted() {
+            /**
+             * Register noUISlider
+             * @type {Element}
+             */
             this.sliderElem = document.getElementById('slider-range');
             noUISlider.create(this.sliderElem, {
                 start: [70, 100],
@@ -32,6 +36,9 @@
                     'max': 100
                 }
             });
+            /**
+             * Register change event for noUISlider
+             */
             this.sliderElem.noUiSlider.on('change', (values, handle)=>{
                 if(values[0]!=this.min || values[1]!=this.max) {
                     this.min = Math.floor(values[0]);
@@ -51,6 +58,12 @@
 
         },
         methods: {
+            /**
+             * Check if google object loaded
+             * Loads chart if not loaded
+             * returns false
+             * else, returns true
+             */
             checkForChartLoaded() {
                 if(typeof window.google=='undefined') {
                     let script = document.createElement('script');
@@ -64,6 +77,9 @@
                 }
                 return true;
             },
+            /**
+             * Prepares data to show on chart
+             */
             prepareChartData() {
                 //data
                 let effortAndPriorityData = [['Name', 'Effort', 'Priority', 'Product', 'Value']];
@@ -89,6 +105,9 @@
                     options: options
                 }
             },
+            /**
+             * Draws the chart
+             */
             renderChart() {
                 if(this.effort<this.minEffort) this.effort=this.minEffort;
                 let data = this.prepareChartData();
@@ -97,6 +116,9 @@
             }
         },
         computed: {
+            /**
+             * Gives features list compatible for graph
+             */
             features() {
                 return this.$store.state.reports.features.filter(x=>{
                         return x.product==undefined;
@@ -117,6 +139,9 @@
             }
         },
         watch: {
+            /**
+             * Watches for change of features
+             */
             features() {
                 if(this.checkForChartLoaded()) this.renderChart();
             }

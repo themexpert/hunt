@@ -54,6 +54,9 @@
                 return this.$store.state.features.statuses;
             },
 
+            /**
+             * Returns current filter
+             */
             filter() {
                 return this.$route.params.filter || '';
             }

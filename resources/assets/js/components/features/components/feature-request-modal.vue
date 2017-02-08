@@ -80,9 +80,15 @@
             }
         },
         methods: {
+            /**
+             * Update access
+             */
             updateAccess(val) {
                 this.feature.access = val; //is_private=val
             },
+            /**
+             * Updates tag
+             */
             updateTags(tags) {
                 this.feature.tags = tags;
             },
@@ -176,6 +182,12 @@
             tags() {
                 return this.$store.state.features.tags;
             },
+
+            /**
+             * Prepare tags list for select2
+             *
+             * @returns {Array}
+             */
             preparedTags() {
                 let tags = [];
                 this.tags.forEach(x=>{

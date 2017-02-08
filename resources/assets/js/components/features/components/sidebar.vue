@@ -62,7 +62,11 @@
             downVote() {
                 return this.feature!=undefined && this.feature.vote!=null? this.feature.vote.down:0;
             },
-
+            /**
+             * Checks if the current user created this feature request
+             *
+             * @returns {boolean}
+             */
             currentUserIsCreator() {
                 return this.$store.state.auth.user.email==this.feature.user.email;
             }

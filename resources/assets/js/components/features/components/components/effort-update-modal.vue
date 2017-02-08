@@ -50,7 +50,7 @@
         },
         methods: {
             /**
-             * Updates status
+             * Updates effort
              */
             updateEffort() {
                 this.busy = true;

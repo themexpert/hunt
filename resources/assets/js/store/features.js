@@ -13,18 +13,6 @@ export default {
         tags: []
     },
     mutations: {
-        new_vote(state, vote) {
-            for(let i=0;i<state.features.length;i++) {
-                if(state.features[i].id!=vote.id) continue;
-                state.features[i].userVoted = vote.type=='up'?1:-1;
-                if(vote.type=='up') {
-                    state.features[i].vote.up++;
-                } else {
-                    state.features[i].vote.down++;
-                }
-                break;
-            }
-        },
         /**
          * Loads status list from server
          *
@@ -113,7 +101,11 @@ export default {
                     }
                 );
         },
-
+        /**
+         * Update tags on server side change
+         *
+         * @param state
+         */
         update_tags(state) {
             Vue.http.get(Hunt.API_URL + '/tags')
                 .then(

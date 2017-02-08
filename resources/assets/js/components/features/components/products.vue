@@ -60,6 +60,12 @@
             products() {
                 return this.$store.state.features.products;
             },
+
+            /**
+             * Maps the products list for select2
+             *
+             * @returns {Array}
+             */
             productsForSelect2() {
                 let products = [];
                 for(let i=0;i<this.products.length;i++) {

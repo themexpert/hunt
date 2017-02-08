@@ -51,10 +51,19 @@
                 if(this.$route.params==null || (this.$route.params.type!='prepared' && this.$route.params.type!='graph')) return '';
                 return this.$route.params.value;
             },
-
+            /**
+             * Gives the graph URL
+             *
+             * @returns {string}
+             */
             graphUrl() {
                 return '/reports/filter/graph/effortVsValue';
             },
+            /**
+             * Gives Graph URL label
+             *
+             * @returns {string}
+             */
             graphLabel() {
                 return "Effort VS Priority";
             }

@@ -54,3 +54,6 @@ Vue.http.interceptors.push((request, next) => {
 
 import vueMultiSelect from 'vue-multiselect'
 Vue.component('multiselect', vueMultiSelect);
+
+Vue.component('spinner', require('./components/helpers/spinner.vue'));
+Vue.component('select2', require('./components/helpers/select2.vue'));

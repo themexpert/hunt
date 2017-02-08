@@ -61,6 +61,9 @@
             $(".modal").modal();
         },
         methods: {
+            /**
+             * Sets status
+             */
             setStatus(status) {
                 this.status = status;
             },

@@ -15,6 +15,12 @@
             }
         },
         methods: {
+            /**
+             * Gives the tag url based on label
+             *
+             * @param label
+             * @returns {string}
+             */
             tagUrl(label) {
                 let url = '/reports/filter/tags/';
                 let ex = {};
@@ -32,6 +38,11 @@
             }
         },
         computed: {
+            /**
+             * Gives the tag list
+             *
+             * @returns {*|computed.tags|Array}
+             */
             allTags() {
                 return this.$store.state.features.tags;
             }

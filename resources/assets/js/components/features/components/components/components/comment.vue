@@ -18,6 +18,11 @@
             }
         },
         computed: {
+            /**
+             * Gives the time difference from now in human readable format
+             *
+             * @returns {string|*}
+             */
             getTimeDiff() {
                 return moment.tz(this.comment.created_at, 'UTC').tz(moment.tz.guess()).fromNow();
             }
