@@ -7,7 +7,7 @@
 <style>
 
 </style>
-<script>
+<script type="text/babel">
     import Hunt from '../../../../config/Hunt'
     export default{
         props: ['feature', 'single'],
@@ -29,12 +29,13 @@
              */
             sendVote(endPoint) {
                 this.busy = true;
+                this.feature.userVoted = (endPoint=='up'?1:-1);
                 this.post('/votes/' + this.feature.id + '/' + endPoint)
                     .then(
                         success => {
                             Hunt.toast(success.body.message, 'success');
                             Bus.$emit('new-vote', endPoint=='up'?{up:1}:{down:1});
-                            this.vote=endPoint=='up'?1:-1;
+                            let vote=endPoint=='up'?1:-1;
                             this.$store.commit('new_vote', {type: endPoint, id: this.feature.id});
                             this.busy = false;
                         },
@@ -42,6 +43,7 @@
                             console.log(error);
                             Hunt.toast('Error sending vote.', 'error');
                             this.busy = false;
+                            this.feature.userVoted = 0;
                         }
                     );
             }
