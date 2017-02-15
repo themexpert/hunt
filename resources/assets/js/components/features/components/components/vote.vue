@@ -36,7 +36,6 @@
                             Hunt.toast(success.body.message, 'success');
                             Bus.$emit('new-vote', endPoint=='up'?{up:1}:{down:1});
                             let vote=endPoint=='up'?1:-1;
-                            this.$store.commit('new_vote', {type: endPoint, id: this.feature.id});
                             this.busy = false;
                         },
                         error => {
