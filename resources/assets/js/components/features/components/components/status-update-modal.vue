@@ -66,6 +66,10 @@
              */
             setStatus(status) {
                 this.status = status;
+                const statusItem = this.$store.state.features.statuses.find(x=>{ return x.label==status.toUpperCase(); });
+                this.subject = statusItem.subject;
+                this.message = statusItem.message;
+                Vue.nextTick(()=>{Materialize.updateTextFields();});
             },
             /**
              * Validates inputs

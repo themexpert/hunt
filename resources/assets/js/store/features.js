@@ -29,7 +29,9 @@ export default {
                         Object.keys(success.body.statuses).forEach(x => {
                             state.statuses.push({
                                 label: x,
-                                slug: x.toLowerCase()
+                                slug: x.toLowerCase(),
+                                subject: success.body.statuses[x].subject,
+                                message: success.body.statuses[x].message
                             });
                         });
                     } catch(e) {
