@@ -55,7 +55,9 @@ class FeaturesController extends Controller
         event(new NewFeatureRequested($feature));
 
         return $this->responseCreated([
+            'feature' => $this->featuresRepository->getFeatureSuggestionById($productId, $feature->id),
             'feature_created' => true,
+            'id' => $feature->id,
             'message' => 'New feature suggestion has been added'
         ]);
     }
@@ -72,6 +74,7 @@ class FeaturesController extends Controller
         return $this->responseJson($this->featuresRepository->get(
             $request->input('limit'),
             $request->input('searchTerms'),
+            $request->input('status'),
             $productId
         ));
     }
@@ -137,5 +140,35 @@ class FeaturesController extends Controller
         return $this->responseOk([
             'features' => $this->featuresRepository->getFeatureSuggestionById($productId, $id)
         ]);
+    }
+
+    /**
+     * Get released features.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function released(Request $request)
+    {
+        return $this->responseJson($this->featuresRepository->getReleasedFeature(
+                $request->input('limit'),
+                $request->input('searchTerms'),
+                $request->input('status')
+        ));
+    }
+
+    /**
+     * Search features.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function search(Request $request)
+    {
+        return $this->responseJson($this->featuresRepository->search(
+            $request->input('limit'),
+            $request->input('searchTerms'),
+            $request->input('status')
+        ));
     }
 }

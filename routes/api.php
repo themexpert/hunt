@@ -1,5 +1,15 @@
 <?php
 
+/******************************************************************************************
+ *
+ * Headers for cors.
+ *
+ *****************************************************************************************/
+if(app()->environment() !== 'testing') {
+    header('Access-Control-Allow-Methods:  POST, GET, OPTIONS, PUT, DELETE');
+    header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Authorization');
+}
+
 Route::group(['namespace' => 'Api'], function() {
 
     // products routes...
@@ -16,6 +26,12 @@ Route::group(['namespace' => 'Api'], function() {
     Route::get('/products/{productId}/features/{id}', 'FeaturesController@show');
     Route::delete('/products/{productId}/features/{id}', 'FeaturesController@remove');
     Route::post('/products/{productId}/features/{id}', 'FeaturesController@update');
+
+    // released features route...
+    Route::get('/features/released', 'FeaturesController@released');
+
+    // search route..
+    Route::get('/search', 'FeaturesController@search');
 
     // comments routes...
     Route::get('/features/{featureId}/comments', 'CommentsController@index');
@@ -53,10 +69,17 @@ Route::group(['namespace' => 'Api'], function() {
     // prepared reports routes...
     Route::get('/prepared-reports/{type}', 'PreparedReportsController@byType');
 
+    // tags routes...
+    Route::get('/tags', 'TagsController@all');
+
     // users routes...
     Route::get('/users/{id}/suggests', 'UsersController@suggests');
 
-    // developer routes...
-    Route::get('/developers', 'DevelopersController@all');
-
+    Route::any('{slug}', function($slug)
+    {
+        return response()->json([
+            'error' => 'Page not found',
+            'message' => 'The page '.$slug.' was not found on this server.'
+        ], 404);
+    });
 });

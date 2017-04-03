@@ -28,7 +28,7 @@ class FeaturesRepository
     public function add($productId, $name, $description, $isPrivate, $tags)
     {
         $feature = Feature::create([
-            'user_id' => auth()->user()->id,
+            'user_id' => auth('api')->user()->id,
             'product_id' => $productId,
             'name' => $name,
             'description' => $description,
@@ -64,12 +64,13 @@ class FeaturesRepository
     /**
      * Get feature suggestions.
      *
-     * @param int    $limit
+     * @param int $limit
      * @param string $searchTerms
-     * @param int    $productId
+     * @param string $status
+     * @param int $productId
      * @return array
      */
-    public function get($limit = 10, $searchTerms = '', $productId)
+    public function get($limit = 10, $searchTerms = '', $status = '', $productId)
     {
         $features = null;
 
@@ -85,7 +86,12 @@ class FeaturesRepository
                                 ->where("product_id", "=", $productId);
         }
 
-        return $this->dataWithPagination($features, $limit);
+        if(!empty($status)) {
+            $features->select(['features.*'])->join('statuses', 'statuses.feature_id', '=', 'features.id')
+                ->where('statuses.type', $status);
+        }
+
+        return $this->dataWithPagination($features, $limit, null, 'features.id');
     }
 
     /**
@@ -154,7 +160,7 @@ class FeaturesRepository
      */
     public function getFeatureSuggestionById($productId, $id)
     {
-        return Feature::with(['tags', 'status', 'vote'])->findOrFail($id);
+        return Feature::with(['tags', 'status', 'vote', 'user', 'status', 'priority', 'effort'])->findOrFail($id);
     }
 
     /**
@@ -217,7 +223,7 @@ class FeaturesRepository
     protected function setPriorityDefaultValue($feature)
     {
         Priority::create([
-            'user_id' => auth()->user()->id,
+            'user_id' => auth('api')->user()->id,
             'feature_id' => $feature->id,
             'value' => 50
         ]);
@@ -231,9 +237,60 @@ class FeaturesRepository
     protected function setEffortDefaultValue($feature)
     {
         Effort::create([
-            'user_id' => auth()->user()->id,
+            'user_id' => auth('api')->user()->id,
             'feature_id' => $feature->id,
             'value' => 80
         ]);
+    }
+
+    /**
+     * Get released features.
+     *
+     * @param int $limit
+     * @param string $searchTerms
+     * @param string $status
+     * @return array
+     */
+    public function getReleasedFeature($limit = 10, $searchTerms = '', $status = '')
+    {
+        $statuses = Status::with(['feature', 'feature.product'])->whereType(Status::$RELEASED);
+
+        $statuses = $this->dataWithPagination($statuses, $limit, null, 'id');
+
+        $features = collect($statuses['data'])->map(function($status) {
+           return $status['feature'];
+        });
+
+        $statuses['data'] = $features;
+
+        return $statuses;
+    }
+
+    /**
+     * Search features.
+     *
+     * @param int $limit
+     * @param string $searchTerms
+     * @param string $status
+     * @return array
+     */
+    public function search($limit = 10, $searchTerms = '', $status = '')
+    {
+        $features = null;
+
+        if(! empty($searchTerms)) {
+            $features = Feature::with(['product'])
+                ->Where("name", "like", "%$searchTerms%")
+                ->orWhere("description", "like", "%$searchTerms%");
+        } else {
+            $features = Feature::with(['product']);
+        }
+
+        if(!empty($status)) {
+            $features->select(['features.*'])->join('statuses', 'statuses.feature_id', '=', 'features.id')
+                ->where('statuses.type', $status);
+        }
+
+        return $this->dataWithPagination($features, $limit, null, 'features.id');
     }
 }

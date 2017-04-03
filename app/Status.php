@@ -20,14 +20,14 @@ class Status extends Model
      *
      * @var string
      */
-    public static $AWAITING_FOR_FEEDBACK = "Awaiting For Feedback";
+    public static $AWAITING_FOR_FEEDBACK = "PENDING";
 
     /**
      * Status type for feature in progress.
      *
      * @var string
      */
-    public static $IN_PROGRESS = "In Progress";
+    public static $IN_PROGRESS = "WIP";
 
     /**
      * Status type for feature released.
@@ -41,5 +41,15 @@ class Status extends Model
      *
      * @var string
      */
-    public static $DECLINE = "Decline Feature";
+    public static $DECLINED = "DECLINED";
+
+    /**
+     * Get feature related to the status.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function feature()
+    {
+        return $this->belongsTo(Feature::class);
+    }
 }

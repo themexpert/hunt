@@ -1,0 +1,90 @@
+<template>
+    <section class="main-content single-item">
+        <div class="banner blue darken-2">
+            <div class="container">
+                <div class="feature-req">
+                    <feature-request-modal></feature-request-modal>
+                </div><!--/.feature-req-->
+            </div>
+        </div><!--/.banner-->
+
+        <div class="container mt30">
+            <div class="row">
+                <feature :feature="feature"></feature>
+                <sidebar :feature="feature"></sidebar>
+            </div>
+        </div>
+    </section>
+</template>
+<style>
+    
+</style>
+<script type="text/babel">
+    import Hunt from '../../config/Hunt'
+    import FeatureRequestModal from './components/feature-request-modal.vue'
+    import feature from './components/feature.vue'
+    import sidebar from './components/sidebar.vue'
+    export default{
+        name: 'SingleFeatureItem',
+        components: {
+            'feature-request-modal': FeatureRequestModal,
+            'feature': feature,
+            'sidebar': sidebar
+        },
+        data(){
+            return {
+                feature: null
+            }
+        },
+        mounted () {
+            Hunt.renderPage('Feature');
+            this.loadFeatureData();
+
+            /**
+             * Register new vote listener
+             */
+            Bus.$on('new-vote', vote=>{
+                if(this.feature.vote==null) this.feature.vote = {up: 0, down: 0};
+                if(vote.up)
+                    this.feature.vote.up++;
+                else
+                    this.feature.vote.down++;
+                this.feature.userVoted = vote.up?1:-1;
+            });
+        },
+        methods: {
+            /**
+             * Loads feature information
+             */
+            loadFeatureData() {
+                this.get('/products/'+this.product_id+'/features/'+this.feature_id)
+                    .then(
+                        success => {
+                            this.feature = success.body.features;
+                            Hunt.renderPage(this.feature.name);
+                        },
+                        fail => {
+                            Hunt.toast('Error loading feature information.', 'error');
+                            console.log(fail);
+                        }
+                    );
+            }
+        },
+        computed: {
+            /**
+             * Gives product ID from route
+             */
+            product_id() {
+                return this.$route.params.product_id;
+            },
+            /**
+             * Gives feature ID from route
+             *
+             * @returns {*}
+             */
+            feature_id() {
+                return this.$route.params.feature_id;
+            }
+        }
+    }
+</script>

@@ -2,6 +2,7 @@
 
 namespace Hunt\Http\Controllers\Api;
 
+use Illuminate\Http\Request;
 use Hunt\Http\Controllers\Controller;
 use Hunt\Repositories\PreparedReportsRepository;
 
@@ -29,13 +30,17 @@ class PreparedReportsController extends Controller
     /**
      * Feature suggestion filter by prepared reports.
      *
-     * @param string $type
+     * @param string  $type
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function byType($type)
+    public function byType($type, Request $request)
     {
-        return $this->responseOk([
-            'features' => $this->preparedReportsRepository->byType($type)
-        ]);
+        return $this->responseJson($this->preparedReportsRepository->byType(
+            $request->input('limit'),
+            $request->input('searchTerms'),
+            $request->input('status'),
+            $type
+        ));
     }
 }
