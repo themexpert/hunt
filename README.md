@@ -32,6 +32,7 @@ Build a better products with your users, customers, and internal teams by captur
 7. Open your terminal and run ```composer install``` from hunt root directory ( to install Hunt dependencies )
 8. Run ```php artisan migrate```
 9. Finally, run ```php artisan passport:install```
+10. Run ```php artisan key:generate```
 
 **There two option setup process, you may want ( not mandatory )**
 
