@@ -1,39 +1,31 @@
 <template>
     <select :class="[className]" :multiple="multiple">
+        <slot></slot>
     </select>
 </template>
-<style>
-    #select2component {
-        display: block;
-    }
-</style>
 <script type="text/babel">
     export default{
-        props: ['options', 'selected-value', 'tags', 'disabled', 'update'],
+        props: ['value', 'tags', 'disabled'],
         data(){
             return{
                 control: null,
-                value: null,
-                values: [],
                 multiple: false,
                 className: 'select2component_0',
                 tag: '',
-                elem: null,
-                previousValue: null
+                elem: null
             }
         },
         mounted() {
             this.className = 'select2component_'+Math.floor(Math.random() * (10000000 + 1));
             if(this.tags) {
                 this.multiple = true;
-                this.value=[];
             }
             setTimeout(this.renderSelect, 500);
         },
         methods: {
             renderSelect() {
-                if(this.control!=null) this.control.select2('destroy');
-                let data = {};
+                if(this.control!==null) this.control.select2('destroy');
+                const data = {};
                 data.data = this.options;
                 data.placeholder = 'Please select...';
                 if(this.tags) {
@@ -41,7 +33,7 @@
                     data.tokenSeparators = [',', ' '];
                     const that = this;
                     data.createTag = newTag => {
-                        if(that.tags && newTag.term!=null && newTag.term != '') {
+                        if(that.tags && newTag.term!==null && newTag.term !== '') {
                             const tag = {
                                 id: newTag.term.toLowerCase(),
                                 text: newTag.term.toUpperCase()
@@ -63,27 +55,26 @@
                 this.control.on('select2:unselect', e=>{
                     this.valueUpdated();
                 });
-                let value = (this.selectedValue==undefined)?null:(typeof this.selectedValue != 'object' ? [this.selectedValue] : this.selectedValue);
-                this.control.val(value).trigger('change');
+                const that=this;
+                setTimeout(()=>{
+                    that.control.val(this.value).trigger('change');
+                    that.elem.parent().find('span.select2').width('100%');
+                }, 100);
             },
             valueUpdated() {
-                const value = this.elem.val();
-                if (value == null)
-                    this.callUpdateCallback(value);
-                else if (this.previousValue == null && value != null)
-                    this.callUpdateCallback(value);
-                else if (this.tags && this.previousValue.length != value.length)
-                    this.callUpdateCallback(value);
-                else if(this.previousValue != value)
-                    this.callUpdateCallback(value);
-            },
-            callUpdateCallback(value) {
-                this.previousValue = value;
-                this.update.call(this, value);
+                let val = this.control.val();
+                if(val==null) {
+                    if(this.tags)
+                        val = [];
+                    else
+                        val = '';
+                }
+                this.$emit('input', val);
             }
         },
         watch: {
-            options() {
+            value() {
+                if(this.value==null) this.value=undefined;
                 this.renderSelect();
             }
         }

@@ -14,7 +14,7 @@
                             </div>
                             <div class="col s3">
                                 <div class="input-field">
-                                    <products :update="true"></products>
+                                    <products v-model="product_id"></products>
                                 </div>
                             </div>
                         </div><!--/.row-->
@@ -53,7 +53,9 @@
         },
         data(){
             return {
-                loading: true
+                loading: true,
+                product_id: null,
+                product_id_old: null
             }
         },
         mounted() {
@@ -66,14 +68,14 @@
             if(this.$route.params.filter)
                 this.$store.dispatch('apply_filter',
                     {
-                        product_id: this.$route.params.product_id,
+                        product_id: this.product_id,
                         filter:this.$route.params.filter
                     });
             /**
              * Register infinite scroll
              */
             Hunt.infiniteScroll('.feature-list', ()=>{
-                if(this.$store.state.features.features.pagination==null) return;
+                if(this.$store.state.features.features.pagination===null) return;
                 this.loading = true;
                 this.$store.commit('update_features', true);
             });
@@ -83,8 +85,32 @@
              * @type {boolean}
              */
             Bus.$on('feature-list-loaded', ()=>{this.loading=false;});
+            Bus.$on('products_loaded', this.load); //invoke first time load when products are loaded
+            //don't run into error when the products are not loaded
+            if(this.products.length>0) this.load(); //if we have products then set one
+        },
+        methods: {
+            load() {
+                this.product_id = this.$route.params.product_id;
+                if(this.product_id===undefined && this.products.length>0) {
+                    this.product_id = this.$store.state.features.product_id || this.products[0].id;
+                    this.$router.push('/products/'+this.product_id+'/features');
+                }
+                this.$store.dispatch('product_changed', this.product_id);
+                this.product_id_old = this.product_id;
+            }
         },
         computed: {
+
+            /**
+             * Products list from store
+             *
+             * @returns {computed.products|Array|*}
+             */
+            products() {
+                return this.$store.state.features.products;
+            },
+
             /**
              * Loaded features list in the store
              *
@@ -92,6 +118,13 @@
              */
             features() {
                 return this.$store.state.features.features;
+            }
+        },
+        watch: {
+            product_id() {
+                if(this.product_id==this.product_id_old) return;
+                this.$router.push('/products/'+this.product_id+'/features');
+                this.$store.dispatch('product_changed', this.product_id);
             }
         }
     }

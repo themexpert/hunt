@@ -15,7 +15,7 @@
                             <label for="suggest_feature">Suggest a feature</label>
                         </div>
                         <div class="input-field col s6">
-                            <products :selected="selected_product" :input="updateProduct"></products>
+                            <products v-model="feature.product_id"></products>
                         </div>
                     </div><!--/.row-->
                     <div class="input-field">
@@ -24,17 +24,14 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
-                            <select2
-                                    :options="feature.accesses"
-                                    :selected-value="feature.access"
-                                    :update="updateAccess"></select2>
+                            <select2 v-model="feature.access">
+                                <option v-for="access in feature.accesses" :value="access.value">{{ access.label }}</option>
+                            </select2>
                         </div>
                         <div class="input-field col s6">
-                            <select2
-                                    :options="preparedTags"
-                                    :selected-value="feature.tags"
-                                    :update="updateTags"
-                                    :tags="true"></select2>
+                            <select2 v-model="feature.tags" :tags="true">
+                                <option v-for="tag in tags" :value="tag.label">{{ tag.label.toUpperCase() }}</option>
+                            </select2>
                         </div>
                     </div>
                     <div class="input-field left-align">
@@ -60,12 +57,12 @@
                 feature: {
                     accesses: [
                         {
-                            text: 'Private',
-                            id: true
+                            label: 'Private',
+                            value: true
                         },
                         {
-                            text: 'Public',
-                            id: false
+                            label: 'Public',
+                            value: false
                         }
                     ],
                     access: false,
@@ -74,34 +71,11 @@
                     product_id: null,
                     description: ''
                 },
-                selected_product: null,
                 busy: false,
                 reloadTags: true
             }
         },
         methods: {
-            /**
-             * Update access
-             */
-            updateAccess(val) {
-                this.feature.access = val; //is_private=val
-            },
-            /**
-             * Updates tag
-             */
-            updateTags(tags) {
-                this.feature.tags = tags;
-            },
-            /**
-             * Listens to product select and updates product
-             */
-            updateProduct(nP) {
-                if(nP==null) {
-                    this.feature.product_id=null;
-                    return;
-                }
-                this.feature.product_id=nP;
-            },
             /**
              * Prepares data to be sent
              */
@@ -109,7 +83,7 @@
                 let data = {
                     name: this.feature.name,
                     description: this.feature.description,
-                    is_private: this.feature.access,
+                    is_private: this.feature.access !== "false",
                     tags: this.feature.tags
                 };
                 return data;
@@ -181,22 +155,6 @@
              */
             tags() {
                 return this.$store.state.features.tags;
-            },
-
-            /**
-             * Prepare tags list for select2
-             *
-             * @returns {Array}
-             */
-            preparedTags() {
-                let tags = [];
-                this.tags.forEach(x=>{
-                    tags.push({
-                        id: x.label,
-                        text: x.label.toUpperCase()
-                    });
-                });
-                return tags;
             }
         }
     }

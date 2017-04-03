@@ -162,7 +162,7 @@ class PreparedReportsRepository
      *
      * @return array
      */
-    protected function getEffortValue(): array
+    protected function getEffortValue()
     {
         $minEffort = 0;
 

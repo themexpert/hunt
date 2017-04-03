@@ -3,7 +3,7 @@
         <h3 class="widget-title">Prepared Reports</h3>
         <div class="filter-btn">
             <router-link class="waves-effect waves-light btn" v-for="(slug, label) in filters" :to="getUrl(slug)" :class="{active: filter==slug}">{{ label }}</router-link>
-            <router-link class="waves-effect waves-light btn" :to="graphUrl" :class="{active: filter==graphUrl}">{{ graphLabel }}</router-link>
+            <router-link class="waves-effect waves-light btn" :to="graphUrl" :class="{active: filter=='effortVsValue'}">{{ graphLabel }}</router-link>
         </div>
     </div><!--/.widget-->
 </template>

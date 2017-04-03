@@ -10,10 +10,9 @@
                 <div class="modal-content">
                     <form action="" @submit.prevent="updateStatus">
                         <div class="input-field">
-                            <select2
-                                    :options="preparedStatuses"
-                                    :selected-value="feature.status.type"
-                                    :update="setStatus"></select2>
+                            <select2 v-model="feature.status.type">
+                                <option v-for="status in statuses" :value="status.label">{{ status.label }}</option>
+                            </select2>
                         </div>
                         <div class="input-field">
                             <input id="subject" type="text" v-model="subject">
@@ -121,7 +120,6 @@
                 this.post(endPoint+this.featureId, {status: data})
                     .then(
                         success => {
-                            console.log(success);
                             Hunt.toast('Status updated.', 'success');
                             Bus.$emit('status-updated', {
                                 type: this.status,
@@ -134,7 +132,6 @@
                         },
                         fail => {
                             Hunt.toast('Could not update status.', 'error');
-                            console.log(fail);
                             this.busy = false;
                         }
                     );
@@ -150,16 +147,11 @@
                 let nArray = this.$store.state.features.statuses.slice(0);
                 nArray.splice(0,2);
                 return nArray;
-            },
-            preparedStatuses() {
-                let statuses = [];
-                this.statuses.forEach(x=>{
-                    statuses.push({
-                        id: x.label,
-                        text: x.label
-                    });
-                });
-                return statuses;
+            }
+        },
+        watch: {
+            'feature.status.type' () {
+                this.status = this.feature.status.type;
             }
         }
     }

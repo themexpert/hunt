@@ -57,3 +57,4 @@ Vue.component('multiselect', vueMultiSelect);
 
 Vue.component('spinner', require('./components/helpers/spinner.vue'));
 Vue.component('select2', require('./components/helpers/select2.vue'));
+Vue.component('v-select', require('./components/helpers/v-select.vue'));

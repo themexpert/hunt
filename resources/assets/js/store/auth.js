@@ -40,7 +40,7 @@ export default {
                         window.Laravel.token=success.body.token;
                         Hunt.updateToken(success.body.token);
                         ctx.commit('loggedIn', success.body.user);
-                        if(redirectTo!=undefined) router.push(redirectTo);
+                        if(redirectTo!==undefined) router.push(redirectTo);
                     },
                     fail => {
                         Hunt.toast('Error refreshing token.', 'error');
@@ -64,7 +64,7 @@ export default {
          * @returns {boolean}
          */
         isLoggedIn(state) {
-            return state.user!=null;
+            return state.user!==null;
         },
         /**
          * Gives user email (if authenticated)
@@ -73,14 +73,14 @@ export default {
          * @returns {string|*}
          */
         userEmail(state) {
-            return state.user.email;
+            return state.user!==null?state.user.email:null;
         },
         /**
          * Gives user nick name (if authenticated)
          * @param state
          */
         userName(state) {
-            return state.user.name;
+            return state.user!==null?state.user.name:null;
         }
     }
 }
