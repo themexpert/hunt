@@ -20,7 +20,7 @@ class ProductsRepository
     public function add($name, $description, $logo)
     {
          $product = Product::create([
-             'user_id' => auth()->user()->id,
+             'user_id' => auth('api')->user()->id,
              'name' => $name,
              'description' => $description,
              'logo' => $logo->extension()

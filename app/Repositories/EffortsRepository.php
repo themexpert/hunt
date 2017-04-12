@@ -14,7 +14,7 @@ class EffortsRepository
      */
     public function update($featureId, $value)
     {
-        $effort = Effort::whereUserId(auth()->user()->id)
+        $effort = Effort::whereUserId(auth('api')->user()->id)
                             ->whereFeatureId($featureId)
                             ->first();
 

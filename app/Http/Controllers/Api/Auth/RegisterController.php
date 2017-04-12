@@ -1,6 +1,6 @@
 <?php
 
-namespace Hunt\Http\Controllers\Auth;
+namespace Hunt\Http\Controllers\Api\Auth;
 
 use Hunt\User;
 use Validator;
@@ -92,6 +92,8 @@ class RegisterController extends Controller
 
         event(new Registered($user = $this->create($request->all())));
 
-        return back()->with(['message' => 'Confirm your email address']);
+        //return back()->with(['message' => 'Confirm your email address']);
+
+        return response()->json(['message' => 'Confirm your email address']);
     }
 }

@@ -1,6 +1,8 @@
 
 window._ = require('lodash');
 
+require('./config/mixin');
+
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This
@@ -8,8 +10,10 @@ window._ = require('lodash');
  */
 
 window.$ = window.jQuery = require('jquery');
-require('bootstrap-sass');
-
+require('select2');
+require("materialize-css");
+window.moment = require('moment');
+require('moment-timezone');
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
  * using reactive data binding and reusable components. Vue's API is clean
@@ -17,6 +21,7 @@ require('bootstrap-sass');
  */
 
 window.Vue = require('vue');
+window.Bus = new Vue();
 require('vue-resource');
 
 /**
@@ -27,6 +32,8 @@ require('vue-resource');
 
 Vue.http.interceptors.push((request, next) => {
     request.headers.set('X-CSRF-TOKEN', Laravel.csrfToken);
+    request.headers.set('Accept', 'application/json');
+    request.headers.set('Authorization', 'Bearer ' + Laravel.token); //required for passport authentication
 
     next();
 });
@@ -43,3 +50,10 @@ Vue.http.interceptors.push((request, next) => {
 //     broadcaster: 'pusher',
 //     key: 'your-pusher-key'
 // });
+
+
+import vueMultiSelect from 'vue-multiselect'
+Vue.component('multiselect', vueMultiSelect);
+
+Vue.component('spinner', require('./components/helpers/spinner.vue'));
+Vue.component('select2', require('./components/helpers/select2.vue'));

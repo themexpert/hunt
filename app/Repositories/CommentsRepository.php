@@ -20,7 +20,7 @@ class CommentsRepository
     public function add($featureId, $message)
     {
         return Comment::create([
-            'user_id' => auth()->user()->id,
+            'user_id' => auth('api')->user()->id,
             'feature_id' => $featureId,
             'message' => $message
         ]);
@@ -43,7 +43,7 @@ class CommentsRepository
                                 ->whereFeatureId($featureId)
                                 ->where("message", "like", "%$searchTerms%");
         } else {
-            $comments = Comment::whereFeatureId($featureId);
+            $comments = Comment::with('user')->whereFeatureId($featureId);
         }
 
         return $this->dataWithPagination($comments, $limit);

@@ -2,6 +2,7 @@
 
 namespace Hunt\Http\Controllers\Api;
 
+use Illuminate\Http\Request;
 use Hunt\Http\Controllers\Controller;
 use Hunt\Repositories\FiltersRepository;
 
@@ -29,26 +30,34 @@ class FiltersController extends Controller
     /**
      * Feature suggestion filter by access.
      *
-     * @param string $filterBy
+     * @param string  $filterBy
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function byAccess($filterBy)
+    public function byAccess($filterBy, Request $request)
     {
-        return $this->responseOk([
-            'features' => $this->filtersRepository->byAccess($filterBy)
-        ]);
+        return $this->responseJson($this->filtersRepository->byAccess(
+            $request->input('limit'),
+            $request->input('searchTerms'),
+            $request->input('status'),
+            $filterBy
+        ));
     }
 
     /**
      * Feature suggestion filter by tag.
      *
-     * @param int $tagId
+     * @param int     $tagId
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function byTag($tagId)
+    public function byTag($tagId, Request $request)
     {
-        return $this->responseOk([
-            'features' => $this->filtersRepository->byTag($tagId)
-        ]);
+        return $this->responseJson($this->filtersRepository->byTag(
+            $request->input('limit'),
+            $request->input('searchTerms'),
+            $request->input('status'),
+            $tagId
+        ));
     }
 }
