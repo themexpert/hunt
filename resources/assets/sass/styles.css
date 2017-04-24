@@ -277,7 +277,9 @@ footer {
 /*Test*/
 .select2-container--default .select2-selection--single {
     border: 0;
-    border-radius: 2px;
+    border-bottom: 1px solid #fff;
+    border-radius: 0;
+    background: transparent;
 }
 .select2-container .select2-selection--single .select2-selection__rendered {
     padding: 4px 10px;
