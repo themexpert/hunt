@@ -281,6 +281,7 @@ footer {
 }
 .select2-container .select2-selection--single .select2-selection__rendered {
     padding: 4px 10px;
+    text-align: left;
 }
 .select2-container--default .select2-selection--single,
 .select2-container--default .select2-selection--single .select2-selection__arrow {
@@ -294,6 +295,29 @@ span.select2.select2-container.select2-container--default.select2-container--abo
     border: 0;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 }
-/*.feature-filter .input-field {
-  width: 304px;
-}*/
+
+
+/*Modal Dropdown*/
+.feature-req .modal.open .select2-container--default .select2-selection--single,
+.feature-req .modal.open .select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 45px;
+}
+.feature-req .modal.open .select2-container--default .select2-selection--single {
+    border: 0;
+    border-bottom: 1px solid #aaa;
+    border-radius: 0;
+    background: transparent;
+}
+.feature-req .modal.open .select2-container--default .select2-selection--multiple {
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #aaa;
+    border-radius: 0;
+}
+.feature-req .modal.open .select2-container--default .select2-search--inline .select2-search__field {
+    margin: 0;
+}
+
+.feature-req .modal.open .input-field input[type=search]:focus {
+  background: transparent;
+}
