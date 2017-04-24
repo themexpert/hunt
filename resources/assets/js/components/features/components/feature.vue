@@ -3,6 +3,7 @@
         <preloader></preloader>
     </div>
     <div v-else class="col s8">
+        <a class="btn-floating btn-large waves-effect waves-light red" @click="goBack"><i class="material-icons">arrow_back</i></a>
         <h1 class="title mt0">{{ feature.name }}</h1>
 
         <div class="card">
@@ -64,6 +65,14 @@
                 this.feature.status.type=status.type;
                 this.feature.status.subject=status.subject;
             });
+        },
+        methods: {
+            /**
+             * Go to previous page
+             */
+            goBack() {
+                this.$router.go(-1);
+            }
         },
         computed: {
             /**
