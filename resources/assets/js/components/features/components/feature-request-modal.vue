@@ -2,7 +2,7 @@
     <div class="center-align feature-form-area">
         <h2 class="feature-req-title">Feature requests for ThemeXpert</h2>
         <!-- Modal Trigger -->
-        <a class="waves-effect waves-light btn red" href="#modal1"><i class="material-icons left">add</i> Suggest a feature</a>
+        <a class="waves-effect waves-light btn red mb15" href="#modal1"><i class="material-icons left">add</i> Suggest a feature</a>
 
         <!-- Modal Structure -->
         <div id="modal1" class="modal">
