@@ -53,7 +53,7 @@
         },
         data(){
             return {
-                loading: true,
+                loading: false,
                 product_id: null,
                 product_id_old: null
             }
@@ -75,7 +75,7 @@
              * Register infinite scroll
              */
             Hunt.infiniteScroll('.feature-list', ()=>{
-                if(this.$store.state.features.features.pagination===null) return;
+                if(!this.$store.state.features.features.length) return;
                 this.loading = true;
                 this.$store.commit('update_features', true);
             });
@@ -87,10 +87,12 @@
             Bus.$on('feature-list-loaded', ()=>{this.loading=false;});
             Bus.$on('products_loaded', this.load); //invoke first time load when products are loaded
             //don't run into error when the products are not loaded
-            if(this.products.length>0) this.load(); //if we have products then set one
+            if(this.products.length>0)
+                this.load(); //if we have products then set one
         },
         methods: {
             load() {
+                this.loading = true;
                 this.product_id = this.$route.params.product_id;
                 if(this.product_id===undefined && this.products.length>0) {
                     this.product_id = this.$store.state.features.product_id || this.products[0].id;
@@ -122,7 +124,7 @@
         },
         watch: {
             product_id() {
-                if(this.product_id==this.product_id_old) return;
+                if(this.product_id===this.product_id_old) return;
                 this.$router.push('/products/'+this.product_id+'/features');
                 this.$store.dispatch('product_changed', this.product_id);
             }

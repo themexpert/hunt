@@ -39,7 +39,10 @@ export default {
                     }
                 },
                 fail => {
-                    Hunt.toast('Error loading statuses (update_statuses)', 'error');
+                    if(fail.status===403) {
+                        Bus.$emit("goto-login");
+                    }
+                    Hunt.toast(fail.data.message, 'error');
                     console.log(fail);
                 }
             );
@@ -61,7 +64,11 @@ export default {
                         Bus.$emit('products_loaded');
                     },
                     fail => {
-                        Hunt.toast('Error loading products list (updateProducts)', 'error');
+                        if(fail.status===403) {
+                            Bus.$emit("goto-login");
+                        }
+                        Hunt.toast(fail.data.message, 'error');
+                        console.log(fail);
                     }
                 );
         },
@@ -98,8 +105,12 @@ export default {
                         Bus.$emit('feature-list-loaded');
                     },
                     fail => {
-                        Hunt.toast('Error loading features list (product_changed)', 'error');
                         state.busy = false;
+                        if(fail.status===403) {
+                            Bus.$emit("goto-login");
+                        }
+                        Hunt.toast(fail.data.message);
+                        console.log(fail);
                     }
                 );
         },
@@ -121,8 +132,11 @@ export default {
                         });
                     },
                     fail => {
+                        if(fail.status===403) {
+                            Bus.$emit("goto-login");
+                        }
+                        Hunt.toast(fail.data.message);
                         console.log(fail);
-                        Hunt.toast('Error loading tags list (update_tags)', 'error');
                     }
                 );
         }
