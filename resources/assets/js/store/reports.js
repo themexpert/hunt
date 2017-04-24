@@ -25,7 +25,6 @@ export default {
                 }
                 else {
                     Bus.$emit('reports-list-loaded');
-                    Hunt.toast(`You've reached the end.`);
                     return;
                 }
             } else { state.page = 1; }

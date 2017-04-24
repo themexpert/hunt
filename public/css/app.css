@@ -8414,6 +8414,10 @@ a {
   transition: all .3s ease;
 }
 
+.mb15 {
+  margin-bottom: 15px;
+}
+
 .btn {
   text-transform: inherit;
   padding: 0 10px;
@@ -8570,9 +8574,9 @@ nav .menu .author img {
 }
 
 .feature-list {
-  background: #fff;
+  /*background: #fff;*/
   padding: 30px;
-  margin-top: -35px;
+  margin-top: -20px;
 }
 
 .feature-list .collection {
@@ -8720,6 +8724,35 @@ footer {
 .widget-feature-filter .filter-btn a.active {
   background: #306cda;
 }
+
+/*Test*/
+.select2-container--default .select2-selection--single {
+  border: 0;
+  border-radius: 2px;
+}
+
+.select2-container .select2-selection--single .select2-selection__rendered {
+  padding: 4px 10px;
+}
+
+.select2-container--default .select2-selection--single,
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  height: 35px;
+}
+
+span.select2.select2-container.select2-container--default.select2-container--above:focus {
+  outline: 0;
+}
+
+.select2-dropdown {
+  border-radius: 2px;
+  border: 0;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+
+/*.feature-filter .input-field {
+  width: 304px;
+}*/
 
 /* This is a compiled file, you should be editing the file in the templates directory */
 .pace {

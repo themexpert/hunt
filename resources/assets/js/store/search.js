@@ -26,7 +26,6 @@ export default {
                 }
                 else {
                     Bus.$emit('search-results-loaded');
-                    Hunt.toast(`You've reached the end.`);
                     return;
                 }
             } else { state.page = 1; }

@@ -86,7 +86,6 @@ export default {
                 }
                 else {
                     Bus.$emit('feature-list-loaded');
-                    Hunt.toast(`You've reached the end.`);
                     return;
                 }
             } else { state.page = 1; }

@@ -44,7 +44,7 @@
             }
         },
         mounted() {
-            $(document).on('click', 'body', ()=>{this.searching=false;this.revertTitle();});
+            $(document).on('click', 'body', ()=>{if(this.searching) this.revertTitle();this.searching=false;});
             $(document).on('click', '.search-box', (e)=>{e.stopPropagation();this.searching=true;});
             Bus.$on('route-clicked', to=>{this.searching=false;});
             Bus.$on('search-results-loaded', ()=>{

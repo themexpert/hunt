@@ -29,7 +29,6 @@
              */
             sendVote(endPoint) {
                 this.busy = true;
-                this.feature.userVoted = (endPoint=='up'?1:-1);
                 this.post('/votes/' + this.feature.id + '/' + endPoint)
                     .then(
                         success => {
@@ -39,10 +38,8 @@
                             this.busy = false;
                         },
                         error => {
-                            console.log(error);
                             Hunt.toast('Error sending vote.', 'error');
                             this.busy = false;
-                            this.feature.userVoted = 0;
                         }
                     );
             }
