@@ -44,7 +44,7 @@
                         <div class="col" :class="{s10:!isLoggedIn,s5:isLoggedIn}">
                             <div class="menu mt15">
                                 <div v-if="isLoggedIn" class="right author" v-cloak>
-                                    <a data-activates="dropdown1" class="dropdown"><img :src="userAvatar" alt="" class="circle" height="25" width="25"></a>
+                                    <img :src="userAvatar" alt="" class="circle" height="25" width="25">
                                     <a data-activates="dropdown1" class="dropdown">@{{ userName }}</a>
                                     <ul id='dropdown1' class='dropdown-content'>
                                         <li v-if="isAdmin"><router-link to="/products">Products</router-link></li>

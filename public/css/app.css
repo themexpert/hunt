@@ -8369,10 +8369,6 @@ a {
   transition: all .3s ease;
 }
 
-.mb15 {
-  margin-bottom: 15px;
-}
-
 .btn {
   text-transform: inherit;
   padding: 0 10px;
@@ -8419,6 +8415,10 @@ a {
   margin-top: 30px;
 }
 
+.mb15 {
+  margin-bottom: 15px;
+}
+
 nav,
 nav .nav-wrapper i,
 nav a.button-collapse,
@@ -8446,7 +8446,7 @@ nav .input-field input:focus {
 }
 
 nav .menu ul a {
-  padding: 0 10px;
+  /*padding: 0 10px;*/
 }
 
 nav .menu .author img {
@@ -8732,6 +8732,17 @@ span.select2.select2-container.select2-container--default.select2-container--abo
 
 .feature-req .modal.open .input-field input[type=search]:focus {
   background: transparent;
+}
+
+ul.collection.search-results {
+  margin-top: -12px;
+}
+
+.search-box ul.collection.search-results.not-found {
+  overflow-y: hidden;
+  padding: 7px 15px;
+  background: #fff;
+  color: #333;
 }
 
 /* This is a compiled file, you should be editing the file in the templates directory */

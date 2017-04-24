@@ -7,7 +7,7 @@
                 <i class="material-icons" @click="clearQuery">close</i>
             </div>
         </form>
-        <ul class="collection search-results" v-if="searching && loaded && query!==''">
+        <ul class="collection search-results" :class="{'not-found':searchResults.length==0}" v-if="searching && loaded && query!==''">
             <li v-if="searchResults.length==0 && loaded" class="alert alert-info">No result found for this query</li>
             <search-result v-for="result in searchResults" :result="result"></search-result>
             <li style="text-align: center" v-if="loading">
