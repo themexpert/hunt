@@ -41,7 +41,7 @@ class FeaturesController extends Controller
             'name' => 'required',
             'description' => 'required',
             'is_private' => 'boolean',
-            'tags' => 'required|array'
+//            'tags' => 'required|array'
         ]);
 
         $feature = $this->featuresRepository->add(
@@ -49,7 +49,7 @@ class FeaturesController extends Controller
             $request->input('name'),
             $request->input('description'),
             $request->input('is_private'),
-            $request->input('tags')
+            $request->input('tags', [])
         );
 
         event(new NewFeatureRequested($feature));
@@ -109,7 +109,7 @@ class FeaturesController extends Controller
             'name' => 'required',
             'description' => 'required',
             'is_private' => 'boolean',
-            'tags' => 'required|array',
+//            'tags' => 'required|array',
             'status' => 'required|array'
         ]);
 
@@ -118,7 +118,7 @@ class FeaturesController extends Controller
             $request->input('name'),
             $request->input('description'),
             $request->input('is_private'),
-            $request->input('tags'),
+            $request->input('tags', []),
             $request->input('status')
         );
 

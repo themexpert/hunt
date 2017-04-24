@@ -23,12 +23,12 @@
                         <label for="textarea1">Add details (if you need to)</label>
                     </div>
                     <div class="row">
-                        <div class="input-field col s6">
-                            <select2 v-model="feature.access">
-                                <option v-for="access in feature.accesses" :value="access.value">{{ access.label }}</option>
-                            </select2>
-                        </div>
-                        <div class="input-field col s6">
+                        <!--<div class="input-field col s6">-->
+                            <!--<select2 v-model="feature.access">-->
+                                <!--<option v-for="access in feature.accesses" :value="access.value">{{ access.label }}</option>-->
+                            <!--</select2>-->
+                        <!--</div>-->
+                        <div class="input-field col s12">
                             <select2 v-model="feature.tags" :tags="true">
                                 <option v-for="tag in tags" :value="tag.label">{{ tag.label.toUpperCase() }}</option>
                             </select2>
@@ -113,11 +113,6 @@
 
                 if(data.is_private==null) {
                     Hunt.toast('Please select access.', 'warning');
-                    valid = false;
-                }
-
-                if(data.tags.length==0) {
-                    Hunt.toast('Please select a tag.', 'warning');
                     valid = false;
                 }
                 return valid;

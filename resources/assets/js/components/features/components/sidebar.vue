@@ -19,7 +19,7 @@
         </div><!--/.widget-->
         <status-update-modal v-if="isAdmin" :feature="feature"></status-update-modal>
         <effort-update-modal v-if="isAdmin" :feature="feature"></effort-update-modal>
-        <priority-update-modal v-if="currentUserIsCreator" :feature="feature"></priority-update-modal>
+        <!--<priority-update-modal v-if="currentUserIsCreator" :feature="feature"></priority-update-modal>-->
     </div><!--/.col-->
 </template>
 <style>
