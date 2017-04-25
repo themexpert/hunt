@@ -1,6 +1,6 @@
 <template>
     <div class="card-action center-align">
-        <a class="waves-effect waves-light btn" href="#modal_comment_form"><i class="material-icons left">add</i> <span v-text="lang.modal.comment.title">Add a comment</a>
+        <a class="waves-effect waves-light btn" href="#modal_comment_form"><i class="material-icons left">add</i> <span v-text="lang.modal.comment.title">Add a comment</span></a>
 
         <!-- Modal Structure -->
         <div id="modal_comment_form" class="modal bottom-sheet comment-form">

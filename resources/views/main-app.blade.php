@@ -8,6 +8,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <link rel="shortcut icon" href="{{ $settings->favicon }}">
+
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
 
@@ -18,6 +20,9 @@
         ]); ?>
 
             window.message = "<?php echo str_replace('"', '\\"', \Illuminate\Support\Facades\Session::get('message')); ?>";
+            window.company = "{{ str_replace('"', "\"", $settings->company) }}";
+            window.copyright = "{{ str_replace('"', "\"", $settings->copyright) }}";
+            window.language = "{{ $settings->language }}";
     </script>
     <title>Hunt</title>
     <style>
@@ -35,7 +40,9 @@
                     <div class="row">
                         <div class="col s2">
                             <div class="logo mt15">
-                                <router-link id="logo-container" to="/" class="brand-logo">Logo</router-link>
+                                <router-link id="logo-container" to="/" class="brand-logo">
+                                    <img src="{{ $settings->logo }}" height="100" alt="logo">
+                                </router-link>
                             </div>
                         </div><!--/.col-->
                         <div class="col s5" v-if="isLoggedIn">
@@ -131,9 +138,7 @@
     </router-view>
     <footer class="center-align">
         <div class="footer-copyright">
-            <div class="container" v-html="lang.copyright">
-                &copy; 2010-2016 ThemeXpert Inc. All Rights Reserved.
-            </div>
+            <div class="container" v-html="lang.copyright">&copy; 2010-2016 ThemeXpert Inc. All Rights Reserved.</div>
         </div>
     </footer>
 </div>

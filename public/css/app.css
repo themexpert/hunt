@@ -8832,6 +8832,15 @@ input[type=search]:focus:not([readonly]) {
   margin: 3px;
 }
 
+/*Error Page*/
+.error-page {
+  padding: 100px 0;
+}
+
+.error-text {
+  font-size: 120px;
+}
+
 /* This is a compiled file, you should be editing the file in the templates directory */
 .pace {
   -webkit-pointer-events: none;

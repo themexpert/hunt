@@ -75,6 +75,9 @@ Route::group(['namespace' => 'Api'], function() {
     // users routes...
     Route::get('/users/{id}/suggests', 'UsersController@suggests');
 
+    Route::get('/settings', 'SettingsController@getSettings');
+    Route::post('/settings', 'SettingsController@update');
+
     Route::any('{slug}', function($slug)
     {
         return response()->json([

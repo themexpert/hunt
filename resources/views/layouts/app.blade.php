@@ -10,6 +10,8 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <link rel="shortcut-icon" href="{{ $settings->favicon }}" media="handheld" type="image/x+icon">
+
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
 

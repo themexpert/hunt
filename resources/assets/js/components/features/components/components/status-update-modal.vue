@@ -5,7 +5,7 @@
             <a class="btn red waves-effect waves-light"  href="#status_change"><span v-text="lang.button.update_status">Update Status</span> <i class="material-icons left">loop</i></a>
             <div id="status_change" class="modal">
                 <div class="modal-header">
-                    <h4 class="title" v-text="lang.modal.update_status.title">Update Status</h4>
+                    <h4 class="title" v-text="lang.modal.status_update.title">Update Status</h4>
                 </div>
                 <div class="modal-content">
                     <form action="" @submit.prevent="updateStatus">

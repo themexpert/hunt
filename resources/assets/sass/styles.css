@@ -370,3 +370,13 @@ input[type=search]:focus:not([readonly]) {
 .filter-btn a {
     margin: 3px;
 }
+
+
+
+/*Error Page*/
+.error-page {
+  padding: 100px 0;
+}
+.error-text {
+  font-size: 120px;
+}

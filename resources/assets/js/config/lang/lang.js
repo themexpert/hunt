@@ -1,3 +1,4 @@
 module.exports = {
-    en: require('./en')
+    en: require('./en'),
+    bn: require('./bn')
 };

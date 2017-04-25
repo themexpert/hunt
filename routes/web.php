@@ -56,7 +56,8 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Api'], function() {
 
 Route::any('{slug}', function($slug)
 {
-    return view('main-app');
+    $settings = \Hunt\Setting::find(1);
+    return view('main-app', compact('settings'));
 })->where('slug', '([A-z\d-\/_.]+)?');
 
 
