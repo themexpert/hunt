@@ -8683,11 +8683,13 @@ footer {
 /*Test*/
 .select2-container--default .select2-selection--single {
   border: 0;
-  border-radius: 2px;
+  border-bottom: 1px solid #fff;
+  border-radius: 0;
+  background: transparent;
 }
 
 .select2-container .select2-selection--single .select2-selection__rendered {
-  padding: 4px 10px;
+  padding-left: 0;
   text-align: left;
 }
 
@@ -8743,6 +8745,38 @@ ul.collection.search-results {
   padding: 7px 15px;
   background: #fff;
   color: #333;
+}
+
+.feature-filter .select2-container--default .select2-selection--single {
+  border: 0;
+  border-bottom: 1px solid #fff;
+  border-radius: 0;
+}
+
+.modal.open .select2-container--default .select2-selection--single {
+  border-bottom-color: #aaa;
+}
+
+.feature-filter .select2-container--default .select2-selection--single .select2-selection__rendered {
+  color: #fff;
+}
+
+.feature-filter .select2-container--default .select2-selection--single .select2-selection__arrow b {
+  border-color: #fff transparent transparent transparent;
+}
+
+.feature-filter .select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow b {
+  border-color: transparent transparent #fff transparent;
+}
+
+input[type=search]:focus:not([readonly]) {
+  border-bottom-color: #aaa;
+  box-shadow: none;
+}
+
+.status-btn a {
+  float: left;
+  margin-right: 5px;
 }
 
 /* This is a compiled file, you should be editing the file in the templates directory */
