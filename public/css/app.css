@@ -8779,6 +8779,14 @@ input[type=search]:focus:not([readonly]) {
   margin-right: 5px;
 }
 
+.modal-header {
+  padding: 24px 24px 0;
+}
+
+.filter-btn a {
+  margin: 3px;
+}
+
 /* This is a compiled file, you should be editing the file in the templates directory */
 .pace {
   -webkit-pointer-events: none;

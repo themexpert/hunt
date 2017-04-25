@@ -363,3 +363,10 @@ input[type=search]:focus:not([readonly]) {
     float: left;
     margin-right: 5px;
 }
+
+.modal-header {
+  padding: 24px 24px 0;
+}
+.filter-btn a {
+    margin: 3px;
+}
