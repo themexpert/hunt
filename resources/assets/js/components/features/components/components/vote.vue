@@ -1,7 +1,7 @@
 <template>
     <div :class="{'vote-btn':single!=undefined, 'secondary-content':single==undefined}">
-        <a :disabled="vote==1" class="waves-effect waves-light btn teal" @click="sendVote('up')"><i class="material-icons left">done</i> I want this <spinner v-if="busy"></spinner></a>
-        <a :disabled="vote==-1" class="waves-effect waves-light btn teal lighten-2" @click="sendVote('down')"><i class="material-icons left">snooze</i> Not interested <spinner v-if="busy"></spinner></a>
+        <a :disabled="vote==1" class="waves-effect waves-light btn teal" @click="sendVote('up')"><i class="material-icons left">done</i> <span v-text="lang.button.interested">I want this</span> <spinner v-if="busy"></spinner></a>
+        <a :disabled="vote==-1" class="waves-effect waves-light btn teal lighten-2" @click="sendVote('down')"><i class="material-icons left">snooze</i> <span v-text="lang.button.not_interested">Not interested</span> <spinner v-if="busy"></spinner></a>
     </div>
 </template>
 <style>

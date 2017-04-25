@@ -1,35 +1,35 @@
 <template>
     <div class="widget widget-status-change">
-        <h3 class="widget-title">Status Update</h3>
+        <h3 class="widget-title" v-text="lang.panel_title.status_update">Status Update</h3>
         <div class="status-btn">
-            <a class="btn red waves-effect waves-light"  href="#status_change">Update Status <i class="material-icons left">loop</i></a>
+            <a class="btn red waves-effect waves-light"  href="#status_change"><span v-text="lang.button.update_status">Update Status</span> <i class="material-icons left">loop</i></a>
             <div id="status_change" class="modal">
                 <div class="modal-header">
-                    <h4 class="title">Update Status</h4>
+                    <h4 class="title" v-text="lang.modal.update_status.title">Update Status</h4>
                 </div>
                 <div class="modal-content">
                     <form action="" @submit.prevent="updateStatus">
                         <div class="input-field">
-                            <select2 v-model="feature.status.type">
-                                <option v-for="status in statuses" :value="status.label">{{ status.label }}</option>
+                            <select2 v-model="status">
+                                <option v-for="s in statuses" :value="s.label">{{ s.label }}</option>
                             </select2>
                         </div>
                         <div class="input-field">
-                            <input id="subject" type="text" v-model="subject">
-                            <label for="subject">Subject</label>
+                            <input id="subject" type="text" v-model="subject" :placeholder="lang.modal.status_update.subject.placeholder">
+                            <label for="subject" v-text="lang.modal.status_update.subject.title">Subject</label>
                         </div>
                         <div class="input-field">
-                            <textarea v-model="message" id="textarea1" class="materialize-textarea" placeholder="Add some note"></textarea>
-                            <label for="textarea1">Status Note</label>
+                            <textarea v-model="message" id="textarea1" class="materialize-textarea" :placeholder="lang.modal.status_update.message.placeholder"></textarea>
+                            <label for="textarea1" v-text="lang.modal.status_update.message.label">Status Note</label>
                         </div>
 
                         <div class="input-field left-align">
-                            <button type="submit" class="btn" :disabled="busy">Update <spinner v-if="busy"></spinner></button>
+                            <button type="submit" class="btn" :disabled="busy"><span v-text="lang.modal.status_update.btn_status">Update</span> <spinner v-if="busy"></spinner></button>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" v-text="lang.button.close">Close</a>
                 </div>
             </div>
         </div>
@@ -54,6 +54,7 @@
         },
         mounted() {
             this.featureId = this.feature.id;
+            this.status = this.feature.status.type;
             /**
              * Initiates modal for sub-component
              */
@@ -123,7 +124,8 @@
                             Hunt.toast('Status updated.', 'success');
                             Bus.$emit('status-updated', {
                                 type: this.status,
-                                subject: this.subject
+                                subject: this.subject,
+                                message: this.message
                             });
                             this.subject = '';
                             this.message = '';

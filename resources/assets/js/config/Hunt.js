@@ -100,4 +100,4 @@ else {
         }
     }
 }
-export default Object.assign({BASE_URL:config.BASE_URL, _token: storage.getToken()}, storage);
+export default Object.assign({BASE_URL:config.BASE_URL, LANG: config.LANG, _token: storage.getToken()}, storage);

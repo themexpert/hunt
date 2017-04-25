@@ -3,17 +3,17 @@
         <preloader></preloader>
     </div>
     <div v-else class="col s4">
-        <div class="widget widget-action">
-            <h3 class="widget-title mt0">Action</h3>
+        <div class="widget widget-action" v-if="feature.status.type!=='RELEASED'">
+            <h3 class="widget-title mt0" v-text="lang.panel_title.action">Action</h3>
             <vote :feature="feature" single></vote>
         </div><!--/.widget-->
 
         <div class="widget widget-feedback">
-            <h3 class="widget-title">Feature Feedback</h3>
+            <h3 class="widget-title" v-text="lang.panel_title.feedback">Feature Feedback</h3>
             <div class="card">
                 <div class="card-content">
-                    <div class="clearfix"><i class="material-icons left">done</i> {{ upVote }} people want this</div>
-                    <div class="clearfix"><i class="material-icons left">snooze</i> {{ downVote }} not interested</div>
+                    <div class="clearfix"><i class="material-icons left">done</i> {{ upVote }} <span v-text="lang.panel_text.action.interested">people want this</span></div>
+                    <div class="clearfix"><i class="material-icons left">snooze</i> {{ downVote }} <span v-text="lang.panel_text.action.not_interested">not interested</span></div>
                 </div>
             </div>
         </div><!--/.widget-->

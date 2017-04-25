@@ -1,6 +1,6 @@
 <template>
     <div class="widget widget-feature-filter mt30">
-        <h3 class="widget-title">Feature Tags</h3>
+        <h3 class="widget-title" v-text="lang.panel_title.feature_tags">Feature Tags</h3>
         <div class="filter-btn">
             <router-link class="waves-effect waves-light btn" v-for="tag in tags" :to="getUrl(tag.value)" :class="{active: filter==tag.value}">{{ tag.label }}</router-link>
         </div>

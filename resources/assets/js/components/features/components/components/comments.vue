@@ -1,6 +1,7 @@
 <template>
     <ul class="collection">
         <comment v-for="comment in comments" :comment="comment"></comment>
+        <li v-if="!comments.length" v-text="lang.no_result_message.comments">No Comment on this Feature</li>
     </ul>
 </template>
 <style>

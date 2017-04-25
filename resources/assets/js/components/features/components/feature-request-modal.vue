@@ -1,26 +1,26 @@
 <template>
     <div class="center-align feature-form-area">
-        <h2 class="feature-req-title">Feature requests for ThemeXpert</h2>
+        <h2 class="feature-req-title" v-text="lang.title_text.features">Feature requests for ThemeXpert</h2>
         <!-- Modal Trigger -->
         <a class="waves-effect waves-light btn red mb15" href="#modal1"><i class="material-icons left">add</i> Suggest a feature</a>
 
         <!-- Modal Structure -->
         <div id="modal1" class="modal">
             <div class="modal-content">
-                <h4 class="modal-title">Suggest a feature for ThemeXpert</h4>
+                <h4 class="modal-title" v-text="lang.modal.feature_request.title">Suggest a feature for ThemeXpert</h4>
                 <div class="">
                     <div class="row">
                         <div class="input-field col s6">
-                            <input v-model="feature.name" id="suggest_feature" type="text" placeholder="What do you have in mind ?">
-                            <label for="suggest_feature">Suggest a feature</label>
+                            <input v-model="feature.name" id="suggest_feature" type="text" :placeholder="lang.modal.feature_request.feature.placeholder">
+                            <label for="suggest_feature" v-text="lang.modal.feature_request.feature.label">Suggest a feature</label>
                         </div>
                         <div class="input-field col s6">
                             <products v-model="feature.product_id"></products>
                         </div>
                     </div><!--/.row-->
                     <div class="input-field">
-                        <textarea v-model="feature.description" id="textarea1" class="materialize-textarea" placeholder="Please keep this as details as possible ..."></textarea>
-                        <label for="textarea1">Add details (if you need to)</label>
+                        <textarea v-model="feature.description" id="textarea1" class="materialize-textarea" :placeholder="lang.modal.feature_request.details.placeholder"></textarea>
+                        <label for="textarea1" v-text="lang.modal.feature_request.details.label">Add details (if you need to)</label>
                     </div>
                     <div class="row">
                         <!--<div class="input-field col s6">-->
@@ -35,7 +35,7 @@
                         </div>
                     </div>
                     <div class="input-field left-align">
-                        <button @click="submitFeatureRequest" class="btn" :disabled="busy">Tell ThemeXpert I want this <i class="material-icons left">done</i> <spinner v-if="busy"></spinner></button>
+                        <button @click="submitFeatureRequest" class="btn" :disabled="busy"><span v-text="lang.modal.feature_request.btn_suggest">Tell ThemeXpert I want this</span> <i class="material-icons left">done</i> <spinner v-if="busy"></spinner></button>
                     </div>
                 </div>
             </div>

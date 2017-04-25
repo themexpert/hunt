@@ -52,6 +52,19 @@ Vue.mixin({
          */
         isAdmin() {
             return this.$store.state.auth.user && this.$store.state.auth.user.is_admin;
+        },
+
+        lang() {
+            const languages = require('./lang/lang');
+            if(Hunt.LANG==='') {
+                console.log("Language is not defined");
+                return languages.en;
+            }
+            if(Object.keys(languages).indexOf(Hunt.LANG)<0) {
+                console.log("Language file " + Hunt.LANG + " not found");
+                return languages.en;
+            }
+            return languages[Hunt.LANG];
         }
     }
 });

@@ -28,7 +28,7 @@
                 <div class="details">
                     <ul class="collection feature-list">
                         <feature-list-item v-for="feature in features" :feature="feature"></feature-list-item>
-                        <li v-if="features.length==0" class="text-center">No feature request found.</li>
+                        <li v-if="features.length==0" class="text-center" v-text="lang.no_result_message.feature_requests">No feature request found.</li>
                         <li style="text-align: center" v-if="loading"><preloader-2></preloader-2></li>
                     </ul><!--/.card-->
                 </div><!--/.details-->

@@ -14,22 +14,22 @@
             </div>
         </div><!--/.card-->
 
-        <h2 class="title">Status <span class="chip green">{{ feature.status.type }}</span></h2>
+        <h2 class="title"><span v-text="lang.panel_title.status">Status</span> <span class="chip green">{{ feature.status.type }}</span></h2>
         <div class="card">
             <div class="card-content">
                 <span class="card-title quote">{{ feature.status.subject }}</span>
             </div>
             <div class="card-action user-info">
-                <img :src="gravatar(feature.user.email)" width="25" height="25" alt="" class="circle"><a>{{ feature.user.name }}</a> created this feature request {{ getTimeDiff }}
+                <p v-text="feature.status.message"></p>
             </div>
         </div><!--/.card-->
 
-        <h2 class="title">Discussion</h2>
+        <h2 class="title" v-text="lang.panel_title.discussion">Discussion</h2>
         <div class="card comments">
             <div class="card-content">
                 <comments :feature-id="feature.id"></comments>
             </div>
-            <add-comment-modal :feature-id="feature.id"></add-comment-modal>
+            <add-comment-modal v-if="feature.status.type!=='RELEASED'" :feature-id="feature.id"></add-comment-modal>
         </div><!--/.card-->
     </div><!--/.col-->
 </template>
@@ -63,6 +63,7 @@
             Bus.$on('status-updated', status=>{
                 this.feature.status.type=status.type;
                 this.feature.status.subject=status.subject;
+                this.feature.status.message=status.message;
             });
         },
         computed: {

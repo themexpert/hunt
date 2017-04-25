@@ -4,7 +4,7 @@
         <div class="container">
             <div class="feature-req">
                 <div class="center-align feature-form-area">
-                    <h2 class="feature-req-title">Feature Reports</h2>
+                    <h2 class="feature-req-title" v-text="lang.title_text.reports">Feature Reports</h2>
                 </div>
             </div><!--/.feature-req-->
         </div>

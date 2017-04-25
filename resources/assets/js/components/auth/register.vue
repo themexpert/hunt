@@ -4,7 +4,7 @@
                 <div class="container">
                     <div class="feature-req">
                         <div class="center-align feature-form-area">
-                            <h2 class="feature-req-title">Sign Up</h2>
+                            <h2 class="feature-req-title" v-text="lang.auth.register.title">Sign Up</h2>
                         </div>
                     </div><!--/.feature-req-->
                 </div>
@@ -19,27 +19,27 @@
 
                                     <form action="">
                                         <div class="input-field">
-                                            <input id="name" v-model="name" type="text" class="validate" placeholder="Your Name">
-                                            <label for="name">Name</label>
+                                            <input id="name" v-model="name" type="text" class="validate" :placeholder="lang.auth.register.name.placeholder">
+                                            <label for="name" v-text="lang.auth.register.name.label">Name</label>
                                         </div><!--/.input-field-->
                                         <div class="input-field">
-                                            <input id="remail" v-model="email" type="email" class="validate" placeholder="Your Email">
-                                            <label for="remail">Email</label>
-                                        </div><!--/.input-field-->
-
-                                        <div class="input-field">
-                                            <input id="rpassword" v-model="password" type="password" class="validate" placeholder="Password">
-                                            <label for="rpassword">Password</label>
+                                            <input id="remail" v-model="email" type="email" class="validate" :placeholder="lang.auth.register.email.placeholder">
+                                            <label for="remail" v-text="lang.auth.register.email.label">Email</label>
                                         </div><!--/.input-field-->
 
                                         <div class="input-field">
-                                            <input id="crpassword" v-model="password_confirmation" type="password" class="validate" placeholder="Password">
-                                            <label for="crpassword">Confirm Password</label>
+                                            <input id="rpassword" v-model="password" type="password" class="validate" :placeholder="lang.auth.register.password.placeholder">
+                                            <label for="rpassword" v-text="lang.auth.register.password.label">Password</label>
+                                        </div><!--/.input-field-->
+
+                                        <div class="input-field">
+                                            <input id="crpassword" v-model="password_confirmation" type="password" class="validate" :placeholder="lang.auth.register.password_confirmation.placeholder">
+                                            <label for="crpassword" v-text="lang.auth.register.password_confirmation.label">Confirm Password</label>
                                         </div><!--/.input-field-->
 
                                         <div class="input-field">
 
-                                            <a class="btn btn-block" @click="signUp" :disabled="busy">Sign Up <spinner v-if="busy"></spinner></a>
+                                            <a class="btn btn-block" @click="signUp" :disabled="busy"><span v-text="lang.auth.register.btn_sign_up">Sign Up</span> <spinner v-if="busy"></spinner></a>
 
                                         </div><!--/.input-field-->
                                     </form>
