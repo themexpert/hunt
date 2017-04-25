@@ -48,6 +48,7 @@
                                     <a data-activates="dropdown1" class="dropdown">@{{ userName }}</a>
                                     <ul id='dropdown1' class='dropdown-content'>
                                         <li v-if="isAdmin"><router-link to="/products">Products</router-link></li>
+                                        <li v-if="isAdmin"><router-link to="/settings">Settings</router-link></li>
                                         <li v-if="isAdmin"><router-link to="/settings/token">Tokens</router-link></li>
                                         <li v-if="isAdmin"><router-link to="/reports">Reports</router-link></li>
                                         <li class="divider"></li>

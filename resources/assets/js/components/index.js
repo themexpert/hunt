@@ -23,5 +23,8 @@ export default {
         settings: {
             token: require('./passport/settings/token.vue')
         }
+    },
+    settings: {
+        index: require('./settings/settings.vue')
     }
 }
