@@ -75,11 +75,15 @@ class ProductsController extends Controller
      */
     public function remove($id)
     {
-        $this->productsRepository->remove($id);
+        if($this->productsRepository->remove($id)) {
+            return $this->responseOk([
+                'message' => 'Product has been deleted'
+            ]);
+        }
 
-        return $this->responseOk([
-           'message' => 'Product has been deleted'
-        ]);
+        return response()->json([
+           'message' => 'Please, remove all features related to this product first'
+        ], 422);
     }
 
     /**

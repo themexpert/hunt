@@ -58,14 +58,21 @@ class ProductsRepository
      * Remove an existing product.
      *
      * @param int $id
+     * @return bool
      */
     public function remove($id)
     {
-        $product = Product::findOrFail($id);
+        $product = Product::with('suggests')->findOrFail($id);
 
-        @unlink(storage_path("app/public/logos/{$product->id}.{$product->logo}"));
+        if(is_null($product->suggests)) {
+            @unlink(storage_path("app/public/logos/{$product->id}.{$product->logo}"));
 
-        $product->delete();
+            $product->delete();
+
+            return true;
+        }
+
+        return false;
     }
 
     /**
