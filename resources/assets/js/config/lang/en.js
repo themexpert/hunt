@@ -9,8 +9,7 @@ module.exports = {
                 products: "Products",
                 settings: "Settings",
                 tokens: "Tokens",
-                reports: "Reports",
-                logout: "Logout"
+                reports: "Reports"
             },
             auth: {
                 form: {
@@ -76,6 +75,18 @@ module.exports = {
                     },
                     btn_suggest: "Tell " +this.company+" I want this"
                 },
+                edit_feature_request: {
+                    title: "Update feature Request",
+                    feature: {
+                        label: "Feature",
+                        placeholder: "What do you have in mind ?"
+                    },
+                    details: {
+                        label: "Add details (if you need to)",
+                        placeholder: "Please keep this as details as possible ..."
+                    },
+                    btn_suggest: "Update"
+                },
                 status_update: {
                     title: "Update Status",
                     subject: {
@@ -108,7 +119,8 @@ module.exports = {
                     btn_confirm: "Confirm",
                     btn_cancel: "Cancel",
                     messages: {
-                        delete_product: "Are you sure you want to delete this product?"
+                        delete_product: "Are you sure you want to delete this product?",
+                        delete_feature: "Are you sure you want to delete this feature?"
                     }
                 },
                 new_product: {

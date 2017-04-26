@@ -48,7 +48,7 @@
                 description: this.product.description
             };
             this.modal = $(".modal-product-edit");
-            this.modal.modal({complete: ()=>{this.$emit('closed', null)}});
+            this.modal.modal({dismissible:false,complete: ()=>{this.$emit('closed', null)}});
             this.modal.modal('open');
             Vue.nextTick(()=>{Materialize.updateTextFields();});
         },

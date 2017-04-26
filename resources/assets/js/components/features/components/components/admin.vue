@@ -3,7 +3,7 @@
         <a class="btn waves-effect waves-light" @click="editFeature"><span>Edit</span> <i class="material-icons left">edit</i></a>
         <a v-if="isAdmin" class="btn red waves-effect waves-light" @click="deleteFeature"><span>Delete</span> <i class="material-icons left">delete</i></a>
 
-        <confirm v-if="showDeleteModal" message="Are you sure you want to delete this feature?" @confirm="confirmed"></confirm>
+        <confirm v-if="showDeleteModal" :message="lang.modal.confirm.messages.delete_feature" @confirm="confirmed"></confirm>
         <edit v-if="showEditModal" :feature="feature" @closed="edit_closed"></edit>
     </div>
 </template>

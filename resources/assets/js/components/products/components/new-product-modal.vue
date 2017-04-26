@@ -48,7 +48,7 @@
             }
         },
         mounted() {
-            $(".modal").modal();
+            $(".modal").modal({dismissible:false});
         },
         methods: {
             /**

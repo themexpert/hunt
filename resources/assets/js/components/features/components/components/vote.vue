@@ -3,6 +3,13 @@
         <a :disabled="vote==1" class="waves-effect waves-light btn teal" @click="sendVote('up')"><i class="material-icons left">done</i> <span v-text="lang.button.interested">I want this</span></a>
         <a :disabled="vote==-1" class="waves-effect waves-light btn teal lighten-2" @click="sendVote('down')"><i class="material-icons left">snooze</i> <span v-text="lang.button.not_interested">Not interested</span></a>
     </div>
+    <div v-else :class="{'vote-btn':single!=undefined, 'secondary-content':single==undefined}">
+        <a class="waves-effect waves-light btn" :style="{color: '#ffffff', backgroundColor: (type==='RELEASED'?'#4caf50':'#0d47a1')}">
+            <i v-if="type==='RELEASED'" class="material-icons left">thumb_up</i>
+            <i v-if="type==='DECLINED'" class="material-icons">thumb_down</i>
+            <span v-text="typeText"></span>
+        </a>
+    </div>
 </template>
 <style>
 
@@ -19,9 +26,14 @@
             vote() {
                 return this.feature.userVoted;
             },
-
+            type() {
+                return this.feature.status.type;
+            },
+            typeText() {
+                return this.lang.status[this.type];
+            },
             show() {
-                return ['RELEASED','DECLINED'].indexOf(this.feature.status.type)<0;
+                return ['RELEASED','DECLINED'].indexOf(this.type)<0;
             }
         },
         methods: {

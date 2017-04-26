@@ -24,7 +24,7 @@
                         </div>
 
                         <div class="input-field left-align">
-                            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat right" v-text="lang.button.close">Close</a>
+                            <a class=" modal-action modal-close waves-effect waves-green btn-flat right" v-text="lang.button.close">Close</a>
                             <button type="submit" class="btn" :disabled="busy"><span v-text="lang.modal.status_update.btn_status">Update</span> <spinner v-if="busy"></spinner></button>
                         </div>
                     </form>
@@ -56,7 +56,7 @@
             /**
              * Initiates modal for sub-component
              */
-            $(".modal").modal();
+            $(".modal").modal({dismissible:false});
         },
         methods: {
             /**

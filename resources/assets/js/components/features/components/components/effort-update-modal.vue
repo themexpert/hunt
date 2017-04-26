@@ -44,7 +44,7 @@
             /**
              * Initiates modal for sub-component
              */
-            $(".modal").modal();
+            $(".modal").modal({dismissible:false});
         },
         methods: {
             /**

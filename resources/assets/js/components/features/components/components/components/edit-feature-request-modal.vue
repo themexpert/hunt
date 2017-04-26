@@ -2,17 +2,17 @@
         <!-- Modal Structure -->
         <div id="modal-edit-feature-request" class="modal">
             <div class="modal-content">
-                <h4 class="modal-title" v-text="lang.modal.feature_request.title">Suggest a feature for ThemeXpert</h4>
+                <h4 class="modal-title" v-text="lang.modal.edit_feature_request.title">Suggest a feature for ThemeXpert</h4>
                 <div class="">
                     <div class="row">
                         <div class="input-field">
-                            <input v-model="n_feature.name" id="suggest_feature" type="text" :placeholder="lang.modal.feature_request.feature.placeholder">
-                            <label for="suggest_feature" v-text="lang.modal.feature_request.feature.label">Suggest a feature</label>
+                            <input v-model="n_feature.name" id="suggest_feature" type="text" :placeholder="lang.modal.edit_feature_request.feature.placeholder">
+                            <label for="suggest_feature" v-text="lang.modal.edit_feature_request.feature.label">Suggest a feature</label>
                         </div>
                     </div><!--/.row-->
                     <div class="input-field">
-                        <textarea v-model="n_feature.description" id="textarea1" class="materialize-textarea" :placeholder="lang.modal.feature_request.details.placeholder"></textarea>
-                        <label for="textarea1" v-text="lang.modal.feature_request.details.label">Add details (if you need to)</label>
+                        <textarea v-model="n_feature.description" id="textarea1" class="materialize-textarea" :placeholder="lang.modal.edit_feature_request.details.placeholder"></textarea>
+                        <label for="textarea1" v-text="lang.modal.edit_feature_request.details.label">Add details (if you need to)</label>
                     </div>
                     <div class="row">
                         <div class="input-field">
@@ -23,7 +23,7 @@
                     </div>
                     <div class="input-field left-align">
                         <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat right" v-text="lang.button.close">Close</a>
-                        <button @click="updateFeatureRequest" class="btn" :disabled="busy"><span v-text="lang.modal.feature_request.btn_suggest">Tell ThemeXpert I want this</span> <i class="material-icons left">done</i> <spinner v-if="busy"></spinner></button>
+                        <button @click="updateFeatureRequest" class="btn" :disabled="busy"><span v-text="lang.modal.edit_feature_request.btn_suggest">Tell ThemeXpert I want this</span> <i class="material-icons left">done</i> <spinner v-if="busy"></spinner></button>
                     </div>
                 </div>
             </div>
@@ -55,7 +55,7 @@
         },
         mounted() {
             this.modal = $("#modal-edit-feature-request");
-            this.modal.modal({complete: ()=>{this.$emit('closed', null)}});
+            this.modal.modal({dismissible:false,complete: ()=>{this.$emit('closed', null)}});
             this.modal.modal('open');
             this.n_feature.tags = this.feature.tags;
             this.n_feature.name = this.feature.name;
