@@ -178,10 +178,17 @@ export default {
             });
         },
 
+        /**
+         * Update vote
+         *
+         * @param state
+         * @param vote
+         */
         new_vote(state, vote){
             const feature = state.features.find(feature=>{
                 return feature.id===vote.id;
             });
+            if(feature===undefined) return;
             if(feature.vote===null) feature.vote = {up: 0, down: 0};
             if(feature.userVoted===0) {
                 if(vote.up)

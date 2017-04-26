@@ -38,16 +38,46 @@
         },
         mounted () {
             Hunt.renderPage('Feature');
+            if(!this.$store.state.features.features.length)
+                this.$store.dispatch('product_changed', this.product_id);
             this.loadFeatureData();
+            Bus.$on('new-vote', vote=>{
+                    if(this.feature.vote===null) this.feature.vote = {up: 0, down: 0};
+                    if(this.feature.userVoted===0) {
+                        if(vote.up)
+                            this.feature.vote.up++;
+                        else
+                            this.feature.vote.down++;
+                    }
+                    else {
+                        if (vote.up === 1) {
+                            this.feature.vote.up++;
+                            this.feature.vote.down--;
+                        }
+                        else {
+                            this.feature.vote.up--;
+                            this.feature.vote.down++;
+                        }
+                    }
+                    this.feature.userVoted = vote.up?1:-1;
+            });
         },
         methods: {
             /**
              * Loads feature information
              */
             loadFeatureData() {
+                if(!(this.feature_id/2)) {
+                    this.$router.push('/404');
+                    return;
+                }
                 this.get('/products/'+this.product_id+'/features/'+this.feature_id)
                     .then(
                         success => {
+                            if(success.body.features===null) {
+                                this.$router.push('/404');
+                                return;
+                            }
                             this.feature = success.body.features;
                             Hunt.renderPage(this.feature.name);
                         },

@@ -1,7 +1,7 @@
 <template>
     <div v-if="show" :class="{'vote-btn':single!=undefined, 'secondary-content':single==undefined}">
-        <a :disabled="vote==1" class="waves-effect waves-light btn teal" @click="sendVote('up')"><i class="material-icons left">done</i> <span v-text="lang.button.interested">I want this</span> <spinner v-if="busy"></spinner></a>
-        <a :disabled="vote==-1" class="waves-effect waves-light btn teal lighten-2" @click="sendVote('down')"><i class="material-icons left">snooze</i> <span v-text="lang.button.not_interested">Not interested</span> <spinner v-if="busy"></spinner></a>
+        <a :disabled="vote==1" class="waves-effect waves-light btn teal" @click="sendVote('up')"><i class="material-icons left">done</i> <span v-text="lang.button.interested">I want this</span></a>
+        <a :disabled="vote==-1" class="waves-effect waves-light btn teal lighten-2" @click="sendVote('down')"><i class="material-icons left">snooze</i> <span v-text="lang.button.not_interested">Not interested</span></a>
     </div>
 </template>
 <style>
@@ -13,7 +13,6 @@
         props: ['feature', 'single'],
         data(){
             return{
-                busy: false
             }
         },
         computed: {
@@ -37,7 +36,8 @@
                     .then(
                         success => {
                             Hunt.toast(success.body.message, 'success');
-                            this.$store.commit('new_vote', endPoint=='up'?{id: this.feature.id, up:1}:{id: this.feature.id, down:1});
+                            this.$store.commit('new_vote', endPoint==='up'?{id: this.feature.id, up:1}:{id: this.feature.id, down:1});
+                            Bus.$emit('new-vote', endPoint==='up'?{id: this.feature.id, up:1}:{id: this.feature.id, down:1});
                             this.busy = false;
                         },
                         error => {
