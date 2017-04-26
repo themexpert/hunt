@@ -3,17 +3,17 @@
 return [
     'PENDING' => [
         'subject' => 'Wait your feature suggestion feedback',
-        'message' => 'blah blah blah blah blah.....'
+        'message' => 'Feature is pending now'
     ],
 
     'WIP' => [
         'subject' => 'Feedback now in progress',
-        'message' => 'blah blah blah blah blah.....'
+        'message' => 'Feature now in progress'
     ],
 
     'RELEASED' => [
         'subject' => 'Feedback has been released',
-        'message' => 'blah blah blah blah blah.....'
+        'message' => 'Feature has been released'
     ],
 
     'DECLINED' => [
