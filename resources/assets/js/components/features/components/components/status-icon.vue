@@ -1,5 +1,5 @@
 <template>
-    <i class="material-icons circle" :data-tooltip="icon.tooltip"> {{ icon.icon }} </i>
+    <i class="material-icons circle" data-position="top" :data-tooltip="icon.tooltip"> {{ icon.icon }} </i>
 </template>
 <style>
     
@@ -12,7 +12,7 @@
             }
         },
         mounted() {
-            $("i[data-tooltip]").tooltip({position: 'top'});
+            $("i[data-tooltip]").tooltip();
         },
         computed: {
             /**
