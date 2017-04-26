@@ -5,15 +5,15 @@
                 <table class="responsive-table reports-list">
                     <thead>
                     <tr>
-                        <th data-field="value">Value</th>
-                        <th data-field="feature">Feature</th>
-                        <th data-field="status">Status</th>
+                        <th data-field="value" v-text="lang.table.reports.value">Value</th>
+                        <th data-field="feature" v-text="lang.table.reports.feature">Feature</th>
+                        <th data-field="status" v-text="lang.table.reports.status">Status</th>
                     </tr>
                     </thead>
 
                     <tbody>
                     <tr v-if="features.length==0">
-                        <td colspan="3">No Feature found</td>
+                        <td colspan="3" v-text="lang.no_result_message.feature_requests">No Feature found</td>
                     </tr>
                     <list-item v-else v-for="feature in features" :feature="feature"></list-item>
                     <tr v-if="loading">

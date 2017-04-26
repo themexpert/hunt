@@ -29,7 +29,6 @@
         },
         watch: {
             product_id() {
-                this.$store.dispatch('product_changed', this.product_id);
                 this.$emit('input', this.product_id);
             },
             value() {

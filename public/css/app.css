@@ -8460,6 +8460,10 @@ a {
   margin-top: 30px;
 }
 
+.mb15 {
+  margin-bottom: 15px;
+}
+
 nav,
 nav .nav-wrapper i,
 nav a.button-collapse,
@@ -8487,7 +8491,7 @@ nav .input-field input:focus {
 }
 
 nav .menu ul a {
-  padding: 0 10px;
+  /*padding: 0 10px;*/
 }
 
 nav .menu .author img {
@@ -8570,9 +8574,9 @@ nav .menu .author img {
 }
 
 .feature-list {
-  background: #fff;
+  /*background: #fff;*/
   padding: 30px;
-  margin-top: -35px;
+  margin-top: -20px;
 }
 
 .feature-list .collection {
@@ -8719,6 +8723,122 @@ footer {
 
 .widget-feature-filter .filter-btn a.active {
   background: #306cda;
+}
+
+/*Test*/
+.select2-container--default .select2-selection--single {
+  border: 0;
+  border-bottom: 1px solid #fff;
+  border-radius: 0;
+  background: transparent;
+}
+
+.select2-container .select2-selection--single .select2-selection__rendered {
+  padding-left: 0;
+  text-align: left;
+}
+
+.select2-container--default .select2-selection--single,
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  height: 35px;
+}
+
+span.select2.select2-container.select2-container--default.select2-container--above:focus {
+  outline: 0;
+}
+
+.select2-dropdown {
+  border-radius: 2px;
+  border: 0;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+
+/*Modal Dropdown*/
+.feature-req .modal.open .select2-container--default .select2-selection--single,
+.feature-req .modal.open .select2-container--default .select2-selection--single .select2-selection__arrow {
+  height: 45px;
+}
+
+.feature-req .modal.open .select2-container--default .select2-selection--single {
+  border: 0;
+  border-bottom: 1px solid #aaa;
+  border-radius: 0;
+  background: transparent;
+}
+
+.feature-req .modal.open .select2-container--default .select2-selection--multiple {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #aaa;
+  border-radius: 0;
+}
+
+.feature-req .modal.open .select2-container--default .select2-search--inline .select2-search__field {
+  margin: 0;
+}
+
+.feature-req .modal.open .input-field input[type=search]:focus {
+  background: transparent;
+}
+
+ul.collection.search-results {
+  margin-top: -12px;
+}
+
+.search-box ul.collection.search-results.not-found {
+  overflow-y: hidden;
+  padding: 7px 15px;
+  background: #fff;
+  color: #333;
+}
+
+.feature-filter .select2-container--default .select2-selection--single {
+  border: 0;
+  border-bottom: 1px solid #fff;
+  border-radius: 0;
+}
+
+.modal.open .select2-container--default .select2-selection--single {
+  border-bottom-color: #aaa;
+}
+
+.feature-filter .select2-container--default .select2-selection--single .select2-selection__rendered {
+  color: #fff;
+}
+
+.feature-filter .select2-container--default .select2-selection--single .select2-selection__arrow b {
+  border-color: #fff transparent transparent transparent;
+}
+
+.feature-filter .select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow b {
+  border-color: transparent transparent #fff transparent;
+}
+
+input[type=search]:focus:not([readonly]) {
+  border-bottom-color: #aaa;
+  box-shadow: none;
+}
+
+.status-btn a {
+  float: left;
+  margin-right: 5px;
+}
+
+.modal-header {
+  padding: 24px 24px 0;
+}
+
+.filter-btn a {
+  margin: 3px;
+}
+
+/*Error Page*/
+.error-page {
+  padding: 100px 0;
+}
+
+.error-text {
+  font-size: 120px;
 }
 
 /* This is a compiled file, you should be editing the file in the templates directory */

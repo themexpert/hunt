@@ -6,19 +6,19 @@
         <div class="description">
             {{ feature.description }}
         </div>
-        <vote :feature="feature"></vote>
+        <div class="secondary-content">
+            <button class="btn btn-success" style="color: #ffffff;background-color: #4caf50;" v-text="lang.status.released"></button>
+        </div>
     </li>
 </template>
 <style>
 
 </style>
 <script>
-    import Vote from '../../features/components/components/vote.vue'
     import Tag from '../../features/components/components/tags.vue'
     export default{
         name: 'ReleasesListItem',
         components: {
-            'vote': Vote,
             'tag': Tag
         },
         props: ['feature'],
@@ -33,7 +33,7 @@
              * Computes status
              */
             status() {
-                return this.feature.status!=null?this.feature.status.type:'PENDING';
+                return 'RELEASED'; //released item
             },
 
             /**

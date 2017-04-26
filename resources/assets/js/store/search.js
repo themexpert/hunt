@@ -15,14 +15,17 @@ export default {
          * @param append
          */
         search(state, append=false) {
-            if(state.busy || state.query=='') return;
+            if(state.busy || state.query=='') {
+                state.features = [];
+                Bus.$emit('search-results-loaded');
+                return;
+            }
             if(append) {
                 if(state.pagination!=null && state.pagination.total_page>state.page) {
                     state.page++;
                 }
                 else {
                     Bus.$emit('search-results-loaded');
-                    Hunt.toast(`You've reached the end.`);
                     return;
                 }
             } else { state.page = 1; }

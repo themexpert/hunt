@@ -1,6 +1,6 @@
 <template>
     <div class="widget widget-feature-filter">
-        <h3 class="widget-title">Prepared Reports</h3>
+        <h3 class="widget-title" v-text="lang.panel_title.prepared_reports">Prepared Reports</h3>
         <div class="filter-btn">
             <router-link class="waves-effect waves-light btn" v-for="(slug, label) in filters" :to="getUrl(slug)" :class="{active: filter==slug}">{{ label }}</router-link>
             <router-link class="waves-effect waves-light btn" :to="graphUrl" :class="{active: filter=='effortVsValue'}">{{ graphLabel }}</router-link>

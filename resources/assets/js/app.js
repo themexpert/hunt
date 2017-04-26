@@ -35,6 +35,7 @@ const app = new Vue({
             this.$store.commit('update_products');
             this.$store.commit('update_tags');
         });
+        Bus.$on("goto-login", ()=>{this.$router.push("/login")});
     },
     computed: {
         /**

@@ -1,7 +1,12 @@
 <template>
-    <div :class="{'vote-btn':single!=undefined, 'secondary-content':single==undefined}">
-        <a v-if="vote==0 || vote==1" :disabled="vote==1" class="waves-effect waves-light btn teal" @click="sendVote('up')"><i class="material-icons left">done</i> I want this <spinner v-if="busy"></spinner></a>
-        <a v-if="vote==0 || vote==-1" :disabled="vote==-1" class="waves-effect waves-light btn teal lighten-2" @click="sendVote('down')"><i class="material-icons left">snooze</i> Not interested <spinner v-if="busy"></spinner></a>
+    <div v-if="show" :class="{'vote-btn':single!=undefined, 'secondary-content':single==undefined}">
+        <a :disabled="vote==1" class="waves-effect waves-light btn teal" @click="sendVote('up')"><i class="material-icons left">done</i> <span v-text="lang.button.interested">I want this</span></a>
+        <a :disabled="vote==-1" class="waves-effect waves-light btn teal lighten-2" @click="sendVote('down')"><i class="material-icons left">snooze</i> <span v-text="lang.button.not_interested">Not interested</span></a>
+    </div>
+    <div v-else :class="{'vote-btn':single!=undefined, 'secondary-content':single==undefined}">
+        <a class="waves-effect waves-light btn" :style="{color: '#ffffff', backgroundColor: (type==='RELEASED'?'#4caf50':'#0d47a1')}">
+            <span v-text="typeText"></span>
+        </a>
     </div>
 </template>
 <style>
@@ -13,12 +18,20 @@
         props: ['feature', 'single'],
         data(){
             return{
-                busy: false
             }
         },
         computed: {
             vote() {
                 return this.feature.userVoted;
+            },
+            type() {
+                return this.feature.status.type;
+            },
+            typeText() {
+                return this.lang.status[this.type.toLowerCase()];
+            },
+            show() {
+                return ['RELEASED','DECLINED'].indexOf(this.type)<0;
             }
         },
         methods: {
@@ -29,20 +42,17 @@
              */
             sendVote(endPoint) {
                 this.busy = true;
-                this.feature.userVoted = (endPoint=='up'?1:-1);
                 this.post('/votes/' + this.feature.id + '/' + endPoint)
                     .then(
                         success => {
                             Hunt.toast(success.body.message, 'success');
-                            Bus.$emit('new-vote', endPoint=='up'?{up:1}:{down:1});
-                            let vote=endPoint=='up'?1:-1;
+                            this.$store.commit('new_vote', endPoint==='up'?{id: this.feature.id, up:1}:{id: this.feature.id, down:1});
+                            Bus.$emit('new-vote', endPoint==='up'?{id: this.feature.id, up:1}:{id: this.feature.id, down:1});
                             this.busy = false;
                         },
                         error => {
-                            console.log(error);
                             Hunt.toast('Error sending vote.', 'error');
                             this.busy = false;
-                            this.feature.userVoted = 0;
                         }
                     );
             }

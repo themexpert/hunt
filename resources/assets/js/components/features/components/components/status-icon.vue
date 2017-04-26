@@ -1,5 +1,5 @@
 <template>
-    <i class="material-icons circle"> {{ icon }} </i>
+    <i class="material-icons circle" data-position="top" :data-tooltip="icon.tooltip"> {{ icon.icon }} </i>
 </template>
 <style>
     
@@ -9,7 +9,20 @@
         props: ['status'],
         data(){
             return{
-                msg:'hello vue'
+            }
+        },
+        mounted() {
+            Vue.nextTick(()=>{
+                this.re_render();
+            });
+        },
+        methods: {
+            re_render() {
+                setTimeout(()=>{
+                    const tooltip = $("i[data-tooltip]");
+                    tooltip.tooltip('remove');
+                    tooltip.tooltip();
+                }, 500);
             }
         },
         computed: {
@@ -18,10 +31,33 @@
              * @returns {*}
              */
             icon() {
-                if (this.status == null || this.status == "PENDING") return 'schedule';
-                if (this.status == 'RELEASED') return 'done';
-                if (this.status == 'WIP') return 'loop';
-                if (this.status == 'DECLINED') return 'block';
+                if (this.status === null || this.status === "PENDING")
+                    return {
+                        icon: 'schedule',
+                        tooltip: this.lang.tooltip.status.pending
+                    };
+                if (this.status === 'RELEASED')
+                    return {
+                        icon: 'done',
+                        tooltip: this.lang.tooltip.status.released
+                    };
+                if (this.status === 'WIP')
+                    return {
+                        icon: 'loop',
+                        tooltip: this.lang.tooltip.status.wip
+                    };
+                if (this.status === 'DECLINED')
+                    return {
+                        icon: 'block',
+                        tooltip: this.lang.tooltip.status.declined
+                    };
+            }
+        },
+        watch: {
+            lang() {
+                Vue.nextTick(()=>{
+                    this.re_render();
+                });
             }
         }
     }

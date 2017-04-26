@@ -8,6 +8,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <link rel="shortcut icon" href="{{ $settings->favicon }}">
+
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
 
@@ -18,6 +20,9 @@
         ]); ?>
 
             window.message = "<?php echo str_replace('"', '\\"', \Illuminate\Support\Facades\Session::get('message')); ?>";
+            window.company = "{{ str_replace('"', "\"", $settings->company) }}";
+            window.copyright = "{{ str_replace('"', "\"", $settings->copyright) }}";
+            window.language = "{{ $settings->language }}";
     </script>
     <title>Hunt</title>
     <style>
@@ -35,7 +40,9 @@
                     <div class="row">
                         <div class="col s2">
                             <div class="logo mt15">
-                                <router-link id="logo-container" to="/" class="brand-logo">Logo</router-link>
+                                <router-link id="logo-container" to="/" class="brand-logo">
+                                    <img src="{{ $settings->logo }}" style="max-width: 200px" alt="logo">
+                                </router-link>
                             </div>
                         </div><!--/.col-->
                         <div class="col s5" v-if="isLoggedIn">
@@ -44,25 +51,26 @@
                         <div class="col" :class="{s10:!isLoggedIn,s5:isLoggedIn}">
                             <div class="menu mt15">
                                 <div v-if="isLoggedIn" class="right author" v-cloak>
-                                    <a data-activates="dropdown1" class="dropdown"><img :src="userAvatar" alt="" class="circle" height="25" width="25"></a>
+                                    <img :src="userAvatar" alt="" class="circle" height="25" width="25">
                                     <a data-activates="dropdown1" class="dropdown">@{{ userName }}</a>
                                     <ul id='dropdown1' class='dropdown-content'>
-                                        <li v-if="isAdmin"><router-link to="/products">Products</router-link></li>
-                                        <li v-if="isAdmin"><router-link to="/settings/token">Tokens</router-link></li>
-                                        <li v-if="isAdmin"><router-link to="/reports">Reports</router-link></li>
+                                        <li v-if="isAdmin"><router-link to="/products" v-text="lang.nav.products">Products</router-link></li>
+                                        <li v-if="isAdmin"><router-link to="/settings" v-text="lang.nav.settings">Settings</router-link></li>
+                                        {{--<li v-if="isAdmin"><router-link to="/settings/token" v-text="lang.nav.tokens">Tokens</router-link></li>--}}
+                                        <li v-if="isAdmin"><router-link to="/reports" v-text="lang.nav.reports">Reports</router-link></li>
                                         <li class="divider"></li>
-                                        <li><router-link to="/logout">Logout</router-link></li>
+                                        <li><router-link to="/logout" v-text="lang.auth.nav.logout">Logout</router-link></li>
                                     </ul>
                                 </div>
 
                                 <ul class="right hide-on-med-and-down">
                                     <template v-if="isLoggedIn">
-                                        <li><router-link to="/">Dashboard</router-link></li>
-                                        <li><router-link to="/features/releases">Releases</router-link></li>
+                                        <li><router-link to="/" v-text="lang.nav.dashboard">Dashboard</router-link></li>
+                                        <li><router-link to="/features/releases" v-text="lang.nav.releases">Releases</router-link></li>
                                     </template>
                                     <template v-else>
-                                        <li><router-link to="/login">Login</router-link></li>
-                                        <li><router-link to="/register">Register</router-link></li>
+                                        <li><router-link to="/login" v-text="lang.auth.nav.login">Login</router-link></li>
+                                        <li><router-link to="/register" v-text="lang.auth.nav.register">Register</router-link></li>
                                     </template>
                                 </ul>
                             </div>
@@ -130,9 +138,7 @@
     </router-view>
     <footer class="center-align">
         <div class="footer-copyright">
-            <div class="container">
-                &copy; 2010-2016 ThemeXpert Inc. All Rights Reserved.
-            </div>
+            <div class="container" v-html="lang.copyright">{{ $settings->copyright }}</div>
         </div>
     </footer>
 </div>

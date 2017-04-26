@@ -17,16 +17,17 @@ class ProductsRepository
      * @param array  $logo
      * @return \Hunt\Product
      */
-    public function add($name, $description, $logo)
+    public function add($name, $description, $logo=null)
     {
          $product = Product::create([
              'user_id' => auth('api')->user()->id,
              'name' => $name,
              'description' => $description,
-             'logo' => $logo->extension()
+             'logo' => ($logo?$logo->extension():'')
         ]);
 
-        $logo->storeAs('public/logos', $product->id . '.' . $logo->extension());
+        if($logo)
+            $logo->storeAs('public/logos', $product->id . '.' . $logo->extension());
 
         return $product;
     }
@@ -57,14 +58,21 @@ class ProductsRepository
      * Remove an existing product.
      *
      * @param int $id
+     * @return bool
      */
     public function remove($id)
     {
         $product = Product::findOrFail($id);
 
-        @unlink(storage_path("app/public/logos/{$product->id}.{$product->logo}"));
+        if(empty($product->suggests()->get()->toArray())) {
+            @unlink(storage_path("app/public/logos/{$product->id}.{$product->logo}"));
 
-        $product->delete();
+            $product->delete();
+
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -75,17 +83,18 @@ class ProductsRepository
      * @param string  $description
      * @param array   $logo
      */
-    public function update($id, $name, $description, $logo)
+    public function update($id, $name, $description, $logo=null)
     {
         $product = Product::findOrFail($id);
 
         $product->update([
             'name' => $name,
             'description' => $description,
-            'logo' => $logo->extension()
+            'logo' => ($logo?$logo->extension():'')
         ]);
 
-        $logo->storeAs('public/logos', $product->id . '.' . $logo->extension());
+        if($logo)
+            $logo->storeAs('public/logos', $product->id . '.' . $logo->extension());
     }
 
     /**

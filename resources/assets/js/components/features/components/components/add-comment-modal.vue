@@ -1,6 +1,6 @@
 <template>
     <div class="card-action center-align">
-        <a class="waves-effect waves-light btn" href="#modal_comment_form"><i class="material-icons left">add</i> Add a comment</a>
+        <a class="waves-effect waves-light btn" href="#modal_comment_form"><i class="material-icons left">add</i> <span v-text="lang.modal.comment.title">Add a comment</span></a>
 
         <!-- Modal Structure -->
         <div id="modal_comment_form" class="modal bottom-sheet comment-form">
@@ -9,13 +9,13 @@
 
                     <form class="" action="" @submit.prevent="submitComment">
                         <div class="input-field">
-                            <textarea v-model="comment" id="textarea1" class="materialize-textarea" placeholder="You need to add some text to your comment."></textarea>
-                            <label for="textarea1">Add Comment</label>
+                            <textarea v-model="comment" id="textarea1" class="materialize-textarea" :placeholder="lang.modal.comment.comment.label"></textarea>
+                            <label for="textarea1" v-text="lang.modal.comment.comment.label">Add Comment</label>
                         </div>
 
                         <div class="input-field left-align">
-                            <button type="submit" class="btn" :disabled="busy">Save comment <i class="material-icons left">done</i> <spinner v-if="busy"></spinner></button>
-                            <a class="modal-action modal-close waves-effect waves-green btn grey">Close</a>
+                            <button type="submit" class="btn" :disabled="busy"><span v-text="lang.modal.comment.btn_comment">Save comment</span> <i class="material-icons left">done</i> <spinner v-if="busy"></spinner></button>
+                            <a class="modal-action modal-close waves-effect waves-green btn grey" v-text="lang.button.close">Close</a>
                         </div>
                     </form>
 

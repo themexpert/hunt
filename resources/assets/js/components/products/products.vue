@@ -13,7 +13,7 @@
                 <div class="details">
                     <ul class="collection products-list">
                         <product-item v-for="product in products" :product="product"></product-item>
-                        <li v-if="products.length==0" class="text-center">No product found.</li>
+                        <li v-if="products.length==0" class="text-center" v-text="lang.no_result_message.products">No product found.</li>
                         <li v-if="loading"><preloader-2></preloader-2></li>
                     </ul><!--/.card-->
                 </div><!--/.details-->
@@ -48,12 +48,6 @@
                 return;
             }
             Hunt.renderPage('Products');
-            /**
-             * Register new product saved listener
-             */
-            Bus.$on('new-product-saved', product=>{
-                this.$store.state.features.products.unshift(product);
-            });
         },
         methods: {
 

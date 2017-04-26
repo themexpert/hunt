@@ -51,7 +51,12 @@
              * @returns {Array}
              */
             filters() {
-                return this.$store.state.features.statuses;
+                const statuses =  this.$store.state.features.statuses;
+                statuses.map((status)=>{
+                    status.label = this.lang.status[status.slug]!==undefined?this.lang.status[status.slug]:status.label;
+                    return status;
+                });
+                return statuses;
             },
 
             /**

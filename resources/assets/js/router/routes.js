@@ -74,7 +74,11 @@ export default [
         component: Components.reports.index,
         meta: {requiresAuth:true}
     },
-
+    {
+        path: '/settings',
+        component: Components.settings.index,
+        meta: {requiresAuth:true}
+    },
     {
         path: '/settings/token',
         component: Components.passport.settings.token,

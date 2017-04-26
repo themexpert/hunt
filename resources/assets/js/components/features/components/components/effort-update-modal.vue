@@ -1,10 +1,10 @@
 <template>
     <div class="widget widget-status-change">
         <div class="status-btn">
-            <a class="btn red waves-effect waves-light"  href="#effort_change">Update Effort <i class="material-icons left">loop</i></a>
+            <a class="btn red waves-effect waves-light"  href="#effort_change"><span v-text="lang.button.update_effort">Update Effort</span> <i class="material-icons left">loop</i></a>
             <div id="effort_change" class="modal">
                 <div class="modal-header">
-                    <h4 class="title">Update Effort</h4>
+                    <h4 class="title" v-text="lang.modal.effort_update.title">Update Effort</h4>
                 </div>
                 <div class="modal-content">
                     <form action="" @submit.prevent="updateEffort">
@@ -13,15 +13,13 @@
                                 <input v-model="effort" id="effort" type="range" min="0" max="100">
                             </div>
                             <span class="col s3">{{ effort }}</span>
-                            <label for="effort">Effort</label>
+                            <label for="effort" v-text="lang.modal.effort_update.effort.label">Effort</label>
                         </div>
                         <div class="input-field left-align">
-                            <button type="submit" class="btn" :disabled="busy">Update <spinner v-if="busy"></spinner></button>
+                            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat right" v-text="lang.button.close">Close</a>
+                            <button type="submit" class="btn" :disabled="busy"><span v-text="lang.modal.effort_update.btn_effort">Update</span> <spinner v-if="busy"></spinner></button>
                         </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
                 </div>
             </div>
         </div>
@@ -46,7 +44,7 @@
             /**
              * Initiates modal for sub-component
              */
-            $(".modal").modal();
+            $(".modal").modal({dismissible:false});
         },
         methods: {
             /**

@@ -13,7 +13,9 @@ Route::get('/dashboard', 'DashboardController@index');
 //    return view('main-app');
 //});
 
-Route::get('/refresh-token', function () {
+Route::get('/refresh-token', function (\Illuminate\Http\Request $request) {
+    if(!$request->wantsJson() && !$request->ajax())
+        return redirect('/');
     $tokens = auth()->user()->tokens;
     if($tokens->count()) $tokens->map(function($token){
         $token->delete();
@@ -41,7 +43,9 @@ Route::get('/key', function() {
 })->middleware('auth');
 
 
-Route::get('/refresh', function(){
+Route::get('/refresh', function(\Illuminate\Http\Request $request){
+    if(!$request->wantsJson() && !$request->ajax())
+        return redirect('/');
     return response()->json([
                                 'loggedIn' => auth()->check(),
                                 '_token' => csrf_token()
@@ -50,13 +54,16 @@ Route::get('/refresh', function(){
 
 Route::get('/logout', 'Api\Auth\LoginController@logout');
 
+Route::get('password/reset/{token}', 'Api\Auth\ResetPasswordController@showResetForm');
+
 Route::group(['prefix' => 'auth', 'namespace' => 'Api'], function() {
     Auth::routes();
 });
 
 Route::any('{slug}', function($slug)
 {
-    return view('main-app');
+    $settings = \Hunt\Setting::find(1);
+    return view('main-app', compact('settings'));
 })->where('slug', '([A-z\d-\/_.]+)?');
 
 
