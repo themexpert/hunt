@@ -62,9 +62,9 @@ class ProductsRepository
      */
     public function remove($id)
     {
-        $product = Product::with('suggests')->findOrFail($id);
+        $product = Product::findOrFail($id);
 
-        if(is_null($product->suggests)) {
+        if(empty($product->suggests()->get()->toArray())) {
             @unlink(storage_path("app/public/logos/{$product->id}.{$product->logo}"));
 
             $product->delete();
