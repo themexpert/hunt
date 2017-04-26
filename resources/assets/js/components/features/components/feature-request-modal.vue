@@ -35,6 +35,7 @@
                         </div>
                     </div>
                     <div class="input-field left-align">
+                        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat right" v-text="lang.button.close">Close</a>
                         <button @click="submitFeatureRequest" class="btn" :disabled="busy"><span v-text="lang.modal.feature_request.btn_suggest">Tell ThemeXpert I want this</span> <i class="material-icons left">done</i> <spinner v-if="busy"></spinner></button>
                     </div>
                 </div>

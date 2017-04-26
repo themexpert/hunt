@@ -23,6 +23,7 @@
                         <!--<input name="logo" type="file" @change="fileSelected" placeholder="Product Logo">-->
                     <!--</div>-->
                     <div class="input-field left-align">
+                        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat right" v-text="lang.button.close">Close</a>
                         <button type="submit" class="btn" :disabled="busy"><span v-text="lang.modal.new_product.btn_product">Save Product</span> <i class="material-icons left">done</i> <spinner v-if="busy"></spinner></button>
                     </div>
                 </form>

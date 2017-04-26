@@ -6,7 +6,7 @@
             <button class="btn waves-effect waves-light btn teal amber darken-4 right" @click="deleteProduct">DELETE</button>
             <button class="btn waves-effect waves-light btn teal right" @click="editProduct">EDIT</button>
         </div>
-        <confirm v-if="showDeleteModal" :item="product.id" message="Are you sure you want to delete this product?" @confirm="confirmed"></confirm>
+        <confirm v-if="showDeleteModal" :item="product.id" :message="lang.modal.confirm.messages.delete_product" @confirm="confirmed"></confirm>
         <edit-product v-if="showEditModal" :product="product" @closed="edit_closed"></edit-product>
     </li>
 </template>
@@ -53,8 +53,13 @@
                         this.$store.commit('product_deleted', this.product);
                         Hunt.toast(response.data.message, "success");
                     }).catch(error=>{
-                        Hunt.toast("Something went wrong.", "error");
-                        console.log(error);
+                        if(error.status===422) {
+                            Hunt.toast("You have feature requests under this product. Delete feature requests first before deleting this product.", "info");
+                        }
+                        else {
+                            Hunt.toast("Something went wrong.", "error");
+                            console.log(error);
+                        }
                 });
             }
         },

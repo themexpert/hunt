@@ -1,12 +1,12 @@
 <template>
     <div id="modal-confirm" class="modal">
         <div class="modal-content">
-            <h4>Please Confirm</h4>
+            <h4 v-text="lang.modal.confirm.title">Please Confirm</h4>
             <p v-text="message"></p>
         </div>
         <div class="modal-footer">
-            <a @click="done(true)" class="modal-action waves-effect waves-green btn-flat">CONFIRM</a>
-            <a @click="done(false)" class="modal-action waves-effect waves-green btn-flat">CANCEL</a>
+            <a @click="done(true)" class="modal-action waves-effect waves-green btn-flat" v-text="lang.modal.confirm.btn_confirm">CONFIRM</a>
+            <a @click="done(false)" class="modal-action waves-effect waves-green btn-flat" v-text="lang.modal.confirm.btn_cancel">CANCEL</a>
         </div>
     </div>
 </template>

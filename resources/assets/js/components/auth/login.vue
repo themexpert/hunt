@@ -40,7 +40,7 @@
                                         </div>
 
                                         <div class="col s6 right-align">
-                                            <a href="/password/reset" v-text="lang.auth.form.login.forgot_password">Forgot Your Password?</a>
+                                            <a href="/auth/password/reset" v-text="lang.auth.form.login.forgot_password">Forgot Your Password?</a>
                                         </div>
                                     </div>
 

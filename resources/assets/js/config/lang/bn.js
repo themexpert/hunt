@@ -79,7 +79,7 @@ module.exports = {
                     title: "Update Status",
                     subject: {
                         label: "Subject",
-                        placeholder: ""
+                        placeholder: "Subject"
                     },
                     message: {
                         label: "Status Note",
@@ -102,6 +102,14 @@ module.exports = {
                     },
                     btn_comment: "Save comment"
                 },
+                confirm: {
+                    title: "",
+                    btn_confirm: "Confirm",
+                    btn_cancel: "Cancel",
+                    messages: {
+                        delete_product: "Are you sure you want to delete this product?"
+                    }
+                },
                 new_product: {
                     title: "Add new product",
                     product: {
@@ -113,6 +121,18 @@ module.exports = {
                         placeholder: "Please keep this as details as possible ..."
                     },
                     btn_product: "Save Product"
+                },
+                edit_product: {
+                    title: "Update Product",
+                    product: {
+                        label: "Product Name",
+                        placeholder: "Product Name"
+                    },
+                    description: {
+                        label: "Add Details",
+                        placeholder: "Please keep this as details as possible ..."
+                    },
+                    btn_product: "Update Product"
                 }
             },
             search_box: "Search Feature",

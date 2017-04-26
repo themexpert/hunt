@@ -16,7 +16,7 @@
                         </div>
                         <div class="input-field">
                             <input id="subject" type="text" v-model="subject" :placeholder="lang.modal.status_update.subject.placeholder">
-                            <label for="subject" v-text="lang.modal.status_update.subject.title">Subject</label>
+                            <label for="subject" v-text="lang.modal.status_update.subject.label">Subject</label>
                         </div>
                         <div class="input-field">
                             <textarea v-model="message" id="textarea1" class="materialize-textarea" :placeholder="lang.modal.status_update.message.placeholder"></textarea>
@@ -24,12 +24,10 @@
                         </div>
 
                         <div class="input-field left-align">
+                            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat right" v-text="lang.button.close">Close</a>
                             <button type="submit" class="btn" :disabled="busy"><span v-text="lang.modal.status_update.btn_status">Update</span> <spinner v-if="busy"></spinner></button>
                         </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" v-text="lang.button.close">Close</a>
                 </div>
             </div>
         </div>

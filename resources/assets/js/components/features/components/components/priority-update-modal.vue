@@ -16,12 +16,10 @@
                             <label for="priority">Priority</label>
                         </div>
                         <div class="input-field left-align">
+                            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat right" v-text="lang.button.close">Close</a>
                             <button type="submit" class="btn" :disabled="busy">Update <spinner v-if="busy"></spinner></button>
                         </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
                 </div>
             </div>
         </div>

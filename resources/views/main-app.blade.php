@@ -41,7 +41,7 @@
                         <div class="col s2">
                             <div class="logo mt15">
                                 <router-link id="logo-container" to="/" class="brand-logo">
-                                    <img src="{{ $settings->logo }}" height="100" alt="logo">
+                                    <img src="{{ $settings->logo }}" style="max-width: 200px" alt="logo">
                                 </router-link>
                             </div>
                         </div><!--/.col-->
@@ -138,7 +138,7 @@
     </router-view>
     <footer class="center-align">
         <div class="footer-copyright">
-            <div class="container" v-html="lang.copyright">&copy; 2010-2016 ThemeXpert Inc. All Rights Reserved.</div>
+            <div class="container" v-html="lang.copyright">{{ $settings->copyright }}</div>
         </div>
     </footer>
 </div>

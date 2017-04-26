@@ -176,6 +176,34 @@ export default {
                 }
                 return product;
             });
+        },
+
+        new_vote(state, vote){
+            const feature = state.features.find(feature=>{
+                return feature.id===vote.id;
+            });
+            if(feature.vote===null) feature.vote = {up: 0, down: 0};
+            if(feature.userVoted===0) {
+                if(vote.up)
+                    feature.vote.up++;
+                else
+                    feature.vote.down++;
+            }
+            else {
+                if (vote.up === 1) {
+                    feature.vote.up++;
+                    feature.vote.down--;
+                }
+                else {
+                    feature.vote.up--;
+                    feature.vote.down++;
+                }
+            }
+            feature.userVoted = vote.up?1:-1;
+            state.features = state.features.map(f=>{
+                if(feature.id===f.id) return feature;
+                return f;
+            });
         }
     },
     actions: {

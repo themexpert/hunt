@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col s3">
                 <prepared-report-filter></prepared-report-filter>
-                <access-filter></access-filter>
+                <!--<access-filter></access-filter>-->
                 <tags-filter></tags-filter>
             </div>
             <graph v-if="$route.params.type=='graph'"></graph>
