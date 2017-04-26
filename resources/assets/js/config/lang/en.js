@@ -128,11 +128,19 @@ module.exports = {
 
             },
             status: {
-                all: "All",
+                '': "All",
                 pending: "PENDING",
                 wip: "WIP",
                 released: "RELEASED",
                 declined: "DECLINED"
+            },
+            tooltip: {
+                status: {
+                    pending: "Pending",
+                    wip: "Work In Progress",
+                    released: "Released",
+                    declined: "Declined"
+                }
             },
             no_result_message: {
                 feature_requests: "No feature request found.",

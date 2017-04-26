@@ -19,7 +19,7 @@
                     <img class="circle responsive-img" :src="userAvatar" :alt="username">
                   </div>
                   <h4 v-text="username"></h4>
-                  <a href="#">Sign Out</a>
+                    <router-link to="/logout" v-text="lang.auth.nav.logout">Logout</router-link>
                 </div><!--/.user-info-->
 
             </div><!--/.col-->

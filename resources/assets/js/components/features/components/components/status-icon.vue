@@ -23,23 +23,32 @@
                 if (this.status === null || this.status === "PENDING")
                     return {
                         icon: 'schedule',
-                        tooltip: 'Pending'
+                        tooltip: this.lang.tooltip.status.pending
                     };
                 if (this.status === 'RELEASED')
                     return {
                         icon: 'done',
-                        tooltip: 'Released'
+                        tooltip: this.lang.tooltip.status.released
                     };
                 if (this.status === 'WIP')
                     return {
                         icon: 'loop',
-                        tooltip: 'Work In Progress'
+                        tooltip: this.lang.tooltip.status.wip
                     };
                 if (this.status === 'DECLINED')
                     return {
                         icon: 'block',
-                        tooltip: 'Declined'
+                        tooltip: this.lang.tooltip.status.declined
                     };
+            }
+        },
+        watch: {
+            lang() {
+                Vue.nextTick(()=>{
+                    const tooltip = $("i[data-tooltip]");
+                    tooltip.tooltip('remove');
+                    tooltip.tooltip();
+                });
             }
         }
     }

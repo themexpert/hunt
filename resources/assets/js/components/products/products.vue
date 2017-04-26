@@ -48,12 +48,6 @@
                 return;
             }
             Hunt.renderPage('Products');
-            /**
-             * Register new product saved listener
-             */
-            Bus.$on('new-product-saved', product=>{
-                this.$store.state.features.products.unshift(product);
-            });
         },
         methods: {
 

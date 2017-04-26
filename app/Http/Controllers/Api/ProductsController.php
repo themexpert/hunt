@@ -38,7 +38,7 @@ class ProductsController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'description' => 'required',
-            'logo' => 'required'
+//            'logo' => 'required'
         ]);
 
         $product = $this->productsRepository->add(
@@ -94,7 +94,7 @@ class ProductsController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'description' => 'required',
-            'logo' => 'required'
+//            'logo' => 'required'
         ]);
 
         $this->productsRepository->update(

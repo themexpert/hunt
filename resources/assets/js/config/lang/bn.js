@@ -5,12 +5,11 @@ module.exports = {
         return {
             nav: {
                 dashboard: "ড্যাশবোর্ড",
-                releases: "মুক্তি",
+                releases: "মুক্তিপ্রাপ্ত",
                 products: "পণ্য",
                 settings: "সেটিংস",
                 tokens: "Tokens",
-                reports: "প্রতিবেদন",
-                logout: "প্রস্থান"
+                reports: "প্রতিবেদন"
             },
             auth: {
                 form: {
@@ -55,7 +54,7 @@ module.exports = {
                 nav: {
                     login: "Login",
                     register: "Register",
-                    logout: "Logout"
+                    logout: "প্রস্থান"
                 }
             },
             title_text: {
@@ -128,11 +127,19 @@ module.exports = {
 
             },
             status: {
-                all: "All",
-                pending: "PENDING",
-                wip: "WIP",
-                released: "RELEASED",
-                declined: "DECLINED"
+                '': "সব",
+                pending: "মুলতুবি",
+                wip: "চলছে",
+                released: "মুক্তিপ্রাপ্ত",
+                declined: "পতিত"
+            },
+            tooltip: {
+                status: {
+                    pending: "মুলতুবি",
+                    wip: "চলছে",
+                    released: "মুক্তিপ্রাপ্ত",
+                    declined: "পতিত"
+                }
             },
             no_result_message: {
                 feature_requests: "No feature request found.",

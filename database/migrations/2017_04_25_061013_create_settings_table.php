@@ -25,6 +25,8 @@ class CreateSettingsTable extends Migration
         });
 
         DB::table('settings')->insert(['language'=>'en']);
+        @copy(public_path('images').'/logo-hunt.png', public_path('images').'/logo.png');
+        @copy(public_path('images').'/favicon-hunt.png', public_path('images').'/favicon.png');
     }
 
     /**

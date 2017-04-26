@@ -138,6 +138,44 @@ export default {
                         console.log(fail);
                     }
                 );
+        },
+
+        /**
+         * Removes product from products list
+         *
+         * @param state
+         * @param pd > product that has been deleted
+         */
+        product_deleted(state, pd) {
+            state.products = state.products.filter(product=>{
+                return product.id!==pd.id;
+            });
+        },
+
+        /**
+         * Adds new product to the top of list
+         *
+         * @param state
+         * @param product
+         */
+        new_product_added(state, product) {
+            state.products.unshift(product);
+        },
+
+        /**
+         * Updates a product
+         *
+         * @param state
+         * @param pd
+         */
+        product_updated(state, pd) {
+            state.products = state.products.map(product=>{
+                if(product.id===pd.id) {
+                    product.name = pd.name;
+                    product.description = pd.description;
+                }
+                return product;
+            });
         }
     },
     actions: {

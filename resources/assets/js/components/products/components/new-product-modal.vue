@@ -10,7 +10,7 @@
                 <h4 class="modal-title" v-text="lang.modal.new_product.title">Add new product</h4>
                 <form class="" action="" @submit.prevent="saveNewProduct">
                     <div class="row">
-                        <div class="input-field col s6">
+                        <div class="input-field">
                             <input name="name" v-model="product.name" id="product_name" type="text" :placeholder="lang.modal.new_product.product.placeholder">
                             <label for="product_name" v-text="lang.modal.new_product.product.title">Product Name</label>
                         </div>
@@ -19,9 +19,9 @@
                         <textarea name="description" v-model="product.description" id="textarea1" class="materialize-textarea" :placeholder="lang.modal.new_product.description.placeholder"></textarea>
                         <label for="textarea1" v-text="lang.modal.new_product.description.label">Add details</label>
                     </div>
-                    <div class="input-field">
-                        <input name="logo" type="file" @change="fileSelected" placeholder="Product Logo">
-                    </div>
+                    <!--<div class="input-field">-->
+                        <!--<input name="logo" type="file" @change="fileSelected" placeholder="Product Logo">-->
+                    <!--</div>-->
                     <div class="input-field left-align">
                         <button type="submit" class="btn" :disabled="busy"><span v-text="lang.modal.new_product.btn_product">Save Product</span> <i class="material-icons left">done</i> <spinner v-if="busy"></spinner></button>
                     </div>
@@ -72,10 +72,10 @@
                     valid = false;
                 }
 
-                if(this.product.file==null) {
-                    Hunt.toast('Please select a logo.', 'warning');
-                    valid = false;
-                }
+//                if(this.product.file==null) {
+//                    Hunt.toast('Please select a logo.', 'warning');
+//                    valid = false;
+//                }
 
                 return valid;
             },
@@ -91,7 +91,7 @@
                 this.busy=true;
                 this.post('/products', data).then(
                     success => {
-                        Bus.$emit('new-product-saved', success.body.product);
+                        this.$store.commit('new_product_added', success.body.product);
                         Hunt.toast('New product have been saved.', 'success');
                         this.busy = false;
                         this.product.name = '';
