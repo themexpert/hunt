@@ -5,8 +5,6 @@
     </div>
     <div v-else :class="{'vote-btn':single!=undefined, 'secondary-content':single==undefined}">
         <a class="waves-effect waves-light btn" :style="{color: '#ffffff', backgroundColor: (type==='RELEASED'?'#4caf50':'#0d47a1')}">
-            <i v-if="type==='RELEASED'" class="material-icons left">thumb_up</i>
-            <i v-if="type==='DECLINED'" class="material-icons">thumb_down</i>
             <span v-text="typeText"></span>
         </a>
     </div>
@@ -30,7 +28,7 @@
                 return this.feature.status.type;
             },
             typeText() {
-                return this.lang.status[this.type];
+                return this.lang.status[this.type.toLowerCase()];
             },
             show() {
                 return ['RELEASED','DECLINED'].indexOf(this.type)<0;
