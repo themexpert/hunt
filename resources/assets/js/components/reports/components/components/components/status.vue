@@ -31,7 +31,7 @@
                         };
                     case "DECLINED":
                         return {
-                            bg_color: '"#0d47a1"',
+                            bg_color: '#0d47a1',
                             label: this.lang.tooltip.status.declined
                         };
                         break;
