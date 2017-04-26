@@ -6,7 +6,7 @@
             <button class="btn waves-effect waves-light btn teal amber darken-4 right" @click="deleteProduct">DELETE</button>
             <button class="btn waves-effect waves-light btn teal right" @click="editProduct">EDIT</button>
         </div>
-        <confirm v-if="showDeleteModal" :item="product.id" :message="lang.modal.confirm.messages.delete_product" @confirm="confirmed"></confirm>
+        <confirm v-if="showDeleteModal" :message="lang.modal.confirm.messages.delete_product" @confirm="confirmed"></confirm>
         <edit-product v-if="showEditModal" :product="product" @closed="edit_closed"></edit-product>
     </li>
 </template>
@@ -16,7 +16,7 @@
     }
 </style>
 <script type="text/babel">
-    import confirm_modal from './components/confirm.vue'
+    import confirm_modal from '../../helpers/confirm.vue'
     import edit_product from './components/edit-product-modal.vue'
     import Hunt from './../../../config/Hunt'
     export default{

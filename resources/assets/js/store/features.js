@@ -211,6 +211,36 @@ export default {
                 if(feature.id===f.id) return feature;
                 return f;
             });
+        },
+
+        /**
+         * Feature Update
+         *
+         * @param state
+         * @param n_feature
+         */
+        feature_updated(state, n_feature) {
+            const feature = state.features.find(feature=>{
+                return feature.id===n_feature.id;
+            });
+            if(feature===null) return;
+            feature.name = n_feature.name;
+            feature.description = n_feature.description;
+            feature.tags = n_feature.tags;
+            state.features = state.features.map(f=>{
+                if(f.id===n_feature.id) return feature;
+                return f;
+            });
+        },
+
+        /**
+         * Feature deleted
+         *
+         * @param state
+         * @param id
+         */
+        feature_deleted(state, id) {
+            state.features = state.features.filter(f=>{return f.id!==id;});
         }
     },
     actions: {

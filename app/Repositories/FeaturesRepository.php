@@ -129,7 +129,8 @@ class FeaturesRepository
 
         $this->attachTags($tags, $feature);
 
-        $this->updateStatus($feature, $status);
+        if($status)
+            $this->updateStatus($feature, $status);
     }
 
     /**

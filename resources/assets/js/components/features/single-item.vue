@@ -61,6 +61,11 @@
                     }
                     this.feature.userVoted = vote.up?1:-1;
             });
+            Bus.$on("feature-updated", n_feature=>{
+                this.feature.name = n_feature.name;
+                this.feature.description = n_feature.description;
+                this.feature.tags = n_feature.tags;
+            });
         },
         methods: {
             /**
@@ -78,6 +83,7 @@
                                 this.$router.push('/404');
                                 return;
                             }
+                            success.body.features.tags = success.body.features.tags.map(tag=>{return tag.name;});
                             this.feature = success.body.features;
                             Hunt.renderPage(this.feature.name);
                         },
