@@ -3,7 +3,7 @@
         <router-link :to="productUrl"><h4 class="title">{{ product.name }}</h4></router-link>
         <div class="description">{{ product.description }}</div>
         <div class="secondary-content product-action">
-            <button class="btn waves-effect waves-light btn teal amber darken-4 right" @click="deleteProduct">DELETE</button>
+            <button class="btn waves-effect waves-light btn red right" @click="deleteProduct">DELETE</button>
             <button class="btn waves-effect waves-light btn teal right" @click="editProduct">EDIT</button>
         </div>
         <confirm v-if="showDeleteModal" :message="lang.modal.confirm.messages.delete_product" @confirm="confirmed"></confirm>
