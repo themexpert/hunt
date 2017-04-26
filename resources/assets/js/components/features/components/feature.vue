@@ -14,7 +14,7 @@
             </div>
         </div><!--/.card-->
 
-        <h2 class="title"><span v-text="lang.panel_title.status">Status</span> <span class="chip green">{{ feature.status.type }}</span></h2>
+        <h2 class="title"><span v-text="lang.panel_title.status">Status</span> <span class="chip" :style="{backgroundColor: statusColor, color: '#ffffff'}">{{ feature.status.type }}</span></h2>
         <div class="card">
             <div class="card-content">
                 <span class="card-title quote">{{ feature.status.subject }}</span>
@@ -74,6 +74,22 @@
              */
             getTimeDiff() {
                 return moment.tz(this.feature.created_at, 'UTC').tz(moment.tz.guess()).fromNow();
+            },
+
+            statusColor() {
+                switch(this.feature.status.type) {
+                    case "PENDING":
+                    case null:
+                        return "#ffa726";
+                        break;
+                    case "RELEASED":
+                        return "#4caf50";
+                    case "WIP":
+                        return "#ba68c8";
+                    case "DECLINED":
+                        return "#0d47a1";
+                        break;
+                }
             }
         }
     }

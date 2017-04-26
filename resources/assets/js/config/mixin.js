@@ -16,9 +16,9 @@ Vue.mixin({
         this.langData.copyright = window.copyright;
         this.langData.language = window.language;
         Bus.$on("settings-updated", settings=>{
-            this.langData.company = settings.company;
-            this.langData.copyright = settings.copyright;
-            this.langData.language = settings.LANG;
+            this.langData.company = window.company = settings.company;
+            this.langData.copyright = window.copyright = settings.copyright;
+            this.langData.language = window.language = settings.LANG;
         });
     },
     methods: {

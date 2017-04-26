@@ -1,5 +1,5 @@
 <template>
-    <i class="material-icons circle"> {{ icon }} </i>
+    <i class="material-icons circle" :data-tooltip="icon.tooltip"> {{ icon.icon }} </i>
 </template>
 <style>
     
@@ -9,8 +9,10 @@
         props: ['status'],
         data(){
             return{
-                msg:'hello vue'
             }
+        },
+        mounted() {
+            $("i[data-tooltip]").tooltip({position: 'top'});
         },
         computed: {
             /**
@@ -18,10 +20,26 @@
              * @returns {*}
              */
             icon() {
-                if (this.status == null || this.status == "PENDING") return 'schedule';
-                if (this.status == 'RELEASED') return 'done';
-                if (this.status == 'WIP') return 'loop';
-                if (this.status == 'DECLINED') return 'block';
+                if (this.status === null || this.status === "PENDING")
+                    return {
+                        icon: 'schedule',
+                        tooltip: 'Pending'
+                    };
+                if (this.status === 'RELEASED')
+                    return {
+                        icon: 'done',
+                        tooltip: 'Released'
+                    };
+                if (this.status === 'WIP')
+                    return {
+                        icon: 'loop',
+                        tooltip: 'Work In Progress'
+                    };
+                if (this.status === 'DECLINED')
+                    return {
+                        icon: 'block',
+                        tooltip: 'Declined'
+                    };
             }
         }
     }
