@@ -56,6 +56,13 @@
 
                           <div class="mt30">
                               <div class="input-field">
+                                  <input id="title" type="text" v-model="title">
+                                  <label class="active" for="title">Site Title</label>
+                              </div>
+                          </div><!--/.mt30-->
+
+                          <div class="mt30">
+                              <div class="input-field">
                                   <select id="language">
                                       <option value="en" :selected="langData.language==='en'">English</option>
                                       <option value="bn" :selected="langData.language==='bn'">বাংলা</option>
@@ -123,6 +130,7 @@
             return {
                 logo: null,
                 favicon: null,
+                title: '',
                 company: '',
                 copyright: '',
                 name: '',
@@ -152,6 +160,7 @@
             },
             getSettings() {
                 this.$http.get('/api/settings').then(response=>{
+                    this.title = response.data.title;
                     this.company = response.data.company;
                     this.copyright = response.data.copyright;
                     Vue.nextTick(()=>{Hunt.renderPage("Settings");});
@@ -162,6 +171,7 @@
                 this.language = lang;
                 const data = new FormData();
                 data.append('name', this.name);
+                data.append('title', this.title);
                 data.append('company', this.company);
                 data.append('copyright', this.copyright);
                 data.append('language', lang);
@@ -187,6 +197,8 @@
                             Bus.$emit("settings-updated", {company: response.data.company, copyright: response.data.copyright, LANG: this.language});
                             this.logo = null;
                             this.favicon = null;
+                            window.title = this.title;
+                            Hunt.renderPage("Settings");
                             $(".file-path").val('');
                             this.$store.state.auth.user.name = this.name;
                             $("input[type=password]").val('');

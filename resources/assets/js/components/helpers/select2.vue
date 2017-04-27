@@ -60,7 +60,6 @@
                     that.control.val(this.value).trigger('change');
                     that.elem.parent().find('span.select2').width('100%');
                     $(".select2-search__field").css('width', '100%');
-                    $(".select2-selection__placeholder").css('color', '#fff');
                 }, 100);
             },
             valueUpdated() {

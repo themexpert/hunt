@@ -6,7 +6,7 @@ import Hunt from './config/Hunt'
  * @param title
  */
 Hunt.pageTitle = title => {
-    document.title = 'Hunt - ' + title + ' ';
+    document.title = (window.title!==undefined?window.title:'Hunt') + ' - ' + title + ' ';
 };
 
 /**
@@ -19,7 +19,7 @@ Hunt.renderPage = (pageTitle) => {
     let btnCollapse = $('.button-collapse');
     if (btnCollapse.length > 0) btnCollapse.sideNav();
     let mdl = $('.modal');
-    if (mdl.length > 0) mdl.modal();
+    if (mdl.length > 0) mdl.modal({dismissible:false});
     setTimeout(()=>{Materialize.updateTextFields();},200);
     let collaps = $('.collapsible');
     if(collaps.length>0) collaps.collapsible();

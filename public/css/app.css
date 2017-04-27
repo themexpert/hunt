@@ -8806,6 +8806,14 @@ ul.collection.search-results {
   color: #fff;
 }
 
+.select2-container--default .select2-selection--single .select2-selection__placeholder {
+  color: #fff;
+}
+
+.modal.open .select2-container--default .select2-selection--single .select2-selection__placeholder {
+  color: #999;
+}
+
 .feature-filter .select2-container--default .select2-selection--single .select2-selection__arrow b {
   border-color: #fff transparent transparent transparent;
 }

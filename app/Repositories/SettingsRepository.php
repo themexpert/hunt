@@ -41,6 +41,8 @@ class SettingsRepository {
                 $settings->logo = '/images/'.$filename;
             }
         }
+        if($request->title)
+            $settings->title = $request->title;
         if($request->company)
             $settings->company = $request->company;
         if($request->copyright)
@@ -54,6 +56,7 @@ class SettingsRepository {
         return response()->json([
             "favicon" => $settings->favicon,
             "logo" => $settings->logo,
+            "title" => $settings->title,
             "company" => $settings->company,
             "copyright" => $settings->copyright,
             "message" => "Settings Updated"
