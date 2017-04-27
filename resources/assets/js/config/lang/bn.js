@@ -14,46 +14,46 @@ module.exports = {
             auth: {
                 form: {
                     login: {
-                        title: "Login",
-                        or: "OR",
+                        title: "প্রবেশ করুন",
+                        or: "অথবা",
                         email: {
-                            label: "Email",
-                            placeholder: "Your Email"
+                            label: "ইমেইল",
+                            placeholder: "আপনার ইমেইল"
                         },
                         password: {
-                            label: "Password",
+                            label: "পাসওয়ার্ড",
                             placeholder: "Password"
                         },
-                        remember_me: "Remember Me",
-                        forgot_password: "Forgot Your Password?",
-                        btn_login: "Log in",
-                        dont_have_an_account: "Don't have an account?",
-                        url_sign_up: "Sign Up"
+                        remember_me: "এই কম্পিউটারে আমাকে মনে রাখুন",
+                        forgot_password: "আপনি কি পাসওয়ার্ড ভুলে গেছেন?",
+                        btn_login: "প্রবেশ করুন",
+                        dont_have_an_account: "অ্যাকাউন্ট নেই?",
+                        url_sign_up: "নিবন্ধন করুন"
                     },
                     register: {
-                        title: "Sign Up",
+                        title: "নিবন্ধন করুন",
                         name: {
-                            label: "Name",
-                            placeholder: "Your Name"
+                            label: "নাম",
+                            placeholder: "আপনার নাম"
                         },
                         email: {
-                            label: "Email",
-                            placeholder: "Your Email"
+                            label: "ইমেইল",
+                            placeholder: "আপনার ইমেইল"
                         },
                         password: {
-                            label: "Password",
+                            label: "পাসওয়ার্ড",
                             placeholder: "Password"
                         },
                         password_confirmation: {
-                            label: "Confirm Password",
+                            label: "পাসওয়ার্ড নিশ্চিত করুন",
                             placeholder: "Password"
                         },
-                        btn_sign_up: "Sign Up",
+                        btn_sign_up: "নিবন্ধন করুন",
                     }
                 },
                 nav: {
-                    login: "Login",
-                    register: "Register",
+                    login: "প্রবেশ করুন",
+                    register: "নিবন্ধন করুন",
                     logout: "প্রস্থান"
                 }
             },
@@ -64,7 +64,7 @@ module.exports = {
             },
             modal: {
                 feature_request: {
-                    title: "Suggest a feature for " + this.company,
+                    title: this.company + " এর জন্য বৈশিষ্ট্য অনুরোধ",
                     feature: {
                         label: "Suggest a feature",
                         placeholder: "What do you have in mind ?"
@@ -75,11 +75,23 @@ module.exports = {
                     },
                     btn_suggest: "Tell " +this.company+" I want this"
                 },
+                edit_feature_request: {
+                    title: "Update feature Request",
+                    feature: {
+                        label: "Feature",
+                        placeholder: "What do you have in mind ?"
+                    },
+                    details: {
+                        label: "Add details (if you need to)",
+                        placeholder: "Please keep this as details as possible ..."
+                    },
+                    btn_suggest: "Update"
+                },
                 status_update: {
                     title: "Update Status",
                     subject: {
                         label: "Subject",
-                        placeholder: ""
+                        placeholder: "Subject"
                     },
                     message: {
                         label: "Status Note",
@@ -102,6 +114,15 @@ module.exports = {
                     },
                     btn_comment: "Save comment"
                 },
+                confirm: {
+                    title: "",
+                    btn_confirm: "Confirm",
+                    btn_cancel: "Cancel",
+                    messages: {
+                        delete_product: "Are you sure you want to delete this product?",
+                        delete_feature: "Are you sure you want to delete this feature?"
+                    }
+                },
                 new_product: {
                     title: "Add new product",
                     product: {
@@ -113,6 +134,18 @@ module.exports = {
                         placeholder: "Please keep this as details as possible ..."
                     },
                     btn_product: "Save Product"
+                },
+                edit_product: {
+                    title: "Update Product",
+                    product: {
+                        label: "Product Name",
+                        placeholder: "Product Name"
+                    },
+                    description: {
+                        label: "Add Details",
+                        placeholder: "Please keep this as details as possible ..."
+                    },
+                    btn_product: "Update Product"
                 }
             },
             search_box: "Search Feature",

@@ -85,7 +85,10 @@
              * @type {boolean}
              */
             Bus.$on('feature-list-loaded', ()=>{this.loading=false;});
-            Bus.$on('products_loaded', this.load); //invoke first time load when products are loaded
+            Bus.$on('products_loaded', ()=>{
+                if(this.products.length>0)
+                    this.load(); //if we have products then set one
+            }); //invoke first time load when products are loaded
             //don't run into error when the products are not loaded
             if(this.products.length>0)
                 this.load(); //if we have products then set one

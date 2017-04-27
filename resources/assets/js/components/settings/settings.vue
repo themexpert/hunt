@@ -30,8 +30,6 @@
                       <div class="general-settings">
 
                         <h5 class="mt0">General Settings</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-
                         <div class="logo-change mt30">
                           <div class="file-field input-field">
                             <div class="btn">
@@ -84,8 +82,6 @@
 
                       <div class="profile-setting mt30">
                         <h5>Profile Settings</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-
                         <div class="mt30">
                           <div class="input-field">
                             <input id="change_name" type="text" v-model="name">

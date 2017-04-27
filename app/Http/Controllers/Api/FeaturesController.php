@@ -110,7 +110,7 @@ class FeaturesController extends Controller
             'description' => 'required',
             'is_private' => 'boolean',
 //            'tags' => 'required|array',
-            'status' => 'required|array'
+//            'status' => 'required|array'
         ]);
 
         $this->featuresRepository->update(

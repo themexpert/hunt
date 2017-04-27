@@ -29,7 +29,7 @@
             <div class="card-content">
                 <comments :feature-id="feature.id"></comments>
             </div>
-            <add-comment-modal v-if="feature.status.type!=='RELEASED'" :feature-id="feature.id"></add-comment-modal>
+            <add-comment-modal v-if="['RELEASED', 'DECLINED'].indexOf(feature.status.type)<0" :feature-id="feature.id"></add-comment-modal>
         </div><!--/.card-->
     </div><!--/.col-->
 </template>

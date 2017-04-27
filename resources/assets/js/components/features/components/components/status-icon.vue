@@ -12,7 +12,18 @@
             }
         },
         mounted() {
-            $("i[data-tooltip]").tooltip();
+            Vue.nextTick(()=>{
+                this.re_render();
+            });
+        },
+        methods: {
+            re_render() {
+                setTimeout(()=>{
+                    const tooltip = $("i[data-tooltip]");
+                    tooltip.tooltip('remove');
+                    tooltip.tooltip();
+                }, 500);
+            }
         },
         computed: {
             /**
@@ -45,9 +56,7 @@
         watch: {
             lang() {
                 Vue.nextTick(()=>{
-                    const tooltip = $("i[data-tooltip]");
-                    tooltip.tooltip('remove');
-                    tooltip.tooltip();
+                    this.re_render();
                 });
             }
         }

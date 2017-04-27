@@ -70,7 +70,7 @@ class PreparedReportsRepository
     {
         $features = Priority::with(['feature', 'feature.product', 'feature.priority', 'feature.status'])
             ->select('id', 'user_id', 'feature_id', DB::raw('sum(value) as value'))
-            ->groupBy('id', 'feature_id')
+            ->groupBy('id', 'feature_id', 'user_id')
             ->orderBy('value', 'desc');
 
         return $this->dataWithPagination($features, $limit, 'desc', 'id');
@@ -88,7 +88,7 @@ class PreparedReportsRepository
     {
         $features = Priority::with(['feature', 'feature.product', 'feature.priority', 'feature.status'])
             ->select('id', 'user_id', 'feature_id', DB::raw('sum(value) as value'))
-            ->groupBy('id', 'feature_id')
+            ->groupBy('id', 'feature_id', 'user_id')
             ->orderBy('value');
 
         return $this->dataWithPagination($features, $limit, 'desc', 'id');

@@ -7,7 +7,7 @@
             {{ feature.description }}
         </div>
         <div class="secondary-content">
-            <button class="btn btn-success green">Done</button>
+            <button class="btn btn-success" style="color: #ffffff;background-color: #4caf50;" v-text="lang.status.released"></button>
         </div>
     </li>
 </template>
