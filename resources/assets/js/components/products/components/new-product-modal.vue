@@ -9,12 +9,10 @@
             <div class="modal-content">
                 <h4 class="modal-title" v-text="lang.modal.new_product.title">Add new product</h4>
                 <form class="" action="" @submit.prevent="saveNewProduct">
-                    <div class="row">
-                        <div class="input-field">
-                            <input name="name" v-model="product.name" id="product_name" type="text" :placeholder="lang.modal.new_product.product.placeholder">
-                            <label for="product_name" v-text="lang.modal.new_product.product.title">Product Name</label>
-                        </div>
-                    </div><!--/.row-->
+                    <div class="input-field">
+                        <input name="name" v-model="product.name" id="product_name" type="text" :placeholder="lang.modal.new_product.product.placeholder">
+                        <label for="product_name" v-text="lang.modal.new_product.product.title">Product Name</label>
+                    </div>
                     <div class="input-field">
                         <textarea name="description" v-model="product.description" id="textarea1" class="materialize-textarea" :placeholder="lang.modal.new_product.description.placeholder"></textarea>
                         <label for="textarea1" v-text="lang.modal.new_product.description.label">Add details</label>
@@ -67,17 +65,6 @@
                     Hunt.toast('Product name can not be empty.', 'warning');
                     valid = false;
                 }
-
-                if(this.product.description=='') {
-                    Hunt.toast('Product description can not be empty.', 'warning');
-                    valid = false;
-                }
-
-//                if(this.product.file==null) {
-//                    Hunt.toast('Please select a logo.', 'warning');
-//                    valid = false;
-//                }
-
                 return valid;
             },
             /**

@@ -10,7 +10,7 @@
                 <div class="modal-content">
                     <form action="" @submit.prevent="updateStatus">
                         <div class="input-field">
-                            <select2 v-model="status">
+                            <select2 v-model="status" :placeholder="lang.placeholder.dropdown.status">
                                 <option v-for="s in statuses" :value="s.label">{{ s.label }}</option>
                             </select2>
                         </div>

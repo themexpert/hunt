@@ -103,7 +103,7 @@
                           </div><!--/.mt30-->
                           <div class="mt30">
                               <div class="input-field">
-                                  <button type="submit" class="btn" :disabled="busy" @click="setSettings"><span>Save Product</span> <spinner v-if="busy"></spinner></button>
+                                  <button type="submit" class="btn" :disabled="busy" @click="setSettings"><span>Update Settings</span> <spinner v-if="busy"></spinner></button>
                               </div>
                           </div><!--/.mt30-->
 

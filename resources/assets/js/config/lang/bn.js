@@ -15,6 +15,7 @@ module.exports = {
                 form: {
                     login: {
                         title: "প্রবেশ করুন",
+                        google_login: 'গুগল এর সাথে সাইন ইন করুন',
                         or: "অথবা",
                         email: {
                             label: "ইমেইল",
@@ -146,6 +147,13 @@ module.exports = {
                         placeholder: "Please keep this as details as possible ..."
                     },
                     btn_product: "Update Product"
+                }
+            },
+            placeholder: {
+                dropdown: {
+                    product: "Please select a product",
+                    tag: "Please select some tag",
+                    status: "Please select a status"
                 }
             },
             search_box: "Search Feature",

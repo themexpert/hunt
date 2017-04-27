@@ -37,7 +37,7 @@ class ProductsController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'description' => 'required',
+//            'description' => 'required',
 //            'logo' => 'required'
         ]);
 

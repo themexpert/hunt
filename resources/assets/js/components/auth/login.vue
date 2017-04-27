@@ -17,7 +17,12 @@
                         <div class="card feature-list">
                             <div class="login-section card-content">
                                 <div class="center-align">
-                                    <a href="/auth/google/"><img src="/images/google-login.png" alt="Use Google Account"></a>
+                                    <a href="/auth/google/" class="google-login">
+                                        <div class="icon">
+                                            <img src="/images/google-icon.png" alt="Google">
+                                        </div>
+                                        <div class="text" v-text="lang.auth.form.login.google_login">Sign in with Google</div>
+                                    </a>
                                     <div class="or" v-text="lang.auth.form.login.or">OR</div>
                                 </div>
                                 <form action="">
@@ -62,7 +67,31 @@
     </section>
 </template>
 <style>
-    
+    .google-login {
+        background: #1976D2;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        padding: 2px;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        text-decoration: none;
+        border-radius: 3px;
+        width: 230px;
+        margin: 0 auto;
+        transition: all .3s ease;
+    }
+    .google-login .icon {
+        background: #fff;
+        margin-right: 22px;
+        padding: 12px;
+        border-radius: 3px;
+        line-height: 1;
+    }
+    .google-login:hover {
+        box-shadow: 0 0 3px 3px rgba(66,133,244,.3);
+    }
 </style>
 <script>
     import Hunt from '../../config/Hunt'
