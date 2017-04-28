@@ -1,16 +1,27 @@
 <template>
     <li class="collection-item">
-        <p><strong><router-link :to="productUrl">{{ result.product.name }}</router-link></strong><router-link :to="featureUrl">{{ result.name }}</router-link></p>
+        <div class="chip grey darken-1">
+            <strong>
+                <router-link :to="productUrl" style="color: #fff3e0;">{{ result.product.name }}</router-link>
+            </strong>
+        </div>
+        <p>
+            <router-link :to="featureUrl">{{ result.name }}</router-link>
+        </p>
     </li>
 </template>
 <style>
-    .collection-item {
-        width: 100%;
+    .search-results .collection-item {
+        border-bottom: 1px solid #222222;
     }
-    .collection-item, .collection-item p {
-        padding: 0;
+    .search-results .collection-item:last-child {
+        border-bottom: none;
     }
-    .collection-item p a {
+    .search-results .collection-item, .collection-item p {
+        padding: 5px;
+        margin: 0;
+    }
+    .search-results .collection-item p a {
         color: #8740ac;
     }
 </style>

@@ -29,7 +29,6 @@ elixir(mix => {
             'materialize.min.css',
             '../../../node_modules/select2/src/scss/core.scss',
             'styles.css',
-            '../../../node_modules/pace-progress/themes/white/pace-theme-flash.css',
             'nouislider.css'
         ], 'public/css/app.css')
         .webpack(

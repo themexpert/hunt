@@ -7,10 +7,12 @@
                 <i class="material-icons" @click="clearQuery">close</i>
             </div>
         </form>
-        <ul class="collection search-results" :class="{'not-found':searchResults.length==0}" v-if="searching && loaded && query!==''">
-            <li v-if="searchResults.length==0 && loaded" class="alert alert-info" v-text="lang.no_result_message.search"></li>
-            <search-result v-for="result in searchResults" :result="result"></search-result>
-            <li style="text-align: center" v-if="loading">
+        <ul class="collection search-results" style="position: absolute;" :class="{'not-found':searchResults.length==0}" v-if="searching && loaded && query!==''">
+            <template v-if="loaded && !loading">
+                <li v-if="searchResults.length==0" class="alert alert-info collection-item" v-text="lang.no_result_message.search"></li>
+                <search-result v-for="result in searchResults" :result="result"></search-result>
+            </template>
+            <li collection-item style="text-align: center" v-if="loading">
                 <preloader-2></preloader-2>
             </li>
         </ul>
@@ -88,6 +90,21 @@
         watch: {
             query() {
                 this.search();
+            },
+            loaded() {
+                Vue.nextTick(()=>{
+                    $(".search-results, .search-results .collection-item").css('width', $("#search").width()+60);
+                });
+            },
+            loading() {
+                Vue.nextTick(()=>{
+                    $(".search-results, .search-results .collection-item").css('width', $("#search").width()+60);
+                });
+            },
+            searching() {
+                Vue.nextTick(()=>{
+                    $(".search-results, .search-results .collection-item").css('width', $("#search").width()+60);
+                });
             }
         }
     }

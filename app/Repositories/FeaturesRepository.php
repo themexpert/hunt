@@ -278,10 +278,13 @@ class FeaturesRepository
     public function search($limit = 10, $searchTerms = '', $status = '')
     {
         $features = null;
-
+        $search_params = explode(' ', $searchTerms);
         if(! empty($searchTerms)) {
             $features = Feature::with(['product'])
-                ->Where("name", "like", "%$searchTerms%")
+                ->where(function ($query) use($search_params){
+                    foreach ($search_params as $search_param)
+                        $query->where('name', 'like', '%'.$search_param.'%');
+                })
                 ->orWhere("description", "like", "%$searchTerms%");
         } else {
             $features = Feature::with(['product', 'status', 'tags', 'vote']);
@@ -291,7 +294,6 @@ class FeaturesRepository
             $features->select(['features.*'])->join('statuses', 'statuses.feature_id', '=', 'features.id')
                 ->where('statuses.type', $status);
         }
-
         return $this->dataWithPagination($features, $limit, null, 'features.id');
     }
 }

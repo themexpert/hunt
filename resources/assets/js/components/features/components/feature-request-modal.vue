@@ -11,8 +11,11 @@
                 <div class="">
                     <div class="row">
                         <div class="input-field col s6">
-                            <input v-model="feature.name" id="suggest_feature" type="text" :placeholder="lang.modal.feature_request.feature.placeholder">
+                            <input v-model="feature.name" @focus="showResult" @blur="hideResult" id="suggest_feature" type="text" :placeholder="lang.modal.feature_request.feature.placeholder">
                             <label for="suggest_feature" v-text="lang.modal.feature_request.feature.label">Suggest a feature</label>
+                            <ul v-if="searchResults.length && feature.name.length && showSearch" class="collection search-results" style="text-align: left;">
+                                <search-result v-for="result in searchResults" :result="result"></search-result>
+                            </ul>
                         </div>
                         <div class="input-field col s6">
                             <products v-model="feature.product_id"></products>
@@ -49,9 +52,11 @@
 <script type="text/babel">
     import Hunt from '../../../config/Hunt'
     import products from './products.vue'
+    import search_result from './../../search/components/search-result.vue'
     export default{
         components: {
-            'products': products
+            'products': products,
+            'search-result': search_result
         },
         data(){
             return{
@@ -73,10 +78,23 @@
                     description: ''
                 },
                 busy: false,
-                reloadTags: true
+                reloadTags: true,
+                searchResults: [],
+                showSearch: false
             }
         },
+        mounted() {
+            Bus.$on('route-clicked', ()=>{
+                $("#modal1").modal('close');
+            });
+        },
         methods: {
+            showResult() {
+                this.showSearch = true;
+            },
+            hideResult() {
+                this.showSearch = false;
+            },
             /**
              * Prepares data to be sent
              */
@@ -151,6 +169,26 @@
              */
             tags() {
                 return this.$store.state.features.tags;
+            }
+        },
+        watch: {
+            "feature.name" () {
+                const that = this;
+                clearTimeout(window.searchTimer);
+                window.searchTimer = setTimeout(()=>{
+                    Vue.http.get(Hunt.API_URL+'/search?searchTerms='+that.feature.name)
+                        .then(response=>{
+                            that.searchResults = response.data.data;
+                            Vue.nextTick(()=>{
+                                $(".search-results .collection-item").css('width', $("#suggest_feature").width()-20);
+                            });
+                        });
+                }, 300);
+            },
+            showSearch() {
+                Vue.nextTick(()=>{
+                    $(".search-results .collection-item").css('width', $("#suggest_feature").width()-20);
+                });
             }
         }
     }
