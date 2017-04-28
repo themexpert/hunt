@@ -10,8 +10,8 @@
                 <h4 class="modal-title" v-text="lang.modal.feature_request.title">Suggest a feature for ThemeXpert</h4>
                 <div class="">
                     <div class="row">
-                        <div class="input-field col s6">
-                            <input v-model="feature.name" @focus="showResult" @blur="hideResult" id="suggest_feature" type="text" :placeholder="lang.modal.feature_request.feature.placeholder">
+                        <div class="input-field col s6 has-search-result">
+                            <input v-model="feature.name" @focus="showResult" id="suggest_feature" type="text" :placeholder="lang.modal.feature_request.feature.placeholder">
                             <label for="suggest_feature" v-text="lang.modal.feature_request.feature.label">Suggest a feature</label>
                             <ul v-if="searchResults.length && feature.name.length && showSearch" class="collection search-results" style="text-align: left;">
                                 <search-result v-for="result in searchResults" :result="result"></search-result>
@@ -87,12 +87,15 @@
             Bus.$on('route-clicked', ()=>{
                 $("#modal1").modal('close');
             });
+            $("#modal1").click(this.hideResult);
         },
         methods: {
             showResult() {
                 this.showSearch = true;
             },
-            hideResult() {
+            hideResult(e) {
+                if($(e.target).closest('.has-search-result').length)
+                    return;
                 this.showSearch = false;
             },
             /**
