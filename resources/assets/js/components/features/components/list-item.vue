@@ -1,7 +1,7 @@
 <template>
     <li class="collection-item avatar" :class="statusClass">
         <status-icon :status="status"></status-icon>
-        <h4 class="title"><router-link :to="featureUrl">{{ feature.name }}</router-link></h4>
+        <h4 class="title"><router-link :to="featureUrl">{{ feature.name }}</router-link>&nbsp;&nbsp;<router-link v-if="feature.product" :to="'/products/'+feature.product.id+'/features/'"><div class="chip grey darken-1" v-text="feature.product.name"></div></router-link></h4>
         <tag :tags="feature.tags"></tag>
         <div class="description">
             {{ feature.description }}
