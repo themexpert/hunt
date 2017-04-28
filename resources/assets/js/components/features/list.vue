@@ -14,7 +14,9 @@
                             </div>
                             <div class="col s3">
                                 <div class="input-field">
-                                    <products v-model="product_id"></products>
+                                    <products v-model="product_id">
+                                        <option value="all">All</option>
+                                    </products>
                                 </div>
                             </div>
                         </div><!--/.row-->
@@ -28,7 +30,7 @@
                 <div class="details">
                     <ul class="collection feature-list">
                         <feature-list-item v-for="feature in features" :feature="feature"></feature-list-item>
-                        <li v-if="features.length==0" class="text-center" v-text="lang.no_result_message.feature_requests">No feature request found.</li>
+                        <li v-if="features.length==0 && !loading" class="text-center" v-text="lang.no_result_message.feature_requests">No feature request found.</li>
                         <li style="text-align: center" v-if="loading"><preloader-2></preloader-2></li>
                     </ul><!--/.card-->
                 </div><!--/.details-->
@@ -98,8 +100,8 @@
                 this.loading = true;
                 this.product_id = this.$route.params.product_id;
                 if(this.product_id===undefined && this.products.length>0) {
-                    this.product_id = this.$store.state.features.product_id || this.products[0].id;
-                    this.$router.push('/products/'+this.product_id+'/features');
+                    this.product_id = 'all';//this.$store.state.features.product_id || this.products[0].id;
+                    this.$router.push('/products/all/features');
                 }
                 this.$store.dispatch('product_changed', this.product_id);
                 this.product_id_old = this.product_id;

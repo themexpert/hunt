@@ -12,7 +12,7 @@
                     </thead>
 
                     <tbody>
-                    <tr v-if="features.length==0">
+                    <tr v-if="features.length==0 && !loading">
                         <td colspan="3" v-text="lang.no_result_message.feature_requests">No Feature found</td>
                     </tr>
                     <list-item v-else v-for="feature in features" :feature="feature"></list-item>
