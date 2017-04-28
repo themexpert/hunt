@@ -283,9 +283,12 @@ class FeaturesRepository
             $features = Feature::with(['product'])
                 ->where(function ($query) use($search_params){
                     foreach ($search_params as $search_param)
-                        $query->where('name', 'like', '%'.$search_param.'%');
+                        $query->where('name', 'like', '% '.$search_param.' %');
                 })
-                ->orWhere("description", "like", "%$searchTerms%");
+                ->orWhere(function ($query) use($search_params){
+                    foreach ($search_params as $search_param)
+                        $query->where("description", "like", "% {$search_param} %");
+                });
         } else {
             $features = Feature::with(['product', 'status', 'tags', 'vote']);
         }
