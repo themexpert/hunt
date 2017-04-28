@@ -14,7 +14,7 @@
             </div>
         </div><!--/.card-->
 
-        <h2 class="title"><span v-text="lang.panel_title.status">Status</span> <span class="chip" :style="{backgroundColor: statusColor, color: '#ffffff'}">{{ feature.status.type }}</span></h2>
+        <h2 class="title"><span v-text="lang.panel_title.status">Status</span> <span class="chip" :style="{backgroundColor: statusColor, color: '#ffffff'}" v-text="lang.status[feature.status.type.toLowerCase()]"></span></h2>
         <div class="card">
             <div class="card-content">
                 <span class="card-title quote">{{ feature.status.subject }}</span>

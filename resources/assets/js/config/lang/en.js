@@ -169,10 +169,10 @@ module.exports = {
             },
             status: {
                 '': "All",
-                pending: "PENDING",
-                wip: "WIP",
-                released: "RELEASED",
-                declined: "DECLINED"
+                pending: "Awaiting Approval",
+                wip: "Work In Progress",
+                released: "Released",
+                declined: "Declined"
             },
             tooltip: {
                 status: {

@@ -3,7 +3,7 @@
 return [
     'PENDING' => [
         'subject' => 'Wait your feature suggestion feedback',
-        'message' => 'Feature is pending now'
+        'message' => 'We\'re gathering feedback from customers, so that we can gauge demand for this feature. Make sure to click "I want this" on this feature if you need it.'
     ],
 
     'WIP' => [
