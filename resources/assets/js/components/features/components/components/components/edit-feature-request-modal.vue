@@ -16,7 +16,7 @@
                     </div>
                     <div v-if="isAdmin" class="row">
                         <div class="input-field">
-                            <select2 v-model="n_feature.tags" :tags="true" :placeholder="lang.placeholder.dropdown.status">
+                            <select2 v-model="n_feature.tags" :tags="true" :placeholder="lang.placeholder.dropdown.tag">
                                 <option v-for="tag in tags" :value="tag.label">{{ tag.label.toUpperCase() }}</option>
                             </select2>
                         </div>
