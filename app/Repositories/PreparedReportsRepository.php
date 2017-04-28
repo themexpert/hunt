@@ -106,7 +106,7 @@ class PreparedReportsRepository
     {
         $features = Priority::with(['feature', 'feature.product', 'feature.priority', 'feature.status'])
             ->select('id', 'user_id', 'feature_id', DB::raw('sum(value) as value'))
-            ->groupBy('id', 'feature_id')
+            ->groupBy('id', 'feature_id', 'user_id')
             ->orderBy('value')
             ->where('value', '>=', 30)
             ->where('value', '<=', 70);
