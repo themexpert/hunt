@@ -24,6 +24,7 @@
     import FeatureRequestModal from './components/feature-request-modal.vue'
     import feature from './components/feature.vue'
     import sidebar from './components/sidebar.vue'
+    import $ from 'jquery'
     export default{
         name: 'SingleFeatureItem',
         components: {
@@ -85,6 +86,7 @@
                             }
                             success.body.features.tags = success.body.features.tags.map(tag=>{return tag.name;});
                             this.feature = success.body.features;
+                            $('head').append( '<meta name="os-description" content="' + success.body.features.description + '">' );
                             Hunt.renderPage(this.feature.name);
                         },
                         fail => {
