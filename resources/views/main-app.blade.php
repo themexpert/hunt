@@ -32,7 +32,7 @@
         }
     </style>
 
-    <meta name="og:url" content="{{ request()->fullUrl() }}"/>
+    <meta property="og:url" content="{{ request()->fullUrl() }}"/>
 </head>
 <body>
 <div id="app">

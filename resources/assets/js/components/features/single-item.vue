@@ -87,9 +87,9 @@
                             success.body.features.tags = success.body.features.tags.map(tag=>{return tag.name;});
                             this.feature = success.body.features;
 
-                            $('head').append( '<meta name="og:description" content="' + success.body.features.description + '">' );
-                            $('head').append( '<meta name="og:title" content="' + success.body.features.name + '">' );
-                            $('head').append( '<meta name="og:url" content="http://suggest.themexpert.com/products/' + this.product_id + '/features/' + this.feature_id + '">' );
+                            $('head').append( '<meta property="og:description" content="' + success.body.features.description + '">' );
+                            $('head').append( '<meta property="og:title" content="' + success.body.features.name + '">' );
+                            $('head').append( '<meta property="og:url" content="http://suggest.themexpert.com/products/' + this.product_id + '/features/' + this.feature_id + '">' );
 
                             Hunt.renderPage(this.feature.name);
                         },
