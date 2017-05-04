@@ -86,7 +86,7 @@
                             }
                             success.body.features.tags = success.body.features.tags.map(tag=>{return tag.name;});
                             this.feature = success.body.features;
-                            $('head').append( '<meta name="os-description" content="' + success.body.features.description + '">' );
+                            $('head').append( '<meta name="og:description" content="' + success.body.features.description + '">' );
                             Hunt.renderPage(this.feature.name);
                         },
                         fail => {
