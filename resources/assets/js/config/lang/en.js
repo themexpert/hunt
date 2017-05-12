@@ -15,6 +15,7 @@ module.exports = {
                 form: {
                     login: {
                         title: "Login",
+                        google_login: 'Sign in with Google',
                         or: "OR",
                         email: {
                             label: "Email",
@@ -146,6 +147,13 @@ module.exports = {
                         placeholder: "Please keep this as details as possible ..."
                     },
                     btn_product: "Update Product"
+                }
+            },
+            placeholder: {
+                dropdown: {
+                    product: "Please select a product",
+                    tag: "Please select some tag",
+                    status: "Please select a status"
                 }
             },
             search_box: "Search Feature",

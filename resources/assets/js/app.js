@@ -1,12 +1,9 @@
-let Pace = require('pace-progress');
-Pace.start();
-
 import Hunt from './config/Hunt'
 import md5 from 'md5'
 /**
  * Assign pace, md5 and API URL in Hunt object
  */
-Object.assign(Hunt, {pace: Pace, md5: md5, API_URL: Hunt.BASE_URL+'/api'});
+Object.assign(Hunt, {md5: md5, API_URL: Hunt.BASE_URL+'/api'});
 
 require('./bootstrap');
 require('./passport-bootstrap');

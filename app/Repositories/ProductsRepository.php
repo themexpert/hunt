@@ -22,7 +22,7 @@ class ProductsRepository
          $product = Product::create([
              'user_id' => auth('api')->user()->id,
              'name' => $name,
-             'description' => $description,
+             'description' => ($description?$description:''),
              'logo' => ($logo?$logo->extension():'')
         ]);
 

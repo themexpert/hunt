@@ -4,12 +4,10 @@
             <div class="modal-content">
                 <h4 class="modal-title" v-text="lang.modal.edit_product.title">Update Product</h4>
                 <form class="" action="" @submit.prevent="updateProduct">
-                    <div class="row">
-                        <div class="input-field">
-                            <input name="name" v-model="n_product.name" id="product_name" type="text" :placeholder="lang.modal.edit_product.product.placeholder">
-                            <label for="product_name" v-text="lang.modal.edit_product.product.title">Product Name</label>
-                        </div>
-                    </div><!--/.row-->
+                    <div class="input-field">
+                        <input name="name" v-model="n_product.name" id="product_name" type="text" :placeholder="lang.modal.edit_product.product.placeholder">
+                        <label for="product_name" v-text="lang.modal.edit_product.product.title">Product Name</label>
+                    </div>
                     <div class="input-field">
                         <textarea name="description" v-model="n_product.description" id="textarea1" class="materialize-textarea" :placeholder="lang.modal.edit_product.description.placeholder"></textarea>
                         <label for="textarea1" v-text="lang.modal.edit_product.description.label">Add details</label>
@@ -60,10 +58,6 @@
                 let valid = true;
                 if(this.n_product.name==='') {
                     Hunt.toast('Product name can not be empty.', 'warning');
-                    valid = false;
-                }
-                if(this.n_product.description==='') {
-                    Hunt.toast('Product description can not be empty.', 'warning');
                     valid = false;
                 }
                 return valid;

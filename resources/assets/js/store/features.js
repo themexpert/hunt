@@ -91,7 +91,10 @@ export default {
             } else { state.page = 1; }
             state.busy = true;
             let type = null;
-            Vue.http.get(Hunt.API_URL + '/products/'+state.product_id+'/features?page='+state.page
+            let end_point = '/products/'+state.product_id+'/features?page='+state.page;
+            if(state.product_id==='all')
+                end_point = '/search?page='+state.page;
+            Vue.http.get(Hunt.API_URL + end_point
                 + (state.filter!='' && type!='search'?'&status='+state.filter:''))
                 .then(
                     success => {

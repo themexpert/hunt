@@ -16,6 +16,7 @@ class CreateSettingsTable extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->increments('id');
+            $table->string("title")->default('Hunt');
             $table->string("company")->default('ThemeXpert');
             $table->string("language")->default('en');
             $table->string("copyright")->default('&copy; 2010-'.date('Y').' ThemeXpert Inc. All Rights Reserved.');

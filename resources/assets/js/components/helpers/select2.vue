@@ -1,11 +1,11 @@
 <template>
-    <select :class="[className]" :multiple="multiple">
+    <select :class="[className]" :multiple="multiple" :placeholder="placeholder">
         <slot></slot>
     </select>
 </template>
 <script type="text/babel">
     export default{
-        props: ['value', 'tags', 'disabled'],
+        props: ['value', 'tags', 'disabled', 'placeholder'],
         data(){
             return{
                 control: null,
@@ -27,7 +27,7 @@
                 if(this.control!==null) this.control.select2('destroy');
                 const data = {};
                 data.data = this.options;
-                data.placeholder = 'Please select...';
+                data.placeholder = this.placeholder?this.placeholder:'Please select...';
                 if(this.tags) {
                     data.tags = this.tags;
                     data.tokenSeparators = [',', ' '];
@@ -59,6 +59,7 @@
                 setTimeout(()=>{
                     that.control.val(this.value).trigger('change');
                     that.elem.parent().find('span.select2').width('100%');
+                    $(".select2-search__field").css('width', '100%');
                 }, 100);
             },
             valueUpdated() {

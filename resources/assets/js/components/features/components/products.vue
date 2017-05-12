@@ -1,5 +1,6 @@
 <template>
-    <select2 v-model="product_id">
+    <select2 v-model="product_id" :placeholder="lang.placeholder.dropdown.product">
+        <slot></slot>
         <option v-for="product in products" :value="product.id">{{ product.name }}</option>
     </select2>
 </template>

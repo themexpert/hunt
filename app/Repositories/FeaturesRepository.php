@@ -284,7 +284,7 @@ class FeaturesRepository
                 ->Where("name", "like", "%$searchTerms%")
                 ->orWhere("description", "like", "%$searchTerms%");
         } else {
-            $features = Feature::with(['product']);
+            $features = Feature::with(['status', 'tags', 'vote']);
         }
 
         if(!empty($status)) {

@@ -14,9 +14,9 @@
                         <textarea v-model="n_feature.description" id="textarea1" class="materialize-textarea" :placeholder="lang.modal.edit_feature_request.details.placeholder"></textarea>
                         <label for="textarea1" v-text="lang.modal.edit_feature_request.details.label">Add details (if you need to)</label>
                     </div>
-                    <div class="row">
+                    <div v-if="isAdmin" class="row">
                         <div class="input-field">
-                            <select2 v-model="n_feature.tags" :tags="true">
+                            <select2 v-model="n_feature.tags" :tags="true" :placeholder="lang.placeholder.dropdown.tag">
                                 <option v-for="tag in tags" :value="tag.label">{{ tag.label.toUpperCase() }}</option>
                             </select2>
                         </div>

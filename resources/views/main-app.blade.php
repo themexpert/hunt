@@ -21,11 +21,12 @@
         ]); ?>
 
             window.message = "<?php echo str_replace('"', '\\"', \Illuminate\Support\Facades\Session::get('message')); ?>";
-            window.company = "{{ str_replace('"', "\"", $settings->company) }}";
-            window.copyright = "{{ str_replace('"', "\"", $settings->copyright) }}";
+            window.company = "{{ str_replace('"', "\\\"", $settings->company) }}";
+            window.copyright = "{{ str_replace('"', "\\\"", $settings->copyright) }}";
             window.language = "{{ $settings->language }}";
+            window.title = "{{ str_replace('"', '\\\"', $settings->title) }}";
     </script>
-    <title>Hunt</title>
+    <title>{{ $settings->title }}</title>
     <style>
         [v-cloak] {
             display: none;

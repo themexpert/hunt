@@ -3,9 +3,9 @@
         <preloader></preloader>
     </div>
     <div class="col s4" v-else>
-        <div class="widget widget-action" v-if="['RELEASED', 'DECLINED'].indexOf(feature.status.type)<0">
+        <div class="widget widget-action">
             <h3 class="widget-title mt0" v-text="lang.panel_title.action">Action</h3>
-            <vote v-if="!currentUserIsCreator && !isAdmin" :feature="feature" single></vote>
+            <vote v-if="!currentUserIsCreator && !isAdmin && ['RELEASED', 'DECLINED'].indexOf(feature.status.type)<0" :feature="feature" single></vote>
             <admin v-else :feature="feature"></admin>
         </div><!--/.widget-->
 
