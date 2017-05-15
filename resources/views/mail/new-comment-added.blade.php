@@ -174,7 +174,7 @@
                                 <tr style="padding:0;text-align:left;vertical-align:top">
                                     <th style="Margin:0;color:#0a0a0a;font-family:'Open Sans','Helvetica Neue',Helvetica,sans-serif;font-size:14px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left">
                                         <center data-parsed="" style="min-width:242px;width:100%">
-                                            <p align="center" class="float-center" style="Margin:0;Margin-bottom:10px;color:#999;font-family:'Open Sans','Helvetica Neue',Helvetica,sans-serif;font-size:14px;font-weight:400;line-height:25px;margin:0;margin-bottom:10px;padding:0;text-align:center">[SITENAME] | [STORE_ADDRESS]</p>
+                                            <p align="center" class="float-center" style="Margin:0;Margin-bottom:10px;color:#999;font-family:'Open Sans','Helvetica Neue',Helvetica,sans-serif;font-size:14px;font-weight:400;line-height:25px;margin:0;margin-bottom:10px;padding:0;text-align:center">2010-2017 ThemeXpert. All rights reserved.</p>
                                         </center>
                                     </th>
                                 </tr>
