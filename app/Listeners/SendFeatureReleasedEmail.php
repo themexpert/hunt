@@ -18,9 +18,13 @@ class SendFeatureReleasedEmail implements ShouldQueue
      */
     public function handle(FeatureReleased $event)
     {
-        $users = User::all();
+        $developers = config("developers");
 
-        foreach($users as $user) {
+        foreach($developers as $developer) {
+            $user = User::whereEmail($developer)->first();
+
+            if(is_null($user)) continue;
+
             Mail::to($user->email)
                 ->queue(
                 new FeatureReleasedMailable($user, $event->feature)
