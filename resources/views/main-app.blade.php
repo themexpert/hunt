@@ -11,7 +11,7 @@
     <link rel="shortcut icon" href="{{ $settings->favicon }}">
 
     <!-- Styles -->
-    <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/app.css?v={{ \Hunt\Hunt::$version }}" rel="stylesheet">
 
 
     <!-- Scripts -->
@@ -147,6 +147,6 @@
     </footer>
 </div>
 <!-- Scripts -->
-<script src="/js/app.js"></script>
+<script src="/js/app.js?v={{ \Hunt\Hunt::$version }}"></script>
 </body>
 </html>
