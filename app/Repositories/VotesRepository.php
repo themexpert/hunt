@@ -96,4 +96,30 @@ class VotesRepository
             ]);
         }
     }
+
+    /**
+     * Get all up voters.
+     *
+     * @param int $featureId
+     * @return mixed
+     */
+    public function upVoters($featureId)
+    {
+        $voteId = Feature::findOrFail($featureId)->vote()->first()->id;
+
+        return Vote::find($voteId)->voters()->where("vote_type", "up")->get();
+    }
+
+    /**
+     * Get all down voters.
+     *
+     * @param int $featureId
+     * @return mixed
+     */
+    public function downVoters($featureId)
+    {
+        $voteId = Feature::findOrFail($featureId)->vote()->first()->id;
+
+        return Vote::find($voteId)->voters()->where("vote_type", "down")->get();
+    }
 }

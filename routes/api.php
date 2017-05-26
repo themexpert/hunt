@@ -56,6 +56,10 @@ Route::group(['namespace' => 'Api'], function() {
     Route::post('/votes/{featureId}/up', 'VotesController@up');
     Route::post('/votes/{featureId}/down', 'VotesController@down');
 
+    // voter
+    Route::get('/features/{id}/up', 'VotesController@upVoters');
+    Route::get('/features/{id}/down', 'VotesController@downVoters');
+
     // priorities routes...
     Route::post('/priorities/{featureId}', 'PrioritiesController@update');
 

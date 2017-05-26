@@ -24,4 +24,14 @@ class Vote extends Model
     {
         return $this->belongsTo(Feature::class);
     }
+
+    /**
+     * Get feature related to the vote.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function voters()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }

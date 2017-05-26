@@ -77,6 +77,7 @@
                     this.$router.push('/404');
                     return;
                 }
+
                 this.get('/products/'+this.product_id+'/features/'+this.feature_id)
                     .then(
                         success => {

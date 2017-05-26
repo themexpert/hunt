@@ -72,4 +72,26 @@ class VotesController extends Controller
             'message' => 'Vote has been accepted'
         ]);
     }
+
+    /**
+     * Get all up voters.
+     *
+     * @param int $featureId
+     * @return mixed
+     */
+    public function upVoters($featureId)
+    {
+        return $this->votesRepository->upVoters($featureId);
+    }
+
+    /**
+     * Get all down voters.
+     *
+     * @param int $featureId
+     * @return mixed
+     */
+    public function downVoters($featureId)
+    {
+        return $this->votesRepository->downVoters($featureId);
+    }
 }

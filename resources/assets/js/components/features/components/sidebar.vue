@@ -18,6 +18,41 @@
                 </div>
             </div>
         </div><!--/.widget-->
+
+        <div class="features-up-voters-list">
+            <h4> Want This </h4>
+            <div v-if="upVoters">
+                <ul>
+                    <li v-for="upVoter in upVoters">
+                        <div>
+                            <img :src="gravatar(upVoter.email)" alt="" class="circle" height="25" width="25">
+                             <b>{{ upVoter.name }} </b>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div v-else>
+                <b> No record found</b>
+            </div>
+        </div>
+
+         <div class="features-up-voters-list">
+            <h4> Not Interested </h4>
+            <div v-if="downVoters">
+                <ul>
+                    <li v-for="downVoter in downVoters">
+                        <div>
+                            <img :src="gravatar(downVoter.email)" alt="" class="circle" height="25" width="25">
+                             <b>{{ downVoter.name }} </b>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div v-else>
+                <b> No record found</b>
+            </div>
+        </div>
+
         <status-update-modal v-if="isAdmin" :feature="feature"></status-update-modal>
         <effort-update-modal v-if="isAdmin && ['RELEASED', 'DECLINED'].indexOf(feature.status.type)<0" :feature="feature"></effort-update-modal>
         <!--<priority-update-modal v-if="currentUserIsCreator" :feature="feature"></priority-update-modal>-->
@@ -33,6 +68,7 @@
     import EffortUpdateModal from './components/effort-update-modal.vue'
     import PriorityUpdateModal from './components/priority-update-modal.vue'
     import Admin_panel from './components/admin.vue'
+    import Hunt from '../../../config/Hunt'
     export default{
         name: 'SingleFeatureSidebar',
         props: ['feature'],
@@ -46,6 +82,8 @@
         },
         data(){
             return{
+                upVoters: [],
+                downVoters: []
             }
         },
         computed: {
@@ -72,6 +110,37 @@
              */
             currentUserIsCreator() {
                 return this.$store.state.auth.user.email==this.feature.user.email;
+            }
+        },
+
+         mounted () {
+            setTimeout(() => {
+                this.get('/features/' + this.feature.id +'/up')
+                    .then(
+                        success => {
+                         this.upVoters = success.body
+                        }
+                    );
+
+                this.get('/features/' + this.feature.id +'/down')
+                    .then(
+                        success => {
+                         this.downVoters = success.body
+                        }
+                    );
+            }, 1000);
+         },
+
+        methods: {
+            /**
+             * Gravatar URL from email
+             *
+             * @param email
+             * @param size
+             * @returns {string}
+             */
+            gravatar(email, size) {
+                return 'http://gravatar.com/avatar/'+Hunt.md5(email)+'?r=pg&d=mm'+(size?'&s='+size:'');
             }
         }
     }
