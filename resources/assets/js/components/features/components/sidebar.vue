@@ -21,7 +21,7 @@
 
         <div class="features-up-voters-list">
             <h4> Want This </h4>
-            <div v-if="upVoters">
+            <div v-if="upVoters.length > 0">
                 <ul>
                     <li v-for="upVoter in upVoters">
                         <div>
@@ -38,7 +38,8 @@
 
          <div class="features-up-voters-list">
             <h4> Not Interested </h4>
-            <div v-if="downVoters">
+
+            <div v-if="downVoters.length > 0">
                 <ul>
                     <li v-for="downVoter in downVoters">
                         <div>
