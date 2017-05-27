@@ -79,8 +79,12 @@ Route::group(['namespace' => 'Api'], function() {
     // users routes...
     Route::get('/users/{id}/suggests', 'UsersController@suggests');
 
+    // settings routes...
     Route::get('/settings', 'SettingsController@getSettings');
     Route::post('/settings', 'SettingsController@update');
+
+    // users routes..
+    Route::get('/users', 'UsersController@index');
 
     Route::any('{slug}', function($slug)
     {

@@ -21,9 +21,21 @@ class UsersController extends Controller
      */
     public function __construct(UsersRepository $usersRepository)
     {
-        $this->middleware(['auth:api', 'emailActivation']);
+        $this->middleware(['auth:api', 'emailActivation'])->except("index");
+
+        $this->middleware(['auth:api', 'dev'])->only("index");
 
         $this->usersRepository = $usersRepository;
+    }
+
+    /**
+     * Get all users.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public function index()
+    {
+        return $this->usersRepository->get();
     }
 
     /**

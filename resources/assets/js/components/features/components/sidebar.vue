@@ -26,13 +26,9 @@
             <div class="card">
                 <div class="card-content">
                     <div v-if="upVoters.length > 0">
-                        <ul>
-                            <li v-for="upVoter in upVoters">
-                                <div>
-                                     <img :src="gravatar(upVoter.email)" data-position="top" :data-tooltip="upVoter.name" :alt="upVoter.name" class="circle" height="35" width="35">
-                                </div>
-                            </li>
-                        </ul>
+                        <div v-for="upVoter in upVoters">
+                             <img :src="gravatar(upVoter.email)" data-position="top" :data-tooltip="upVoter.name" :alt="upVoter.name" class="circle" height="35" width="35">
+                        </div>
                     </div>
                     <div v-else>
                         <b> No record found</b>
@@ -48,13 +44,9 @@
             <div class="card">
                 <div class="card-content">
                     <div v-if="downVoters.length > 0">
-                        <ul>
-                            <li v-for="downVoter in downVoters">
-                                <div>
-                                    <img :src="gravatar(downVoter.email)" data-position="top" :data-tooltip="downVoter.name" :alt="downVoter.name" class="circle" height="35" width="35">
-                                </div>
-                            </li>
-                        </ul>
+                        <div v-for="downVoter in downVoters">
+                            <img :src="gravatar(downVoter.email)" data-position="top" :data-tooltip="downVoter.name" :alt="downVoter.name" class="circle" height="35" width="35">
+                        </div>
                     </div>
                     <div v-else>
                         <b> No record found</b>

@@ -9,7 +9,8 @@ module.exports = {
                 products: "Products",
                 settings: "Settings",
                 tokens: "Tokens",
-                reports: "Reports"
+                reports: "Reports",
+                users: "Users"
             },
             auth: {
                 form: {

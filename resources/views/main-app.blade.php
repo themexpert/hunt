@@ -58,6 +58,7 @@
                                     <img :src="userAvatar" alt="" class="circle" height="25" width="25">
                                     <a data-activates="dropdown1" class="dropdown">@{{ userName }}</a>
                                     <ul id='dropdown1' class='dropdown-content'>
+                                        <li v-if="isAdmin"><router-link to="/users" v-text="lang.nav.users">Users</router-link></li>
                                         <li v-if="isAdmin"><router-link to="/products" v-text="lang.nav.products">Products</router-link></li>
                                         <li v-if="isAdmin"><router-link to="/settings" v-text="lang.nav.settings">Settings</router-link></li>
                                         {{--<li v-if="isAdmin"><router-link to="/settings/token" v-text="lang.nav.tokens">Tokens</router-link></li>--}}

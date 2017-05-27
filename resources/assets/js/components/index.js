@@ -6,6 +6,9 @@ export default {
     releases: {
         index: require('./releases/releases.vue')
     },
+    users: {
+        index: require('./users/users.vue')
+    },
     products: {
         index: require('./products/products.vue')
     },

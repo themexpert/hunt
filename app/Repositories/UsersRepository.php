@@ -2,6 +2,7 @@
 
 namespace Hunt\Repositories;
 
+use Hunt\User;
 use Hunt\Feature;
 
 class UsersRepository
@@ -15,5 +16,15 @@ class UsersRepository
     public function suggests($userId)
     {
         return Feature::whereUserId($userId)->get();
+    }
+
+    /**
+     * Get all users.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public function get()
+    {
+        return User::all();
     }
 }

@@ -27,6 +27,11 @@ export default [
         meta: {requiresAuth: true}
     },
     {
+        path: '/users',
+        component: Components.users.index,
+        meta: {requiresAuth: true}
+    },
+    {
         path: '/products',
         component: Components.products.index,
         meta: {requiresAuth: true}
