@@ -4,5 +4,5 @@ namespace Hunt;
 
 class Hunt
 {
-    public static $version = "0.0.0";
+    public static $version = "0.0.1";
 }
