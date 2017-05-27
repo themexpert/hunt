@@ -14,8 +14,13 @@
             <div class="feature-list card">
                 <div class="details">
                     <ul class="collection products-list">
-
-
+                        <li v-for="user in users" class="collection-item avatar" :class="statusClass">
+                            <img :src="gravatar(user.email)" :alt="user.name" class="circle" height="35" width="35">
+                            <h4 class="title">{{ user.name }}</h4>
+                            <div class="description">
+                                Email: {{ user.email }}
+                            </div>
+                        </li>
                     </ul><!--/.card-->
                 </div><!--/.details-->
             </div><!--/.feature-req-->
@@ -28,9 +33,10 @@
 <script type="text/babel">
     import Hunt from '../../config/Hunt'
     export default{
-        name: 'Products',
+        name: 'Users',
         data(){
             return{
+                users: []
             }
         },
         mounted() {
@@ -42,20 +48,33 @@
                 this.$router.push('/');
                 return;
             }
-            Hunt.renderPage('Products');
+            this.loadUsers();
+
+            Hunt.renderPage('Users');
         },
         methods: {
-
-        },
-        computed: {
             /**
-             * Gived products list from store
-             *
-             * @returns {computed.products|products|{index}|Array|*}
+             * Load all users.
              */
-            products() {
-                return this.$store.state.features.products;
-            }
+            loadUsers() {
+                 this.get('/users')
+                    .then(
+                        success => {
+                         this.users = success.body
+                         console.log(success.body)
+                        }
+                    );
+            },
+            /**
+             * Gravatar URL from email
+             *
+             * @param email
+             * @param size
+             * @returns {string}
+             */
+            gravatar(email, size) {
+                return 'http://gravatar.com/avatar/'+Hunt.md5(email)+'?r=pg&d=mm'+(size?'&s='+size:'');
+            },
         }
     }
 </script>
