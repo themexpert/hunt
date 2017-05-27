@@ -26,7 +26,7 @@
             <div class="card">
                 <div class="card-content">
                     <div v-if="upVoters.length > 0">
-                        <div v-for="upVoter in upVoters">
+                        <div v-for="upVoter in upVoters" class="voters-image">
                              <img :src="gravatar(upVoter.email)" data-position="top" :data-tooltip="upVoter.name" :alt="upVoter.name" class="circle" height="35" width="35">
                         </div>
                     </div>
@@ -44,7 +44,7 @@
             <div class="card">
                 <div class="card-content">
                     <div v-if="downVoters.length > 0">
-                        <div v-for="downVoter in downVoters">
+                        <div v-for="downVoter in downVoters" class="voters-image">
                             <img :src="gravatar(downVoter.email)" data-position="top" :data-tooltip="downVoter.name" :alt="downVoter.name" class="circle" height="35" width="35">
                         </div>
                     </div>
@@ -61,7 +61,10 @@
     </div><!--/.col-->
 </template>
 <style>
-    
+    .voters-image {
+        display: inline;
+        padding-right: 5px;
+    }
 </style>
 <script type="text/babel">
     import preloader from '../../helpers/preloader.vue'
