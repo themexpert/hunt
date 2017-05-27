@@ -9,6 +9,7 @@
             <admin v-else :feature="feature"></admin>
         </div><!--/.widget-->
 
+        <!-- Feature feedback -->
         <div class="widget widget-feedback">
             <h3 class="widget-title" v-text="lang.panel_title.feedback">Feature Feedback</h3>
             <div class="card">
@@ -19,40 +20,48 @@
             </div>
         </div><!--/.widget-->
 
-        <div class="features-up-voters-list">
-            <h4> Want This </h4>
-            <div v-if="upVoters.length > 0">
-                <ul>
-                    <li v-for="upVoter in upVoters">
-                        <div>
-                            <img :src="gravatar(upVoter.email)" alt="" class="circle" height="25" width="25">
-                             <b>{{ upVoter.name }} </b>
-                        </div>
-                    </li>
-                </ul>
+        <!-- Want this -->
+        <div class="widget widget-feedback">
+            <h3 class="widget-title">Want This</h3>
+            <div class="card">
+                <div class="card-content">
+                    <div v-if="upVoters.length > 0">
+                        <ul>
+                            <li v-for="upVoter in upVoters">
+                                <div>
+                                     <img :src="gravatar(upVoter.email)" data-position="top" :data-tooltip="upVoter.name" :alt="upVoter.name" class="circle" height="35" width="35">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div v-else>
+                        <b> No record found</b>
+                    </div>
+                </div>
             </div>
-            <div v-else>
-                <b> No record found</b>
-            </div>
-        </div>
+        </div><!--/.widget-->
 
-         <div class="features-up-voters-list">
-            <h4> Not Interested </h4>
 
-            <div v-if="downVoters.length > 0">
-                <ul>
-                    <li v-for="downVoter in downVoters">
-                        <div>
-                            <img :src="gravatar(downVoter.email)" alt="" class="circle" height="25" width="25">
-                             <b>{{ downVoter.name }} </b>
-                        </div>
-                    </li>
-                </ul>
+        <!-- Not interested -->
+        <div class="widget widget-feedback">
+            <h3 class="widget-title">Not Interested</h3>
+            <div class="card">
+                <div class="card-content">
+                    <div v-if="downVoters.length > 0">
+                        <ul>
+                            <li v-for="downVoter in downVoters">
+                                <div>
+                                    <img :src="gravatar(downVoter.email)" data-position="top" :data-tooltip="downVoter.name" :alt="downVoter.name" class="circle" height="35" width="35">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div v-else>
+                        <b> No record found</b>
+                    </div>
+                </div>
             </div>
-            <div v-else>
-                <b> No record found</b>
-            </div>
-        </div>
+        </div><!--/.widget-->
 
         <status-update-modal v-if="isAdmin" :feature="feature"></status-update-modal>
         <effort-update-modal v-if="isAdmin && ['RELEASED', 'DECLINED'].indexOf(feature.status.type)<0" :feature="feature"></effort-update-modal>
@@ -130,6 +139,10 @@
                         }
                     );
             }, 1000);
+
+            Vue.nextTick(()=>{
+                this.re_render();
+            });
          },
 
         methods: {
@@ -142,6 +155,17 @@
              */
             gravatar(email, size) {
                 return 'http://gravatar.com/avatar/'+Hunt.md5(email)+'?r=pg&d=mm'+(size?'&s='+size:'');
+            },
+
+            /**
+             * re render tooltip
+             */
+            re_render() {
+                setTimeout(()=>{
+                    const tooltip = $("img[data-tooltip]");
+                    tooltip.tooltip('remove');
+                    tooltip.tooltip();
+                }, 2000);
             }
         }
     }
